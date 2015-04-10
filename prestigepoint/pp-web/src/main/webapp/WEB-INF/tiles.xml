@@ -149,5 +149,13 @@
     <put-attribute name="body" value="/WEB-INF/jsp/askQueries.jsp" />
     <put-attribute name="title" type="string" value="Ask Questions" />
   </definition>
+  <definition name="viewChallengeDetails" id="viewChallengeDetails" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/viewChallengeDetails.jsp" />
+    <put-attribute name="title" type="string" value="viewChallengeDetails" />
+  </definition>
+  <definition name="displyChallengeDetails" id="displyChallengeDetails" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/displyChallengeDetails.jsp" />
+    <put-attribute name="title" type="string" value="displyChallengeDetails" />
+  </definition>
   
 </tiles-definitions>

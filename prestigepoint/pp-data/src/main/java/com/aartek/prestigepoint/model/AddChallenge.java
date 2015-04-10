@@ -25,7 +25,7 @@ public class AddChallenge implements Serializable {
   private String discription;
 
   @Column(name = "PRICE")
-  private Float price;
+  private Integer price;
 
  @Column(name = "CHALLENGE_CONDITION")
   private String challengeCondition;
@@ -97,13 +97,13 @@ public String getTechnology() {
     this.isDeleted = isDeleted;
   }
 
-  public Float getPrice() {
-    return price;
-  }
+public Integer getPrice() {
+	return price;
+}
 
-  public void setPrice(Float price) {
-    this.price = price;
-  }
+public void setPrice(Integer price) {
+	this.price = price;
+}
 
 public Integer getIsActive() {
 	return isActive;

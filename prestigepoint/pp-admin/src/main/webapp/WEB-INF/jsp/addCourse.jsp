@@ -53,7 +53,7 @@
         </table>
       </form:form>
       <c:set var="count" value="0" scope="page" />
-      <display:table name="courseList" pagesize="8" class="basic-table" uid="cat" requestURI="course.do">
+      <display:table name="courseList" pagesize="8" class="basic-table" uid="cat" requestURI="addCourse.do">
         <c:set var="count" value="${count+1}" scope="page" />
         <display:column title="S.NO" class="showHeading" style="width:1%;">
      ${count}

@@ -117,15 +117,15 @@
         <display:column>
           <a href="getEmailId.do?emailId=${cat.emailId}">Send Mail</a>
         </display:column>
-        
-         <display:column title="Edit">
+          <c:if test="${sessionScope.login.adminType!=4}">
+           <display:column title="Edit">
           <a href="getStudentDetails.do?registrationId=${cat.registrationId}">Edit</a>
         </display:column>
         
          <display:column title="Delete">
           <a href="deleteStudentDetails.do?registrationId=${cat.registrationId}" onclick="return confirm('Please confirm if you want to delete this Details!');">Delete</a>
         </display:column>
-        
+            </c:if>
       </display:table>
     </div>
   </div>

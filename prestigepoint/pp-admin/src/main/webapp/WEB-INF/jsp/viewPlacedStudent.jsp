@@ -93,14 +93,16 @@ function uncheckEvent()
       <display:column property="jobLocation" title="Job location" />
       <display:column property="experience" title="Experience" />
       <display:column property="year" title="Year" />
+      <c:if test="${sessionScope.login.adminType!=4}">
       <display:column title="Edit">
-        <a href="viewPlacedStudentEdit.do?studentId=${studentList.studentId}">
+        <a href="updatePlacedStudentInformation.do?studentId=${studentList.studentId}">
         Edit</a>
       </display:column>
       <display:column title="Delete">
-        <a href="viewPlacedStudentdelete.do?studentId=${studentList.studentId}"
+        <a href="deletePlacedStudentInformation.do?studentId=${studentList.studentId}"
           onclick="return confirm('Please confirm if you want to delete this batch!');">Delete</a>
       </display:column>
+      </c:if>
     </display:table>
 
     </form:form>

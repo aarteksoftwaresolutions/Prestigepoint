@@ -89,7 +89,7 @@ public class MailController {
         emailList = registrationService.getallStudentEmailId();
         final String[] email = emailList.toArray(new String[emailList.size()]);
        // System.out.println("attachFile: " + attachFile.getOriginalFilename());
-        mailSender.send(new MimeMessagePreparator() {
+          mailSender.send(new MimeMessagePreparator() {
           public void prepare(MimeMessage mimeMessage) throws Exception {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
              messageHelper.setTo(emailTo); 

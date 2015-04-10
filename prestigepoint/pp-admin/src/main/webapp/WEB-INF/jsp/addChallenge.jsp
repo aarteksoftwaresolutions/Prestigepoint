@@ -16,115 +16,122 @@
 <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.1.custom.min.css" />
 <script type="text/javascript">
-function enableChallengeStatus(challengeDetails)
-{
-	var challengeId=challengeDetails.id;
-	var challengeValue=challengeDetails.value;
-	var challengeIdValue=document.getElementById(challengeId).checked; 
-	$.ajax({
-	     url : "changeActiveStatusAction.do?challengeValue=" + challengeValue+"&challengeIdValue="+challengeIdValue,
-	     type : "GET",
-	     contentType : "application/json; charset=utf-8",
-	     success : function(call) {
-	     },
-	     error : function() {
-	     }
-	   })
-}
+	function enableChallengeStatus(challengeDetails) {
+		var challengeId = challengeDetails.id;
+		var challengeValue = challengeDetails.value;
+		var challengeIdValue = document.getElementById(challengeId).checked;
+		$.ajax({
+			url : "changeActiveStatusAction.do?challengeValue="
+					+ challengeValue + "&challengeIdValue=" + challengeIdValue,
+			type : "GET",
+			contentType : "application/json; charset=utf-8",
+			success : function(call) {
+			},
+			error : function() {
+			}
+		})
+	}
 </script>
 </head>
 <body>
-  <div class="container clearfix">
-    <div class="conact-form">
+    <div class="container clearfix">
+        <div class="conact-form">
 
-      <p>&nbsp;</p>
-      <h3 style="color: red;">${message}</h3>
-      <form:form method="POST" action="addChallengeAction.do" modelAttribute="AddChallenge" autocomplete="off">
+            <p>&nbsp;</p>
+            <h3 style="color: red;">${message}</h3>
+            <form:form method="POST" action="addChallengeAction.do" modelAttribute="AddChallenge" autocomplete="off">
 
-        <table width="100%" border="0">
-          <tr>
+                <table width="100%" border="0">
+                    <tr>
 
-            <td><div class="form-control">
-                <label>
-                  <p>Title</p> <form:input path="title" id="title" class="inputControl" placeholder="title"
-                    required="autofocus" maxlength="100" />
-                    <form:hidden path="challengeId" /> </label>
-              </div>
-            </td>
-            <td><div class="form-control">
+                        <td><div class="form-control">
+                                <label>
+                                    <p>Title</p> <form:input path="title" id="title" class="inputControl"
+                                        placeholder="title" required="autofocus" maxlength="15" /> <form:hidden
+                                        path="challengeId" />
+                                </label>
+                            </div></td>
+                        <td><div class="form-control">
 
-                <label>
-                  <p>Price</p> <form:input path="price" class="inputControl" placeholder="Price" required="autofocus"
-                    maxlength="10" /> </label>
-              </div>
-            </td>
-            
-          </tr>
-          <tr>
-           <td><div class="form-control">
+                                <label>
+                                    <p>Price</p> <form:input path="price" class="inputControl" placeholder="Price"
+                                        required="autofocus" maxlength="10" />
+                                </label>
+                            </div></td>
 
-                <label>
-                  <p>Description</p> <form:textarea path="discription" id="discription" class="inputControl"
-                    placeholder="Discription" required="autofocus" maxlength="2000" /> </label>
-              </div></td>
-          
-            <td><div class="form-control">
-                <label>
-                  <p>Duration</p> <form:input path="duration" class="inputControl" placeholder="Duration"
-                    required="autofocus" maxlength="10" /> </label>
-              </div></td>
-              </tr>
-          <tr>
-            <td><div class="form-control">
-                <label>
-                  <p>Term and Condition</p> <form:textarea path="challengeCondition" class="inputControl" placeholder="challengeCondition"
-                    required="autofocus" maxlength="1000" /> </label>
-              </div></td>
-         
-         
-            <td><div class="form-control">
-                <label>
-                  <p>Technology</p> <form:textarea path="technology" class="inputControl" placeholder="Technology"
-                    maxlength="500" /> </label>
-              </div></td>
-          </tr>
-           <tr>
-          <td colspan="2"><input type="submit" value="Submit" class="btn lg-btn" />
-          </td>
-          </tr>
-      </table>
-        <c:set var="count" value="0" scope="page" />
+                    </tr>
+                    <tr>
+                        <td><div class="form-control">
 
-        <display:table name="allAddChallengeList" pagesize="20" class="basic-table" uid="addChallengeList">
-          <c:set var="count" value="${count+1}" scope="page" />
-          <display:column title="S.NO" style="width:1%;">
+                                <label>
+                                    <p>Description</p> <form:textarea path="discription" id="discription"
+                                        class="inputControl" placeholder="Discription" required="autofocus"
+                                        maxlength="2000" />
+                                </label>
+                            </div></td>
+
+                        <td><div class="form-control">
+                                <label>
+                                    <p>Duration</p> <form:input path="duration" class="inputControl"
+                                        placeholder="Duration" required="autofocus" maxlength="10" />
+                                </label>
+                            </div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="form-control">
+                                <label>
+                                    <p>Term and Condition</p> <form:textarea path="challengeCondition"
+                                        class="inputControl" placeholder="challengeCondition" required="autofocus"
+                                        maxlength="1000" />
+                                </label>
+                            </div></td>
+
+
+                        <td><div class="form-control">
+                                <label>
+                                    <p>Technology</p> <form:textarea path="technology" class="inputControl"
+                                        placeholder="Technology" maxlength="500" id="tech" />
+                                </label>
+                            </div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" value="Submit" class="btn lg-btn" /></td>
+                    </tr>
+                </table>
+                <c:set var="count" value="0" scope="page" />
+
+                <display:table name="allAddChallengeList" pagesize="20" class="basic-table" uid="addChallengeList">
+                    <!-- uid is user define -->
+                    <c:set var="count" value="${count+1}" scope="page" />
+                    <display:column title="S.NO" style="width:1%;">
      ${count}
     </display:column>
-          <%-- <display:column property="challengeCondition" title="Challenge Name" /> --%>
-          <display:column title="Terms & Condition">
-         
-           <a href="viewChallenge.do?challengeId=${addChallengeList.challengeId}">${addChallengeList.challengeCondition}</a>
-          </display:column>
-          <display:column property="price" title="Price" />
-          <display:column title="Edit">
-          <a href="ChallengeListEdit.do?challengeId=${addChallengeList.challengeId}"> Edit</a>
-          </display:column>
-          <display:column title="Delete">
-           <a href="ChallengeListdelete.do?challengeId=${addChallengeList.challengeId}"
-              onclick="return confirm('Please confirm if you want to delete this batch!');">Delete</a>
-          </display:column>
-          <display:column title="Is_Active">
-           <c:if test="${addChallengeList.isActive==1}">
-          <form:checkbox path="isActive" checked="checked"  value="${addChallengeList.challengeId}" id="checkboxId${addChallengeList.challengeId}" onclick="enableChallengeStatus(this);"/>
-          </c:if>
-           <c:if test="${addChallengeList.isActive==0}">
-          <form:checkbox path="isActive" value="${addChallengeList.challengeId}" id="checkboxId${addChallengeList.challengeId}" onclick="enableChallengeStatus(this);"/>
-          </c:if>
-          </display:column>
-        </display:table>
+                    <%-- <display:column property="challengeCondition" title="Challenge Name" /> --%>
+                    <display:column title="Challenge Title">
+                        <a href="viewChallengeInformation.do?challengeId=${addChallengeList.challengeId}">${addChallengeList.title}</a>
+                    </display:column>
+                    <display:column property="price" title="Price" />
+                    <display:column title="Edit">
+                        <a href="updateChallengeInformatin.do?challengeId=${addChallengeList.challengeId}"> Edit</a>
+                    </display:column>
+                    <display:column title="Delete">
+                        <a href="deleteChallengeInformation.do?challengeId=${addChallengeList.challengeId}"
+                            onclick="return confirm('Please confirm if you want to delete this batch!');">Delete</a>
+                    </display:column>
+                    <display:column title="Is_Active">
+                        <c:if test="${addChallengeList.isActive==1}">
+                            <form:checkbox path="isActive" checked="checked" value="${addChallengeList.challengeId}"
+                                id="checkboxId${addChallengeList.challengeId}" onclick="enableChallengeStatus(this);" />
+                        </c:if>
+                        <c:if test="${addChallengeList.isActive==0}">
+                            <form:checkbox path="isActive" value="${addChallengeList.challengeId}"
+                                id="checkboxId${addChallengeList.challengeId}" onclick="enableChallengeStatus(this);" />
+                        </c:if>
+                    </display:column>
+                </display:table>
 
-      </form:form>
+            </form:form>
+        </div>
     </div>
-  </div>
 </body>
 </html>
