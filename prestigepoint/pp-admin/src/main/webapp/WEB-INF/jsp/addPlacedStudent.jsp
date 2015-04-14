@@ -8,6 +8,7 @@
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.9.1.custom.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/page-js/commonDate.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/page-js/registration.js"></script>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
@@ -55,15 +56,15 @@
                                 <label>
                                     <p>First Name</p> <form:input path="registration.firstName" id="firstName"
                                         class="inputControl" placeholder="First Name" required="autofocus"
-                                        maxlength="50" /> <form:hidden path="studentId" /> <form:hidden
-                                        path="registration.registrationId" id="registrationId" />
+                                        maxlength="50"  onkeypress="return Alphabets(event)" /> <form:hidden path="studentId" /> <form:hidden
+                                        path="registration.registrationId" id="registrationId"/>
                                 </label>
                             </div></td>
                         <td><div class="form-control">
 
                                 <label>
                                     <p>Last Name</p> <form:input path="registration.lastName" id="lastName"
-                                        class="inputControl" placeholder="Last Name" required="autofocus" maxlength="50" />
+                                        class="inputControl" placeholder="Last Name" required="autofocus" maxlength="50" onkeypress="return Alphabets(event)" />
                                 </label>
                             </div></td>
                     </tr>
@@ -74,14 +75,14 @@
 
                                 <label>
                                     <p>Company Name</p> <form:input path="companyName" class="inputControl"
-                                        placeholder="Company Name" required="autofocus" maxlength="50" />
+                                        placeholder="Company Name" required="autofocus" maxlength="50" onkeypress="return Alphabets(event)"/>
                                 </label>
                             </div></td>
                         <td><div class="form-control">
 
                                 <label>
                                     <p>Package</p> <form:input path="studentPackage" class="inputControl"
-                                        placeholder="Package" required="autofocus" maxlength="2" />
+                                        placeholder="Package" required="autofocus" maxlength="4"  onkeypress="return onlyNos(event,this);" />
                                 </label>
                             </div></td>
                     </tr>
@@ -106,18 +107,19 @@
                         <td><div class="form-control">
                                 <label>
                                     <p>Job Location</p> <form:input path="jobLocation" class="inputControl"
-                                        placeholder="Job Location" required="autofocus" maxlength="50" />
+                                        placeholder="Job Location" required="autofocus" maxlength="50" onkeypress="return Alphabets(event)" />
                                 </label>
                             </div></td>
                         <td><div class="form-control">
+                       
                                 <label>
-                                    <p>As</p> Fresher<form:radiobutton path="experience" value="fresher" id="fcheck" />
+                                    <p>As</p> Fresher<form:radiobutton path="experience" value="fresher" id="fcheck"  required="autofocus" />
                                 </label> <label>Experience<form:radiobutton path="experience" value="experience"
                                         id="echeck" />
                                 </label>
-                                <div id="year">
+                            <div id="year">
                                     year
-                                    <form:input path="year" placeholder="Year" maxlength="4" />
+                                    <form:input path="year" placeholder="Year" maxlength="4"/>
                                 </div>
                             </div></td>
                         </label>

@@ -221,6 +221,7 @@
                <li><a href="forum.do">Forum</a></li>
                 <li><a href="viewProfile.do">Profile</a></li>
                  <li><a href="viewChallengeDetails.do">Challenge Title</a></li>
+                 <li><a href="editor.do">Java Editor</a></li>
             </ul></li>
          <!--  <li><a href="viewProfile.do">Profile</a></li> -->
 					<li class="link-login"><a href="logout.do">Logout</a></li>

@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.mail.Part;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +30,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.aartek.prestigepoint.model.AdminLogin;
 import com.aartek.prestigepoint.model.Registration;
 import com.aartek.prestigepoint.service.RegistrationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class MailController {
@@ -38,6 +42,8 @@ public class MailController {
   @Autowired
   private JavaMailSender mailSender;
 
+  private static Logger logger = LoggerFactory.getLogger( MailController.class );
+  
   /**
    * Display mail sending page
    * 
@@ -51,6 +57,7 @@ public class MailController {
   public String showSendMail(Map<String, Object> map, Model model, HttpServletRequest request,
       @RequestParam(required = false) String emailId) {
     HttpSession session = request.getSession();
+    logger.info("Hello Mayank");
     AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
     if (loginMember != null) {
       map.put("Registration", new Registration());
@@ -226,7 +233,10 @@ public class MailController {
           for (int i = 0; i < email2.length; i++) {
             addressTo[i] = new InternetAddress(email2[i]);
           }
-          messageHelper.setTo("praveen.raghuvanshii@gmail.com"); 
+         // messageHelper.setTo(email2);
+          //messageHelper.setTo(emailTo); 
+          messageHelper.setFrom("praveen.raghuvanshii@gmail.com");
+          messageHelper.setTo("mayankshukla.mca@gmail.com");
           messageHelper.setSubject(subject);
           messageHelper.setText(message);
           // determines if there is an upload file, attach it to the

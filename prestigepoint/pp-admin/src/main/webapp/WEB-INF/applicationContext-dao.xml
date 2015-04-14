@@ -77,6 +77,7 @@
     <property name="locations">
       <list>
         <value>classpath:hibernate.properties</value>
+         <value>classpath:mail.properties</value>
       </list>
     </property>
   </bean>
@@ -108,15 +109,22 @@
     <property name="sessionFactory" ref="sessionFactory" />
   </bean>
   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-    <property name="host" value="mail.prestigepoint.in" />
-    <property name="username" value="hrd@prestigepoint.in" />
-    <property name="password" value="prestigepoint@123" />
+  
+   <property name="host"><value>${host.smtp}</value></property>
+    <property name="port"><value>${port}</value></property>
+     <property name="username"><value>${username}</value></property>
+      <property name="password"><value>${password}</value></property>
+   
+    <!-- <property name="host" value="smtp.gmail.com" /> --><!-- mail.prestigepoint.in -->
+   <!--  <property name="port" value="25" />
+    <property name="username" value="praveen.raghuvanshii@gmail.com" /> --><!-- hrd@prestigepoint.in -->
+   <!--  <property name="password" value="praveen171987" /> --><!-- prestigepoint@123 -->
     <property name="javaMailProperties">
       <props>
-        <prop key="mail.smtp.auth">true</prop> 
-        <prop key="mail.smtp.socketFactory.port">25</prop>
-        <prop key="mail.smtp.starttls.enable">false</prop>
-        <prop key="mail.smtp.ssl.trust">true</prop> 
+        <prop key="mail.transport.protocol">${mail.transport.protocol}</prop>
+        <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+        <prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop><!-- false -->
+        
       </props>
     </property>
   </bean>

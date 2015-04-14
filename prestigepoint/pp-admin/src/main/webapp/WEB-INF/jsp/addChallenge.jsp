@@ -12,6 +12,7 @@
 <script type="text/javascript" src="js/jquery-ui-1.9.1.custom.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/page-js/commonDate.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/page-js/challenge.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/page-js/registration.js"></script>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
@@ -31,7 +32,7 @@
                         <td><div class="form-control">
                                 <label>
                                     <p>Title</p> <form:input path="title" id="title" class="inputControl"
-                                        placeholder="title" required="autofocus" maxlength="15" /> <form:hidden
+                                        placeholder="title" required="autofocus" maxlength="15"  onkeypress="return Alphabets(event)" /> <form:hidden
                                         path="challengeId" />
                                 </label>
                             </div></td>
@@ -39,7 +40,7 @@
 
                                 <label>
                                     <p>Price</p> <form:input path="price" class="inputControl" placeholder="Price"
-                                        required="autofocus" maxlength="10" />
+                                        required="autofocus" maxlength="10" onkeypress="return onlyNos(event,this);" />
                                 </label>
                             </div></td>
 
@@ -50,7 +51,7 @@
                                 <label>
                                     <p>Description</p> <form:textarea path="discription" id="discription"
                                         class="inputControl" placeholder="Discription" required="autofocus"
-                                        maxlength="2000" />
+                                        maxlength="2000"  onkeypress="return Alphabets(event)" />
                                 </label>
                             </div></td>
 
@@ -66,7 +67,7 @@
                                 <label>
                                     <p>Term and Condition</p> <form:textarea path="challengeCondition"
                                         class="inputControl" placeholder="challengeCondition" required="autofocus"
-                                        maxlength="1000" />
+                                        maxlength="1000"  onkeypress="return Alphabets(event)" />
                                 </label>
                             </div></td>
 
@@ -74,7 +75,7 @@
                         <td><div class="form-control">
                                 <label>
                                     <p>Technology</p> <form:textarea path="technology" class="inputControl"
-                                        placeholder="Technology" maxlength="500" id="tech" />
+                                        placeholder="Technology" maxlength="500" id="tech"  onkeypress="return Alphabets(event)" />
                                 </label>
                             </div></td>
                     </tr>
