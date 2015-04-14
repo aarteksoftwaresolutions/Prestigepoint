@@ -71,7 +71,7 @@ public class Demo {
 
        // Part two is attachment
        messageBodyPart = new MimeBodyPart();
-       String filename = "C:/Users/PravinSir/Desktop/captch key.txt";
+       String filename = "C:/Users/Dell/Desktop/1.html";
        DataSource source = new FileDataSource(filename);
        messageBodyPart.setDataHandler(new DataHandler(source));
        messageBodyPart.setFileName(filename);

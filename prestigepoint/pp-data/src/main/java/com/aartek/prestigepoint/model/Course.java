@@ -41,7 +41,7 @@ public class Course implements Serializable {
 
   @LazyCollection(LazyCollectionOption.FALSE)
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "COURSE_ID")
+  @JoinColumn(name = "COURSE_ID",updatable=false)
   private List<Registration> registrationList;
 
   @ManyToOne

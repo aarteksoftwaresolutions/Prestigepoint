@@ -11,27 +11,11 @@
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.9.1.custom.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/page-js/commonDate.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/page-js/challenge.js" charset="utf-8"></script>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.1.custom.min.css" />
-<script type="text/javascript">
-	function enableChallengeStatus(challengeDetails) {
-		var challengeId = challengeDetails.id;
-		var challengeValue = challengeDetails.value;
-		var challengeIdValue = document.getElementById(challengeId).checked;
-		$.ajax({
-			url : "changeActiveStatusAction.do?challengeValue="
-					+ challengeValue + "&challengeIdValue=" + challengeIdValue,
-			type : "GET",
-			contentType : "application/json; charset=utf-8",
-			success : function(call) {
-			},
-			error : function() {
-			}
-		})
-	}
-</script>
 </head>
 <body>
     <div class="container clearfix">

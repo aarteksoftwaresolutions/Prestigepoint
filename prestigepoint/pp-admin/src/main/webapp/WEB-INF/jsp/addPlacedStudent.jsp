@@ -117,7 +117,7 @@
                                 </label>
                                 <div id="year">
                                     year
-                                    <form:input path="year" placeholder="Year" required="autofocus" maxlength="4" />
+                                    <form:input path="year" placeholder="Year" maxlength="4" />
                                 </div>
                             </div></td>
                         </label>

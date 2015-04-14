@@ -40,7 +40,7 @@ public class Batch implements Serializable {
 
   @LazyCollection(LazyCollectionOption.FALSE)
   @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "BATCH_ID")
+  @JoinColumn(name = "BATCH_ID",updatable=false)
   private List<Registration> registrationList;
 
   @LazyCollection(LazyCollectionOption.FALSE)

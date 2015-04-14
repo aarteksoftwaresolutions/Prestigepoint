@@ -109,14 +109,14 @@
   </bean>
   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="mail.prestigepoint.in" />
-    <property name="port" value="25" />
     <property name="username" value="hrd@prestigepoint.in" />
     <property name="password" value="prestigepoint@123" />
     <property name="javaMailProperties">
       <props>
-        <prop key="mail.transport.protocol">smtp</prop>
-        <prop key="mail.smtp.auth">true</prop>
+        <prop key="mail.smtp.auth">true</prop> 
+        <prop key="mail.smtp.socketFactory.port">25</prop>
         <prop key="mail.smtp.starttls.enable">false</prop>
+        <prop key="mail.smtp.ssl.trust">true</prop> 
       </props>
     </property>
   </bean>

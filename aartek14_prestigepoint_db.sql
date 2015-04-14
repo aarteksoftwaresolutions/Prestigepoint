@@ -3,8 +3,7 @@ SQLyog Community Edition- MySQL GUI v6.07
 Host - 5.0.24-community-nt : Database - aartek14_prestigepoint_db
 *********************************************************************
 Server version : 5.0.24-community-nt
-*/
-
+*/
 /*!40101 SET NAMES utf8 */;
 
 /*!40101 SET SQL_MODE=''*/;
@@ -349,3 +348,45 @@ insert  into `year`(`YEAR_ID`,`YEAR`,`IS_DELETED`) values (1,'2013',1),(2,'2014'
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`aartek14_prestigepoint_db` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `aartek14_prestigepoint_db`;
+
+/*Table structure for table `add_challenge` */
+
+DROP TABLE IF EXISTS `add_challenge`;
+
+CREATE TABLE `add_challenge` (
+  `CHALLENGE_ID` int(80) NOT NULL AUTO_INCREMENT,
+  `TITLE` varchar(250) DEFAULT NULL,
+  `DISCRIPTION` varchar(10000) DEFAULT NULL,
+  `PRICE` int(10) DEFAULT NULL,
+  `CHALLENGE_CONDITION` varchar(1000) DEFAULT NULL,
+  `DURATION` varchar(1000) DEFAULT NULL,
+  `TECHNOLOGY` varchar(1000) DEFAULT NULL,
+  `IS_DELETED` int(80) DEFAULT NULL,
+  `IS_ACTIVE` int(80) DEFAULT NULL,
+  PRIMARY KEY (`CHALLENGE_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+
+/*Table structure for table `placed_student` */
+
+DROP TABLE IF EXISTS `placed_student`;
+
+CREATE TABLE `placed_student` (
+  `STUDENT_ID` int(30) NOT NULL AUTO_INCREMENT,
+  `COMPANY_NAME` varchar(250) DEFAULT NULL,
+  `PACKAGE` varchar(30) DEFAULT NULL,
+  `JOINING_DATE` varchar(250) DEFAULT NULL,
+  `RELEASE_DATE_FROM_AARTEK` varchar(250) DEFAULT NULL,
+  `JOB_LOCATION` varchar(250) DEFAULT NULL,
+  `EXPERIENCE` varchar(30) DEFAULT NULL,
+  `YEAR` varchar(30) DEFAULT NULL,
+  `IS_DELETED` int(30) DEFAULT NULL,
+  `REGISTRATION_ID` int(30) NOT NULL,
+  PRIMARY KEY (`STUDENT_ID`),
+  KEY `REGISTRATION_ID` (`REGISTRATION_ID`),
+  CONSTRAINT `placed_student_ibfk_1` FOREIGN KEY (`REGISTRATION_ID`) REFERENCES `registration` (`REGISTRATION_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+

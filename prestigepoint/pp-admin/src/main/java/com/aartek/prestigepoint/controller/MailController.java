@@ -5,8 +5,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.mail.Part;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
@@ -83,7 +81,7 @@ public class MailController {
     final String emailTo = registration.getEmailId();
     final String subject = registration.getSubject();
     final String message = registration.getMessage();
-    /* if (emailTo == null) { */
+     if (emailTo == null) { 
     if (registration.getAllStudent() != null) {
       if (registration.getAllStudent().equals("allstudent")) {
         emailList = registrationService.getallStudentEmailId();
@@ -150,7 +148,7 @@ public class MailController {
         });
       }
     }
-    /* } */
+     } 
     if (!emailTo.isEmpty() && emailTo != null) {
       /*List<File> attachedFiles = new ArrayList<File>();
       if (!attachFile.getOriginalFilename().equals("")) {
@@ -228,8 +226,7 @@ public class MailController {
           for (int i = 0; i < email2.length; i++) {
             addressTo[i] = new InternetAddress(email2[i]);
           }
-          messageHelper.setTo(email2);
-           messageHelper.setTo(emailTo); 
+          messageHelper.setTo("praveen.raghuvanshii@gmail.com"); 
           messageHelper.setSubject(subject);
           messageHelper.setText(message);
           // determines if there is an upload file, attach it to the

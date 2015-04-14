@@ -82,13 +82,22 @@ public class Registration implements Serializable {
 	@JoinColumn(name = "COURSE_ID")
 	private Course course;
 
-	@ManyToOne
-	@JoinColumn(name = "BATCH_ID")
-	private Batch batch;
-
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "YEAR_ID")
 	private Year year;
+	
+	public Batch getBatch() {
+        return batch;
+    }
+
+    public void setBatch(Batch batch) {
+        this.batch = batch;
+    }
+    @ManyToOne
+    @JoinColumn(name="BATCH_ID")
+    private Batch batch;
 	
 	@ManyToOne
 	@JoinColumn(name = "CURRENT_STATUS_ID")
@@ -101,8 +110,9 @@ public class Registration implements Serializable {
 	
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	  @OneToMany(cascade = CascadeType.ALL)
-	  @JoinColumn(name = "REGISTRATION_ID")
+	  @JoinColumn(name = "REGISTRATION_ID",updatable=false)
 	  private List<AddPlacedStudent> AddPlacedStudentList;
+	 
 	 
 	/*
 	 * @LazyCollection(LazyCollectionOption.FALSE)
@@ -403,17 +413,7 @@ public class Registration implements Serializable {
 	/**
 	 * @return the batch
 	 */
-	public Batch getBatch() {
-		return batch;
-	}
-
-	/**
-	 * @param batch
-	 *            the batch to set
-	 */
-	public void setBatch(Batch batch) {
-		this.batch = batch;
-	}
+	
 
 	/**
 	 * @return the year

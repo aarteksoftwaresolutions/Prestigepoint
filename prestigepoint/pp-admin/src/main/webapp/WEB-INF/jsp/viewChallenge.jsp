@@ -9,37 +9,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Challenge List</title>
 <script type="text/javascript">
-	$(document).ready(function() {
-		if ("${AddChallenge.technology}" == '') {
-			$("#tech").hide();
+$(document).ready(function() {
+	if ("${AddChallenge.technology}" == '') {
+		$("#tech").hide();
 
-		} else {
-			$("#tech").show();
-		}
-	});
+	} else {
+		$("#tech").show();
+	}
+});
 </script>
-<style>
-table {
-  margin: 40px 0;
-  margin-top: auto;
-  table-layout: fixed;
-  width: 400px;
-}
-
-.wider td {
-  width: 10%;
-}
-
-th, td {
-  padding: 10px;
-  text-align: left;
-}
-
-p {
-  /* padding: 25px; */
-  
-}
-</style>
+<link rel="stylesheet" type="text/css" href="css/jquery.challenge.css" />
 </head>
 <body>
     <h1 align="center">
