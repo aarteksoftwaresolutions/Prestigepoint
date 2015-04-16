@@ -150,4 +150,8 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/viewChallenge.jsp" />
 		<put-attribute name="title" type="string" value="viewChallenge page" />
 	</definition>
+	<definition name="forgotPassword" id="forgotPassword" extends="baseTemplate">
+		<put-attribute name="body" value="/WEB-INF/jsp/forgotPassword.jsp" />
+		<put-attribute name="title" type="string" value="forgotPassword page" />
+	</definition>
 </tiles-definitions>

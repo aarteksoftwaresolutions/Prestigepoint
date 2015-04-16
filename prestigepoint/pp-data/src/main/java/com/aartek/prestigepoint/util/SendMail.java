@@ -148,5 +148,31 @@ public static void editEmiMail(String emailId, Integer submittedFee,
 	      }
 	      return;
 }
+
+     public static String forgotPasswordAdmin(String toEmail, String userPassword) {
+	  
+    try {
+      Message message = new MimeMessage(SendMailProperty.mailProperty());
+      message.setFrom(new InternetAddress(IConstant.FROM_EMAIL_ID));
+      message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+      message.setSubject("Regards:Forgot password");
+      String msg = "Dear  Admin,<br>";
+      msg += "&nbsp;&nbsp;&nbsp;We have received a request to email your password .Please find your log-in credentials below:<br>";
+      msg += " <br>";
+      msg += "Email ID /Username : " + toEmail + "<br>";
+      msg += "Password : " + userPassword + "<br>";
+      msg += " <br>";
+      msg += "If you have not raised this request , please contact us email at hrd@prestigepoint.in<br>";
+      msg += " <br>";
+      msg += "Regards,<br>";
+      msg += "Prestige Point";
+      message.setContent(msg, "text/html");
+      Transport.send(message);
+      System.out.println("Done");
+    } catch (MessagingException e) {
+      throw new RuntimeException(e);
+    }
+    return null;
+  }
   
 }

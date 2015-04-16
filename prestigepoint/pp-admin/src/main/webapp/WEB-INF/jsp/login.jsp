@@ -40,6 +40,7 @@
   <div class="container clearfix">
     <div class="conact-form">
       <h3 style="color: red;">${invalid}</h3>
+      <h3 style="color: red;">${forgotMessage}</h3>
       <form:form method="POST" action="userSignIn.do" modelAttribute="AdminLogin" autocomplete="off">
         <table width="100%" border="0">
           <tr>
@@ -69,6 +70,9 @@
                 <label>
                    <small class="required"></small>
                  <input type="checkbox" id="rememberMe" /> Remember Me</label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <label>
+                  <a href="forgotPassword.do" >Forgot Password</a></label> 
               </div></td>
           </tr>
           <tr>

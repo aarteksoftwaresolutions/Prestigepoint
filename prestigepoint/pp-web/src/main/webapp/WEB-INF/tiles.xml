@@ -157,7 +157,7 @@
     <put-attribute name="body" value="/WEB-INF/jsp/displyChallengeDetails.jsp" />
     <put-attribute name="title" type="string" value="displyChallengeDetails" />
   </definition>
-  <definition name="learning" id="learning" extends="baseTemplate">
+  <definition name="editor" id="editor" extends="baseTemplate">
     <put-attribute name="body" value="/WEB-INF/jsp/editor.jsp" />
     <put-attribute name="title" type="string" value="editor" />
   </definition>

@@ -48,7 +48,7 @@ public class LearningController {
 		
 	  }
 	
-	@RequestMapping(value = "/editor", method = RequestMethod.POST)
+	@RequestMapping(value = "/editor",  method = { RequestMethod.GET, RequestMethod.POST })
 	  public String tryityourself(Model m,HttpServletRequest request,
 			  							HttpServletResponse response)throws FileNotFoundException,IOException,ServletException {
 		
@@ -76,7 +76,7 @@ public class LearningController {
 			//RequestDispatcher rd=req.getRequestDispatcher("src\\main\\webapp\\WEB-INF\\jsp\\editor.jsp");
 	    	//rd.forward(req, res);
 		
-		return "learning";
+		return "editor";
 	  }
 	private  void printLines(String name, InputStream ins) throws Exception {
 	    String line = null;

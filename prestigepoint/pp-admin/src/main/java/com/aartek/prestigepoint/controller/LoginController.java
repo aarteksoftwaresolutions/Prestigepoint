@@ -34,9 +34,10 @@ public class LoginController {
 	 */
 	@RequestMapping("/login")
 	public String showLogin(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String invalid) {
+			@RequestParam(required = false) String invalid,@RequestParam(required = false) String forgotMessage) {
 		
 		map.put("AdminLogin", new AdminLogin());
+		model.addAttribute("forgotMessage", forgotMessage);
 		model.addAttribute("invalid", invalid);
 		return "login";
 
