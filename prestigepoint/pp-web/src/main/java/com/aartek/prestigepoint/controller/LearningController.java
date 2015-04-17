@@ -20,10 +20,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LearningController {
-	
-	    PrintWriter out=null;
+	  PrintWriter out=null;
 	    HttpServletRequest req=null;
 	    HttpServletResponse res=null;
 	    List<String> list=null;
@@ -78,6 +78,35 @@ public class LearningController {
 		
 		return "editor";
 	  }
+	@RequestMapping(value = "/editorAction.do",  method = RequestMethod.GET)
+	@ResponseBody
+	  public List<String> editor( @RequestParam(required = false) String editor,HttpServletRequest request,
+				HttpServletResponse response)throws FileNotFoundException,IOException,ServletException {
+		s =	editor;
+		File f=new File("Main.java");
+		System.out.println(f.getAbsolutePath());
+		FileOutputStream fos=new FileOutputStream(f);
+		PrintStream ps=new PrintStream(fos);
+		ps.println(s);
+		ps.close();
+		//out=response.getWriter();
+		req=request;
+		res=response;
+		list =new ArrayList<String>();
+		
+			try {
+		    	
+			    int k =  runProcess("javac Main.java");
+			    if (k==0)
+			    k=runProcess("java Main");
+
+			    } catch (Exception e) {
+			      e.printStackTrace();
+			    }
+			return list;
+	
+	}
+	
 	private  void printLines(String name, InputStream ins) throws Exception {
 	    String line = null;
 	    
@@ -106,7 +135,7 @@ public class LearningController {
 	  }
 
 	
-	@RequestMapping(value = "/servlet", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/servlet", method = RequestMethod.GET)
 	  public String servlet(@RequestParam("subtype") String subType,Model m ) {
 		
 		m.addAttribute("type","servlet");
@@ -176,6 +205,6 @@ public class LearningController {
 	    return "mvc";
 		
 		
-	  }
+	  }*/
 
 }
