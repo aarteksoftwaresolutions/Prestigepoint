@@ -56,7 +56,7 @@
 						
 							<tr>
 							<td><div class="form-control">
-								<%-- <form:errors path="dateOfBirth" class="label error-label"></form:errors> --%>
+								<form:errors path="date" class="label error-label"></form:errors>
 								<label>
 									<p>
 										Date Of Enquiry<small></small>

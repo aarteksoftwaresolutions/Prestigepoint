@@ -200,6 +200,7 @@
 					<tr>
 					<!-- 26/11 -->
 							<td><div class="form-control">
+							<form:errors path="currentStatus.current_status_Id" class="label error-label"></form:errors>
 								<label>
 									<p>
 										Current Status<small class="required">*</small>

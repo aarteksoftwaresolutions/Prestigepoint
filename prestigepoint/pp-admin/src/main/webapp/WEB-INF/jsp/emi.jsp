@@ -8,6 +8,7 @@
 <html>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript" src="js/page-js/registration.js"></script>
 <title>Add Courses</title>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
@@ -71,13 +72,13 @@
                   <p>
                     Amount<small class="required"></small>
                   </p> <form:input path="amount" class="inputControl1" placeholder="Amount" required="autofocus"
-                    maxlength="6" /> <form:hidden path="registration.registrationId" id="regId" /> </label>
+                    maxlength="6" onkeypress="return onlyNos(event,this);" /> <form:hidden path="registration.registrationId" id="regId" /> </label>
               </div>
             </td>
           </tr>
           <tr>
             <td><div class="form-control">
-                <%-- <form:errors path="subject"  class="label error-label"></form:errors> --%>
+                 <form:errors path="date"  class="label error-label"></form:errors> 
                 <label>
                   <p>
                     Date<small class="required"></small>

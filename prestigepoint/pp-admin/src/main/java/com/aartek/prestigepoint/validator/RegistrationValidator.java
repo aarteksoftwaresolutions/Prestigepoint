@@ -51,6 +51,9 @@ public class RegistrationValidator {
     if (registration.getYear().getYearId() == 0) {
       errors.rejectValue("year.yearId", "error.year.rule");
     }
+    if (registration.getCurrentStatus().getCurrent_status_Id() == 0) {
+        errors.rejectValue("currentStatus.current_status_Id", "error.status.rule");
+      }
     if (registration.getBatch().getBatchId() == 0) {
       errors.rejectValue("batch.batchId", "error.batch.rule");
     }

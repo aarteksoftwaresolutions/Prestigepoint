@@ -9,11 +9,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.aartek.prestigepoint.util.DateFormat;
+
 import com.aartek.prestigepoint.model.Enquiry;
 import com.aartek.prestigepoint.repository.EnquiryRepository;
 import com.aartek.prestigepoint.service.EnquiryService;
 import com.aartek.prestigepoint.util.CamelCase;
+import com.aartek.prestigepoint.util.DateFormat;
 import com.aartek.prestigepoint.util.IConstant;
 
 @Service
@@ -38,8 +39,8 @@ public class EnquiryServiceImpl implements EnquiryService {
     enquiryRepository.addEnquiryMessage(enquiry);
   }
 
-public boolean addAdminEnquiry(Enquiry enquiry) throws ParseException {
-	    enquiry.setDate(DateFormat.getYYYYMMDDDate((enquiry.getDate())));
+        public boolean addAdminEnquiry(Enquiry enquiry) throws ParseException {
+	    enquiry.setDate(DateFormat.getMMDDYYYYDateFormat((enquiry.getDate())));
 	    enquiry.setName(CamelCase.produceCamelCase(enquiry.getName()));
 	    enquiry.setLastName(CamelCase.produceCamelCase(enquiry.getLastName()));
 	    enquiry.setHandledBy(CamelCase.produceCamelCase(enquiry.getHandledBy()));
@@ -52,9 +53,9 @@ public boolean addAdminEnquiry(Enquiry enquiry) throws ParseException {
 	      status = enquiryRepository.addAdminEnquiry(enquiry);
 	     
 	    }
+	    
 	    return status;
 	}
-
 public List getYearWiseEnquiry(String year){
 	List enquirylist =null;
 	enquirylist = enquiryRepository.getYearWiseEnquiry(year);

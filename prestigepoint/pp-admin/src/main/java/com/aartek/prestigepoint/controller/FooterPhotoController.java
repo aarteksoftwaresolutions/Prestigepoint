@@ -61,13 +61,14 @@ public class FooterPhotoController {
 		String method = request.getMethod();
 		//Below if condition is for edit functionality
 		if (method.equals("GET")) {
+		
 			photoInFooter = footerPhotoService
 					.editSingleStudentDetail(studentId);
 			
 			model.addAttribute("photoInFooterList", photoInFooterList);
 			map.put("PhotoInFooter", photoInFooter);
 			return "addPhotoInFooter";
-		} else {
+		}else {
 
 			model.addAttribute("photoInFooterList", photoInFooterList);
 			if (photoInFooter.getStudentId() != null) {

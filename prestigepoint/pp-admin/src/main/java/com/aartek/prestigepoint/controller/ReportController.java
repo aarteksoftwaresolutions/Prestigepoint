@@ -26,6 +26,7 @@ import com.aartek.prestigepoint.model.Year;
 import com.aartek.prestigepoint.service.CourseService;
 import com.aartek.prestigepoint.service.EnquiryService;
 import com.aartek.prestigepoint.util.IConstant;
+import com.aartek.prestigepoint.validator.EnquiryValidator;
 
 
 @Controller
@@ -36,6 +37,9 @@ public class ReportController {
 	
 	@Autowired
 	private EnquiryService enquiryService;
+	
+	@Autowired
+	private EnquiryValidator enquiryValidator;
 	
 	@RequestMapping("/viewEnquiryByMonth")
 	public String showEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map, Model model,
@@ -72,8 +76,12 @@ public class ReportController {
 	  public String addEnquiryByAdmin(@ModelAttribute("Enquiry")Enquiry enquiry, BindingResult result, Model model,Map<String, Object> map,
 			  @RequestParam(required = false) String message) throws ParseException {
 	    boolean status = false;
+	    enquiryValidator.validate(enquiry, result);
+	    if (result.hasErrors()) {
+			return "addAdminEnquiry";
+		}
 	    status = enquiryService.addAdminEnquiry(enquiry);
-	        if (status) {
+	      if (status) {
 	        		model.addAttribute("message", IConstant.ENQUIRY_BY_ADMIN_SUCCESS);
 	        }else{
 	        	model.addAttribute("message", IConstant.ENQUIRY_BY_ADMIN_FAIL);

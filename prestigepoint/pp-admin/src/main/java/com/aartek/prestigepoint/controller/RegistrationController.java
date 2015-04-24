@@ -32,6 +32,7 @@ import com.aartek.prestigepoint.validator.RegistrationValidator;
 
 @Controller
 public class RegistrationController {
+	
 	@Autowired
 	private CourseService courseService;
 

@@ -20,6 +20,7 @@
 				<table width="100%" border="0">
 					<tr>
 						<td><div class="form-control">
+						<form:errors path="subject.subjectId" class="label error-label"></form:errors>
 								<label>
 									<h3 style="color: #873d80;">Add Question and Answer</h3> <small
 									class="required"></small> </label> <label>

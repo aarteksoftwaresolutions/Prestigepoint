@@ -2,7 +2,9 @@ package com.aartek.prestigepoint.controller;
 
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +14,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.aartek.prestigepoint.model.QuestionAnswer;
 import com.aartek.prestigepoint.model.Subject;
 import com.aartek.prestigepoint.service.QuestionAnswerService;
+import com.aartek.prestigepoint.validator.QuestionAndAnswerValidator;
 
 @Controller
 public class QuestionAnswerController {
 
 	@Autowired
 	private QuestionAnswerService questionAnswerService;
+	
+	@Autowired
+	private QuestionAndAnswerValidator questionAndAnswerValidator;
 
 	/**
 	 * show question answer page
@@ -43,6 +50,12 @@ public class QuestionAnswerController {
 	public String addQuestionAnswer(@ModelAttribute("QuestionAnswer") QuestionAnswer questionAnswer,
 			BindingResult result, ModelMap model, Map<String, Object> map, HttpServletRequest request) {
 		boolean status = false;
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
+		questionAndAnswerValidator.validate(questionAnswer, result);
+		if (result.hasErrors()) {
+			model.addAttribute("subjectList", subjects);
+			return "questionAndAnswer";
+		}
 		status = questionAnswerService.addQuestionAndAnswer(questionAnswer);
 		if (status) {
 			model.addAttribute("message", "Your question answer add successfully");
@@ -68,6 +81,12 @@ public class QuestionAnswerController {
 	public String addDifferenceQuestion(@ModelAttribute("QuestionAnswer") QuestionAnswer questionAnswer,
 			BindingResult result, ModelMap model, Map<String, Object> map, HttpServletRequest request) {
 		boolean status = false;
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
+		questionAndAnswerValidator.validate(questionAnswer, result);
+		if (result.hasErrors()) {
+			model.addAttribute("subjectList", subjects);
+			return "differenceQuestion";
+		}
 		status = questionAnswerService.addQuestionAndAnswer(questionAnswer);
 		if (status) {
 			model.addAttribute("message", "Your question answer add successfully");

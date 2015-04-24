@@ -10,22 +10,39 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title></title>
+<!-- <script type="text/javascript">
+function validateForm()
+{
+
+var e = document.getElementById("simplequestion");
+var strUser = e.options[e.selectedIndex].value;
+if(strUser==0)
+{
+alert("Enter Profession");
+return false;
+}   
+}
+
+
+</script> -->
 </head>
 <body>
 	<div class="container clearfix">
 		<div class="conact-form">
 		 <h3 style="color: red;">${message}</h3>
 			<form:form method="POST" action="questionAction.do"
-				modelAttribute="QuestionAnswer">
+				modelAttribute="QuestionAnswer" onsubmit="return validateForm()">
 				<table width="100%" border="0">
 					<tr>
 						<td><div class="form-control">
+						<form:errors path="subject.subjectId" class="label error-label"></form:errors>
 								<label>
 									<h3 style="color: #873d80;">Add Question and Answer</h3> <small
-									class="required"></small> </label> <label>
+									class="required"></small> </label>
+									 <label>
 									<p>
 										Subject<small class="required"></small>
-									</p> <form:select path="subject.subjectId" class="inputControl1">
+									</p> <form:select path="subject.subjectId" class="inputControl1" id="subject">
 										<form:option value="0" label="Select" />
 										<c:forEach items="${subjectList}" var="sub">
 											<form:option value="${sub.subjectId}"

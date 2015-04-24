@@ -16,9 +16,10 @@ public class EnquiryRepositoryImpl implements EnquiryRepository {
   private HibernateTemplate hibernateTemplate;
 
   public void addEnquiryMessage(Enquiry enquiry) {
-    hibernateTemplate.saveOrUpdate(enquiry);
+	 hibernateTemplate.saveOrUpdate(enquiry);
   }
 
+@SuppressWarnings("unused")
 public boolean addAdminEnquiry(Enquiry enquiry) {
 	if(enquiry!=null){
 	hibernateTemplate.saveOrUpdate(enquiry);
@@ -27,6 +28,7 @@ public boolean addAdminEnquiry(Enquiry enquiry) {
 	return false;
 	}
 
+@SuppressWarnings("rawtypes")
 public List getYearWiseEnquiry(String year) {
 	 List enquiryList = null;
 	 enquiryList = hibernateTemplate.find("select COUNT(e.enquiryId) ,e.date, SUM(CASE WHEN e.status = '1' THEN 1 ELSE 0 END) from Enquiry e where e.isDeleted=" + IConstant.IS_DELETED

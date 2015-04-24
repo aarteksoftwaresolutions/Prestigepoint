@@ -6,14 +6,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import sun.misc.BASE64Encoder;
-import sun.misc.BASE64Decoder;
 
 import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import sun.misc.BASE64Encoder;
 
 import com.aartek.prestigepoint.model.PhotoInFooter;
 import com.aartek.prestigepoint.repository.FooterPhotoRepository;
@@ -50,16 +50,16 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
     PhotoInFooter photoInFooter2=(PhotoInFooter) list.get(0);
     BufferedImage img = null;
 	  try {
-	
 		img = ImageIO.read(new File(imagePath + "/" + photoInFooter2.getStudentId()+ ".png"));
-	} catch (IOException e) {
+	 }catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	  System.out.println(img);
 	  String imageFormat="png";
 	  String imageString =null;
       ByteArrayOutputStream bos = new ByteArrayOutputStream();
-
+      if(img!=null){
       try {
           ImageIO.write(img, imageFormat, bos);
           byte[] imageBytes = bos.toByteArray();
@@ -71,10 +71,12 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
       } catch (IOException e) {
           e.printStackTrace();
       }
+      }
     for (Object object : list) {
     	photoInFooter = (PhotoInFooter) object;
     }
-    photoInFooter.setImgPath(imageString);
+  
+   photoInFooter.setImgPath(imageString);
     
     
     return photoInFooter;
@@ -85,7 +87,8 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
    * 
    * @param batch
    */
-  public boolean addFooterPhoto(PhotoInFooter photoInFooter) {
+  @SuppressWarnings("unused")
+public boolean addFooterPhoto(PhotoInFooter photoInFooter) {
     boolean status = false;
     if (photoInFooter != null) {
     	photoInFooter.setIsDeleted(IConstant.IS_DELETED);
@@ -94,7 +97,7 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
       BufferedImage newImg;
       String imageData = photoInFooter.getImgPath().replaceFirst("^data:image/[^;]*;base64,?", "");
       newImg = ImageFormat.decodeToImage(imageData);
-      if (newImg != null) {
+      if (newImg != null ) {
         try {
           File f = new File(imagePath);
           f.mkdirs();

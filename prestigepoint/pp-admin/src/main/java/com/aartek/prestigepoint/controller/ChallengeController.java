@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,13 +19,19 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Controller
 public class ChallengeController {
+	
+	private static final Logger logger = Logger
+			   .getLogger(ChallengeController.class);
+	
     @Autowired
     private ChallengeService addChallengeService;
 
     @RequestMapping("/addChallenge")
     private String addChallenge(Map<String, Object> map, ModelMap model, @RequestParam(required = false) String message) {
         map.put("AddChallenge", new AddChallenge());
+      
         List<AddChallenge> allAddChallengeList = addChallengeService.allAddChallengeList();
+        logger.info("This is Info Message!");
         model.addAttribute("allAddChallengeList", allAddChallengeList);
         model.addAttribute("message", message);
         return "addChallenge";
@@ -57,7 +64,7 @@ public class ChallengeController {
     @RequestMapping(value = "/deleteChallengeInformation", method = { RequestMethod.GET, RequestMethod.POST })
     public String deleteStudentInformation(@RequestParam(required = false) Integer challengeId) {
         addChallengeService.deleteChallengeInformation(challengeId);
-
+        System.out.println("challengeId");
         return "redirect:/addChallenge.do";
     }
 

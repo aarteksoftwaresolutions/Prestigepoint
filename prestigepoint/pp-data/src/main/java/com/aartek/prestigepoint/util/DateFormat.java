@@ -5,7 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateFormat {
-  public static String getYYYYMMDDDate(String date1) {
+	
+    public static String getYYYYMMDDDate(String date1) {
     SimpleDateFormat userDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     SimpleDateFormat dateFormatNeeded = new SimpleDateFormat("yyyy-MM-dd");
     Date date = null;
