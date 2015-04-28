@@ -30,7 +30,7 @@ width: 50%;
         <table width="100%" border="0">
           <tr>
             <td><div class="form-control">
-                <%-- <form:errors path="name"  class="label error-label"></form:errors> --%>
+                <form:errors path="emailId"  class="label error-label"></form:errors>
                  <label>
                   <p>
                   <h3 style="color: #873d80;">Forgot Password</h3>

@@ -2,18 +2,13 @@ package com.aartek.prestigepoint.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "enquiry")
@@ -67,7 +62,7 @@ public class Enquiry implements Serializable {
   private String referenceMobileNo;
   
   @Column(name = "TRAINING_TYPE")
-  private String trainingType;
+  private Integer trainingType;
   
   @Column(name = "HANDLED_BY")
   private String handledBy;
@@ -122,11 +117,13 @@ public void setReferenceMobileNo(String referenceMobileNo) {
 	this.referenceMobileNo = referenceMobileNo;
 }
 
-public String getTrainingType() {
+
+
+public Integer getTrainingType() {
 	return trainingType;
 }
 
-public void setTrainingType(String trainingType) {
+public void setTrainingType(Integer trainingType) {
 	this.trainingType = trainingType;
 }
 

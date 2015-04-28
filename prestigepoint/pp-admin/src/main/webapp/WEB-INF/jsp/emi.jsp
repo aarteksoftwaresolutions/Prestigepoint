@@ -13,6 +13,21 @@
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.1.custom.min.css" />
+<script>
+function validateForm()
+{
+      // Assign variables for the required fields
+      var x=document.forms["testForm"]["date"].value;
+      //Check that the variables are not empty
+      if (x==null || x=="")
+      {
+    	/*   document.getElementById("datepick").innerHTML = "Paragraph changed!"; */
+            alert("Please enter your name!");   
+           
+            return false;
+      }
+}
+</script> 
 <script type="text/javascript">
 	$(document).ready(function() {
 		var regId = "${registrationId}";
@@ -22,8 +37,6 @@
 	function checkEmi(){
 		
 	}
-	
-	
 </script>
 </head>
 <body>
@@ -58,7 +71,7 @@
         </display:column>
         
       </display:table>
-      <form:form method="POST" action="addEmi.do" modelAttribute="Emi" autocomplete="off">
+      <form:form name="testForm" method="POST" action="addEmi.do" modelAttribute="Emi" autocomplete="off" onsubmit="return validateForm()">
       <form:form  method="POST" action="getStudentDetails.do" modelAttribute="Emi" autocomplete="off" >
         <table width="100%" border="0" ><form:hidden path="emiId" />
           <tr>
@@ -84,8 +97,9 @@
                     Date<small class="required"></small>
                     <fmt:parseDate value="${cat.date}" var="date" pattern="yyyy-MM-dd" />
          			 <fmt:formatDate type="date" value="${date}" var="startDate" pattern="dd-MM-yyyy" />
-                  </p> <form:input path="date" id="datepick" class="inputControl1" placeholder="Date" required="autofocus"
+                  </p> <form:input path="date" id="datepick" class="inputControl1" placeholder="Date"
                     maxlength="20" readonly="true" /> </label>
+              
               </div>
             </td>
           </tr>

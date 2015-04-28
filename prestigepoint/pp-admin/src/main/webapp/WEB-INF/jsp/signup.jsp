@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="fonts/font-class.css" media="all">
 <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
 <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/page-js/registration.js"></script>
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/page-js/login.js"></script>
 <script type="text/javascript" src="js/page-js/common.js"></script>
@@ -32,7 +33,7 @@
                   <p>
                     First Name<small class="required"></small>
                   </p> <form:input path="firstName" class="inputControl1" placeholder="Please enter your First Name"
-                    required="autofocus" maxlength="50" id="firstName" /> </label>
+                    required="autofocus" maxlength="50" id="firstName" onkeypress="return Alphabets(event)" /> </label>
               </div>
             </td>
           </tr>
@@ -43,7 +44,7 @@
                   <p>
                     Last Name<small class="required"></small>
                   </p> <form:input path="lastName" class="inputControl1" placeholder="Please enter your Last Name"
-                    required="autofocus" maxlength="50" id="lastName" /> </label>
+                    required="autofocus" maxlength="50" id="lastName" onkeypress="return Alphabets(event)" /> </label>
               </div>
             </td>
           </tr>

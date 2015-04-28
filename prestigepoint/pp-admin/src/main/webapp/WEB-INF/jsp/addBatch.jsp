@@ -36,7 +36,7 @@
           </tr>
           <tr>
             <td><div class="form-control">
-                <%-- <form:errors path="subject"  class="label error-label"></form:errors> --%>
+                <form:errors path="startDate"  class="label error-label"></form:errors> 
                 <label>
                   <p>
                     Start Date<small class="required"></small>

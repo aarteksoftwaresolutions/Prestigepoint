@@ -27,7 +27,7 @@ public class LoginController {
 	/**
 	 * Display login page.
 	 * 
-	 * @param map
+	 * @param mapn
 	 * @param model
 	 * @param invalid
 	 * @return

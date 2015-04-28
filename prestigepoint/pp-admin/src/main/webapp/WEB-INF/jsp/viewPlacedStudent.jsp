@@ -15,8 +15,31 @@
 <link href="css/main.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
-<link rel="stylesheet" type="text/css" href="css/jquery.placed.picker.js" />
 <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.1.custom.min.css" />
+<script type="text/javascript">
+function callAllPlacedStudent() {
+	  if ($('#allPlacedStudent').prop('checked')) {
+	    document.getElementById("datepick").disabled = true;
+	    document.getElementById("picker").disabled = true;
+	    document.getElementById("datepick").value = " ";
+	    document.getElementById("picker").value = " ";
+	  }
+	  else
+	    {
+	    document.getElementById("datepick").disabled = false;
+	    document.getElementById("datepick").disabled = false;
+	    
+	    }
+	}
+	function uncheckEvent()
+	{
+	  $('#allPlacedStudent').attr('checked', false);
+	  
+	 
+	}
+	
+
+</script>
 </head>
 <body>
   <form:form method="POST" action="viewPlacedStudentAction.do" modelAttribute="AddPlacedStudent" autocomplete="off">

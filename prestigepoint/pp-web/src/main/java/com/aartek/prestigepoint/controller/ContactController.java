@@ -20,7 +20,7 @@ import com.aartek.prestigepoint.service.ContactService;
 import com.aartek.prestigepoint.service.FooterPhotoService;
 import com.aartek.prestigepoint.service.QuestionAnswerService;
 import com.aartek.prestigepoint.util.IConstant;
-import com.aartek.prestigepoint.validator.ContactUsValidator;
+import com.aartek.prestigepoint.validator.UserEnquiryValidator;
 
 @Controller
 public class ContactController {
@@ -28,7 +28,7 @@ public class ContactController {
 	private ContactService contactService;
 
 	@Autowired
-	private ContactUsValidator contactUsValidator;
+	private UserEnquiryValidator enquiryValidator;
 
 	@Autowired
 	private QuestionAnswerService questionAnswerService;
@@ -54,11 +54,12 @@ public class ContactController {
 	public String feedbackInfo(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, ModelMap model,
 			Map<String, Object> map) {
 		boolean status = false;
-		contactUsValidator.validate(enquiry, result);
-		if (result.hasErrors()) {
-			return "contactUs";
-		}
+		enquiryValidator.validate(enquiry, result);
 		model.put("Enquiry", new Enquiry());
+		if (result.hasErrors()) {
+			
+			return "redirect:/contactUs.do";
+		}
 		status = contactService.addContactMessage(enquiry);
 		if (status) {
 			model.addAttribute("message", IConstant.CONTACTUS_SUCCESS_MESSAGE);

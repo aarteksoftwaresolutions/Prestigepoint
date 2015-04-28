@@ -16,25 +16,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.aartek.prestigepoint.model.AdminLogin;
 import com.aartek.prestigepoint.model.Emi;
 import com.aartek.prestigepoint.model.Registration;
-import com.aartek.prestigepoint.repository.EmiRepository;
 import com.aartek.prestigepoint.service.EmiService;
-import com.aartek.prestigepoint.serviceImpl.EmiServiceImpl;
 import com.aartek.prestigepoint.util.IConstant;
-import com.aartek.prestigepoint.validator.EmiValidator;
-import com.aartek.prestigepoint.validator.QuestionAndAnswerValidator;
 
 @Controller
 public class EmiController {
 	@Autowired
 	private EmiService emiService;
 
-	@Autowired
-	private EmiValidator emiValidator;
-
+	/*
+	 * @Autowired private EmiValidator emiValidator;
+	 */
 	/**
 	 * Method for view emi details of students.
 	 * 
@@ -122,12 +119,13 @@ public class EmiController {
 	@RequestMapping(value = "/addEmi", method = { RequestMethod.GET,
 			RequestMethod.POST })
 	public String addEmiData(@ModelAttribute("Emi") Emi emi,
-			BindingResult result, ModelMap model, Map<String, Object> map,
-			HttpServletRequest request) throws ParseException {
+			BindingResult result, ModelMap model,
+			final RedirectAttributes redirectAttributes,
+			Map<String, Object> map, HttpServletRequest request)
+			throws ParseException {
 		HttpSession session = request.getSession();
 		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
 		String abc = loginMember.getFirstName();
-		emiValidator.validate(emi, result);
 		boolean status = false;
 		if (emi.getEmiId() != null) {
 			Integer registrationId = emiService.getRegistrationId(emi
@@ -144,9 +142,15 @@ public class EmiController {
 			}
 
 		} else {
-			if (result.hasErrors()) {
-				return "emi";
-			}
+			/*
+			 * emiValidator.validate(emi, result); if (result.hasErrors()) {
+			 * 
+			 * redirectAttributes.addFlashAttribute("result",result);
+			 *  return
+			 * "redirect:/viewDetails.do?registrationId="
+			 * +emi.getRegistration().getRegistrationId(); }
+			 */
+		
 			status = emiService.addEmiInfo(emi);
 			if (status) {
 				model.addAttribute("registrationId", emi.getRegistration()
@@ -156,9 +160,12 @@ public class EmiController {
 				model.addAttribute("message", "Error");
 			}
 		}
-		return "redirect:/emi.do";
+		
+		return "redirect:/viewDetails.do?registrationId="
+		  +emi.getRegistration().getRegistrationId();
+		/*return "redirect:/viewDetails.do";
 		// return "redirect:/viewStudentDetails.do";
-	}
+*/	}
 
 	@RequestMapping(value = "/editEmiAction", method = { RequestMethod.GET,
 			RequestMethod.POST })

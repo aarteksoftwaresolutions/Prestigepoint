@@ -18,7 +18,7 @@ public class ForgotPasswordServiceImpl implements ForgotPasswordService {
 
   public boolean getPassword(String emailId) {
     List<Registration> list = forgotPasswordRepository.getPassword(emailId);
-    if (list != null) {
+    if (list != null && !list.isEmpty()) {
       Registration registration = list.get(0);
       SendMail.forgotPassword(registration.getEmailId(), registration.getPassword(), registration.getFirstName());
       return true;

@@ -31,5 +31,13 @@ public class SignUpValidator {
         errors.rejectValue("emailId", "error.email.required");
       }
     }
+    if (login.getContactNo() != null && login.getContactNo() != "") {
+        if (login.getContactNo().length() < 10) {
+          errors.rejectValue("contactNo", "error.contactAdminNo.length");
+        }
     }
+    if (login.getadminType() == 0) {
+        errors.rejectValue("adminType", "error.adminType.rule");
+      }
   }
+}

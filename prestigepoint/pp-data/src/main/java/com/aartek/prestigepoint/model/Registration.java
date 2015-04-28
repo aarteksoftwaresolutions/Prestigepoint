@@ -139,6 +139,7 @@ public class Registration implements Serializable {
   public void setAddPlacedStudentList(List<AddPlacedStudent> addPlacedStudentList) {
     AddPlacedStudentList = addPlacedStudentList;
   }
+  
   @Transient
 	private String searchType;
 

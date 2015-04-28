@@ -20,7 +20,7 @@ public class EmiRepositoryImpl implements EmiRepository {
 
   public List<Emi> getFeesDetails(Integer registrationId) {
     List<Emi> list = null;
-    list = hibernateTemplate.find("from Emi e where e.registration.registrationId=" + registrationId +"and e.isDeleted="+IConstant.IS_DELETED);
+    list = hibernateTemplate.find("from Emi e where e.registration.registrationId=" + registrationId + " and e.isDeleted="+IConstant.IS_DELETED);
     
     return list;
   }
@@ -48,7 +48,7 @@ public class EmiRepositoryImpl implements EmiRepository {
 
   public List<Registration> getRegistrationDetails(Integer registrationId) {
     List<Registration> list = null;
-    list = hibernateTemplate.find("from Registration r where r.registrationId=" + registrationId +"and r.isDeleted="+IConstant.IS_DELETED);
+    list = hibernateTemplate.find("from Registration r where r.registrationId=" + registrationId +" and r.isDeleted="+IConstant.IS_DELETED);
     return list;
   }
 

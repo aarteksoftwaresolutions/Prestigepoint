@@ -1,5 +1,6 @@
 package com.aartek.prestigepoint.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ import com.aartek.prestigepoint.service.ScrollerService;
 import com.aartek.prestigepoint.service.StudentRegistrationService;
 import com.aartek.prestigepoint.service.FooterPhotoService;
 @Controller
-public class LoginController {
+public class UserLoginController {
 
 	@Autowired
 	private FooterPhotoService footerPhotoService ;
@@ -112,9 +113,10 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(Map<String, Object> map, Model model, @RequestParam(required = false) String invalid) {
+	public String login(Map<String, Object> map, Model model, @RequestParam(required = false) String invalid,@RequestParam(required = false) String forgotMessage) {
 		map.put("Registration", new Registration());
 		model.addAttribute("invalid", invalid);
+		model.addAttribute("forgotMessage", forgotMessage);
 		List<Subject> subjects = null;
 		subjects = questionAnswerService.getAllSubjectName();
 		List<PhotoInFooter> listOfSelectedStudent=footerPhotoService.listOfSelectedStudent();
@@ -149,9 +151,11 @@ public class LoginController {
 	 }
 	
 	@RequestMapping("/logout")
-	public String showLogout(Map<String, Object> map, Model model, HttpServletRequest request) {
+	public String showLogout(Map<String, Object> map, Model model, HttpServletRequest request, HttpServletRequest response) {
+
 		HttpSession session = request.getSession();
-		session.invalidate();
+		request.getSession().invalidate();
+		request.getContextPath();
 		return "redirect:/login.do";
 	}
 

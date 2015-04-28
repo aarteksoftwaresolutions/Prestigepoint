@@ -80,7 +80,7 @@
 					</tr>
 					<tr>
 						<td><div class="form-control">
-								<form:errors path="subject" class="label error-label"></form:errors>
+								<form:errors path="mobileNo" class="label error-label"></form:errors>
 								<span class="label error-label" id="contact"
 									style="display: none;">Contact No should be 10 digit</span> <label>
 									<p>
@@ -137,7 +137,7 @@
 								</label>
 							</div></td>
 						<td><div class="form-control">
-								<form:errors path="subject" class="label error-label"></form:errors>
+								<form:errors path="referenceName" class="label error-label"></form:errors>
 								<label>
 									<p>
 										Reference Mobile No.<small></small>
@@ -149,17 +149,17 @@
 					</tr>
 					<tr>
 						<td><div class="form-control">
-								<form:errors path="subject" class="label error-label"></form:errors>
+								<form:errors path="trainingType" class="label error-label"></form:errors>
 								<label>
 									<p>
 										Training Type<small></small>
 									</p>
 									<form:select path="trainingType" class="inputControl1">
 										<form:option value="0" label="Select" />
-										<form:option value="Industrial" label="Industrial" />
-										<form:option value="Corporate" label="Corporate" />
-										<form:option value="Collage" label="Collage" />
-										<form:option value="Other" label="Other" />
+										<form:option value="1" label="Industrial" />
+										<form:option value="2" label="Corporate" />
+										<form:option value="3" label="Collage" />
+										<form:option value="4" label="Other" />
 									</form:select> <form:hidden path="enquiryId" />
 								</label>
 							</div></td>

@@ -13,6 +13,7 @@
 <html>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript" src="js/page-js/registration.js"></script>
 <title>Student Registration</title>
 <script type="text/javascript" src="js/page-js/registration.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
@@ -147,7 +148,7 @@
 									<p>
 										Contact<small class="required">*</small>
 									</p> <form:input path="contact" class="inputControl"
-										placeholder="Contact" required="autofocus" maxlength="60" />
+										placeholder="Contact" required="autofocus" maxlength="60" onkeypress="return onlyNos(event,this);" />
 								</label>
 							</div></td>
 						

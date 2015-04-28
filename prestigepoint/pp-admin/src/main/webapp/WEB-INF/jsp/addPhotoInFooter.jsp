@@ -14,6 +14,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- <script type="text/javascript" src="js/page-js/registration.js"></script> -->
 <script type="text/javascript" src="js/page-js/dynamicFooter.js"></script>
+<script type="text/javascript" src="js/page-js/registration.js"></script>
 <title>Add Courses</title>
 </head>
 <body>
@@ -33,7 +34,7 @@
                   <p>
                     Student Name<small class="required"></small>
                   </p> <form:input path="studentName" class="inputControl1" placeholder="Student Name" required="autofocus"
-                    maxlength="50"/> <form:hidden path="studentId" /> </label>
+                    maxlength="50" onkeypress="return Alphabets(event)"/> <form:hidden path="studentId" /> </label>
                   
               </div>
             </td>
@@ -43,7 +44,7 @@
                   <p>
                    Student Comment<small class="required"></small>
                   </p> <form:textarea   path="studentComment" class="inputControl1" placeholder="Comments" required="autofocus"
-                    maxlength="300"  /> </label>
+                    maxlength="300" onkeypress="return Alphabets(event)" /> </label>
               </div>
             </td>
           </tr>
@@ -54,7 +55,7 @@
                   <p>
                    Company Name<small class="required"></small>
                   </p> <form:input path="placedInCompany" class="inputControl1" placeholder="Company Name" required="autofocus"
-                    maxlength="50" /> </label>
+                    maxlength="50" onkeypress="return Alphabets(event)" /> </label>
                                   
               </div>
               </td>

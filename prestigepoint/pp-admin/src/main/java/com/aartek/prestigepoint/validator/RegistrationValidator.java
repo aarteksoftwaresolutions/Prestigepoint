@@ -45,6 +45,7 @@ public class RegistrationValidator {
         errors.rejectValue("emailId", "error.email.required");
       }
     }
+    
     if (registration.getCourse().getCourseId() == 0) {
       errors.rejectValue("course.courseId", "error.course.rule");
     }
@@ -62,6 +63,11 @@ public class RegistrationValidator {
         errors.rejectValue("contact", "error.contactNo.length");
       }
     }
+    if (registration.getParentContact() != null && registration.getParentContact()!= "") {
+        if (registration.getParentContact().length() < 10) {
+          errors.rejectValue("parentContact", "error.parentContact.length");
+        }
+      }
     if (registration.getDateOfBirth() != null && registration.getDateOfBirth() != "") {
       Date date = new Date();
       SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");

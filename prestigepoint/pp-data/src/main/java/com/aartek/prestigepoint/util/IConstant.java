@@ -27,7 +27,7 @@ public class IConstant {
   public static final String STATUS = "free";
   public static final String PAID_STATUS = "paid";
   public static final String FORGOT_SUCCESS_MESSAGE= "Password sent to your email account successfully";
-  public static final String FORGOT_FAIL_MESSAGE= "Password sent to your email account successfully";
+  public static final String FORGOT_FAIL_MESSAGE= "Please first register";
   public static final String INVALID_LOGIN = "Invalid user name and password";
   public static final String ENQUIRY_SUCCESS_MESSAGE = "We have recieved your enquiry , we will contact you very soon";
   public static final String CURRENT_BATCH_SUCCESS_MESSAGE = "Your current batch added successfully";

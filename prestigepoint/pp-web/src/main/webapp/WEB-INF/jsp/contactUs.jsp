@@ -52,7 +52,7 @@
                 <label>
                   <p>
                     Subject<small class="required">*</small>
-                  </p> <form:input path="subject" class="inputControl" maxlength="40" onkeypress="return Alphabets(event)" />
+                  </p> <form:input path="subject" class="inputControl" maxlength="40" onkeypress="return Alphabets(event)" required="autofocus" />
                 </label>
               </div>
             </td>
@@ -60,19 +60,20 @@
           <tr>
             <td><div class="form-control">
                 <form:errors path="emailId" class="label error-label"></form:errors>
+               
                 <label>
                   <p>
                     Your Email Address<small class="required">*</small>
-                  </p> <form:input path="emailId" class="inputControl" maxlength="100" /> </label>
+                  </p> <form:input path="emailId" class="inputControl" maxlength="100" required="autofocus" /> </label>
               </div>
             </td>
             <td rowspan="2">
               <div class="form-control">
-                <form:errors path="comment" class="label error-label"></form:errors>
+               <%--  <form:errors path="comment" class="label error-label"></form:errors> --%>
                 <label>
                   <p>
                     Your Comments<small class="required">*</small>
-                  </p> <form:textarea path="comment" class="inputControl" rows="6" maxlength="150" /> </label>
+                  </p> <form:textarea path="comment" class="inputControl" rows="6" maxlength="150" required="autofocus" /> </label>
               </div>
             </td>
           </tr>
@@ -83,7 +84,7 @@
                   <p>
                     Your Phone No.<small class="required">*</small>
                   </p> <form:input path="mobileNo" class="inputControl" maxlength="11"
-                    onkeypress="return onlyNos(event,this);" /> </label>
+                    onkeypress="return onlyNos(event,this);" required="autofocus" /> </label>
               </div>
             </td>
 

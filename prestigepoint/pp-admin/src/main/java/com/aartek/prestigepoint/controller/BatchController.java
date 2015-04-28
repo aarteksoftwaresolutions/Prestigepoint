@@ -20,11 +20,15 @@ import com.aartek.prestigepoint.model.AdminLogin;
 import com.aartek.prestigepoint.model.Batch;
 import com.aartek.prestigepoint.service.BatchService;
 import com.aartek.prestigepoint.util.IConstant;
+import com.aartek.prestigepoint.validator.BatchValidator;
 
 @Controller
 public class BatchController {
   @Autowired
   private BatchService batchService;
+  
+  @Autowired
+  private BatchValidator batchValidator;
 
   /**
    * display addBatch jsp for add batch.
@@ -87,6 +91,10 @@ public class BatchController {
           model.addAttribute("message", IConstant.BATCH_EDIT_FAILURE_MESSAGE);
         }
       } else {
+    	  batchValidator.validate(batch, result);
+  	    if (result.hasErrors()) {
+  			return "addBatch";
+  		}
         status = batchService.addBatch(batch);
         if (status) {
           model.addAttribute("message", IConstant.BATCH_SUCCESS_MESSAGE);

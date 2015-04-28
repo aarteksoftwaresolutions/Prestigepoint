@@ -16,10 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.aartek.prestigepoint.model.Enquiry;
 import com.aartek.prestigepoint.service.EnquiryService;
 
+
 @Controller
 public class EnquiryController {
   @Autowired
   private EnquiryService enquiryService;
+  
+ /* @Autowired
+	private ContactUsValidator contactUsValidator;*/
 
   /**
    * Add Enquiry into database.
@@ -46,6 +50,10 @@ public class EnquiryController {
     enquiry.setName(name);
     enquiry.setComment(comment);
     enquiry.setMobileNo(mobileNo);
+   /* contactUsValidator.validate(enquiry, result);
+    if (result.hasErrors()) {
+		return "addAdminEnquiry";
+	}*/
     enquiryService.addEnquiryMessage(enquiry);
     returnText = "Feedback has been added";
     return returnText;

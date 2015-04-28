@@ -19,7 +19,17 @@
     var email = "${emailId}";
     document.getElementById("emailId").value = email;
   });
+function emailCheck(){
+var emailId = document.getElementById('emailId').value;
+var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(emailId!=null && emailId!='')
+if (!pattern.test(emailId)) {
+	alert("please enter valid email");
+	return false;
+}
+}
 </script>
+
 </head>
 <body>
   <div class="container clearfix">
@@ -38,6 +48,7 @@
           </tr>
           <tr>
             <td><div class="form-control">
+            <form:errors path="emailId" class="label error-label"></form:errors>
                 <label>
                   <p>
                     Email To:<small class="required"></small>
@@ -72,7 +83,7 @@
               </div></td>
           </tr>
           <tr>
-            <td colspan="2"><input type="submit" value="Submit" class="btn lg-btn" />
+            <td colspan="2"><input type="submit" value="Submit" class="btn lg-btn" onclick=" return emailCheck();" />
             </td>
           </tr>
         </table>

@@ -20,6 +20,7 @@ import com.aartek.prestigepoint.model.Subject;
 import com.aartek.prestigepoint.service.ForgotPasswordService;
 import com.aartek.prestigepoint.service.QuestionAnswerService;
 import com.aartek.prestigepoint.util.IConstant;
+import com.aartek.prestigepoint.validator.ForgotPasswordValidator;
 
 @Controller
 public class ForgotPasswordController {
@@ -30,6 +31,10 @@ public class ForgotPasswordController {
 	@Autowired
 	private QuestionAnswerService questionAnswerService;
 
+	@Autowired
+	private ForgotPasswordValidator forgotPasswordValidator;
+	
+	
 	/**
 	 * Show forgot password page.
 	 * 
@@ -62,6 +67,10 @@ public class ForgotPasswordController {
 	public String verify(@ModelAttribute("Registration") Registration registration, BindingResult result, ModelMap model,
 			Map<String, Object> map, HttpServletRequest request) {
 		boolean status = false;
+		forgotPasswordValidator.validate(registration, result);
+		if (result.hasErrors()) {
+			return "forgotPassword";
+		}
 		status = forgotPasswordService.getPassword(registration.getEmailId());
 		if (status) {
 			model.addAttribute("forgotMessage", IConstant.FORGOT_SUCCESS_MESSAGE);

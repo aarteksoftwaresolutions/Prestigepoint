@@ -14,9 +14,9 @@ public class ForgotPasswordAdminServiceImpl implements ForgotPasswordAdminServic
 	  private ForgotPasswordAdminRepository forgotPasswordRepository;
 
 	   public boolean getPassword(String emailId) {
-
+ 
 		 List<AdminLogin> list = forgotPasswordRepository.getPassword(emailId);
-		    if (list != null) {
+		    if (list != null && !list.isEmpty()) {
 		    	AdminLogin adminLogin = list.get(0);
 		      SendMail.forgotPasswordAdmin(adminLogin.getEmailId(), adminLogin.getPassword());
 		      return true;

@@ -31,7 +31,13 @@ width: 50%;
     <div class="conact-form">
       <h3 style="color: red;">${invalid}</h3>
        <h3 style="color: red;">${message}</h3>
-      <h3 style="color: red;">${forgotMessage}</h3>
+        <h3 style="color: red;">${forgotMessage}</h3>
+  <%
+response.setHeader("Cache-control","no-store"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP1.0
+response.setDateHeader("Expire",0); //prevents caching at the proxy server
+%> 
+     
       <form:form method="POST" action="stuSignIn.do" modelAttribute="Registration" autocomplete="off">
         <table width="100%" border="0">
           <tr>
