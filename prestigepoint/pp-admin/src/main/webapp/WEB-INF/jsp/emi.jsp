@@ -22,7 +22,7 @@ function validateForm()
       if (x==null || x=="")
       {
     	/*   document.getElementById("datepick").innerHTML = "Paragraph changed!"; */
-            alert("Please enter your name!");   
+            alert("Please select the date!");   
            
             return false;
       }
@@ -61,7 +61,7 @@ function validateForm()
        <fmt:parseDate value="${cat.date}" var="date" pattern="yyyy-MM-dd" />
           <fmt:formatDate type="date" value="${date}" var="startDate" pattern="dd-MM-yyyy" />
         <display:column title="DATE">${startDate}</display:column>
-        
+         <c:if test="${sessionScope.login.adminType!=4}">
            <display:column title="Edit">
          <a href="editEmiAction.do?emiId=${cat.emiId}">Edit</a>
         </display:column>
@@ -69,7 +69,7 @@ function validateForm()
           <a href="deleteEmiDetails.do?emiId=${cat.emiId}"
             onclick="return confirm('Please confirm if you want to delete this Emi Details!');">Delete</a>
         </display:column>
-        
+        </c:if>
       </display:table>
       <form:form name="testForm" method="POST" action="addEmi.do" modelAttribute="Emi" autocomplete="off" onsubmit="return validateForm()">
       <form:form  method="POST" action="getStudentDetails.do" modelAttribute="Emi" autocomplete="off" >

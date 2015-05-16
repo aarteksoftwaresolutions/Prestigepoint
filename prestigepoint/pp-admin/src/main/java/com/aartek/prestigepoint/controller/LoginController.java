@@ -33,12 +33,13 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/login")
-	public String showLogin(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String invalid,@RequestParam(required = false) String forgotMessage) {
-		
+	public String showLogin(Map<String, Object> map, Model model, @RequestParam(required = false) String invalid,
+			@RequestParam(required = false) String forgotMessage) {
+
 		map.put("AdminLogin", new AdminLogin());
 		model.addAttribute("forgotMessage", forgotMessage);
 		model.addAttribute("invalid", invalid);
+		System.out.println("--------------login Controller----------");
 		return "login";
 
 	}
@@ -55,9 +56,8 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/userSignIn", method = RequestMethod.POST)
-	public String signInAction(@ModelAttribute("AdminLogin") AdminLogin login,
-			BindingResult result, ModelMap model, Map<String, Object> map,
-			HttpServletRequest request, HttpServletResponse response) {
+	public String signInAction(@ModelAttribute("AdminLogin") AdminLogin login, BindingResult result, ModelMap model,
+			Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) {
 		login = loginService.userSignIn(login);
 		if (login == null) {
 			model.addAttribute("invalid", "Invalid user name and password");
@@ -90,8 +90,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/logout")
-	public String showLogout(Map<String, Object> map, Model model,
-			HttpServletRequest request) {
+	public String showLogout(Map<String, Object> map, Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		return "redirect:/login.do";

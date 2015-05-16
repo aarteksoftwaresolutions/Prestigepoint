@@ -19,68 +19,67 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Controller
 public class ChallengeController {
-	
-	private static final Logger logger = Logger
-			   .getLogger(ChallengeController.class);
-	
-    @Autowired
-    private ChallengeService addChallengeService;
 
-    @RequestMapping("/addChallenge")
-    private String addChallenge(Map<String, Object> map, ModelMap model, @RequestParam(required = false) String message) {
-        map.put("AddChallenge", new AddChallenge());
-      
-        List<AddChallenge> allAddChallengeList = addChallengeService.allAddChallengeList();
-        logger.info("This is Info Message!");
-        model.addAttribute("allAddChallengeList", allAddChallengeList);
-        model.addAttribute("message", message);
-        return "addChallenge";
-    }
+	private static final Logger logger = Logger.getLogger(ChallengeController.class);
 
-    @RequestMapping(value = "/addChallengeAction.do", method = { RequestMethod.GET, RequestMethod.POST })
-    private String addChallengeInformation(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model) {
-        if (addChallenge.getChallengeId() != null) {
-            addChallengeService.addChallengeInformation(addChallenge);
-            model.addAttribute("message", IConstant.CHALLENGE_UPDATE_MESSAGE);
-        } else {
-            addChallengeService.addChallengeInformation(addChallenge);
-            model.addAttribute("message", IConstant.CHALLENGE_SUCCESS_MESSAGE);
+	@Autowired
+	private ChallengeService addChallengeService;
 
-        }
+	@RequestMapping("/addChallenge")
+	private String addChallenge(Map<String, Object> map, ModelMap model, @RequestParam(required = false) String message) {
+		map.put("AddChallenge", new AddChallenge());
 
-        return "redirect:/addChallenge.do";
-    }
+		List<AddChallenge> allAddChallengeList = addChallengeService.allAddChallengeList();
+		logger.info("This is Info Message!");
+		model.addAttribute("allAddChallengeList", allAddChallengeList);
+		model.addAttribute("message", message);
+		return "addChallenge";
+	}
 
-    @RequestMapping(value = "/updateChallengeInformatin")
-    public String updateChallengeInformation(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model,
-                    Map<String, Object> map, @RequestParam(required = false) Integer challengeId) {
-        addChallenge = addChallengeService.updateChallengeInformation(challengeId);
-        map.put("AddChallenge", addChallenge);
+	@RequestMapping(value = "/addChallengeAction.do", method = { RequestMethod.GET, RequestMethod.POST })
+	private String addChallengeInformation(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model) {
+		if (addChallenge.getChallengeId() != null) {
+			addChallengeService.addChallengeInformation(addChallenge);
+			model.addAttribute("message", IConstant.CHALLENGE_UPDATE_MESSAGE);
+		} else {
+			addChallengeService.addChallengeInformation(addChallenge);
+			model.addAttribute("message", IConstant.CHALLENGE_SUCCESS_MESSAGE);
 
-        return "addChallenge";
+		}
 
-    }
+		return "redirect:/addChallenge.do";
+	}
 
-    @RequestMapping(value = "/deleteChallengeInformation", method = { RequestMethod.GET, RequestMethod.POST })
-    public String deleteStudentInformation(@RequestParam(required = false) Integer challengeId) {
-        addChallengeService.deleteChallengeInformation(challengeId);
-        System.out.println("challengeId");
-        return "redirect:/addChallenge.do";
-    }
+	@RequestMapping(value = "/updateChallengeInformatin")
+	public String updateChallengeInformation(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model,
+			Map<String, Object> map, @RequestParam(required = false) Integer challengeId) {
+		addChallenge = addChallengeService.updateChallengeInformation(challengeId);
+		map.put("AddChallenge", addChallenge);
 
-    @RequestMapping(value = "/viewChallengeInformation")
-    public String viewChallengeList(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model,
-                    Map<String, Object> map, @RequestParam(required = false) Integer challengeId) {
-        addChallenge = addChallengeService.updateChallengeInformation(challengeId);
-        map.put("AddChallenge", addChallenge);
-        return "viewChallenge";
+		return "addChallenge";
 
-    }
+	}
 
-    @RequestMapping(value = "changeActiveStatusAction", method = RequestMethod.GET)
-    @ResponseBody
-    public void addressVerification(@RequestParam(required = false) String challengeIdValue, Integer challengeValue) {
-        addChallengeService.ChallengeValue(challengeIdValue, challengeValue);
+	@RequestMapping(value = "/deleteChallengeInformation", method = { RequestMethod.GET, RequestMethod.POST })
+	public String deleteStudentInformation(@RequestParam(required = false) Integer challengeId) {
+		addChallengeService.deleteChallengeInformation(challengeId);
+		System.out.println("challengeId");
+		return "redirect:/addChallenge.do";
+	}
 
-    }
+	@RequestMapping(value = "/viewChallengeInformation")
+	public String viewChallengeList(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model,
+			Map<String, Object> map, @RequestParam(required = false) Integer challengeId) {
+		addChallenge = addChallengeService.updateChallengeInformation(challengeId);
+		map.put("AddChallenge", addChallenge);
+		return "viewChallenge";
+
+	}
+
+	@RequestMapping(value = "changeActiveStatusAction", method = RequestMethod.GET)
+	@ResponseBody
+	public void addressVerification(@RequestParam(required = false) String challengeIdValue, Integer challengeValue) {
+		addChallengeService.ChallengeValue(challengeIdValue, challengeValue);
+
+	}
 }

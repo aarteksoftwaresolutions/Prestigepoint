@@ -38,29 +38,28 @@ public class ScrollerController {
 		model.addAttribute("message", message);
 		return "scroller";
 	}
+
 	@RequestMapping("/scrollerAction")
 	public String addimageForScroller(@SuppressWarnings("rawtypes") Map map,
-			@ModelAttribute("Scroller") Scroller scroller,@RequestParam(required = false) String message, Model model) {
-		
-		boolean status=false;
-		status=scrollerService.addScrollerPhoto(scroller);
-		/*List<PhotoInFooter> photoInFooterList = null;
-		photoInFooterList = footerPhotoService.getAllStudentName();
-		model.addAttribute("photoInFooterList", photoInFooterList);
-		map.put("PhotoInFooter", new PhotoInFooter());
-		model.addAttribute("message", message);*/
+			@ModelAttribute("Scroller") Scroller scroller, @RequestParam(required = false) String message, Model model) {
+
+		boolean status = false;
+		status = scrollerService.addScrollerPhoto(scroller);
+		/*
+		 * List<PhotoInFooter> photoInFooterList = null; photoInFooterList =
+		 * footerPhotoService.getAllStudentName();
+		 * model.addAttribute("photoInFooterList", photoInFooterList);
+		 * map.put("PhotoInFooter", new PhotoInFooter());
+		 * model.addAttribute("message", message);
+		 */
 		return "redirect:/scrollerView.do";
 	}
-	
-	@RequestMapping(value = "/changeScrollerStatus", method = {
-			RequestMethod.GET, RequestMethod.POST })
-	public String changeScrollerStatus(
-			@ModelAttribute("Scroller") Scroller scroller,
-			@RequestParam(required = false) String imageId,
-			@RequestParam(required = false) String checkedValue) {
 
-		List<Scroller> scrollers  = scrollerService
-				.getSingleScrollDetail(imageId);
+	@RequestMapping(value = "/changeScrollerStatus", method = { RequestMethod.GET, RequestMethod.POST })
+	public String changeScrollerStatus(@ModelAttribute("Scroller") Scroller scroller,
+			@RequestParam(required = false) String imageId, @RequestParam(required = false) String checkedValue) {
+
+		List<Scroller> scrollers = scrollerService.getSingleScrollDetail(imageId);
 		scroller = scrollers.get(0);
 		if (checkedValue.equals("checked")) {
 			scrollerService.changeStatusByImageId(scroller);
@@ -70,14 +69,12 @@ public class ScrollerController {
 		return "redirect:/addFooterPhoto";
 	}
 
-	@RequestMapping(value = "/deleteScroller", method = { RequestMethod.GET,
-			RequestMethod.POST })
-	public String deleteSingleScrollerImage(
-			@ModelAttribute("Scroller") Scroller scroller,
-			ModelMap model, @RequestParam(required = false) Integer imageId) {
+	@RequestMapping(value = "/deleteScroller", method = { RequestMethod.GET, RequestMethod.POST })
+	public String deleteSingleScrollerImage(@ModelAttribute("Scroller") Scroller scroller, ModelMap model,
+			@RequestParam(required = false) Integer imageId) {
 		scrollerService.deleteScrollerImage(imageId);
 		model.addAttribute("message", IConstant.SCROLLER_IMAGE_DELETE_MESSAGE);
 		return "redirect:/scrollerView.do";
 
-}
+	}
 }

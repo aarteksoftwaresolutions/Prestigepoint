@@ -26,7 +26,7 @@
         <li><a href="javascript:;">Privacy</a>
         </li>
         <li>-</li>
-        <li><a href="termAndCondition.do">Terms&Condition </a>
+        <li><a href="javascript:;">Terms&Condition </a>
         </li>
         <li>-</li>
         <li><a href="contactUs.do">Contact</a>
@@ -166,6 +166,7 @@
         <div class="form-control">
           <span class="label error-label" id="mobileMsg" style="display: none;">Please enter your mobile No.</span>
            <span class="label error-label" id="contact" style="display: none;">Contact No should be 10 digit</span> 
+            <form:errors path="mobileNo1" class="label error-label"></form:errors>
            <label>
             <input type="text" placeholder="Phone No." class="inputControl" id="mobileNo1" name="mobileNo1"
             maxlength="11" onkeypress="return onlyNos(event,this);" /> </label>

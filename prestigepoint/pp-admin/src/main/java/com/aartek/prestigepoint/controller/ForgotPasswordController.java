@@ -37,9 +37,8 @@ public class ForgotPasswordController {
 	}
 
 	@RequestMapping(value = "/forgotPasswordAction", method = RequestMethod.POST)
-	public String verify(@ModelAttribute("AdminLogin") AdminLogin adminLogin,
-			BindingResult result, ModelMap model, Map<String, Object> map,
-			HttpServletRequest request) {
+	public String verify(@ModelAttribute("AdminLogin") AdminLogin adminLogin, BindingResult result, ModelMap model,
+			Map<String, Object> map, HttpServletRequest request) {
 		boolean status = false;
 		forgotPasswordValidator.validate(adminLogin, result);
 		if (result.hasErrors()) {
@@ -47,8 +46,7 @@ public class ForgotPasswordController {
 		}
 		status = forgotPasswordService.getPassword(adminLogin.getEmailId());
 		if (status) {
-			model.addAttribute("forgotMessage",
-					IConstant.FORGOT_SUCCESS_MESSAGE);
+			model.addAttribute("forgotMessage", IConstant.FORGOT_SUCCESS_MESSAGE);
 		} else {
 			model.addAttribute("forgotMessage", IConstant.FORGOT_FAIL_MESSAGE);
 		}

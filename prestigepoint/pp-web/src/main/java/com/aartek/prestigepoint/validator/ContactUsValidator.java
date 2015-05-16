@@ -19,7 +19,7 @@ public class ContactUsValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "name", "error.name.empty");
 		if (enquiry.getMobileNo() != null && enquiry.getMobileNo() != "") {
 			if (enquiry.getMobileNo().length() < 10) {
-				errors.rejectValue("mobileNo", "error.MobileNo.length");
+				errors.rejectValue("mobileNo1", "error.mobileNo1.length");
 			}
 		}
 		if (enquiry.getEmailId() != null

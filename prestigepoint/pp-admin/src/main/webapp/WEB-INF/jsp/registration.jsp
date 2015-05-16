@@ -142,15 +142,6 @@
 							</div></td>
 					</tr>
 					<tr>
-						<td><div class="form-control">
-								<form:errors path="contact" class="label error-label"></form:errors>
-								<label>
-									<p>
-										Contact<small class="required">*</small>
-									</p> <form:input path="contact" class="inputControl"
-										placeholder="Contact" required="autofocus" maxlength="60" onkeypress="return onlyNos(event,this);" />
-								</label>
-							</div></td>
 						
 							<td><div class="form-control">
 								<form:errors path="qualification" class="label error-label"></form:errors>
@@ -160,6 +151,20 @@
 									</p> <form:input path="qualification" class="inputControl"
 										placeholder="Qualification" required="autofocus" maxlength="30"
 										onkeypress="return Alphabets(event)" />
+								</label>
+							</div></td>
+							<td><div class="form-control">
+								<form:errors path="year.yearId" class="label error-label"></form:errors>
+								<label>
+									<p>
+										Passout Year<small class="required">*</small>
+									</p> <form:select path="year.yearId" class="inputControl">
+										<form:option value="0" label="Select" />
+										<c:forEach items="${year}" var="refYear">
+											<form:option value="${refYear.yearId}"
+												label="${refYear.year}" />
+										</c:forEach>
+									</form:select>
 								</label>
 							</div></td>
 					</tr>
@@ -179,21 +184,15 @@
 									</form:select>
 								</label>
 							</div></td>
-						<td><div class="form-control">
-								<form:errors path="year.yearId" class="label error-label"></form:errors>
+							<td><div class="form-control">
+								<form:errors path="contact" class="label error-label"></form:errors>
 								<label>
 									<p>
-										Passout Year<small class="required">*</small>
-									</p> <form:select path="year.yearId" class="inputControl">
-										<form:option value="0" label="Select" />
-										<c:forEach items="${year}" var="refYear">
-											<form:option value="${refYear.yearId}"
-												label="${refYear.year}" />
-										</c:forEach>
-									</form:select>
+										Contact<small class="required">*</small>
+									</p> <form:input path="contact" class="inputControl"
+										placeholder="Contact" required="autofocus" maxlength="60" onkeypress="return onlyNos(event,this);" />
 								</label>
 							</div></td>
-							
 							
 							
 					</tr>

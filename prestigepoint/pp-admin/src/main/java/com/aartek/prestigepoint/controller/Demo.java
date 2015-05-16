@@ -1,4 +1,5 @@
 package com.aartek.prestigepoint.controller;
+
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -17,76 +18,74 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class Demo {
-  public static void main(String[] args) {
-    // Recipient's email ID needs to be mentioned.
-    String to = "praveen.raghuvanshii@gmail.com";
+	public static void main(String[] args) {
+		// Recipient's email ID needs to be mentioned.
+		String to = "meenalpathre01@gmail.com";
 
-    // Sender's email ID needs to be mentioned
-    String from = "hrd@prestigepoint.in";
+		// Sender's email ID needs to be mentioned
+		String from = "hrd@prestigepoint.in";
 
-    final String username = "hrd@prestigepoint.in";//change accordingly
-    final String password = "prestigepoint@123";//change accordingly
+		final String username = "hrd@prestigepoint.in";// change accordingly
+		final String password = "prestigepoint@123";// change accordingly
 
-    // Assuming you are sending email through relay.jangosmtp.net
+		// Assuming you are sending email through relay.jangosmtp.net
 
-    Properties props = new Properties();
-    props.put("mail.smtp.host", "mail.prestigepoint.in");
-    props.put("mail.smtp.auth", "true");
-    props.put("mail.smtp.port", "2525");
-    props.put("mail.smtp.starttls.enable", "false");
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "mail.prestigepoint.in");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "2525");
+		props.put("mail.smtp.starttls.enable", "false");
 
-    // Get the Session object.
-    Session session = Session.getInstance(props,
-       new javax.mail.Authenticator() {
-          protected PasswordAuthentication getPasswordAuthentication() {
-             return new PasswordAuthentication(username, password);
-          }
-       });
+		// Get the Session object
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(username, password);
+			}
+		});
 
-    try {
-       // Create a default MimeMessage object.
-       Message message = new MimeMessage(session);
+		try {
+			// Create a default MimeMessage object.
+			Message message = new MimeMessage(session);
 
-       // Set From: header field of the header.
-       message.setFrom(new InternetAddress(from));
+			// Set From: header field of the header.
+			message.setFrom(new InternetAddress(from));
 
-       // Set To: header field of the header.
-       message.setRecipients(Message.RecipientType.TO,
-          InternetAddress.parse(to));
+			// Set To: header field of the header.
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 
-       // Set Subject: header field
-       message.setSubject("Testing Subject");
+			// Set Subject: header field
+			message.setSubject("Testing Subject");
 
-       // Create the message part
-       BodyPart messageBodyPart = new MimeBodyPart();
+			// Create the message part
+			BodyPart messageBodyPart = new MimeBodyPart();
 
-       // Now set the actual message
-       messageBodyPart.setText("This is message body");
+			// Now set the actual message
+			messageBodyPart.setText("This is message body");
 
-       // Create a multipar message
-       Multipart multipart = new MimeMultipart();
+			// Create a multipar message
+			Multipart multipart = new MimeMultipart();
 
-       // Set text message part
-       multipart.addBodyPart(messageBodyPart);
+			// Set text message part
+			multipart.addBodyPart(messageBodyPart);
 
-       // Part two is attachment
-       messageBodyPart = new MimeBodyPart();
-       String filename = "C:/Users/Dell/Desktop/1.html";
-       DataSource source = new FileDataSource(filename);
-       messageBodyPart.setDataHandler(new DataHandler(source));
-       messageBodyPart.setFileName(filename);
-       multipart.addBodyPart(messageBodyPart);
+			// Part two is attachment
+			messageBodyPart = new MimeBodyPart();
+			String filename = "C:/Users/Dell/Desktop/1.html";
+			DataSource source = new FileDataSource(filename);
+			messageBodyPart.setDataHandler(new DataHandler(source));
+			messageBodyPart.setFileName(filename);
+			multipart.addBodyPart(messageBodyPart);
 
-       // Send the complete message parts
-       message.setContent(multipart);
+			// Send the complete message parts
+			message.setContent(multipart);
 
-       // Send message
-       Transport.send(message);
+			// Send message
+			Transport.send(message);
 
-    //   System.out.println("Sent message successfully....");
+			// System.out.println("Sent message successfully....");
 
-    } catch (MessagingException e) {
-       throw new RuntimeException(e);
-    }
- }
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

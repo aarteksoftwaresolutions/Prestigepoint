@@ -55,10 +55,8 @@ public class ContactController {
 			Map<String, Object> map) {
 		boolean status = false;
 		enquiryValidator.validate(enquiry, result);
-		model.put("Enquiry", new Enquiry());
 		if (result.hasErrors()) {
-			
-			return "redirect:/contactUs.do";
+			return "contactUs";
 		}
 		status = contactService.addContactMessage(enquiry);
 		if (status) {

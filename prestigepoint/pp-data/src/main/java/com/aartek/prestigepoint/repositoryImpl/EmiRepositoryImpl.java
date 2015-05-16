@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.aartek.prestigepoint.model.Batch;
 import com.aartek.prestigepoint.model.Emi;
 import com.aartek.prestigepoint.model.Registration;
 import com.aartek.prestigepoint.repository.EmiRepository;

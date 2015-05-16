@@ -31,7 +31,6 @@ public class ScrollerRepositoryImpl implements ScrollerRepository {
    * Method use for save batch details into database.
    */
   public boolean addScrollerPhoto(Scroller scroller) {
-	  boolean status=false;
     if (scroller != null) {
       hibernateTemplate.saveOrUpdate(scroller);
       return true;

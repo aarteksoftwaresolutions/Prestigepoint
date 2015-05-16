@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.aartek.prestigepoint.model.AdminLogin;
 import com.aartek.prestigepoint.model.Batch;
 import com.aartek.prestigepoint.model.CurrentBatch;
 import com.aartek.prestigepoint.service.BatchService;
@@ -47,27 +45,19 @@ public class CurrentBatchController {
 	 */
 	@RequestMapping("/currentBatch")
 	public String showCurrentbatch(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String message,
-			HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
-		if (loginMember != null) {
+			@RequestParam(required = false) String message, HttpServletRequest request) {
 
-			map.put("CurrentBatch", new CurrentBatch());
-			List<Batch> batchList = batchService.getAllBatchName();
-			if (batchList != null) {
-				model.addAttribute("batch", batchList);
-			}
-			List<CurrentBatch> currentBatchList = currentBatchService
-					.getAllCurrentBatch();
-			if (currentBatchList != null) {
-				model.addAttribute("currentBatchList", currentBatchList);
-			}
-			model.addAttribute("message", message);
-			return "currentBatch";
-		} else {
-			return "redirect:/login.do";
+		map.put("CurrentBatch", new CurrentBatch());
+		List<Batch> batchList = batchService.getAllBatchName();
+		if (batchList != null) {
+			model.addAttribute("batch", batchList);
 		}
+		List<CurrentBatch> currentBatchList = currentBatchService.getAllCurrentBatch();
+		if (currentBatchList != null) {
+			model.addAttribute("currentBatchList", currentBatchList);
+		}
+		model.addAttribute("message", message);
+		return "currentBatch";
 	}
 
 	/**
@@ -80,41 +70,32 @@ public class CurrentBatchController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/addCurrentBatch", method = { RequestMethod.GET,
-			RequestMethod.POST })
-	public String addCurrrentBatchInfo(
-			@ModelAttribute("CurrentBatch") CurrentBatch currentBatch,
-			BindingResult result, ModelMap model, Map<String, Object> map,
-			HttpServletRequest request,
+	@RequestMapping(value = "/addCurrentBatch", method = { RequestMethod.GET, RequestMethod.POST })
+	public String addCurrrentBatchInfo(@ModelAttribute("CurrentBatch") CurrentBatch currentBatch, BindingResult result,
+			ModelMap model, Map<String, Object> map, HttpServletRequest request,
 			@RequestParam(required = false) Integer currentBatchId) {
-		List<Batch> batchList = null;
-		batchList = batchService.getAllBatchName();
+		List<Batch> batchList = batchService.getAllBatchName();
 		if (batchList != null) {
 			model.addAttribute("batch", batchList);
 		}
-		List<CurrentBatch> currentBatchList = currentBatchService
-				.getAllCurrentBatch();
+		List<CurrentBatch> currentBatchList = currentBatchService.getAllCurrentBatch();
 		if (currentBatchList != null) {
 			model.addAttribute("currentBatchList", currentBatchList);
 		}
 		String method = request.getMethod();
-		
+
 		if (method.equals("GET")) {
-			currentBatch = currentBatchService
-					.updateCurrentBatch(currentBatchId);
+			currentBatch = currentBatchService.updateCurrentBatch(currentBatchId);
 			model.addAttribute("currentBatchList", currentBatchList);
 			map.put("CurrentBatch", currentBatch);
 			return "currentBatch";
 		} else {
 			if (currentBatch.getCurrentBatchId() != null) {
-				boolean status = currentBatchService
-						.addCurrentBatchInformation(currentBatch);
+				boolean status = currentBatchService.addCurrentBatchInformation(currentBatch);
 				if (status) {
-					model.addAttribute("message",
-							IConstant.UPDATE_CURRENT_BATCH_SUCCESS_MESSAGE);
+					model.addAttribute("message", IConstant.UPDATE_CURRENT_BATCH_SUCCESS_MESSAGE);
 				} else {
-					model.addAttribute("message",
-							IConstant.CURRENT_BATCH_FAILURE_MESSAGE);
+					model.addAttribute("message", IConstant.CURRENT_BATCH_FAILURE_MESSAGE);
 				}
 			} else {
 				currentBatchValidator.validate(currentBatch, result);
@@ -122,14 +103,11 @@ public class CurrentBatchController {
 
 					return "currentBatch";
 				}
-				boolean status = currentBatchService
-						.addCurrentBatchInformation(currentBatch);
+				boolean status = currentBatchService.addCurrentBatchInformation(currentBatch);
 				if (status) {
-					model.addAttribute("message",
-							IConstant.CURRENT_BATCH_SUCCESS_MESSAGE);
+					model.addAttribute("message", IConstant.CURRENT_BATCH_SUCCESS_MESSAGE);
 				} else {
-					model.addAttribute("message",
-							IConstant.CURRENT_BATCH_FAILURE_MESSAGE);
+					model.addAttribute("message", IConstant.CURRENT_BATCH_FAILURE_MESSAGE);
 				}
 			}
 		}
@@ -146,12 +124,9 @@ public class CurrentBatchController {
 	 * @param currentBatchId
 	 * @return
 	 */
-	@RequestMapping(value = "/deleteCurrentBatch", method = {
-			RequestMethod.GET, RequestMethod.POST })
-	public String deleteCurrentBatch(
-			@ModelAttribute("CurrentBatch") CurrentBatch currentBatch,
-			BindingResult result, ModelMap model, HttpServletRequest request,
-			@RequestParam(required = false) Integer currentBatchId) {
+	@RequestMapping(value = "/deleteCurrentBatch", method = { RequestMethod.GET, RequestMethod.POST })
+	public String deleteCurrentBatch(@ModelAttribute("CurrentBatch") CurrentBatch currentBatch, BindingResult result,
+			ModelMap model, HttpServletRequest request, @RequestParam(required = false) Integer currentBatchId) {
 		currentBatchService.deleteCurrentBatch(currentBatchId);
 		model.addAttribute("message", IConstant.CURRENT_BATCH_DELETE_MESSAGE);
 		return "redirect:/currentBatch.do";

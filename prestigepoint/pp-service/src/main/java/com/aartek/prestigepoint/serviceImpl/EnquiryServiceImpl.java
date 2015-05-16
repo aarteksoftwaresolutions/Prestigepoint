@@ -41,7 +41,7 @@ public class EnquiryServiceImpl implements EnquiryService {
 	}
 
 	public boolean addAdminEnquiry(Enquiry enquiry) throws ParseException {
-		enquiry.setDate(DateFormat.getMMDDYYYYDateFormat((enquiry.getDate())));
+		enquiry.setDate(DateFormat.getYYYYMMDDDate((enquiry.getDate())));
 		enquiry.setName(CamelCase.produceCamelCase(enquiry.getName()));
 		enquiry.setLastName(CamelCase.produceCamelCase(enquiry.getLastName()));
 		enquiry.setHandledBy(CamelCase.produceCamelCase(enquiry.getHandledBy()));

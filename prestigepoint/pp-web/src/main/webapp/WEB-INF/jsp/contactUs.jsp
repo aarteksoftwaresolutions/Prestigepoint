@@ -38,12 +38,12 @@
         <table width="100%" border="0">
           <tr>
             <td><div class="form-control">
-                <form:errors path="name" class="label error-label"></form:errors>
+               <%--  <form:errors path="name" class="label error-label"></form:errors> --%>
                 <!-- <span class="label error-label">Error message goes here</span> -->
                 <label>
                   <p>
                     Your Name<small class="required">*</small>
-                  </p> <form:input path="name" class="inputControl" maxlength="30" onkeypress="return Alphabets(event)" />
+                  </p> <form:input path="name" class="inputControl" maxlength="30" onkeypress="return Alphabets(event)" required="autofocus" />
                 </label>
               </div>
             </td>

@@ -17,12 +17,10 @@ public class ChallengeRepositoryImp implements ChallengeRepository {
     private HibernateTemplate hibernateTemplate;
 
     public void addChallengeInformation(AddChallenge addChallenge) {
-
         hibernateTemplate.saveOrUpdate(addChallenge);
     }
 
     public List<AddChallenge> allAddChallengeList() {
-
         List<AddChallenge> allAddChallengeList = hibernateTemplate.find("from AddChallenge ac where ac.isDeleted="
                         + IConstant.IS_DELETED);
         return allAddChallengeList;
@@ -35,7 +33,6 @@ public class ChallengeRepositoryImp implements ChallengeRepository {
     }
 
     public List<Object> updateChallengeInformation(Integer challengeId) {
-
         List<Object> challengeList = hibernateTemplate.find("from AddChallenge a where a.challengeId=" + challengeId);
         return challengeList;
     }
@@ -46,7 +43,6 @@ public class ChallengeRepositoryImp implements ChallengeRepository {
         if (null != addChallenge) {
             hibernateTemplate.update(addChallenge);
         }
-
     }
 
     public AddChallenge ChallengeValue(Integer challengeValue) {

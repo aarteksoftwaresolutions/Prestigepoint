@@ -16,10 +16,10 @@
         <li><a href="javascript:;">Privacy</a>
         </li>
         <li>-</li>
-        <li><a href="termAndCondition.do">Terms&Condition </a>
+        <li><a href="javascript:;">Terms&Condition </a>
         </li>
         <li>-</li>
-        <li><a href="contactUs.do">Contact</a>
+        <li><a href="javascript:;">Contact</a>
         </li>
       </ul>
       <p>Copyright &copy; 2013 Prestige Point</p>

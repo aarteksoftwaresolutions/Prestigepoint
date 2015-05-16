@@ -36,7 +36,7 @@
 										Batch<small class="required">*</small>
 									</p> <form:input path="batchName" class="inputControl1"
 										placeholder="Current Topic" required="autofocus"
-										maxlength="40" onkeypress="return Alphabets(event)" />
+										maxlength="40"/>
 								</label>
 								<form:hidden path="currentBatchId" />
 							</div></td>

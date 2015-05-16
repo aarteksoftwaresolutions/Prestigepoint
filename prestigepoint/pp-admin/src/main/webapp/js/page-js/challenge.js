@@ -1,20 +1,6 @@
 /**
  * 
  */
-
-	$.ajax({
-		url : 'changeScrollerStatus.do',
-		data : data1,
-		contentType : "application/json; charset=utf-8",
-		success : function(response) {
-
-		},
-		error : function(error) {
-
-		}
-	});
-
-}
 function enableChallengeStatus(challengeDetails) {
 	var challengeId = challengeDetails.id;
 	var challengeValue = challengeDetails.value;

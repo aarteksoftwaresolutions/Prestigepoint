@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,28 +42,16 @@ public class EmiController {
 	 * @param registrationId
 	 * @return
 	 */
-	@RequestMapping(value = "/viewDetails", method = { RequestMethod.GET,
-			RequestMethod.POST })
-	public String viewFeesDetails(@ModelAttribute("Emi") Emi emi,
-			BindingResult result, ModelMap model, Map<String, Object> map,
-			HttpServletRequest request,
-			@RequestParam(required = false) Integer registrationId,
-			Integer emiId) {
-		HttpSession session = request.getSession();
-		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
-		if (loginMember != null) {
-			List<Emi> emi1 = null;
-			List<Registration> registrations = null;
-			emi1 = emiService.getFeesDetails(registrationId);
-			registrations = emiService.getRegistrationDetails(registrationId);
-			model.addAttribute("registrationList", registrations);
-			model.addAttribute("feesDetails", emi1);
-			model.addAttribute("registrationId", registrationId);
-			model.addAttribute("emiId", emiId);
-			return "emi";
-		} else {
-			return "redirect:/login.do";
-		}
+	@RequestMapping(value = "/viewDetails", method = { RequestMethod.GET, RequestMethod.POST })
+	public String viewFeesDetails(@ModelAttribute("Emi") Emi emi, ModelMap model, HttpServletRequest request,
+			@RequestParam(required = false) Integer registrationId, Integer emiId) {
+		List<Emi> emi1 = emiService.getFeesDetails(registrationId);
+		List<Registration> registrations = emiService.getRegistrationDetails(registrationId);
+		model.addAttribute("registrationList", registrations);
+		model.addAttribute("feesDetails", emi1);
+		model.addAttribute("registrationId", registrationId);
+		model.addAttribute("emiId", emiId);
+		return "emi";
 	}
 
 	/**
@@ -78,22 +65,17 @@ public class EmiController {
 	 * @return
 	 */
 	@RequestMapping("/emi")
-	public String showFee(Map<String, Object> map, Model model,
-			@RequestParam(required = false) Integer registrationId,
-			@RequestParam(required = false) String message,
-			@RequestParam(required = false) Integer emiId,
+	public String showFee(Map<String, Object> map, Model model, @RequestParam(required = false) Integer registrationId,
+			@RequestParam(required = false) String message, @RequestParam(required = false) Integer emiId,
 			HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
 		if (loginMember != null) {
-			List<Registration> registrations = null;
-			List<Emi> emi1 = null;
-
 			if (emiId != null) {
 				registrationId = emiService.getRegistrationId(emiId);
 			}
-			emi1 = emiService.getFeesDetails(registrationId);
-			registrations = emiService.getRegistrationDetails(registrationId);
+			List<Emi> emi1 = emiService.getFeesDetails(registrationId);
+			List<Registration> registrations = emiService.getRegistrationDetails(registrationId);
 			model.addAttribute("registrationList", registrations);
 			model.addAttribute("feesDetails", emi1);
 			model.addAttribute("message", message);
@@ -116,26 +98,22 @@ public class EmiController {
 	 * @return
 	 * @throws ParseException
 	 */
-	@RequestMapping(value = "/addEmi", method = { RequestMethod.GET,
-			RequestMethod.POST })
-	public String addEmiData(@ModelAttribute("Emi") Emi emi,
-			BindingResult result, ModelMap model,
-			final RedirectAttributes redirectAttributes,
-			Map<String, Object> map, HttpServletRequest request)
+	@RequestMapping(value = "/addEmi", method = { RequestMethod.GET, RequestMethod.POST })
+	public String addEmiData(@ModelAttribute("Emi") Emi emi, ModelMap model,
+			final RedirectAttributes redirectAttributes, Map<String, Object> map, HttpServletRequest request)
 			throws ParseException {
 		HttpSession session = request.getSession();
 		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
+		@SuppressWarnings("unused")
 		String abc = loginMember.getFirstName();
 		boolean status = false;
 		if (emi.getEmiId() != null) {
-			Integer registrationId = emiService.getRegistrationId(emi
-					.getEmiId());
+			Integer registrationId = emiService.getRegistrationId(emi.getEmiId());
 			emi.getRegistration().setRegistrationId(registrationId);
 			status = emiService.editEmiInfo(emi);
 
 			if (status) {
-				model.addAttribute("registrationId", emi.getRegistration()
-						.getRegistrationId());
+				model.addAttribute("registrationId", emi.getRegistration().getRegistrationId());
 				model.addAttribute("message", "Emi Edit successfully");
 			} else {
 				model.addAttribute("message", "Error");
@@ -145,32 +123,28 @@ public class EmiController {
 			/*
 			 * emiValidator.validate(emi, result); if (result.hasErrors()) {
 			 * 
-			 * redirectAttributes.addFlashAttribute("result",result);
-			 *  return
+			 * redirectAttributes.addFlashAttribute("result",result); return
 			 * "redirect:/viewDetails.do?registrationId="
 			 * +emi.getRegistration().getRegistrationId(); }
 			 */
-		
+
 			status = emiService.addEmiInfo(emi);
 			if (status) {
-				model.addAttribute("registrationId", emi.getRegistration()
-						.getRegistrationId());
+				model.addAttribute("registrationId", emi.getRegistration().getRegistrationId());
 				model.addAttribute("message", "Emi Save successfully");
 			} else {
 				model.addAttribute("message", "Error");
 			}
 		}
-		
-		return "redirect:/viewDetails.do?registrationId="
-		  +emi.getRegistration().getRegistrationId();
-		/*return "redirect:/viewDetails.do";
-		// return "redirect:/viewStudentDetails.do";
-*/	}
 
-	@RequestMapping(value = "/editEmiAction", method = { RequestMethod.GET,
-			RequestMethod.POST })
-	public String editEmiData(@ModelAttribute("Emi") Emi emi, ModelMap model,
-			Map<String, Object> map, Integer emiId) {
+		return "redirect:/viewDetails.do?registrationId=" + emi.getRegistration().getRegistrationId();
+		/*
+		 * return "redirect:/viewDetails.do"; // return
+		 * "redirect:/viewStudentDetails.do";
+		 */}
+
+	@RequestMapping(value = "/editEmiAction", method = { RequestMethod.GET, RequestMethod.POST })
+	public String editEmiData(@ModelAttribute("Emi") Emi emi, ModelMap model, Integer emiId) {
 		emi = emiService.editEimForSingleRecord(emiId);
 
 		if (emi != null) {
@@ -179,10 +153,8 @@ public class EmiController {
 		return "emi";
 	}
 
-	@RequestMapping(value = "/deleteEmiDetails", method = { RequestMethod.GET,
-			RequestMethod.POST })
-	public String deleteCatageory(@ModelAttribute("Emi") Emi emi,
-			BindingResult result, ModelMap model, HttpServletRequest request,
+	@RequestMapping(value = "/deleteEmiDetails", method = { RequestMethod.GET, RequestMethod.POST })
+	public String deleteCatageory(@ModelAttribute("Emi") Emi emi, ModelMap model, HttpServletRequest request,
 			@RequestParam(required = false) Integer emiId) {
 		emiService.deleteEmiDetails(emiId);
 		model.addAttribute("message", IConstant.STUDENT_DELETE_MESSAGE);

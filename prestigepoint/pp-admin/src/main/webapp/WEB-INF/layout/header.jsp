@@ -11,7 +11,6 @@
 <link rel="stylesheet" type="text/css" href="css/reset.css" media="all">
 <link rel="stylesheet" type="text/css" href="fonts/font-class.css" media="all">
 <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
-
 <!--javascript libraries begins here -->
 <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
@@ -64,9 +63,9 @@
             <li><a href="currentBatch.do">Current Batch</a>
             </li>
             <li><a href="addAdminEnquiry.do">Admin Enquiry</a>
-            </li>
+           <!--  </li>
             <li><a href="addPlacedStudent.do">AddPlacedStudent</a>
-            </li>
+            </li> -->
             <li><a href="addChallenge.do">AddChallenge</a>
             </li>
 

@@ -22,6 +22,7 @@ public class SignUpController {
 	private LoginService loginService;
 	@Autowired
 	private SignUpValidator signUpValidator;
+
 	/**
 	 * Display signup page.
 	 * 
@@ -31,30 +32,25 @@ public class SignUpController {
 	 * @return
 	 */
 	@RequestMapping("/signup")
-	public String showSignUp(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String message) 
-	{
+	public String showSignUp(Map<String, Object> map, Model model, @RequestParam(required = false) String message) {
 		map.put("AdminLogin", new AdminLogin());
 		model.addAttribute("message", message);
 		return "signup";
 	}
+
 	@RequestMapping("adminsignup")
 	public String adminSignUp(@ModelAttribute("AdminLogin") AdminLogin login, BindingResult result, ModelMap model,
-		      Map<String, Object> map, HttpServletRequest request)
-	{
-		boolean status=false;
+			Map<String, Object> map, HttpServletRequest request) {
+		boolean status = false;
 		signUpValidator.validate(login, result);
-		if (result.hasErrors())
-		{
+		if (result.hasErrors()) {
 			return "signup";
 		}
 		status = loginService.signUp(login);
 		if (status) {
-			model.addAttribute("message",
-					IConstant.USER_SUCCESS_MESSAGE);
+			model.addAttribute("message", IConstant.USER_SUCCESS_MESSAGE);
 		} else {
-			model.addAttribute("message",
-					IConstant.USER_FAILURE_MESSAGE);
+			model.addAttribute("message", IConstant.USER_FAILURE_MESSAGE);
 		}
 		return "redirect:/signup.do";
 	}

@@ -34,7 +34,7 @@
 	
 	</dependencies>
 	<build>
-		<finalName>pp-web</finalName>
+		<finalName>pp-web-dev</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugin</groupId>

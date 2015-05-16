@@ -2,6 +2,8 @@ package com.aartek.prestigepoint.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
+
 import com.aartek.prestigepoint.model.Enquiry;
 
 @Component
@@ -13,6 +15,7 @@ public class UserEnquiryValidator {
 	
 	public void validate(Object target, Errors errors) {
 		Enquiry enquiry = (Enquiry) target;
+		ValidationUtils.rejectIfEmpty(errors, "name", "error.name.empty");
 		    if (enquiry.getEmailId() != null && enquiry.getEmailId().trim().length() > 0) {
 		        boolean b = ValidationUtil.validateEmail(enquiry.getEmailId());
 		        if (enquiry.getEmailId().contains("@") != true && !b) {
@@ -25,6 +28,11 @@ public class UserEnquiryValidator {
 		          errors.rejectValue("emailId", "error.email.required");
 		        }
 		      }
+		    if (enquiry.getMobileNo() != null && enquiry.getMobileNo() != "") {
+		        if (enquiry.getMobileNo().length() < 10) {
+		          errors.rejectValue("mobileNo", "error.mobileNo.length");
+		        }
+		    }
 		  }
 } 
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.aartek.prestigepoint.model.Enquiry;
 import com.aartek.prestigepoint.repository.EnquiryRepository;
 import com.aartek.prestigepoint.util.IConstant;
-
+@SuppressWarnings("rawtypes")
 @Repository
 public class EnquiryRepositoryImpl implements EnquiryRepository {
   @Autowired
@@ -19,7 +19,6 @@ public class EnquiryRepositoryImpl implements EnquiryRepository {
 	 hibernateTemplate.saveOrUpdate(enquiry);
   }
 
-@SuppressWarnings("unused")
 public boolean addAdminEnquiry(Enquiry enquiry) {
 	if(enquiry!=null){
 	hibernateTemplate.saveOrUpdate(enquiry);
@@ -27,7 +26,6 @@ public boolean addAdminEnquiry(Enquiry enquiry) {
 		}
 	return false;
 	}
-
 
 public List getYearWiseEnquiry(String year) {
 	 List enquiryList = null;

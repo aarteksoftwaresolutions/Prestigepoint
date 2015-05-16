@@ -25,7 +25,7 @@ public class QuestionAnswerController {
 
 	@Autowired
 	private QuestionAnswerService questionAnswerService;
-	
+
 	@Autowired
 	private QuestionAndAnswerValidator questionAndAnswerValidator;
 
