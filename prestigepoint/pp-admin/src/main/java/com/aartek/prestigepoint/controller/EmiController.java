@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,10 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Controller
 public class EmiController {
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(ChallengeController.class);
+	
 	@Autowired
 	private EmiService emiService;
 

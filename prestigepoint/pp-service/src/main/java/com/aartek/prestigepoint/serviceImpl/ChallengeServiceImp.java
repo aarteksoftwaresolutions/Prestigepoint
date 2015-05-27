@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,9 @@ import com.aartek.prestigepoint.util.IConstant;
 public class ChallengeServiceImp implements ChallengeService {
     @Autowired
     private ChallengeRepository addChallengeRepository;
+    
+    @SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(ChallengeServiceImp.class);
 
     public boolean addChallengeInformation(AddChallenge addChallenge) {
         addChallenge.setIsDeleted(IConstant.IS_DELETED);

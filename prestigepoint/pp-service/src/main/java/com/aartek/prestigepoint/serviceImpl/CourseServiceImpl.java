@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,10 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Service
 public class CourseServiceImpl implements CourseService {
+	
+@SuppressWarnings("unused")
+private static final Logger logger = Logger.getLogger(CourseServiceImpl.class);
+	
   @Autowired
   private CourseRepository courseRepository;
 

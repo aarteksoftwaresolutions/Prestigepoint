@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.aartek.prestigepoint.model.AdminLogin;
 import com.aartek.prestigepoint.model.Enquiry;
 import com.aartek.prestigepoint.model.Year;
 import com.aartek.prestigepoint.service.CourseService;
@@ -30,6 +29,9 @@ import com.aartek.prestigepoint.validator.EnquiryValidator;
 
 @Controller
 public class ReportController {
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(ReportController.class);
 
 	@Autowired
 	private CourseService courseService;

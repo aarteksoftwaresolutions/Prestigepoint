@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -16,12 +19,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.aartek.prestigepoint.model.Upload;
 import com.aartek.prestigepoint.service.UploadService;
 import com.aartek.prestigepoint.util.IConstant;
 
 @Controller
 public class UploadController {
+
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(UploadController.class);
 
 	@Autowired
 	private UploadService uploadService;
@@ -60,6 +67,7 @@ public class UploadController {
 			upload.setPathOfJar(path + File.separator + fileName);
 			uploadService.uploadJar(upload);
 		} catch (FileNotFoundException fne) {
+			logger.info("FileNotFoundException!" + fne);
 			model.addAttribute("uploadMessage", IConstant.JAR_FAILURE_MESSAGE);
 		} finally {
 			if (out != null) {

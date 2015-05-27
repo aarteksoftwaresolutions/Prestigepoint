@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aartek.prestigepoint.model.AddPlacedStudent;
-import com.aartek.prestigepoint.model.AdminLogin;
 import com.aartek.prestigepoint.model.Batch;
 import com.aartek.prestigepoint.model.Course;
-import com.aartek.prestigepoint.model.Registration;
 import com.aartek.prestigepoint.model.CurrentStatus;
+import com.aartek.prestigepoint.model.Registration;
 import com.aartek.prestigepoint.model.Year;
 import com.aartek.prestigepoint.service.BatchService;
 import com.aartek.prestigepoint.service.CourseService;
@@ -32,7 +31,9 @@ import com.aartek.prestigepoint.validator.RegistrationValidator;
 
 @Controller
 public class RegistrationController {
-
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(RegistrationController.class);
 	@Autowired
 	private CourseService courseService;
 

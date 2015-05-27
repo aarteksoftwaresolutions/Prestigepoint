@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,11 @@ import com.aartek.prestigepoint.model.Batch;
 import com.aartek.prestigepoint.repository.BatchRepository;
 import com.aartek.prestigepoint.service.BatchService;
 import com.aartek.prestigepoint.util.IConstant;
-
 @Service
 public class BatchServiceImpl implements BatchService {
+	
+ private static final Logger logger = Logger.getLogger(BatchServiceImpl.class);
+	
   @Autowired
   private BatchRepository batchRepository;
 
@@ -21,6 +24,7 @@ public class BatchServiceImpl implements BatchService {
    */
   public List<Batch> getAllBatchName() {
     List<Batch> list = new ArrayList<Batch>();
+	logger.info("This is Info service!");
     list = batchRepository.getAllBatchName();
     return list;
   }

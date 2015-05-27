@@ -8,8 +8,11 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import org.apache.log4j.Logger;
 public class SendMail {
-	
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(SendMail.class);
 	public static void main(String[] args) {
 	      // Recipient's email ID needs to be mentioned.
 	      String to = "praveen.raghuvanshii@gmail.com";//change accordingly
@@ -60,6 +63,7 @@ public class SendMail {
 	         System.out.println("Sent message successfully....");
 
 	      } catch (MessagingException e) {
+	    	  logger.error("Exception!"+e);
 	            throw new RuntimeException(e);
 	      }
 	   }

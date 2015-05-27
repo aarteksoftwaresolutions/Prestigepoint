@@ -1,11 +1,18 @@
 package com.aartek.prestigepoint.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,7 +33,9 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.aartek.prestigepoint.model.AdminLogin;
 import com.aartek.prestigepoint.model.Registration;
 import com.aartek.prestigepoint.service.RegistrationService;
+import com.aartek.prestigepoint.util.IConstant;
 import com.aartek.prestigepoint.util.SendMail;
+import com.aartek.prestigepoint.util.SendMailProperty;
 import com.aartek.prestigepoint.validator.SendValidator;
 
 @Controller
@@ -77,13 +86,12 @@ public class MailController {
 	@RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
 	public String sendEmail(@ModelAttribute("Registration") Registration registration, BindingResult result,
 			ModelMap model, Map<String, Object> map, HttpSession session, HttpServletRequest request,
-			final @RequestParam CommonsMultipartFile attachFile) throws MessagingException {
+			final @RequestParam CommonsMultipartFile attachFile, String[] attachedFiles) throws MessagingException {
 		// reads form input
 		List<String> emailList = new ArrayList<String>();
 		final String emailTo = registration.getEmailId();
 		final String subject = registration.getSubject();
 		final String message = registration.getMessage();
-		String imagePath = registration.getImagePath();
 		if (emailTo == null || emailTo.isEmpty()) {
 			if (registration.getAllStudent() != null) {
 				if (registration.getAllStudent().equals("allstudent")) {
@@ -94,7 +102,34 @@ public class MailController {
 						addressTo[i] = new InternetAddress(email[i]);
 
 					}
-					SendMail.sendMailmultiple(addressTo, subject, message);
+					/*SendMail.sendMailmultiple(addressTo, subject, message);*/
+					Message message1 = new MimeMessage(SendMailProperty.mailProperty());
+					message1.setFrom(new InternetAddress(IConstant.FROM_EMAIL_ID));
+					message1.setRecipients(Message.RecipientType.TO, addressTo);
+					message1.setSubject(subject);
+					MimeBodyPart messageBodyPart = new MimeBodyPart();
+				    messageBodyPart.setContent(message, "text/html");
+				    Multipart multipart = new MimeMultipart();
+			        multipart.addBodyPart(messageBodyPart);
+					messageBodyPart = new MimeBodyPart();
+					 if (attachedFiles != null && attachedFiles.length > 0) {
+				            for (String aFile : attachedFiles) {
+				                MimeBodyPart attachPart = new MimeBodyPart();
+				 
+				                try {
+				                    attachPart.attachFile(aFile);
+				                } catch (IOException ex) {
+				                	logger.error("IOException" +ex);
+				                    ex.printStackTrace();
+				                }
+				 
+				                multipart.addBodyPart(attachPart);
+				            }
+				        }
+				 
+					 message1.setContent(multipart);
+				        Transport.send(message1);
+				 System.out.println("Sent message successfully....");
 				}
 			}
 			if (registration.getAllEnquiry() != null) {
@@ -106,58 +141,40 @@ public class MailController {
 						addressTo[i] = new InternetAddress(email[i]);
 
 					}
-
-					/*
-					 * final String[] email = emailList.toArray(new
-					 * String[emailList.size()]); mailSender.send(new
-					 * MimeMessagePreparator() { public void prepare(MimeMessage
-					 * mimeMessage) throws Exception { MimeMessageHelper
-					 * messageHelper = new MimeMessageHelper(mimeMessage, true,
-					 * "UTF-8"); InternetAddress[] addressTo = new
-					 * InternetAddress[email.length]; for (int i = 0; i <
-					 * email.length; i++) { addressTo[i] = new
-					 * InternetAddress(email[i]); }
-					 * messageHelper.setFrom("emailTo");
-					 * messageHelper.setTo(email);
-					 * messageHelper.setSubject(subject);
-					 * messageHelper.setText(message); String attachName =
-					 * attachFile.getOriginalFilename(); if
-					 * (!attachFile.equals("")) {
-					 * messageHelper.addAttachment(attachName, new
-					 * InputStreamSource() { public InputStream getInputStream()
-					 * throws IOException { return attachFile.getInputStream();
-					 * } }); } }
-					 * 
-					 * });
-					 */
+					Message message1 = new MimeMessage(SendMailProperty.mailProperty());
+					message1.setFrom(new InternetAddress(IConstant.FROM_EMAIL_ID));
+					message1.setRecipients(Message.RecipientType.TO, addressTo);
+					message1.setSubject(subject);
+					MimeBodyPart messageBodyPart = new MimeBodyPart();
+				    messageBodyPart.setContent(message, "text/html");
+				    Multipart multipart = new MimeMultipart();
+			        multipart.addBodyPart(messageBodyPart);
+					messageBodyPart = new MimeBodyPart();
+					 if (attachedFiles != null && attachedFiles.length > 0) {
+				            for (String aFile : attachedFiles) {
+				                MimeBodyPart attachPart = new MimeBodyPart();
+				 
+				                try {
+				                    attachPart.attachFile(aFile);
+				                } catch (IOException ex) {
+				                	logger.error("IOException" +ex);
+				                    ex.printStackTrace();
+				                }
+				 
+				                multipart.addBodyPart(attachPart);
+				            }
+				        }
+				 
+					 message1.setContent(multipart);
+				        Transport.send(message1);
+				 System.out.println("Sent message successfully....");
+				}
 				}
 			}
-		}
+		
 		if (!emailTo.isEmpty() && emailTo != null) {
 			final String[] email2 = emailTo.split(",");
 			SendMail.sendMail(registration.getEmailId(), registration.getSubject(), registration.getMessage());
-			/*
-			 * mailSender.send(new MimeMessagePreparator() { public void
-			 * prepare(MimeMessage mimeMessage) throws Exception {
-			 * MimeMessageHelper messageHelper = new
-			 * MimeMessageHelper(mimeMessage, true, "UTF-8");
-			 * SendMail.sendMail(registration
-			 * .getEmailId(),registration.getSubject
-			 * (),registration.getMessage()); InternetAddress[] addressTo = new
-			 * InternetAddress[email2.length];
-			 * 
-			 * for (int i = 0; i < email2.length; i++) { addressTo[i] = new
-			 * InternetAddress(email2[i]); } messageHelper.setFrom("emailTo");
-			 * messageHelper.setTo(email2); messageHelper.setSubject(subject);
-			 * messageHelper.setText(message); // determines if there is an
-			 * upload file, attach it to the // e-mail String attachName =
-			 * attachFile.getOriginalFilename(); if (!attachFile.equals("")) {
-			 * messageHelper.addAttachment(attachName, new InputStreamSource() {
-			 * public InputStream getInputStream() throws IOException { return
-			 * attachFile.getInputStream(); } }); } }
-			 * 
-			 * });
-			 */
 		}
 
 		return "redirect:/mailSuccess.do";

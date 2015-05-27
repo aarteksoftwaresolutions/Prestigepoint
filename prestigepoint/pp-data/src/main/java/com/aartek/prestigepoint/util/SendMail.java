@@ -57,8 +57,7 @@ public class SendMail {
 			msg += "http://localhost:8080/pp-web/verify.do?registrationId=" + regId; // used
 																						// on
 																						// local
-			// msg += "http://prestigepoint.in/verify.do?registrationId=" +
-			// regId; //used on the server
+//		 msg += "http://prestigepoint.in/verify.do?registrationId=" + regId; //used on the server
 			msg += " <br>";
 			msg += "Regards,<br>";
 			msg += "Prestige Point";
@@ -213,13 +212,13 @@ public class SendMail {
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messageBodyPart);
 			 messageBodyPart = new MimeBodyPart();
-//	         String filename = "D:/logger/myApplication.log";
-//	         DataSource source = new FileDataSource(filename);
-//	         messageBodyPart.setDataHandler(new DataHandler(source));
-//	         messageBodyPart.setFileName(filename);
-//	         multipart.addBodyPart(messageBodyPart);
-//	         message1.setContent(multipart);
-//	         Transport.send(message1);
+	         String filename = "imagePath";
+	         DataSource source = new FileDataSource(filename);
+	         messageBodyPart.setDataHandler(new DataHandler(source));
+	         messageBodyPart.setFileName(filename);
+	         multipart.addBodyPart(messageBodyPart);
+             message1.setContent(multipart);
+    	         Transport.send(message1);
 			 System.out.println("Sent message successfully....");
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);

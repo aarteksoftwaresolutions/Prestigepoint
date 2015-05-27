@@ -149,9 +149,9 @@ public class UserLoginController {
 	@RequestMapping("/logout")
 	public String showLogout(Map<String, Object> map, Model model,HttpServletRequest request , HttpServletResponse httpResponse) {
 		HttpSession session = request.getSession();
-		httpResponse.setHeader("Cache-Control","no-cache");
+		/*httpResponse.setHeader("Cache-Control","no-cache");
 		httpResponse.setHeader("Pragma","no-cache");
-		httpResponse.setDateHeader("Expires", 0); 
+		httpResponse.setDateHeader("Expires", 0); */
 		session.invalidate();
 		return "redirect:/login.do";
 	}

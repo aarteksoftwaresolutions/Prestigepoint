@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ import com.aartek.prestigepoint.validator.BatchValidator;
 
 @Controller
 public class BatchController {
+	
+	private static final Logger logger = Logger.getLogger(BatchController.class);
+	
 	@Autowired
 	private BatchService batchService;
 
@@ -41,6 +45,7 @@ public class BatchController {
 	public String addBatch(Map<String, Object> map, Model model, @RequestParam(required = false) String message,
 			HttpServletRequest request) {
 		List<Batch> batchList = batchService.getAllBatchName();
+		logger.info("This is Info controller!");
 		if (batchList != null) {
 			model.addAttribute("batchList", batchList);
 		}

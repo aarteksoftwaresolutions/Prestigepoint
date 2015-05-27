@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,6 +18,9 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Controller
 public class PlacedStudentController {
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(PlacedStudentController.class);
 	@Autowired
 	private PlacedStudentService placedStudentservice;
 

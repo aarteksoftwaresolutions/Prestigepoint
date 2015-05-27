@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,10 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Service
 public class EnquiryServiceImpl implements EnquiryService {
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(EnquiryServiceImpl.class);
+	
 	@Autowired
 	private EnquiryRepository enquiryRepository;
 

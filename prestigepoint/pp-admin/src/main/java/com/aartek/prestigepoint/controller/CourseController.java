@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,9 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Controller
 public class CourseController {
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(CourseController.class);
 	@Autowired
 	private CourseService courseService;
 
@@ -36,7 +40,7 @@ public class CourseController {
 	@RequestMapping("/addCourse")
 	public String showaddCoursePage(Map<String, Object> map, Model model,
 			@RequestParam(required = false) String message, HttpServletRequest request) {
-		List<Course> courseList= courseService.getAllCourseName();
+		List<Course> courseList = courseService.getAllCourseName();
 		if (courseList != null) {
 			model.addAttribute("courseList", courseList);
 		}
@@ -58,8 +62,8 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/addCourseAction", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addCourseInfo(@ModelAttribute("Course") Course course,ModelMap model,
-			Map<String, Object> map, HttpServletRequest request, @RequestParam(required = false) Integer courseId) {
+	public String addCourseInfo(@ModelAttribute("Course") Course course, ModelMap model, Map<String, Object> map,
+			HttpServletRequest request, @RequestParam(required = false) Integer courseId) {
 		boolean status = false;
 		List<Course> courseList = courseService.getAllCourseName();
 		String method = request.getMethod();
@@ -101,8 +105,8 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteCourse", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCourse(@ModelAttribute("Course") Course course, ModelMap model,
-			HttpServletRequest request, @RequestParam(required = false) Integer courseId) {
+	public String deleteCourse(@ModelAttribute("Course") Course course, ModelMap model, HttpServletRequest request,
+			@RequestParam(required = false) Integer courseId) {
 		courseService.deleteCourse(courseId);
 		model.addAttribute("message", IConstant.COURSE_DELETE_MESSAGE);
 		return "addCourse";
@@ -117,7 +121,7 @@ public class CourseController {
 	 */
 	@RequestMapping("/viewEnquiryDetails")
 	public String showviewEnquiryDetailsPage(Map<String, Object> map, Model model) {
-		List<Enquiry> enquiryList  = courseService.getAllEnquiryDetails();
+		List<Enquiry> enquiryList = courseService.getAllEnquiryDetails();
 		if (enquiryList != null) {
 			model.addAttribute("enquiryList", enquiryList);
 		}

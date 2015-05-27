@@ -3,6 +3,8 @@ package com.aartek.prestigepoint.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.aartek.prestigepoint.model.AdminLogin;
 import com.aartek.prestigepoint.service.LoginService;
 import com.aartek.prestigepoint.util.IConstant;
@@ -18,6 +21,8 @@ import com.aartek.prestigepoint.validator.SignUpValidator;
 
 @Controller
 public class SignUpController {
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(SignUpController.class);
 	@Autowired
 	private LoginService loginService;
 	@Autowired

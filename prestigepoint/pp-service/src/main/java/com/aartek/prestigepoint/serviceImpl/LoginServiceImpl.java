@@ -2,6 +2,7 @@ package com.aartek.prestigepoint.serviceImpl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,9 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Service
 public class LoginServiceImpl implements LoginService {
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(LoginServiceImpl.class);
 	@Autowired
 	private LoginRepository loginRepository;
 

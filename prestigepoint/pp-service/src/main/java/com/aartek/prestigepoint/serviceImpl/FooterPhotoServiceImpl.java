@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ import com.aartek.prestigepoint.util.ImageFormat;
 
 @Service
 public class FooterPhotoServiceImpl implements FooterPhotoService {
+
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(FooterPhotoServiceImpl.class);
 	@Autowired
 	private FooterPhotoRepository footerPhotoRepository;
 
@@ -44,6 +48,7 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 	 * 
 	 * @param batchId
 	 */
+	@SuppressWarnings("restriction")
 	public PhotoInFooter editSingleStudentDetail(Integer studentId) {
 		List<Object> list = new ArrayList<Object>();
 		PhotoInFooter photoInFooter = null;
@@ -112,7 +117,6 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 	}
 
 	public boolean changeStatusByStudentId(PhotoInFooter photoInFooter) {
-		// TODO Auto-generated method stub
 		boolean status = false;
 		if (photoInFooter != null) {
 			photoInFooter.setIsStatusActive(1);
@@ -123,8 +127,6 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 	}
 
 	public boolean uncheckStatusByStudentId(PhotoInFooter photoInFooter) {
-		// TODO Auto-generated method stub
-
 		boolean status = false;
 		if (photoInFooter != null) {
 			photoInFooter.setIsStatusActive(0);

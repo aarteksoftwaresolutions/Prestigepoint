@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ import com.aartek.prestigepoint.util.SendMail;
 
 @Service
 public class EmiServiceImpl implements EmiService {
+	
+@SuppressWarnings("unused")
+private static final Logger logger = Logger.getLogger(EmiServiceImpl.class);
   @Autowired
   private EmiRepository emiRepository;
   
@@ -61,7 +65,8 @@ public class EmiServiceImpl implements EmiService {
 	      emi.setDate(DateFormat.getYYYYMMDDDate(emi.getDate()));
 	      String emiDate= emi.getDate();
 	      System.out.println("date 2="+emiDate);
-	      Integer amount= emi.getAmount();
+	      @SuppressWarnings("unused")
+		Integer amount= emi.getAmount();
 	     
 	      Registration registration= emi.getRegistration();
 	      Integer stuRegistrationId   = registration.getRegistrationId();

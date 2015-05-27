@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.repositoryImpl;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,10 @@ import com.aartek.prestigepoint.util.IConstant;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 @Repository
 public class CourseRepositoryImpl implements CourseRepository {
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(CourseRepositoryImpl.class);
+	
     @Autowired
     private HibernateTemplate hibernateTemplate;
 

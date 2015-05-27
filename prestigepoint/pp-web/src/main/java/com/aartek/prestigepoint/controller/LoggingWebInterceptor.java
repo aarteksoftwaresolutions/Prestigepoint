@@ -16,12 +16,12 @@ public class LoggingWebInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
 		Registration registration = (Registration) request.getSession().getAttribute("registration");
-		if (response.isCommitted()) {
+		
 			if (registration == null || registration.equals("")) {
 				response.sendRedirect("login.do");
 				return false;
 			}
-		}
+	
 		System.out.println("preHandle :: Request inside preHandle");
 		return true;
 	}

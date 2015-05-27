@@ -30,7 +30,7 @@ public class ChallengeController {
 		map.put("AddChallenge", new AddChallenge());
 
 		List<AddChallenge> allAddChallengeList = addChallengeService.allAddChallengeList();
-		logger.info("This is Info Message!");
+		logger.info("This is Info controller!");
 		model.addAttribute("allAddChallengeList", allAddChallengeList);
 		model.addAttribute("message", message);
 		return "addChallenge";
