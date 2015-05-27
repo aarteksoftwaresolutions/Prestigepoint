@@ -2,25 +2,26 @@ package com.aartek.prestigepoint.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.aartek.prestigepoint.model.AdminLogin;
+import com.aartek.prestigepoint.model.Registration;
 
 @Component
-public class LoggingInterceptor extends HandlerInterceptorAdapter {
+public class LoggingWebInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-		AdminLogin login = (AdminLogin) request.getSession().getAttribute("login");
-	
-		if (login == null || login.equals("")) {
-			response.sendRedirect("login.do");
-			return false;
+		Registration registration = (Registration) request.getSession().getAttribute("registration");
+		if (response.isCommitted()) {
+			if (registration == null || registration.equals("")) {
+				response.sendRedirect("login.do");
+				return false;
+			}
 		}
-		
 		System.out.println("preHandle :: Request inside preHandle");
 		return true;
 	}

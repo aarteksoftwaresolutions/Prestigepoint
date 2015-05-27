@@ -55,15 +55,10 @@ public class ReportController {
 	@RequestMapping("/addAdminEnquiry")
 	public String showaddAddEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Model model,
 			Map<String, Object> map, @RequestParam(required = false) String message, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
-		if (loginMember != null) {
 			map.put("Enquiry", new Enquiry());
 			return "addAdminEnquiry";
-		} else {
-			return "redirect:/login.do";
 		}
-	}
+	
 
 	@RequestMapping(value = "/addAdminEnquiryAction", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addEnquiryByAdmin(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, Model model,
@@ -83,11 +78,13 @@ public class ReportController {
 		return "addAdminEnquiry";
 	}
 
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/getEnquiryDetails", method = { RequestMethod.GET, RequestMethod.POST })
 	public String viewEnquiryReport(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, ModelMap model,
 			Map<String, Object> map, HttpServletRequest request, @RequestParam(required = false) Integer enquiryId)
 			throws ParseException {
 		List enquirylist = null;
+		@SuppressWarnings("unused")
 		String method = request.getMethod();
 		List<Year> yearList = null;
 

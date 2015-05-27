@@ -64,7 +64,7 @@ public class ChallengeController {
 	public String deleteStudentInformation(@RequestParam(required = false) Integer challengeId) {
 		addChallengeService.deleteChallengeInformation(challengeId);
 		System.out.println("challengeId");
-		return "redirect:/addChallenge.do";
+		return "addChallenge";
 	}
 
 	@RequestMapping(value = "/viewChallengeInformation")

@@ -49,7 +49,7 @@ public class PlacedStudentController {
 			model.addAttribute("message", IConstant.PLASED_FAILURE_MESSAGE);
 		}
 
-		return "redirect:/addPlacedStudent.do";
+		return "redirect:/registration.do";
 	}
 
 	@RequestMapping("/viewPlacedStudent")
@@ -107,7 +107,7 @@ public class PlacedStudentController {
 	public String deletePlacedStudentInformation(@RequestParam(required = false) Integer studentId) {
 		placedStudentservice.deletePlacedStudentInformation(studentId);
 
-		return "redirect:/viewPlacedStudent.do";
+		return "addPlacedStudent";
 	}
 
 }

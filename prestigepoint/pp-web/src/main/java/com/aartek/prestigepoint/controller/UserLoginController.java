@@ -45,10 +45,6 @@ public class UserLoginController {
 		
 		List<Subject> subjects = null;
 		subjects = questionAnswerService.getAllSubjectName();
-		/*List<PhotoInFooter> allStudentDetail=footerPhotoService.getAllStudentName();
-		System.out.println(allStudentDetail);
-		model.addAttribute("allStudentDetail", allStudentDetail);*/
-		
 		List<PhotoInFooter> listOfSelectedStudent=footerPhotoService.listOfSelectedStudent();
 		model.addAttribute("allStudentDetail", listOfSelectedStudent);
 		model.addAttribute("subjectList", subjects);
@@ -151,11 +147,12 @@ public class UserLoginController {
 	 }
 	
 	@RequestMapping("/logout")
-	public String showLogout(Map<String, Object> map, Model model, HttpServletRequest request, HttpServletRequest response) {
-
+	public String showLogout(Map<String, Object> map, Model model,HttpServletRequest request , HttpServletResponse httpResponse) {
 		HttpSession session = request.getSession();
-		request.getSession().invalidate();
-		request.getContextPath();
+		httpResponse.setHeader("Cache-Control","no-cache");
+		httpResponse.setHeader("Pragma","no-cache");
+		httpResponse.setDateHeader("Expires", 0); 
+		session.invalidate();
 		return "redirect:/login.do";
 	}
 

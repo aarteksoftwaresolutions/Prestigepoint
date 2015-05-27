@@ -34,6 +34,7 @@ public class FooterPhotoController {
 		model.addAttribute("message", message);
 		return "addPhotoInFooter";
 	}
+	
 
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/addFooterPhotoAction", method = { RequestMethod.GET, RequestMethod.POST })
@@ -96,7 +97,7 @@ public class FooterPhotoController {
 			ModelMap model, @RequestParam(required = false) Integer studentId) {
 		footerPhotoService.deleteStudentData(studentId);
 		model.addAttribute("message", IConstant.PLACED_STUDENT_DELETE_MESSAGE);
-		return "redirect:/addFooterPhoto.do";
+		return "addPhotoInFooter";
 	}
 
 }

@@ -66,7 +66,7 @@
                   <p>
                     Contact<small class="required">*</small>
                   </p> <form:input path="contactNo" class="inputControl1" placeholder="Mobile Number" required="autofocus"
-                    maxlength="12" onkeypress="return onlyNos(event,this);" /> </label>
+                    maxlength="10" onkeypress="return onlyNos(event,this);" /> </label>
               </div>
             </td>
           </tr>

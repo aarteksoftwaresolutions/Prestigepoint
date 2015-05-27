@@ -168,9 +168,6 @@ public class RegistrationController {
 	 */
 	@RequestMapping("/viewStudentDetails")
 	public String showviewStudentDetailsPage(Map<String, Object> map, Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
-		if (loginMember != null) {
 			map.put("Registration", new Registration());
 			List<Course> courseList = null;
 			List<Batch> batchList = null;
@@ -193,10 +190,8 @@ public class RegistrationController {
 				model.addAttribute("currentStatus", currentStatusList);
 			}
 			return "viewStudentDetails";
-		} else {
-			return "redirect:/login.do";
 		}
-	}
+	
 
 	/**
 	 * Method for show all register student list
@@ -402,6 +397,6 @@ public class RegistrationController {
 			ModelMap model, HttpServletRequest request, @RequestParam(required = false) Integer registrationId) {
 		registrationService.deleteStudentDetails(registrationId);
 		model.addAttribute("message", IConstant.STUDENT_DELETE_MESSAGE);
-		return "redirect:/viewStudentDetails.do";
+		return "registration";
 	}
 }

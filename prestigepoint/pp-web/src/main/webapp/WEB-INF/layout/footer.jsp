@@ -48,27 +48,6 @@
         <li>Excellent Communication skills</li>
       </ul>
     </div>
-   <!-- mayank task --> 
-    <%-- <ul><div class="testimonial">
-			<c:forEach var="listValue" items="${allStudentDetail}">
-				<!--  <li>${listValue.studentComment}</li>-->
-				
-      <ul class="testimonialSlider">
-        <li class="slide">
-          <div class="image-icon">
-            <img src=${listValue.studentComment} />
-            <div class="icon-overlay"></div>
-          </div>
-          <div class="testimonial-txt">
-            <div class="wrapper">
-              <p>${listValue.studentComment}</p>
-              <i class="postedBy">${listValue.studentComment}</i> <span class="placedIn">Placed In Accenture</span>
-            </div>
-          </div></li>
-          </ul>
-         
-			</c:forEach> </div>
-		</ul> --%>
 		
 		 <div class="testimonial">
       <ul class="testimonialSlider">
@@ -87,64 +66,6 @@
           </c:forEach>
           </ul>
           </div>
-		<!-- ***************************************************** -->
-   <!--  <div class="testimonial">
-      <ul class="testimonialSlider">
-        <li class="slide">
-          <div class="image-icon">
-            <img src="img/Img123.jpg" />
-            <div class="icon-overlay"></div>
-          </div>
-          <div class="testimonial-txt">
-            <div class="wrapper">
-              <p>I joined Prestige point in order to get some guidance on my major project which I was required to
-                submit in my final year of engineering. Mentors are very friendly and teach through practical code
-                snippets which provide us with a real-time scenario of the processing.</p>
-              <i class="postedBy">Subhi Bilai</i> <span class="placedIn">Placed In Accenture</span>
-            </div>
-          </div></li>
-        <li class="slide">
-          <div class="image-icon">
-            <img src="img/image-icon2.jpg" />
-            <div class="icon-overlay"></div>
-          </div>
-          <div class="testimonial-txt">
-            <div class="wrapper">
-              <p>I give the credit of my success to Prestige point. I completed my engineering from electronics
-                branch; I had no idea about coding, processing or any of the concepts used in software systems. I joined
-                the corporate training program in Prestige point; </p>
-              <i class="postedBy">Arwa Kadri</i> <span class="placedIn">Placed In Mastek</span>
-            </div>
-          </div></li>
-        <li class="slide">
-          <div class="image-icon">
-            <img src="img/image-icon3.jpg" />
-            <div class="icon-overlay"></div>
-          </div>
-          <div class="testimonial-txt">
-            <div class="wrapper">
-              <p>I joined Prestige Point to pursue my Industrial training in my final year of engineering. A well
-                planned schedule from the mentors helped me to achieve the necessary exposure to the software industry
-                in a short span of 45 days.Deep rooted concepts were built which became the foundation of my technical
-                knowledge. </p>
-              <i class="postedBy">Divakar</i> <span class="placedIn">Placed In Cognizant</span>
-            </div>
-          </div></li>
-        <li class="slide">
-          <div class="image-icon">
-            <img src="img/image-icon4.jpg" />
-            <div class="icon-overlay"></div>
-          </div>
-          <div class="testimonial-txt">
-            <div class="wrapper">
-              <p>Prestige Point was the actual destination where I discovered my interest in coding; I thank the
-                mentors here to motivate me and to develop my interest in the technical concepts in the time which
-                needed it the most. </p>
-              <i class="postedBy">Ashutosh Kumar</i> <span class="placedIn">Placed In TCS</span>
-            </div>
-          </div></li>
-      </ul>
-    </div> -->
   </div>
   </footer>
   <div class="enquiry-form">
@@ -164,12 +85,12 @@
             placeholder="Email Id" class="inputControl" id="emailId1" name="emailId1" maxlength="50" /> </label>
         </div>
         <div class="form-control">
-          <span class="label error-label" id="mobileMsg" style="display: none;">Please enter your mobile No.</span>
+         <span class="label error-label" id="mobileMsg" style="display: none;">Please enter your mobile No.</span>
            <span class="label error-label" id="contact" style="display: none;">Contact No should be 10 digit</span> 
-            <form:errors path="mobileNo1" class="label error-label"></form:errors>
+         <p id="msg1" style="font-size:14px; color:#FF0000; text-align:center;"></p>
            <label>
-            <input type="text" placeholder="Phone No." class="inputControl" id="mobileNo1" name="mobileNo1"
-            maxlength="11" onkeypress="return onlyNos(event,this);" /> </label>
+            <input type="text" placeholder="Phone No." class="inputControl" name="mobileNo1" id="mobileNo1"
+            maxlength="10" onkeypress="return onlyNos(event,this);" onchange="checkLength()" /> </label>
         </div>
         <div class="form-control">
           <span class="label error-label" id="commentMsg" style="display: none;">Please enter your comment.</span> <label>

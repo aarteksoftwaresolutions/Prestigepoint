@@ -70,7 +70,7 @@ public class Registration implements Serializable {
 	private Integer discount;
 
 	@Column(name = "TOTAL_FEE")
-	private Integer totalFee;
+	private Double totalFee;
 
 	@Column(name = "SUBMITTED_FEE")
 	private Integer submittedFee;
@@ -446,20 +446,6 @@ public class Registration implements Serializable {
 		this.emiList = emiList;
 	}
 
-	/**
-	 * @return the totalFee
-	 */
-	public Integer getTotalFee() {
-		return totalFee;
-	}
-
-	/**
-	 * @param totalFee
-	 *            the totalFee to set
-	 */
-	public void setTotalFee(Integer totalFee) {
-		this.totalFee = totalFee;
-	}
 
 	/**
 	 * @return the searchType
@@ -623,6 +609,14 @@ public class Registration implements Serializable {
   public Integer getemiId() {
 		return emiId;
 	}
+
+public Double getTotalFee() {
+	return totalFee;
+}
+
+public void setTotalFee(Double totalFee) {
+	this.totalFee = totalFee;
+}
 
  
 

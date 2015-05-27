@@ -129,7 +129,7 @@ public class CurrentBatchController {
 			ModelMap model, HttpServletRequest request, @RequestParam(required = false) Integer currentBatchId) {
 		currentBatchService.deleteCurrentBatch(currentBatchId);
 		model.addAttribute("message", IConstant.CURRENT_BATCH_DELETE_MESSAGE);
-		return "redirect:/currentBatch.do";
+		return "currentBatch";
 	}
 
 }

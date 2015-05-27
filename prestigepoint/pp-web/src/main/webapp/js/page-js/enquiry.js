@@ -75,6 +75,8 @@ function emptyValidation() {
 						} else {
 							var emailText2 = document
 									.getElementById('emailId1').value;
+							var contactNo = document
+							.getElementById('mobileNo1').value;
 							var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 							if (!pattern.test(emailText2)) {
 								$('#nameMsg').attr('style', 'display:none;');
@@ -82,8 +84,17 @@ function emptyValidation() {
 										'display:block;color:red;');
 								$('#mobileMsg').attr('style', 'display:none;');
 								$('#commentMsg').attr('style', 'display:none;');
+								$('#emailMsg').attr('style','display:none;');
 								isValid = false;
-							} else {
+							}else if(contactNo.length <10)
+								{
+								$('#nameMsg').attr('style', 'display:none;');
+								$('#emailMsg1').attr('style', 'display:none;');
+								$('#mobileMsg').attr('style', 'display:none;');
+								$('#commentMsg').attr('style', 'display:none;');
+								$('#contact').attr('style', 'display:block;color:red;');
+								isValid = false;
+								} else {
 								$('#emailMsg1').attr('style', 'display:none;');
 								isValid = true;
 							}
@@ -96,6 +107,7 @@ function clearMessage() {
 	$('#mobileMsg').attr('style', 'display:none;');
 	$('#commentMsg').attr('style', 'display:none;');
 	$('#emailMsg1').attr('style', 'display:none;');
+	$('#contact').attr('style', 'display:none;');
 }
 function num(evt, e) {
 	var keyCode = evt.keyCode;

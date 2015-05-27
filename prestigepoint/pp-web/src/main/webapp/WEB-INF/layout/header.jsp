@@ -16,12 +16,6 @@
 <!--javascript libraries begins here -->
 <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
-<!--javascript libraries ends here -->
-<!--  -->
-<!-- <script type="text/javascript" src="js/jquery.fancybox.js?v=2.1.5"></script> -->
-	
-
-
 <!-- Google Analytics code start  -->
 <script>
   (function(i, s, o, g, r, a, m) {
@@ -39,121 +33,6 @@
   ga('send', 'pageview');
 </script>
 <!-- Google Analytics code end  -->
-<!--  -->
-
-	<!-- <script type="text/javascript">
-		$(document).ready(function() {
-			/*
-			 *  Simple image gallery. Uses default settings
-			 */
-
-			$('.fancybox').fancybox();
-
-			/*
-			 *  Different effects
-			 */
-
-			// Change title type, overlay closing speed
-			$(".fancybox-effects-a").fancybox({
-				helpers: {
-					title : {
-						type : 'outside'
-					},
-					overlay : {
-						speedOut : 0
-					}
-				}
-			});
-
-			// Disable opening and closing animations, change title type
-			$(".fancybox-effects-b").fancybox({
-				openEffect  : 'none',
-				closeEffect	: 'none',
-
-				helpers : {
-					title : {
-						type : 'over'
-					}
-				}
-			});
-
-			// Set custom style, close if clicked, change title type and overlay color
-			$(".fancybox-effects-c").fancybox({
-				wrapCSS    : 'fancybox-custom',
-				closeClick : true,
-
-				openEffect : 'none',
-
-				helpers : {
-					title : {
-						type : 'inside'
-					},
-					overlay : {
-						css : {
-							'background' : 'rgba(238,238,238,0.85)'
-						}
-					}
-				}
-			});
-
-			// Remove padding, set opening and closing animations, close if clicked and disable overlay
-			$(".fancybox-effects-d").fancybox({
-				padding: 0,
-
-				openEffect : 'elastic',
-				openSpeed  : 150,
-
-				closeEffect : 'elastic',
-				closeSpeed  : 150,
-
-				closeClick : true,
-
-				helpers : {
-					overlay : null
-				}
-			});
-
-			/*
-			 *  Open manually
-			 */
-
-			$("#fancybox-manual-a").click(function() {
-				$.fancybox.open('1_b.jpg');
-			});
-
-			$("#fancybox-manual-b").click(function() {
-				$.fancybox.open({
-					href : 'iframe.html',
-					type : 'iframe',
-					padding : 5
-				});
-			});
-
-			$("#fancybox-manual-c").click(function() {
-				$.fancybox.open([
-					{
-						href : '1_b.jpg',
-						title : 'My title'
-					}, {
-						href : '2_b.jpg',
-						title : '2nd title'
-					}, {
-						href : '3_b.jpg'
-					}
-				], {
-					helpers : {
-						thumbs : {
-							width: 75,
-							height: 50
-						}
-					}
-				});
-			});
-
-
-		});
-	</script> -->
-	
 </head>
 <body>
   <!--header starts here-->
@@ -191,20 +70,6 @@
       <li><a href="contactUs.do">Contact</a></li>
      <!--  <li><a href="forum.do">Forum</a></li> -->
      <!--  -->
-  <!--  <li><a href="javascript:;">Batch Status</a>
-        <ul>
-         <li><a class="fancybox fancybox.iframe" href="iframe.do">Iframe</a></li>
-        
-     </ul> -->
-      
-     	<%-- <li><a href="javascript:;">Interview Question</a>
-				<ul>
-					<c:forEach items="${subjectList}" var="sub">
-						<li><a href="QuestionAndAnswer.do?subjectId=${sub.subjectId}">${sub.subjectName}</a>
-						</li>
-					</c:forEach>
-				</ul>
-			</li> --%>
 			<c:choose>
         <c:when test="${sessionScope.registration!=null}">
           <li><a href="javascript:;">Student Utilities</a>

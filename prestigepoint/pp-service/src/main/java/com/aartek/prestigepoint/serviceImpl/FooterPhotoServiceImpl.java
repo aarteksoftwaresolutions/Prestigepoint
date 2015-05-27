@@ -23,148 +23,146 @@ import com.aartek.prestigepoint.util.ImageFormat;
 
 @Service
 public class FooterPhotoServiceImpl implements FooterPhotoService {
-  @Autowired
-  private FooterPhotoRepository footerPhotoRepository;
+	@Autowired
+	private FooterPhotoRepository footerPhotoRepository;
 
-  @Value("${pp.imagePath}")
-  private String imagePath;
-  /**
-   * Method get all batch name form data base and display in grid
-   */
-  public List<PhotoInFooter> getAllStudentName() {
-    List<PhotoInFooter> list = new ArrayList<PhotoInFooter>();
-    list = footerPhotoRepository.getAllStudentName();
-   
-    return list;
-  }
+	@Value("${pp.imagePath}")
+	private String imagePath;
 
-  /**
-   * Get batch information for edit batch details.
-   * 
-   * @param batchId
-   */
-  public PhotoInFooter editSingleStudentDetail(Integer studentId) {
-    List<Object> list = new ArrayList<Object>();
-    PhotoInFooter photoInFooter = null;
-    list = footerPhotoRepository.editSingleStudentDetail(studentId);
-    PhotoInFooter photoInFooter2=(PhotoInFooter) list.get(0);
-    BufferedImage img = null;
-	  try {
-		img = ImageIO.read(new File(imagePath + "/" + photoInFooter2.getStudentId()+ ".png"));
-	 }catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	/**
+	 * Method get all batch name form data base and display in grid
+	 */
+	public List<PhotoInFooter> getAllStudentName() {
+		List<PhotoInFooter> list = new ArrayList<PhotoInFooter>();
+		list = footerPhotoRepository.getAllStudentName();
+
+		return list;
 	}
-	  System.out.println(img);
-	  String imageFormat="png";
-	  String imageString =null;
-      ByteArrayOutputStream bos = new ByteArrayOutputStream();
-      if(img!=null){
-      try {
-          ImageIO.write(img, imageFormat, bos);
-          byte[] imageBytes = bos.toByteArray();
 
-          BASE64Encoder encoder = new BASE64Encoder();
-          imageString = encoder.encode(imageBytes);
+	/**
+	 * Get batch information for edit batch details.
+	 * 
+	 * @param batchId
+	 */
+	public PhotoInFooter editSingleStudentDetail(Integer studentId) {
+		List<Object> list = new ArrayList<Object>();
+		PhotoInFooter photoInFooter = null;
+		list = footerPhotoRepository.editSingleStudentDetail(studentId);
+		PhotoInFooter photoInFooter2 = (PhotoInFooter) list.get(0);
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File(imagePath + "/" + photoInFooter2.getStudentId() + ".png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(img);
+		String imageFormat = "png";
+		String imageString = null;
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		if (img != null) {
+			try {
+				ImageIO.write(img, imageFormat, bos);
+				byte[] imageBytes = bos.toByteArray();
 
-          bos.close();
-      } catch (IOException e) {
-          e.printStackTrace();
-      }
-      }
-    for (Object object : list) {
-    	photoInFooter = (PhotoInFooter) object;
-    }
-  
-   photoInFooter.setImgPath(imageString);
-    
-    
-    return photoInFooter;
-  }
+				BASE64Encoder encoder = new BASE64Encoder();
+				imageString = encoder.encode(imageBytes);
 
-  /**
-   * Method use for save batch information.
-   * 
-   * @param batch
-   */
-  @SuppressWarnings("unused")
-public boolean addFooterPhoto(PhotoInFooter photoInFooter) {
-    boolean status = false;
-    if (photoInFooter != null) {
-    	photoInFooter.setIsDeleted(IConstant.IS_DELETED);
-    	photoInFooter.setIsStatusActive(IConstant.IS_STATUS_ACTIVE);
-      status = footerPhotoRepository.addFooterPhoto(photoInFooter);
-      BufferedImage newImg;
-      String imageData = photoInFooter.getImgPath().replaceFirst("^data:image/[^;]*;base64,?", "");
-      newImg = ImageFormat.decodeToImage(imageData);
-      if (newImg != null ) {
-        try {
-          File f = new File(imagePath);
-          f.mkdirs();
-          ImageIO.write(newImg, "png", new File(imagePath + "/" + photoInFooter.getStudentId() + ".png"));
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-      return status;
-    } else {
-      return status;
-    }
-  }
+				bos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		for (Object object : list) {
+			photoInFooter = (PhotoInFooter) object;
+		}
 
-public boolean changeStatusByStudentId(PhotoInFooter photoInFooter) {
-	// TODO Auto-generated method stub
-	boolean status = false;
-	if(photoInFooter!=null){
-		photoInFooter.setIsStatusActive(1);
-		status=footerPhotoRepository.changeStatusByStudentId(photoInFooter);
-		status=true;
+		photoInFooter.setImgPath(imageString);
+
+		return photoInFooter;
 	}
-	return status;
-}
 
-public boolean uncheckStatusByStudentId(PhotoInFooter photoInFooter) {
-	// TODO Auto-generated method stub
-	
-	boolean status = false;
-	if(photoInFooter!=null){
-		photoInFooter.setIsStatusActive(0);
-		status=footerPhotoRepository.changeStatusByStudentId(photoInFooter);
-		status=true;
+	/**
+	 * Method use for save batch information.
+	 * 
+	 * @param batch
+	 */
+	public boolean addFooterPhoto(PhotoInFooter photoInFooter) {
+		boolean status = false;
+		if (photoInFooter != null) {
+			photoInFooter.setIsDeleted(IConstant.IS_DELETED);
+			photoInFooter.setIsStatusActive(IConstant.IS_STATUS_ACTIVE);
+			status = footerPhotoRepository.addFooterPhoto(photoInFooter);
+			BufferedImage newImg;
+			String imageData = photoInFooter.getImgPath().replaceFirst("^data:image/[^;]*;base64,?", "");
+			newImg = ImageFormat.decodeToImage(imageData);
+			if (newImg != null) {
+				try {
+					File f = new File(imagePath);
+					f.mkdirs();
+					ImageIO.write(newImg, "png", new File(imagePath + "/" + photoInFooter.getStudentId() + ".png"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			return status;
+		} else {
+			return status;
+		}
 	}
-	return status;
-}
 
-public List<PhotoInFooter> getSingleStudentDetail(String studentId) {
-	// TODO Auto-generated method stub
-	List<PhotoInFooter> photoInFooter=null;
-	if(studentId!=null){
-		 photoInFooter=footerPhotoRepository.getSingleStudentDetail(studentId);
-		
+	public boolean changeStatusByStudentId(PhotoInFooter photoInFooter) {
+		// TODO Auto-generated method stub
+		boolean status = false;
+		if (photoInFooter != null) {
+			photoInFooter.setIsStatusActive(1);
+			status = footerPhotoRepository.changeStatusByStudentId(photoInFooter);
+			status = true;
+		}
+		return status;
 	}
-	return photoInFooter;
-}
 
-public List<PhotoInFooter> listOfSelectedStudent() {
-	// TODO Auto-generated method stub
-	List<PhotoInFooter> photoInFooters=null;
-	photoInFooters=footerPhotoRepository.listOfSelectedStudent();
-	return photoInFooters;
-}
+	public boolean uncheckStatusByStudentId(PhotoInFooter photoInFooter) {
+		// TODO Auto-generated method stub
 
+		boolean status = false;
+		if (photoInFooter != null) {
+			photoInFooter.setIsStatusActive(0);
+			status = footerPhotoRepository.changeStatusByStudentId(photoInFooter);
+			status = true;
+		}
+		return status;
+	}
 
-  /**
-   * Delete batch information.
-   * 
-   * @param batchId
-   */
-  public void deleteStudentData(Integer studentId) {
-	  footerPhotoRepository.deleteStudentData(studentId);
-  }
+	public List<PhotoInFooter> getSingleStudentDetail(String studentId) {
+		// TODO Auto-generated method stub
+		List<PhotoInFooter> photoInFooter = null;
+		if (studentId != null) {
+			photoInFooter = footerPhotoRepository.getSingleStudentDetail(studentId);
 
-/*public boolean addBatch(PhotoInFooter photoInFooter) {
-	// TODO Auto-generated method stub
-	return false;
-}*/
+		}
+		return photoInFooter;
+	}
+
+	public List<PhotoInFooter> listOfSelectedStudent() {
+		// TODO Auto-generated method stub
+		List<PhotoInFooter> photoInFooters = null;
+		photoInFooters = footerPhotoRepository.listOfSelectedStudent();
+		return photoInFooters;
+	}
+
+	/**
+	 * Delete batch information.
+	 * 
+	 * @param batchId
+	 */
+	public void deleteStudentData(Integer studentId) {
+		footerPhotoRepository.deleteStudentData(studentId);
+	}
+
+	/*
+	 * public boolean addBatch(PhotoInFooter photoInFooter) { // TODO
+	 * Auto-generated method stub return false; }
+	 */
 
 }

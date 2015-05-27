@@ -190,7 +190,7 @@
 									<p>
 										Contact<small class="required">*</small>
 									</p> <form:input path="contact" class="inputControl"
-										placeholder="Contact" required="autofocus" maxlength="60" onkeypress="return onlyNos(event,this);" />
+										placeholder="Contact" required="autofocus" maxlength="10" onkeypress="return onlyNos(event,this);" />
 								</label>
 							</div></td>
 							
@@ -222,7 +222,7 @@
 									<p>
 										Course Fee<small class="required"></small>
 									</p> <form:input path="courseFee" class="inputControl"
-										id="courseFee" readonly="true" maxlength="6" />
+										id="courseFee" readonly="true" maxlength="6" required="autofocus" />
 								</label>
 							</div></td>
 					</tr>

@@ -73,8 +73,6 @@ public class LearningController {
 			    } catch (Exception e) {
 			      e.printStackTrace();
 			    }
-			//RequestDispatcher rd=req.getRequestDispatcher("src\\main\\webapp\\WEB-INF\\jsp\\editor.jsp");
-	    	//rd.forward(req, res);
 		
 		return "editor";
 	  }
@@ -133,78 +131,5 @@ public class LearningController {
 	   // System.out.println(command + " exitValue() " + pro.exitValue());
 	    return pro.exitValue();
 	  }
-
-	
-	/*@RequestMapping(value = "/servlet", method = RequestMethod.GET)
-	  public String servlet(@RequestParam("subtype") String subType,Model m ) {
-		
-		m.addAttribute("type","servlet");
-		m.addAttribute("subtype",subType);
-		
-	    return "servlet";
-		
-		
-	  }
-	
-	@RequestMapping(value = "/jsp", method = RequestMethod.GET)
-	  public String jsp(@RequestParam("subtype") String subType,Model m ) {
-		
-		m.addAttribute("type","jsp");
-		m.addAttribute("subtype",subType);
-		
-	    return "jsp";
-		
-		
-	  }
-	@RequestMapping(value = "/struts", method = RequestMethod.GET)
-	  public String struts(@RequestParam("subtype") String subType,Model m ) {
-		
-		m.addAttribute("type","struts");
-		m.addAttribute("subtype",subType);
-		
-	    return "struts";
-		
-		
-	  }
-	@RequestMapping(value = "/hibernate", method = RequestMethod.GET)
-	  public String hibernate(@RequestParam("subtype") String subType,Model m ) {
-		
-		m.addAttribute("type","hibernate");
-		m.addAttribute("subtype",subType);
-		
-	    return "hibernate";
-		
-		
-	  }
-	@RequestMapping(value = "/spring", method = RequestMethod.GET)
-	  public String spring(@RequestParam("subtype") String subType,Model m ) {
-		
-		m.addAttribute("type","spring");
-		m.addAttribute("subtype",subType);
-		
-	    return "spring";
-		
-		
-	  }
-	@RequestMapping(value = "/xml", method = RequestMethod.GET)
-	  public String xml(@RequestParam("subtype") String subType,Model m ) {
-		
-		m.addAttribute("type","xml");
-		m.addAttribute("subtype",subType);
-		
-	    return "xml";
-		
-		
-	  }
-	@RequestMapping(value = "/mvc", method = RequestMethod.GET)
-	  public String mvc(@RequestParam("subtype") String subType,Model m ) {
-		
-		m.addAttribute("subtype",subType);
-		m.addAttribute("subtype",subType);
-		
-	    return "mvc";
-		
-		
-	  }*/
 
 }

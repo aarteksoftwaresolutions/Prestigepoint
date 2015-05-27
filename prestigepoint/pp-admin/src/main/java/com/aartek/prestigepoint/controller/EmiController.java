@@ -159,6 +159,6 @@ public class EmiController {
 		emiService.deleteEmiDetails(emiId);
 		model.addAttribute("message", IConstant.STUDENT_DELETE_MESSAGE);
 		model.addAttribute("emiId", emiId);
-		return "redirect:/emi.do";
+		return "emi";
 	}
 }

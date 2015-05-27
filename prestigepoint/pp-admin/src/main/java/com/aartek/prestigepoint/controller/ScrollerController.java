@@ -4,8 +4,6 @@ package com.aartek.prestigepoint.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.aartek.prestigepoint.model.PhotoInFooter;
 import com.aartek.prestigepoint.model.Scroller;
-import com.aartek.prestigepoint.service.FooterPhotoService;
 import com.aartek.prestigepoint.service.ScrollerService;
 import com.aartek.prestigepoint.util.IConstant;
 
@@ -39,19 +35,13 @@ public class ScrollerController {
 		return "scroller";
 	}
 
+	@SuppressWarnings("unused")
 	@RequestMapping("/scrollerAction")
 	public String addimageForScroller(@SuppressWarnings("rawtypes") Map map,
 			@ModelAttribute("Scroller") Scroller scroller, @RequestParam(required = false) String message, Model model) {
 
 		boolean status = false;
 		status = scrollerService.addScrollerPhoto(scroller);
-		/*
-		 * List<PhotoInFooter> photoInFooterList = null; photoInFooterList =
-		 * footerPhotoService.getAllStudentName();
-		 * model.addAttribute("photoInFooterList", photoInFooterList);
-		 * map.put("PhotoInFooter", new PhotoInFooter());
-		 * model.addAttribute("message", message);
-		 */
 		return "redirect:/scrollerView.do";
 	}
 
@@ -74,7 +64,6 @@ public class ScrollerController {
 			@RequestParam(required = false) Integer imageId) {
 		scrollerService.deleteScrollerImage(imageId);
 		model.addAttribute("message", IConstant.SCROLLER_IMAGE_DELETE_MESSAGE);
-		return "redirect:/scrollerView.do";
-
+		return "scroller";
 	}
 }

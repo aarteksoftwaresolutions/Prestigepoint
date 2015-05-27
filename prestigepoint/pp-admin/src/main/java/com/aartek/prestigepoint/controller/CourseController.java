@@ -105,7 +105,7 @@ public class CourseController {
 			HttpServletRequest request, @RequestParam(required = false) Integer courseId) {
 		courseService.deleteCourse(courseId);
 		model.addAttribute("message", IConstant.COURSE_DELETE_MESSAGE);
-		return "redirect:/addCourse.do";
+		return "addCourse";
 	}
 
 	/**

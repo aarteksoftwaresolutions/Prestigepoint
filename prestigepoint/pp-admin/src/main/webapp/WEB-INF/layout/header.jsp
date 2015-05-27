@@ -15,6 +15,11 @@
 <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
 <!--javascript libraries ends here -->
+<!-- <script type="text/javascript">
+    function preventBack(){window.history.forward();}
+     setTimeout("preventBack()", 0);
+     window.onunload=function(){null};
+</script> -->
 </head>
 <body>
   <!--header starts here-->

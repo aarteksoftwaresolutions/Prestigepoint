@@ -38,8 +38,8 @@ public class BatchController {
 	 * @return
 	 */
 	@RequestMapping("/addBatch")
-	public String showaddBatchPage(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String message, HttpServletRequest request) {
+	public String addBatch(Map<String, Object> map, Model model, @RequestParam(required = false) String message,
+			HttpServletRequest request) {
 		List<Batch> batchList = batchService.getAllBatchName();
 		if (batchList != null) {
 			model.addAttribute("batchList", batchList);
@@ -108,11 +108,11 @@ public class BatchController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteBatch", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCatageory(@ModelAttribute("Batch") Batch batch, BindingResult result, ModelMap model,
-			HttpServletRequest request, @RequestParam(required = false) Integer batchId) {
+	public String deleteCatageory(@ModelAttribute("Batch") Batch batch, ModelMap model, HttpServletRequest request,
+			@RequestParam(required = false) Integer batchId) {
 		batchService.deleteBatch(batchId);
 		model.addAttribute("message", IConstant.BATCH_DELETE_MESSAGE);
-		return "redirect:/addBatch.do";
+		return "addBatch";
 	}
 
 }

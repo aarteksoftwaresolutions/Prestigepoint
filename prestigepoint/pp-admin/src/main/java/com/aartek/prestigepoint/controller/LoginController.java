@@ -34,8 +34,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/login")
 	public String showLogin(Map<String, Object> map, Model model, @RequestParam(required = false) String invalid,
-			@RequestParam(required = false) String forgotMessage) {
-
+		@RequestParam(required = false) String forgotMessage) {
 		map.put("AdminLogin", new AdminLogin());
 		model.addAttribute("forgotMessage", forgotMessage);
 		model.addAttribute("invalid", invalid);
@@ -90,8 +89,12 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/logout")
-	public String showLogout(Map<String, Object> map, Model model, HttpServletRequest request) {
+	public String showLogout(Map<String, Object> map, Model model, HttpServletRequest request,
+			HttpServletResponse httpResponse) {
 		HttpSession session = request.getSession();
+		/*httpResponse.setHeader("Cache-Control", "no-cache");
+		httpResponse.setHeader("Pragma", "no-cache");
+		httpResponse.setDateHeader("Expires", 0);*/
 		session.invalidate();
 		return "redirect:/login.do";
 	}
