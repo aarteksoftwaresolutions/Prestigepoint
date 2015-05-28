@@ -15,9 +15,9 @@ public class QuestionAndAnswerValidator {
 
 	public void validate(Object target, Errors errors) {
 		QuestionAnswer questionAnswer = (QuestionAnswer) target;
-		 if (questionAnswer.getSubject().getSubjectId() == 0) {
-		      errors.rejectValue("subject.subjectId",  "error.subject.rule");
-		    }
+		if (questionAnswer.getSubject().getSubjectId() == 0) {
+			errors.rejectValue("subject.subjectId", "error.subject.rule");
+		}
 
-}
+	}
 }

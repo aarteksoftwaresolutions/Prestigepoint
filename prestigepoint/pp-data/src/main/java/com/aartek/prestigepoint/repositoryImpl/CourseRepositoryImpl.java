@@ -15,101 +15,102 @@ import com.aartek.prestigepoint.model.Year;
 import com.aartek.prestigepoint.repository.CourseRepository;
 import com.aartek.prestigepoint.util.IConstant;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings("unchecked")
 @Repository
 public class CourseRepositoryImpl implements CourseRepository {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(CourseRepositoryImpl.class);
-	
-    @Autowired
-    private HibernateTemplate hibernateTemplate;
 
-    /**
-     * Save course details into data base.
-     */
-    public boolean addCourse(Course course) {
-        if (course != null) {
-            hibernateTemplate.saveOrUpdate(course);
-            return true;
-        } else {
-            return false;
-        }
-    }
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
 
-    /**
-     * get all course name from data base.
-     */
-    public List<Course> getAllCourseName() {
-        List<Course> courseList = hibernateTemplate.find("from Course where IS_DELETED=" + IConstant.IS_DELETED);
-        return courseList;
-    }
+	/**
+	 * Save course details into data base.
+	 */
+	public boolean addCourse(Course course) {
+		if (course != null) {
+			hibernateTemplate.saveOrUpdate(course);
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-    /**
-     * get course information for edit course details.
-     * 
-     * @param courseId
-     */
-    public List<Object> editCourse(Integer courseId) {
-        List<Object> list = hibernateTemplate.find("from Course c where c.courseId=" + courseId);
-        return list;
-    }
+	/**
+	 * get all course name from data base.
+	 */
+	public List<Course> getAllCourseName() {
+		List<Course> courseList = hibernateTemplate.find("from Course where IS_DELETED=" + IConstant.IS_DELETED);
+		return courseList;
+	}
 
-    /**
-     * Method use for delete course.
-     * 
-     * @param courseId
-     */
-    public void deleteCourse(Integer courseId) {
-        Course course = (Course) hibernateTemplate.get(Course.class, courseId);
-        course.setIsDeleted(IConstant.IS_DELETED_DEACTIVE);
-        if (null != course) {
-            hibernateTemplate.update(course);
-        }
-    }
+	/**
+	 * get course information for edit course details.
+	 * 
+	 * @param courseId
+	 */
+	public List<Object> editCourse(Integer courseId) {
+		List<Object> list = hibernateTemplate.find("from Course c where c.courseId=" + courseId);
+		return list;
+	}
 
-    /**
-     * Method use for get all enquiey details
-     */
-    public List<Enquiry> getAllEnquiryDetails() {
-        List<Enquiry> enquiries = hibernateTemplate.find("from Enquiry where IS_DELETED=" + IConstant.IS_DELETED
-                        + "order by name desc");
-        return enquiries;
-    }
+	/**
+	 * Method use for delete course.
+	 * 
+	 * @param courseId
+	 */
+	public void deleteCourse(Integer courseId) {
+		Course course = (Course) hibernateTemplate.get(Course.class, courseId);
+		course.setIsDeleted(IConstant.IS_DELETED_DEACTIVE);
+		if (null != course) {
+			hibernateTemplate.update(course);
+		}
+	}
 
-    /**
-     * Method for get all year name
-     */
-    public List<Year> getAllYearName() {
-        List<Year> years = hibernateTemplate.find("from Year where IS_DELETED=" + IConstant.IS_DELETED
-                        + " order by year asc");
-        return years;
-    }
+	/**
+	 * Method use for get all enquiey details
+	 */
+	public List<Enquiry> getAllEnquiryDetails() {
+		List<Enquiry> enquiries = hibernateTemplate.find("from Enquiry where IS_DELETED=" + IConstant.IS_DELETED
+				+ "order by name desc");
+		return enquiries;
+	}
 
-    /**
-     * Method for get all current status
-     */
-    public List<CurrentStatus> getAllCurrentStatus() {
-        List<CurrentStatus> currentStatus = hibernateTemplate.find("from CurrentStatus where IS_DELETED="
-                        + IConstant.IS_DELETED + " order by currentStatus asc");
-        return currentStatus;
-    }
+	/**
+	 * Method for get all year name
+	 */
+	public List<Year> getAllYearName() {
+		List<Year> years = hibernateTemplate.find("from Year where IS_DELETED=" + IConstant.IS_DELETED
+				+ " order by year asc");
+		return years;
+	}
 
-    /**
-     * Method for get course fee corresponding for courseType.
-     * 
-     * @param courseIdId
-     */
-    public Integer getFeeByCourseType(Integer courseIdId) {
-        List<Object> list = hibernateTemplate.find("from Course c where c.isDeleted=" + IConstant.IS_DELETED
-                        + " and c.courseId=?", courseIdId);
-        Iterator iterator = list.iterator();
-        Integer amount = null;
-        while (iterator.hasNext()) {
-            Course type = (Course) iterator.next();
-            amount = type.getCourseFee();
-        }
-        return amount;
-    }
+	/**
+	 * Method for get all current status
+	 */
+	public List<CurrentStatus> getAllCurrentStatus() {
+		List<CurrentStatus> currentStatus = hibernateTemplate.find("from CurrentStatus where IS_DELETED="
+				+ IConstant.IS_DELETED + " order by currentStatus asc");
+		return currentStatus;
+	}
+
+	/**
+	 * Method for get course fee corresponding for courseType.
+	 * 
+	 * @param courseIdId
+	 */
+	public Integer getFeeByCourseType(Integer courseIdId) {
+		List<Object> list = hibernateTemplate.find("from Course c where c.isDeleted=" + IConstant.IS_DELETED
+				+ " and c.courseId=?", courseIdId);
+		@SuppressWarnings("rawtypes")
+		Iterator iterator = list.iterator();
+		Integer amount = null;
+		while (iterator.hasNext()) {
+			Course type = (Course) iterator.next();
+			amount = type.getCourseFee();
+		}
+		return amount;
+	}
 
 }

@@ -29,6 +29,8 @@
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/login.do*" />
 			<mvc:exclude-mapping path="/stuSignIn.do*" />
+			<mvc:exclude-mapping path="/stuRegistration.do*" />
+			<mvc:exclude-mapping path="/registration.do*" />
 			<mvc:exclude-mapping path="/logout.do*" />
 			<mvc:exclude-mapping path="/welcome.do*" />
 			<mvc:exclude-mapping path="/enquiryAction.do*" />
@@ -36,12 +38,14 @@
 			<mvc:exclude-mapping path="/forgotPasswordAction.do*" />
 			<mvc:exclude-mapping path="/aboutUs.do*" />
 			<mvc:exclude-mapping path="/contactUs.do*" />
+			<mvc:exclude-mapping path="/contactAction.do*" />
 			<mvc:exclude-mapping path="/course.do*" />
 			<mvc:exclude-mapping path="/viewCurrentBatch.do*" />
 			<mvc:exclude-mapping path="/placementCell.do*" />
 			<mvc:exclude-mapping path="/features.do*" />
 			<mvc:exclude-mapping path="/editor.do*" />
 			<mvc:exclude-mapping path="/editorAction.do*" />
+			<mvc:exclude-mapping path="/blog.do*" />
 			<bean class="com.aartek.prestigepoint.controller.LoggingWebInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

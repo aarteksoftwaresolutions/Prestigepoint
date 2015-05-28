@@ -23,15 +23,13 @@ public class EmiRepositoryImpl implements EmiRepository {
 	private HibernateTemplate hibernateTemplate;
 
 	public List<Emi> getFeesDetails(Integer registrationId) {
-		List<Emi> list = null;
-		list = hibernateTemplate.find("from Emi e where e.registration.registrationId=" + registrationId
+		List<Emi> list = hibernateTemplate.find("from Emi e where e.registration.registrationId=" + registrationId
 				+ " and e.isDeleted=" + IConstant.IS_DELETED);
 
 		return list;
 	}
 
 	public boolean addEmiInfo(Emi emi) {
-		Integer submittedAmount = null;
 		Integer oldAmount = 0;
 		if (emi != null) {
 			if (emi.getEmiId() != null) {
@@ -42,7 +40,7 @@ public class EmiRepositoryImpl implements EmiRepository {
 			List<Registration> registrations = hibernateTemplate.find("from Registration r where r.registrationId="
 					+ emi.getRegistration().getRegistrationId());
 			Registration registration = registrations.get(0);
-			submittedAmount = registration.getSubmittedFee() - oldAmount + emi.getAmount();
+			Integer submittedAmount = registration.getSubmittedFee() - oldAmount + emi.getAmount();
 			registration.setSubmittedFee(submittedAmount);
 			hibernateTemplate.update(registration);
 			return true;
@@ -52,8 +50,7 @@ public class EmiRepositoryImpl implements EmiRepository {
 	}
 
 	public List<Registration> getRegistrationDetails(Integer registrationId) {
-		List<Registration> list = null;
-		list = hibernateTemplate.find("from Registration r where r.registrationId=" + registrationId
+		List<Registration> list = hibernateTemplate.find("from Registration r where r.registrationId=" + registrationId
 				+ " and r.isDeleted=" + IConstant.IS_DELETED);
 		return list;
 	}
@@ -76,28 +73,23 @@ public class EmiRepositoryImpl implements EmiRepository {
 	}
 
 	public List<Object> editEmi(Integer emiId) {
-		List<Object> list = null;
-
-		list = hibernateTemplate.find("from Emi e where e.emiId=" + emiId);
+		List<Object> list = hibernateTemplate.find("from Emi e where e.emiId=" + emiId);
 		return list;
 	}
 
 	public List<Emi> getAllEmiId() {
-		List<Emi> emiList = null;
-		emiList = hibernateTemplate.find("from Emi where IS_DELETED=" + IConstant.IS_DELETED);
+		List<Emi> emiList = hibernateTemplate.find("from Emi where IS_DELETED=" + IConstant.IS_DELETED);
 		return emiList;
 
 	}
 
 	public Emi editEimForSingleRecord(Integer emiId) {
-		Emi emi = null;
-		emi = (Emi) hibernateTemplate.find("from Emi e where e.emiId=" + emiId);
+		Emi emi = (Emi) hibernateTemplate.find("from Emi e where e.emiId=" + emiId);
 		return emi;
 	}
 
 	public List<Registration> getEmiDetails(Integer registrationId) {
-		List<Registration> list = null;
-		list = hibernateTemplate.find("from Registration r where r.registrationId=" + registrationId
+		List<Registration> list = hibernateTemplate.find("from Registration r where r.registrationId=" + registrationId
 				+ "and r.isDeleted=" + IConstant.IS_DELETED);
 		return list;
 
@@ -105,7 +97,6 @@ public class EmiRepositoryImpl implements EmiRepository {
 
 	public boolean editEmiInfo(Emi emi) {
 
-		Integer submittedAmount = null;
 		Integer oldAmount = 0;
 		if (emi != null) {
 			if (emi.getEmiId() != null) {
@@ -116,7 +107,7 @@ public class EmiRepositoryImpl implements EmiRepository {
 			List<Registration> registrations = hibernateTemplate.find("from Registration r where r.registrationId="
 					+ emi.getRegistration().getRegistrationId());
 			Registration registration = registrations.get(0);
-			submittedAmount = registration.getSubmittedFee() - oldAmount + emi.getAmount();
+			Integer submittedAmount = registration.getSubmittedFee() - oldAmount + emi.getAmount();
 			registration.setSubmittedFee(submittedAmount);
 			hibernateTemplate.update(registration);
 			return true;

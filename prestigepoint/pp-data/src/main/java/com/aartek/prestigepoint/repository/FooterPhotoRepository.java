@@ -6,20 +6,20 @@ import com.aartek.prestigepoint.model.PhotoInFooter;
 
 public interface FooterPhotoRepository {
 
-  public List<PhotoInFooter> getAllStudentName();
-  
-  public List<PhotoInFooter> listOfSelectedStudent();
-  
-  public boolean changeStatusByStudentId(PhotoInFooter photoInFooter);
-  
-  public boolean uncheckStatusByStudentId(PhotoInFooter photoInFooter);
+	public List<PhotoInFooter> getAllStudentName();
 
-  public List<PhotoInFooter> getSingleStudentDetail(String studentId);
-  
-  public List<Object> editSingleStudentDetail(Integer studentId);
+	public List<PhotoInFooter> listOfSelectedStudent();
 
-  public  boolean addFooterPhoto(PhotoInFooter photoInFooter);
+	public boolean changeStatusByStudentId(PhotoInFooter photoInFooter);
 
-  public void deleteStudentData(Integer studentId);
+	public boolean uncheckStatusByStudentId(PhotoInFooter photoInFooter);
+
+	public List<PhotoInFooter> getSingleStudentDetail(String studentId);
+
+	public List<Object> editSingleStudentDetail(Integer studentId);
+
+	public boolean addFooterPhoto(PhotoInFooter photoInFooter);
+
+	public void deleteStudentData(Integer studentId);
 
 }

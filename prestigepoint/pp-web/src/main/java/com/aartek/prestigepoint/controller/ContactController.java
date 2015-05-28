@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +23,15 @@ import com.aartek.prestigepoint.service.QuestionAnswerService;
 import com.aartek.prestigepoint.util.IConstant;
 import com.aartek.prestigepoint.validator.UserEnquiryValidator;
 
+/**
+ * 
+ * @author Dell
+ *
+ */
 @Controller
 public class ContactController {
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(ContactController.class);
 	@Autowired
 	private ContactService contactService;
 
@@ -32,26 +40,42 @@ public class ContactController {
 
 	@Autowired
 	private QuestionAnswerService questionAnswerService;
-	
-	@Autowired
-	private FooterPhotoService footerPhotoService ;
-	
 
+	@Autowired
+	private FooterPhotoService footerPhotoService;
+
+	/**
+	 * use for view the jsp of contactUs
+	 * 
+	 * @param map
+	 * @param model
+	 * @param message
+	 * @return
+	 */
 	@RequestMapping("/contactUs")
 	public String showcontactUsPage(Map<String, Object> map, Model model, @RequestParam(required = false) String message) {
 		model.addAttribute("message", message);
 		List<Subject> subjects = null;
-		
+
 		subjects = questionAnswerService.getAllSubjectName();
-		List<PhotoInFooter> listOfSelectedStudent=footerPhotoService.listOfSelectedStudent();
+		List<PhotoInFooter> listOfSelectedStudent = footerPhotoService.listOfSelectedStudent();
 		model.addAttribute("allStudentDetail", listOfSelectedStudent);
 		model.addAttribute("subjectList", subjects);
 		map.put("Enquiry", new Enquiry());
 		return "contactUs";
 	}
 
+	/**
+	 * use for add the contact information
+	 * 
+	 * @param enquiry
+	 * @param result
+	 * @param model
+	 * @param map
+	 * @return
+	 */
 	@RequestMapping(value = "/contactAction", method = RequestMethod.POST)
-	public String feedbackInfo(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, ModelMap model,
+	public String addContactInfo(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, ModelMap model,
 			Map<String, Object> map) {
 		boolean status = false;
 		enquiryValidator.validate(enquiry, result);

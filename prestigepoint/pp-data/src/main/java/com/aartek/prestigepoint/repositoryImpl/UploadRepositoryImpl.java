@@ -13,16 +13,15 @@ import com.aartek.prestigepoint.repository.UploadRepository;
 @Repository
 public class UploadRepositoryImpl implements UploadRepository {
 
-  @Autowired
-  private HibernateTemplate hibernateTemplate;
+	@Autowired
+	private HibernateTemplate hibernateTemplate;
 
-  public void uploadJar(Upload upload) {
-    hibernateTemplate.saveOrUpdate(upload);
-  }
+	public void uploadJar(Upload upload) {
+		hibernateTemplate.saveOrUpdate(upload);
+	}
 
-  public List<Upload> downloadJar() {
-    List<Upload> download = null;
-    download = hibernateTemplate.find("from Upload");
-    return download;
-  }
+	public List<Upload> downloadJar() {
+		List<Upload> download = hibernateTemplate.find("from Upload");
+		return download;
+	}
 }

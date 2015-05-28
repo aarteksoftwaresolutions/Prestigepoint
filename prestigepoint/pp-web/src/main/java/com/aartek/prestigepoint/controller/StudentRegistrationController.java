@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,68 +37,66 @@ import com.aartek.prestigepoint.validator.StudentRegistrationValidator;
  */
 @Controller
 public class StudentRegistrationController {
-  @Autowired
-  private StudentRegistrationService stuRegService;
 
-  @Autowired
-  private CourseService courseService;
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(StudentRegistrationController.class);
+	@Autowired
+	private StudentRegistrationService stuRegService;
 
-  @Autowired
-  private StudentRegistrationValidator registrationValidator;
-  
-  @Autowired
+	@Autowired
+	private CourseService courseService;
+
+	@Autowired
+	private StudentRegistrationValidator registrationValidator;
+
+	@Autowired
 	private QuestionAnswerService questionAnswerService;
-  
-  @Autowired
-	private FooterPhotoService footerPhotoService ;
 
-  @RequestMapping("/stuRegistration")
-  public String showStuRegistrationPage(Map<String, Object> map, Model model,
-      @RequestParam(required = false) String message, HttpServletRequest request) {
-    map.put("Registration", new Registration());
-    List<Course> courseList = null;
-    List<Year> yearList = null;
-    List<Subject> subjects = null;
-		subjects = questionAnswerService.getAllSubjectName();
+	@Autowired
+	private FooterPhotoService footerPhotoService;
+
+	@RequestMapping("/stuRegistration")
+	public String showStuRegistrationPage(Map<String, Object> map, Model model,
+			@RequestParam(required = false) String message, HttpServletRequest request) {
+		map.put("Registration", new Registration());
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
 		model.addAttribute("subjectList", subjects);
-    courseList = courseService.getAllCourseName();
-    List<PhotoInFooter> listOfSelectedStudent=footerPhotoService.listOfSelectedStudent();
-	model.addAttribute("allStudentDetail", listOfSelectedStudent);
-    model.addAttribute("course", courseList);
-    yearList = courseService.getAllYearName();
-    model.addAttribute("year", yearList);
-    model.addAttribute("message", message);
-    return "stuRegistration";
-  }
+		List<Course> courseList = courseService.getAllCourseName();
+		List<PhotoInFooter> listOfSelectedStudent = footerPhotoService.listOfSelectedStudent();
+		model.addAttribute("allStudentDetail", listOfSelectedStudent);
+		model.addAttribute("course", courseList);
+		List<Year> yearList = courseService.getAllYearName();
+		model.addAttribute("year", yearList);
+		model.addAttribute("message", message);
+		return "stuRegistration";
+	}
 
-  @RequestMapping(value = "/registration", method = { RequestMethod.GET, RequestMethod.POST })
-  public String signUp(@ModelAttribute("Registration") Registration registration, BindingResult result, ModelMap model,
-      Map<String, Object> map, HttpServletRequest request) {
-    boolean status = false;
-    List<Course> courseList = null;
-    List<Year> yearList = null;
-    registrationValidator.validate(registration, result);
-    if (result.hasErrors()) {
-      courseList = courseService.getAllCourseName();
-      model.addAttribute("course", courseList);
-      yearList = courseService.getAllYearName();
-      model.addAttribute("year", yearList);
-      return "stuRegistration";
-    }
-    status = stuRegService.addStudentInfo(registration);
-    if (status) {
-      model.addAttribute("message", IConstant.REGISTRATION_SUCCESS_MESSAGE);
-    } else {
-      model.addAttribute("message", IConstant.REGISTRATION_FAILURE_MESSAGE);
-    }
-    return "redirect:/stuRegistration.do";
-  }
+	@RequestMapping(value = "/registration", method = { RequestMethod.GET, RequestMethod.POST })
+	public String signUp(@ModelAttribute("Registration") Registration registration, BindingResult result,
+			ModelMap model, Map<String, Object> map, HttpServletRequest request) {
+		boolean status = false;
+		registrationValidator.validate(registration, result);
+		if (result.hasErrors()) {
+			List<Course> courseList = courseService.getAllCourseName();
+			model.addAttribute("course", courseList);
+			List<Year> yearList = courseService.getAllYearName();
+			model.addAttribute("year", yearList);
+			return "stuRegistration";
+		}
+		status = stuRegService.addStudentInfo(registration);
+		if (status) {
+			model.addAttribute("message", IConstant.REGISTRATION_SUCCESS_MESSAGE);
+		} else {
+			model.addAttribute("message", IConstant.REGISTRATION_FAILURE_MESSAGE);
+		}
+		return "redirect:/stuRegistration.do";
+	}
 
-  @RequestMapping(value = "/verify", method = { RequestMethod.GET, RequestMethod.POST })
-  public String verifyUser(@ModelAttribute("Registration") Registration registration, BindingResult result,
-      ModelMap model, Map<String, Object> map, HttpServletRequest request,
-      @RequestParam(required = false) Integer registrationId) {
-    registration = stuRegService.editStuRegs(registrationId);
-    return "redirect:/login.do";
-  }
+	@RequestMapping(value = "/verify", method = { RequestMethod.GET, RequestMethod.POST })
+	public String verifyUser(@ModelAttribute("Registration") Registration registration, BindingResult result,
+			ModelMap model, Map<String, Object> map, HttpServletRequest request,
+			@RequestParam(required = false) Integer registrationId) {
+		registration = stuRegService.editStuRegs(registrationId);
+		return "redirect:/login.do";
+	}
 }

@@ -11,8 +11,8 @@ import com.aartek.prestigepoint.model.ForumAnswer;
  */
 public interface ForumAnswerService {
 
-public boolean addAnswer(ForumAnswer forumAnswer);
+	public boolean addAnswer(ForumAnswer forumAnswer);
 
-public ForumAnswer updateAnswer(Integer forumAnswerId);
+	public ForumAnswer updateAnswer(Integer forumAnswerId);
 
 }

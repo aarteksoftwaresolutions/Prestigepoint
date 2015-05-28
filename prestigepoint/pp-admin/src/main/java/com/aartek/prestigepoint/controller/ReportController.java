@@ -29,7 +29,7 @@ import com.aartek.prestigepoint.validator.EnquiryValidator;
 
 @Controller
 public class ReportController {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(ReportController.class);
 
@@ -42,13 +42,21 @@ public class ReportController {
 	@Autowired
 	private EnquiryValidator enquiryValidator;
 
+	/**
+	 * use for viewEnquiryByMonth
+	 * 
+	 * @param enquiry
+	 * @param map
+	 * @param model
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/viewEnquiryByMonth")
 	public String showEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map, Model model,
 			HttpServletRequest request) {
 
 		map.put("Enquiry", new Enquiry());
-		List<Year> yearList = null;
-		yearList = courseService.getAllYearName();
+		List<Year> yearList = courseService.getAllYearName();
 		model.addAttribute("year", yearList);
 
 		return "viewEnquiryByMonth";
@@ -57,10 +65,9 @@ public class ReportController {
 	@RequestMapping("/addAdminEnquiry")
 	public String showaddAddEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Model model,
 			Map<String, Object> map, @RequestParam(required = false) String message, HttpServletRequest request) {
-			map.put("Enquiry", new Enquiry());
-			return "addAdminEnquiry";
-		}
-	
+		map.put("Enquiry", new Enquiry());
+		return "addAdminEnquiry";
+	}
 
 	@RequestMapping(value = "/addAdminEnquiryAction", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addEnquiryByAdmin(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, Model model,
@@ -80,31 +87,29 @@ public class ReportController {
 		return "addAdminEnquiry";
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unused" })
 	@RequestMapping(value = "/getEnquiryDetails", method = { RequestMethod.GET, RequestMethod.POST })
 	public String viewEnquiryReport(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, ModelMap model,
 			Map<String, Object> map, HttpServletRequest request, @RequestParam(required = false) Integer enquiryId)
 			throws ParseException {
-		List enquirylist = null;
-		@SuppressWarnings("unused")
 		String method = request.getMethod();
 		List<Year> yearList = null;
 
 		yearList = courseService.getAllYearName();
 
 		if (!enquiry.getMonth().equals("0") && !enquiry.getYear().equals("0")) {
-			enquirylist = enquiryService.getMonthAndYearWiseEnquiryDetails(enquiry.getMonth(), enquiry.getYear());
+			List enquirylist = enquiryService.getMonthAndYearWiseEnquiryDetails(enquiry.getMonth(), enquiry.getYear());
 			if (enquirylist != null) {
 				model.addAttribute("enquirylist", enquirylist);
 			}
 		} else {
 			if (enquiry.getMonth().equals("0")) {
-				enquirylist = enquiryService.getYearWiseEnquiry(enquiry.getYear());
+				List enquirylist = enquiryService.getYearWiseEnquiry(enquiry.getYear());
 				if (enquirylist != null) {
 					model.addAttribute("enquirylist", enquirylist);
 				}
 			} else {
-				enquirylist = enquiryService.getMonthWiseEnquiry(enquiry.getMonth());
+				List enquirylist = enquiryService.getMonthWiseEnquiry(enquiry.getMonth());
 				if (enquirylist != null) {
 					model.addAttribute("enquirylist", enquirylist);
 				}

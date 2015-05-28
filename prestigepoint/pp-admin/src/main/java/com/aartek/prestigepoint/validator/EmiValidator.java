@@ -11,8 +11,9 @@ public class EmiValidator {
 	public boolean supports(Class<?> clazz) {
 		return Emi.class.isAssignableFrom(clazz);
 	}
-	public void validate(Object target, Errors errors) {
-		  ValidationUtils.rejectIfEmpty(errors, "date", "error.date.empty");
 
-} 
+	public void validate(Object target, Errors errors) {
+		ValidationUtils.rejectIfEmpty(errors, "date", "error.date.empty");
+
+	}
 }

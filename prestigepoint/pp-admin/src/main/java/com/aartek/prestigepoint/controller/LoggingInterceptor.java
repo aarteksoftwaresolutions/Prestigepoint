@@ -9,7 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.aartek.prestigepoint.model.AdminLogin;
-
+/**
+ * 
+ * @author Meenal Pathre
+ *
+ */
 @Component
 public class LoggingInterceptor extends HandlerInterceptorAdapter {
 

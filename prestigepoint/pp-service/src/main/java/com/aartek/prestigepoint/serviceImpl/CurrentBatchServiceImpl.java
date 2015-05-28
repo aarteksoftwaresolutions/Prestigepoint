@@ -2,6 +2,7 @@ package com.aartek.prestigepoint.serviceImpl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,8 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Service
 public class CurrentBatchServiceImpl implements CurrentBatchService {
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(CurrentBatchServiceImpl.class);
   /**
    * CurrentButchServiceImpl, acts as a interface between controller and
    * Repository in order to serve request for current batch page.

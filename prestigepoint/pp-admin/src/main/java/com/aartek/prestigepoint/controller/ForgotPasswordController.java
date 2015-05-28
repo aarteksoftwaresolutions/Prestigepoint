@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,11 +18,16 @@ import com.aartek.prestigepoint.service.ForgotPasswordAdminService;
 import com.aartek.prestigepoint.util.IConstant;
 import com.aartek.prestigepoint.validator.ForgotPasswordValidator;
 
+/**
+ * 
+ * @author Dell
+ *
+ */
 @Controller
 public class ForgotPasswordController {
-	
-@SuppressWarnings("unused")
-private static final Logger logger = Logger.getLogger(ForgotPasswordController.class);
+
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(ForgotPasswordController.class);
 
 	@Autowired
 	private ForgotPasswordAdminService forgotPasswordService;
@@ -31,8 +35,14 @@ private static final Logger logger = Logger.getLogger(ForgotPasswordController.c
 	@Autowired
 	private ForgotPasswordValidator forgotPasswordValidator;
 
+	/**
+	 * use for view the jsp of footerPassword.
+	 * 
+	 * @param map
+	 * @return
+	 */
 	@RequestMapping(value = "/forgotPassword", method = RequestMethod.GET)
-	public String forgotPassword(Map<String, Object> map, Model model) {
+	public String forgotPassword(Map<String, Object> map) {
 
 		map.put("AdminLogin", new AdminLogin());
 

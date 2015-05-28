@@ -13,7 +13,7 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Service
 public class LoginServiceImpl implements LoginService {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(LoginServiceImpl.class);
 	@Autowired
@@ -23,10 +23,8 @@ public class LoginServiceImpl implements LoginService {
 		AdminLogin loginMember = (AdminLogin) login;
 		List<Object> memberList = null;
 		if (login != null) {
-			if (loginMember.getEmailId() != null
-					&& loginMember.getPassword() != null) {
-				memberList = loginRepository.adminSignIn(
-						loginMember.getEmailId(), loginMember.getPassword());
+			if (loginMember.getEmailId() != null && loginMember.getPassword() != null) {
+				memberList = loginRepository.adminSignIn(loginMember.getEmailId(), loginMember.getPassword());
 			}
 		}
 		if (memberList.size() == 0) {

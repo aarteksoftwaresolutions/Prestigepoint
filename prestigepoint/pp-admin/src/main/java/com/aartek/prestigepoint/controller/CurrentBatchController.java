@@ -22,6 +22,11 @@ import com.aartek.prestigepoint.service.CurrentBatchService;
 import com.aartek.prestigepoint.util.IConstant;
 import com.aartek.prestigepoint.validator.CurrentBatchValidator;
 
+/**
+ * 
+ * @author Dell
+ *
+ */
 @Controller
 public class CurrentBatchController {
 
@@ -125,8 +130,8 @@ public class CurrentBatchController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteCurrentBatch", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCurrentBatch(@ModelAttribute("CurrentBatch") CurrentBatch currentBatch, BindingResult result,
-			ModelMap model, HttpServletRequest request, @RequestParam(required = false) Integer currentBatchId) {
+	public String deleteCurrentBatch(@ModelAttribute("CurrentBatch") CurrentBatch currentBatch, ModelMap model,
+			@RequestParam(required = false) Integer currentBatchId) {
 		currentBatchService.deleteCurrentBatch(currentBatchId);
 		model.addAttribute("message", IConstant.CURRENT_BATCH_DELETE_MESSAGE);
 		return "currentBatch";

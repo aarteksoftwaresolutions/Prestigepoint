@@ -20,6 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.aartek.prestigepoint.model.AdminLogin;
 import com.aartek.prestigepoint.service.LoginService;
 
+/**
+ * 
+ * @author Dell
+ *
+ */
 @Controller
 public class LoginController {
 
@@ -60,7 +65,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/userSignIn", method = RequestMethod.POST)
 	public String signInAction(@ModelAttribute("AdminLogin") AdminLogin login, BindingResult result, ModelMap model,
-			Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) {
+			Map<String, Object> map, HttpServletRequest request) {
 		login = loginService.userSignIn(login);
 		if (login == null) {
 			model.addAttribute("invalid", "Invalid user name and password");
@@ -93,8 +98,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/logout")
-	public String showLogout(Map<String, Object> map, Model model, HttpServletRequest request,
-			HttpServletResponse httpResponse) {
+	public String showLogout(Map<String, Object> map, HttpServletRequest request, HttpServletResponse httpResponse) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		return "redirect:/login.do";

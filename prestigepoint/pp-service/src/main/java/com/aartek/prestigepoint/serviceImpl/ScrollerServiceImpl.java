@@ -96,7 +96,6 @@ public class ScrollerServiceImpl implements ScrollerService {
 	}
 
 	public boolean changeStatusByImageId(Scroller scroller) {
-		// TODO Auto-generated method stub
 		boolean status = false;
 		if (scroller != null) {
 			scroller.setIsStatusActive(1);
@@ -107,8 +106,6 @@ public class ScrollerServiceImpl implements ScrollerService {
 	}
 
 	public boolean uncheckStatusByImageId(Scroller scroller) {
-		// TODO Auto-generated method stub
-
 		boolean status = false;
 		if (scroller != null) {
 			scroller.setIsStatusActive(0);
@@ -123,10 +120,5 @@ public class ScrollerServiceImpl implements ScrollerService {
 		return scrollers;
 
 	}
-
-	/*
-	 * public boolean addBatch(PhotoInFooter photoInFooter) { // TODO
-	 * Auto-generated method stub return false; }
-	 */
 
 }

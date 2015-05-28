@@ -54,10 +54,10 @@ public class SendMail {
 			msg += " <br>";
 			msg += "<b>Password:</b>" + userPassword;
 			msg += " <br>";
-			msg += "http://localhost:8080/pp-web/verify.do?registrationId=" + regId; // used
+//			msg += "http://localhost:8080/pp-web/verify.do?registrationId=" + regId; // used
 																						// on
 																						// local
-//		 msg += "http://prestigepoint.in/verify.do?registrationId=" + regId; //used on the server
+		 msg += "http://prestigepoint.in/verify.do?registrationId=" + regId; //used on the server
 			msg += " <br>";
 			msg += "Regards,<br>";
 			msg += "Prestige Point";

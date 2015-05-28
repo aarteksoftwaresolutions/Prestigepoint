@@ -13,152 +13,149 @@ import javax.persistence.Table;
 @Table(name = "adminlogin")
 public class AdminLogin implements Serializable {
 
-  /**
+	/**
 	 * 
 	 */
-  private static final long serialVersionUID = 1L;
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "ADMIN_LOGIN_ID")
-  private Integer adminLoginId;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ADMIN_LOGIN_ID")
+	private Integer adminLoginId;
 
-  @Column(name = "EMAIL_ID")
-  private String emailId;
+	@Column(name = "EMAIL_ID")
+	private String emailId;
 
-  @Column(name = "PASSWORD")
-  private String password;
+	@Column(name = "PASSWORD")
+	private String password;
 
-  @Column(name = "IS_DELETED")
-  private Integer isDeleted;
-  
-  @Column(name = "FIRST_NAME")
-  private String firstName;
-  
-  @Column(name = "LAST_NAME")
-  private String lastName;
-  
-/*@Column(name = "USER_NAME")
-  private String userName;*/
-  
-  @Column(name = "ADMIN_TYPE")
-  private Integer adminType;
-  
-  @Column(name = "CONTACT_NO")
-  private String contactNo;
-  
-  @Column(name = "STATUS_ID")
-  private String statusId;
-  
- 
+	@Column(name = "IS_DELETED")
+	private Integer isDeleted;
 
-public String getStatusId() {
-	return statusId;
-}
+	@Column(name = "FIRST_NAME")
+	private String firstName;
 
-public void setStatusId(String statusId) {
-	this.statusId = statusId;
-}
+	@Column(name = "LAST_NAME")
+	private String lastName;
 
-public String getFirstName() {
-	return firstName;
-}
+	/*
+	 * @Column(name = "USER_NAME") private String userName;
+	 */
 
-public void setFirstName(String firstName) {
-	this.firstName = firstName;
-}
+	@Column(name = "ADMIN_TYPE")
+	private Integer adminType;
 
-public String getLastName() {
-	return lastName;
-}
+	@Column(name = "CONTACT_NO")
+	private String contactNo;
 
-public void setLastName(String lastName) {
-	this.lastName = lastName;
-}
-/*
-public String getUserName() {
-	return userName;
-}
+	@Column(name = "STATUS_ID")
+	private String statusId;
 
-public void setUserName(String userName) {
-	this.userName = userName;
-	|
-	
-	
-}*/
+	public String getStatusId() {
+		return statusId;
+	}
 
-public Integer getadminType() {
-	return adminType;
-}
+	public void setStatusId(String statusId) {
+		this.statusId = statusId;
+	}
 
-public void setadminType(Integer adminType) {
-	this.adminType = adminType;
-}
+	public String getFirstName() {
+		return firstName;
+	}
 
-public String getContactNo() {
-	return contactNo;
-}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-public void setContactNo(String contactNo) {
-	this.contactNo = contactNo;
-}
+	public String getLastName() {
+		return lastName;
+	}
 
-/**
-   * @return the adminLoginId
-   */
-  public Integer getAdminLoginId() {
-    return adminLoginId;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  /**
-   * @param adminLoginId
-   *          the adminLoginId to set
-   */
-  public void setAdminLoginId(Integer adminLoginId) {
-    this.adminLoginId = adminLoginId;
-  }
+	/*
+	 * public String getUserName() { return userName; }
+	 * 
+	 * public void setUserName(String userName) { this.userName = userName; |
+	 * 
+	 * 
+	 * }
+	 */
 
-  /**
-   * @return the password
-   */
-  public String getPassword() {
-    return password;
-  }
+	public Integer getadminType() {
+		return adminType;
+	}
 
-  /**
-   * @param password
-   *          the password to set
-   */
-  public void setPassword(String password) {
-    this.password = password;
-  }
+	public void setadminType(Integer adminType) {
+		this.adminType = adminType;
+	}
 
-  /**
-   * @return the emailId
-   */
-  public String getEmailId() {
-    return emailId;
-  }
+	public String getContactNo() {
+		return contactNo;
+	}
 
-  /**
-   * @param emailId
-   *          the emailId to set
-   */
-  public void setEmailId(String emailId) {
-    this.emailId = emailId;
-  }
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
+	}
 
-  /**
-   * @return the isDeleted
-   */
-  public Integer getIsDeleted() {
-    return isDeleted;
-  }
+	/**
+	 * @return the adminLoginId
+	 */
+	public Integer getAdminLoginId() {
+		return adminLoginId;
+	}
 
-  /**
-   * @param isDeleted
-   *          the isDeleted to set
-   */
-  public void setIsDeleted(Integer isDeleted) {
-    this.isDeleted = isDeleted;
-  }
+	/**
+	 * @param adminLoginId
+	 *            the adminLoginId to set
+	 */
+	public void setAdminLoginId(Integer adminLoginId) {
+		this.adminLoginId = adminLoginId;
+	}
+
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password
+	 *            the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @return the emailId
+	 */
+	public String getEmailId() {
+		return emailId;
+	}
+
+	/**
+	 * @param emailId
+	 *            the emailId to set
+	 */
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	/**
+	 * @return the isDeleted
+	 */
+	public Integer getIsDeleted() {
+		return isDeleted;
+	}
+
+	/**
+	 * @param isDeleted
+	 *            the isDeleted to set
+	 */
+	public void setIsDeleted(Integer isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 }

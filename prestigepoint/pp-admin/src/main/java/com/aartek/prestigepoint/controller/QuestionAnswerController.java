@@ -23,7 +23,7 @@ import com.aartek.prestigepoint.validator.QuestionAndAnswerValidator;
 
 @Controller
 public class QuestionAnswerController {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(QuestionAnswerController.class);
 
@@ -42,8 +42,7 @@ public class QuestionAnswerController {
 	 */
 	@RequestMapping("/questionAndAnswer")
 	public String showQuestionPage(Map<String, Object> map, Model model, @RequestParam(required = false) String message) {
-		List<Subject> subjects = null;
-		subjects = questionAnswerService.getAllSubjectName();
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
 		model.addAttribute("subjectList", subjects);
 		map.put("QuestionAnswer", new QuestionAnswer());
 		model.addAttribute("message", message);
@@ -73,8 +72,7 @@ public class QuestionAnswerController {
 	@RequestMapping("/differenceQuestion")
 	public String showDiffernceQuestionPage(Map<String, Object> map, Model model,
 			@RequestParam(required = false) String message) {
-		List<Subject> subjects = null;
-		subjects = questionAnswerService.getAllSubjectName();
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
 		model.addAttribute("subjectList", subjects);
 		map.put("QuestionAnswer", new QuestionAnswer());
 		model.addAttribute("message", message);

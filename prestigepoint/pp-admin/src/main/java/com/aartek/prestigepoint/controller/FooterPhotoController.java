@@ -20,15 +20,28 @@ import com.aartek.prestigepoint.model.PhotoInFooter;
 import com.aartek.prestigepoint.service.FooterPhotoService;
 import com.aartek.prestigepoint.util.IConstant;
 
+/**
+ * 
+ * @author MAYANK SHUKLA
+ *
+ */
 @Controller
 public class FooterPhotoController {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(FooterPhotoController.class);
-	
+
 	@Autowired
 	private FooterPhotoService footerPhotoService;
 
+	/**
+	 * use for view the jsp of footerPhoto.
+	 * 
+	 * @param map
+	 * @param message
+	 * @param model
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/addFooterPhoto")
 	public String showPageForFooterPhoto(@SuppressWarnings("rawtypes") Map map,
@@ -39,8 +52,17 @@ public class FooterPhotoController {
 		model.addAttribute("message", message);
 		return "addPhotoInFooter";
 	}
-	
 
+	/**
+	 * use for add and edit the footerPhoto.
+	 * 
+	 * @param photoInFooter
+	 * @param request
+	 * @param studentId
+	 * @param map
+	 * @param model
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/addFooterPhotoAction", method = { RequestMethod.GET, RequestMethod.POST })
 	public String insertFooterPhotoDetail(@ModelAttribute("PhotoInFooter") PhotoInFooter photoInFooter,
@@ -96,6 +118,13 @@ public class FooterPhotoController {
 		}
 		return "redirect:/addFooterPhoto";
 	}
+	/**
+	 * use for delete the student information
+	 * @param photoInFooter
+	 * @param model
+	 * @param studentId
+	 * @return
+	 */
 
 	@RequestMapping(value = "/deleteStudentInfo", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deleteSinglePlacedStudentData(@ModelAttribute("PhotoInFooter") PhotoInFooter photoInFooter,

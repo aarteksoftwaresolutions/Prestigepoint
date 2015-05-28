@@ -17,6 +17,11 @@ import com.aartek.prestigepoint.model.AddChallenge;
 import com.aartek.prestigepoint.service.ChallengeService;
 import com.aartek.prestigepoint.util.IConstant;
 
+/**
+ * 
+ * @author Meenal
+ *
+ */
 @Controller
 public class ChallengeController {
 
@@ -24,6 +29,15 @@ public class ChallengeController {
 
 	@Autowired
 	private ChallengeService addChallengeService;
+
+	/**
+	 * display addChallenge jsp for add Challenge.
+	 * 
+	 * @param map
+	 * @param model
+	 * @param message
+	 * @return
+	 */
 
 	@RequestMapping("/addChallenge")
 	private String addChallenge(Map<String, Object> map, ModelMap model, @RequestParam(required = false) String message) {
@@ -35,6 +49,14 @@ public class ChallengeController {
 		model.addAttribute("message", message);
 		return "addChallenge";
 	}
+
+	/**
+	 * Use for save ChallengeInformation.
+	 * 
+	 * @param addChallenge
+	 * @param model
+	 * @return
+	 */
 
 	@RequestMapping(value = "/addChallengeAction.do", method = { RequestMethod.GET, RequestMethod.POST })
 	private String addChallengeInformation(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model) {
@@ -50,6 +72,15 @@ public class ChallengeController {
 		return "redirect:/addChallenge.do";
 	}
 
+	/**
+	 * Use for update ChallengeInformation.
+	 * 
+	 * @param addChallenge
+	 * @param model
+	 * @param map
+	 * @param challengeId
+	 * @return
+	 */
 	@RequestMapping(value = "/updateChallengeInformatin")
 	public String updateChallengeInformation(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model,
 			Map<String, Object> map, @RequestParam(required = false) Integer challengeId) {
@@ -60,6 +91,12 @@ public class ChallengeController {
 
 	}
 
+	/**
+	 * Use for delete ChallengeInformation.
+	 * 
+	 * @param challengeId
+	 * @return
+	 */
 	@RequestMapping(value = "/deleteChallengeInformation", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deleteStudentInformation(@RequestParam(required = false) Integer challengeId) {
 		addChallengeService.deleteChallengeInformation(challengeId);
@@ -67,6 +104,15 @@ public class ChallengeController {
 		return "addChallenge";
 	}
 
+	/**
+	 * Use for view the ChallengeInformation.
+	 * 
+	 * @param addChallenge
+	 * @param model
+	 * @param map
+	 * @param challengeId
+	 * @return
+	 */
 	@RequestMapping(value = "/viewChallengeInformation")
 	public String viewChallengeList(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model,
 			Map<String, Object> map, @RequestParam(required = false) Integer challengeId) {
@@ -76,9 +122,15 @@ public class ChallengeController {
 
 	}
 
+	/**
+	 * Use for ActiveStatus.
+	 * 
+	 * @param challengeIdValue
+	 * @param challengeValue
+	 */
 	@RequestMapping(value = "changeActiveStatusAction", method = RequestMethod.GET)
 	@ResponseBody
-	public void addressVerification(@RequestParam(required = false) String challengeIdValue, Integer challengeValue) {
+	public void ActiveStatus(@RequestParam(required = false) String challengeIdValue, Integer challengeValue) {
 		addChallengeService.ChallengeValue(challengeIdValue, challengeValue);
 
 	}

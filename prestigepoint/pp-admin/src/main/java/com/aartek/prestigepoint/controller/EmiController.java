@@ -24,12 +24,17 @@ import com.aartek.prestigepoint.model.Registration;
 import com.aartek.prestigepoint.service.EmiService;
 import com.aartek.prestigepoint.util.IConstant;
 
+/**
+ * 
+ * @author Dell
+ *
+ */
 @Controller
 public class EmiController {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(ChallengeController.class);
-	
+
 	@Autowired
 	private EmiService emiService;
 
@@ -48,7 +53,7 @@ public class EmiController {
 	 * @return
 	 */
 	@RequestMapping(value = "/viewDetails", method = { RequestMethod.GET, RequestMethod.POST })
-	public String viewFeesDetails(@ModelAttribute("Emi") Emi emi, ModelMap model, HttpServletRequest request,
+	public String viewFeesDetails(@ModelAttribute("Emi") Emi emi, ModelMap model,
 			@RequestParam(required = false) Integer registrationId, Integer emiId) {
 		List<Emi> emi1 = emiService.getFeesDetails(registrationId);
 		List<Registration> registrations = emiService.getRegistrationDetails(registrationId);
@@ -125,14 +130,6 @@ public class EmiController {
 			}
 
 		} else {
-			/*
-			 * emiValidator.validate(emi, result); if (result.hasErrors()) {
-			 * 
-			 * redirectAttributes.addFlashAttribute("result",result); return
-			 * "redirect:/viewDetails.do?registrationId="
-			 * +emi.getRegistration().getRegistrationId(); }
-			 */
-
 			status = emiService.addEmiInfo(emi);
 			if (status) {
 				model.addAttribute("registrationId", emi.getRegistration().getRegistrationId());
@@ -143,11 +140,16 @@ public class EmiController {
 		}
 
 		return "redirect:/viewDetails.do?registrationId=" + emi.getRegistration().getRegistrationId();
-		/*
-		 * return "redirect:/viewDetails.do"; // return
-		 * "redirect:/viewStudentDetails.do";
-		 */}
+	}
 
+	/**
+	 * use for edit the emi details
+	 * 
+	 * @param emi
+	 * @param model
+	 * @param emiId
+	 * @return
+	 */
 	@RequestMapping(value = "/editEmiAction", method = { RequestMethod.GET, RequestMethod.POST })
 	public String editEmiData(@ModelAttribute("Emi") Emi emi, ModelMap model, Integer emiId) {
 		emi = emiService.editEimForSingleRecord(emiId);
@@ -158,8 +160,17 @@ public class EmiController {
 		return "emi";
 	}
 
+	/**
+	 * use for delete the emi details
+	 * 
+	 * @param emi
+	 * @param model
+	 * @param emiId
+	 * @return
+	 */
+
 	@RequestMapping(value = "/deleteEmiDetails", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCatageory(@ModelAttribute("Emi") Emi emi, ModelMap model, HttpServletRequest request,
+	public String deleteCatageory(@ModelAttribute("Emi") Emi emi, ModelMap model,
 			@RequestParam(required = false) Integer emiId) {
 		emiService.deleteEmiDetails(emiId);
 		model.addAttribute("message", IConstant.STUDENT_DELETE_MESSAGE);

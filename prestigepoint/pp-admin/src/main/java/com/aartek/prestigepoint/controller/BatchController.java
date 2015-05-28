@@ -21,11 +21,16 @@ import com.aartek.prestigepoint.service.BatchService;
 import com.aartek.prestigepoint.util.IConstant;
 import com.aartek.prestigepoint.validator.BatchValidator;
 
+/**
+ * 
+ * @author Dell
+ *
+ */
 @Controller
 public class BatchController {
-	
+
 	private static final Logger logger = Logger.getLogger(BatchController.class);
-	
+
 	@Autowired
 	private BatchService batchService;
 
@@ -42,8 +47,7 @@ public class BatchController {
 	 * @return
 	 */
 	@RequestMapping("/addBatch")
-	public String addBatch(Map<String, Object> map, Model model, @RequestParam(required = false) String message,
-			HttpServletRequest request) {
+	public String addBatch(Map<String, Object> map, Model model, @RequestParam(required = false) String message) {
 		List<Batch> batchList = batchService.getAllBatchName();
 		logger.info("This is Info controller!");
 		if (batchList != null) {
@@ -113,7 +117,7 @@ public class BatchController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteBatch", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCatageory(@ModelAttribute("Batch") Batch batch, ModelMap model, HttpServletRequest request,
+	public String deleteCatageory(@ModelAttribute("Batch") Batch batch, ModelMap model,
 			@RequestParam(required = false) Integer batchId) {
 		batchService.deleteBatch(batchId);
 		model.addAttribute("message", IConstant.BATCH_DELETE_MESSAGE);

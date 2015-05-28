@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +28,9 @@ import com.aartek.prestigepoint.validator.ProfileValidator;
 
 @Controller
 public class ProfileController {
+
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(ProfileController.class);
 
 	@Autowired
 	private ProfileService profileService;
@@ -51,8 +55,7 @@ public class ProfileController {
 	public String showProfilePage(Map<String, Object> map, Model model, HttpServletRequest request,
 			@RequestParam(required = false) String message) {
 		HttpSession session = request.getSession();
-		List<Subject> subjects = null;
-		subjects = questionAnswerService.getAllSubjectName();
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
 		model.addAttribute("subjectList", subjects);
 		Registration registration = (Registration) session.getAttribute("registration");
 		List<Registration> registrations = profileService.getStudentDetails(registration.getRegistrationId());

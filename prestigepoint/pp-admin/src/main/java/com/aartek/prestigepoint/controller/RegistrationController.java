@@ -31,7 +31,7 @@ import com.aartek.prestigepoint.validator.RegistrationValidator;
 
 @Controller
 public class RegistrationController {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(RegistrationController.class);
 	@Autowired
@@ -59,23 +59,19 @@ public class RegistrationController {
 	public String showregistrationPage(Map<String, Object> map, Model model,
 			@RequestParam(required = false) String message, HttpServletRequest request) {
 		map.put("Registration", new Registration());
-		List<Course> courseList = null;
-		List<Batch> batchList = null;
-		List<Year> yearList = null;
 		List<CurrentStatus> currentStatusList = null;
-		courseList = courseService.getAllCourseName();
+		List<Course> courseList = courseService.getAllCourseName();
 		if (courseList != null) {
 			model.addAttribute("course", courseList);
 		}
-		batchList = batchService.getAllBatchName();
+		List<Batch> batchList = batchService.getAllBatchName();
 		if (batchList != null) {
 			model.addAttribute("batch", batchList);
 		}
-		yearList = courseService.getAllYearName();
+		List<Year> yearList = courseService.getAllYearName();
 		if (yearList != null) {
 			model.addAttribute("year", yearList);
 		}
-		/* 26/11 */
 		currentStatusList = courseService.getAllCurrentStatus();
 		if (currentStatusList != null) {
 			model.addAttribute("currentStatus", currentStatusList);
@@ -100,21 +96,18 @@ public class RegistrationController {
 			AddPlacedStudent addPlacedStudent) {
 		int currentId = registration.getCurrentStatus().getCurrent_status_Id();
 		boolean status = false;
-		List<Course> courseList = null;
-		List<Batch> batchList = null;
-		List<Year> yearList = null;
 		List<CurrentStatus> currentStatusList = null;
 		registrationValidator.validate(registration, result);
 		if (result.hasErrors()) {
-			courseList = courseService.getAllCourseName();
+			List<Course> courseList = courseService.getAllCourseName();
 			if (courseList != null) {
 				model.addAttribute("course", courseList);
 			}
-			batchList = batchService.getAllBatchName();
+			List<Batch> batchList = batchService.getAllBatchName();
 			if (batchList != null) {
 				model.addAttribute("batch", batchList);
 			}
-			yearList = courseService.getAllYearName();
+			List<Year> yearList = courseService.getAllYearName();
 			if (yearList != null) {
 				model.addAttribute("year", yearList);
 			}
@@ -169,30 +162,26 @@ public class RegistrationController {
 	 */
 	@RequestMapping("/viewStudentDetails")
 	public String showviewStudentDetailsPage(Map<String, Object> map, Model model, HttpServletRequest request) {
-			map.put("Registration", new Registration());
-			List<Course> courseList = null;
-			List<Batch> batchList = null;
-			List<Year> yearList = null;
-			List<CurrentStatus> currentStatusList = null;
-			courseList = courseService.getAllCourseName();
-			if (courseList != null) {
-				model.addAttribute("course", courseList);
-			}
-			batchList = batchService.getAllBatchName();
-			if (batchList != null) {
-				model.addAttribute("batch", batchList);
-			}
-			yearList = courseService.getAllYearName();
-			if (yearList != null) {
-				model.addAttribute("year", yearList);
-			}
-			currentStatusList = courseService.getAllCurrentStatus();
-			if (currentStatusList != null) {
-				model.addAttribute("currentStatus", currentStatusList);
-			}
-			return "viewStudentDetails";
+		map.put("Registration", new Registration());
+		List<CurrentStatus> currentStatusList = null;
+		List<Course> courseList = courseService.getAllCourseName();
+		if (courseList != null) {
+			model.addAttribute("course", courseList);
 		}
-	
+		List<Batch> batchList = batchService.getAllBatchName();
+		if (batchList != null) {
+			model.addAttribute("batch", batchList);
+		}
+		List<Year> yearList = courseService.getAllYearName();
+		if (yearList != null) {
+			model.addAttribute("year", yearList);
+		}
+		currentStatusList = courseService.getAllCurrentStatus();
+		if (currentStatusList != null) {
+			model.addAttribute("currentStatus", currentStatusList);
+		}
+		return "viewStudentDetails";
+	}
 
 	/**
 	 * Method for show all register student list
@@ -209,25 +198,21 @@ public class RegistrationController {
 			ModelMap model, Map<String, Object> map, HttpServletRequest request,
 			@RequestParam(required = false) Integer registrationId) {
 		List<Registration> studentDetails = null;
-		List<Course> courseList = null;
-		List<Batch> batchList = null;
-		List<Year> yearList = null;// here
-		List<CurrentStatus> currentStatusList = null;
 		String method = request.getMethod();
 		if (method.equals("GET") && registrationId != null) {
-			courseList = courseService.getAllCourseName();
+			List<Course> courseList = courseService.getAllCourseName();
 			if (courseList != null) {
 				model.addAttribute("course", courseList);
 			}
-			batchList = batchService.getAllBatchName();
+			List<Batch> batchList = batchService.getAllBatchName();
 			if (batchList != null) {
 				model.addAttribute("batch", batchList);
 			}
-			yearList = courseService.getAllYearName();
+			List<Year> yearList = courseService.getAllYearName();
 			if (yearList != null) {
 				model.addAttribute("year", yearList);
 			}
-			currentStatusList = courseService.getAllCurrentStatus();
+			List<CurrentStatus> currentStatusList = courseService.getAllCurrentStatus();
 			if (currentStatusList != null) {
 				model.addAttribute("currentStatus", currentStatusList);
 			}
@@ -239,14 +224,13 @@ public class RegistrationController {
 			model.addAttribute("currentStatus", currentStatusList);
 			model.addAttribute("studentDetails", studentDetails);
 			return "registration";
-			// return "redirect:/getStudentDetailsByName.do";
 
 		} else {
-			courseList = courseService.getAllCourseName();
+			List<Course> courseList = courseService.getAllCourseName();
 			if (courseList != null) {
 				model.addAttribute("course", courseList);
 			}
-			batchList = batchService.getAllBatchName();
+			List<Batch> batchList = batchService.getAllBatchName();
 			if (batchList != null) {
 				model.addAttribute("batch", batchList);
 			}
@@ -283,10 +267,9 @@ public class RegistrationController {
 	public String viewDetailsByName(@ModelAttribute("Registration") Registration registration, BindingResult result,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request,
 			@RequestParam(required = false) Integer registrationId) {
-		List<Registration> studentDetails = null;
 		String firstName = request.getParameter("registration");
 		model.addAttribute("firstName", firstName);
-		studentDetails = registrationService.getStudentDetailsByName(firstName);
+		List<Registration> studentDetails = registrationService.getStudentDetailsByName(firstName);
 		model.addAttribute("studentDetails", studentDetails);
 		System.out.println("firstName is=" + firstName);
 		return "viewStudentDetails";
@@ -306,35 +289,32 @@ public class RegistrationController {
 	public String viewList(@ModelAttribute("Registration") Registration registration, BindingResult result,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request) {
 
-		List<Registration> studentDetails = null;
-		List<Course> courseList = null;
-		List<Batch> batchList = null;
-		courseList = courseService.getAllCourseName();
+		List<Course> courseList = courseService.getAllCourseName();
 		if (courseList != null) {
 			model.addAttribute("course", courseList);
 		}
-		batchList = batchService.getAllBatchName();
+		List<Batch> batchList = batchService.getAllBatchName();
 		if (batchList != null) {
 			model.addAttribute("batch", batchList);
 		}
 		if (registration != null) {
 			if (registration.getSearchType() != null) {
 				if (registration.getSearchType().equals("all")) {
-					studentDetails = registrationService.getAllStudentDetails();
+					List<Registration> studentDetails = registrationService.getAllStudentDetails();
 					model.addAttribute("studentDetails", studentDetails);
 				}
 			}
 			if (registration.getCourse() != null) {
 				if (!(registration.getCourse().getCourseId() == 0) && (registration.getCourse().getCourseId() != null)) {
-					studentDetails = registrationService.getCourseWiseStudentDetails(registration.getCourse()
-							.getCourseId());
+					List<Registration> studentDetails = registrationService.getCourseWiseStudentDetails(registration
+							.getCourse().getCourseId());
 					model.addAttribute("studentDetails", studentDetails);
 				}
 			}
 			if (registration.getBatch() != null) {
 				if (!(registration.getBatch().getBatchId() == 0) && (registration.getBatch().getBatchId() != null)) {
-					studentDetails = registrationService.getBatchWiseStudentDetails(registration.getBatch()
-							.getBatchId());
+					List<Registration> studentDetails = registrationService.getBatchWiseStudentDetails(registration
+							.getBatch().getBatchId());
 					model.addAttribute("studentDetails", studentDetails);
 				}
 			}
@@ -359,28 +339,24 @@ public class RegistrationController {
 	public String setDetails(@ModelAttribute("Registration") Registration registration, String message, ModelMap model,
 			Map<String, Object> map, HttpServletRequest request, Integer registrationId,
 			AddPlacedStudent addPlacedStudent) {
-		List<Course> courseList = null;
-		List<Batch> batchList = null;
-		List<Year> yearList = null;
-		List<CurrentStatus> currentStatusList = null;
 		String method = request.getMethod();
 		if (method.equals("GET")) {
 			registration = registrationService.makeAsPaidUser(registrationId);
 			map.put("Registration", new Registration());
-			courseList = courseService.getAllCourseName();
+			List<Course> courseList = courseService.getAllCourseName();
 
 			if (courseList != null) {
 				model.addAttribute("course", courseList);
 			}
-			batchList = batchService.getAllBatchName();
+			List<Batch> batchList = batchService.getAllBatchName();
 			if (batchList != null) {
 				model.addAttribute("batch", batchList);
 			}
-			yearList = courseService.getAllYearName();
+			List<Year> yearList = courseService.getAllYearName();
 			if (courseList != null) {
 				model.addAttribute("year", yearList);
 			}
-			currentStatusList = courseService.getAllCurrentStatus();
+			List<CurrentStatus> currentStatusList = courseService.getAllCurrentStatus();
 			if (currentStatusList != null) {
 				model.addAttribute("currentStatus", currentStatusList);
 			}
@@ -394,8 +370,8 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(value = "/deleteStudentDetails", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCatageory(@ModelAttribute("Registration") Registration registration, BindingResult result,
-			ModelMap model, HttpServletRequest request, @RequestParam(required = false) Integer registrationId) {
+	public String deleteCatageory(@ModelAttribute("Registration") Registration registration, ModelMap model,
+			@RequestParam(required = false) Integer registrationId) {
 		registrationService.deleteStudentDetails(registrationId);
 		model.addAttribute("message", IConstant.STUDENT_DELETE_MESSAGE);
 		return "registration";

@@ -20,8 +20,7 @@ public class ForgotPasswordAdminRepositoryImpl implements ForgotPasswordAdminRep
 
 	@SuppressWarnings("unchecked")
 	public List<AdminLogin> getPassword(String emailId) {
-		List<AdminLogin> list = null;
-		list = hibernateTemplate.find("from AdminLogin a where a.emailId='" + emailId + "' ");
+		List<AdminLogin> list = hibernateTemplate.find("from AdminLogin a where a.emailId='" + emailId + "' ");
 		return list;
 	}
 

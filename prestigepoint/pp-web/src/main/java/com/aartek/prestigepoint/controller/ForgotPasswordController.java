@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,8 @@ import com.aartek.prestigepoint.validator.ForgotPasswordValidator;
 @Controller
 public class ForgotPasswordController {
 
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(ForgotPasswordController.class);
 	@Autowired
 	private ForgotPasswordService forgotPasswordService;
 
@@ -33,8 +36,7 @@ public class ForgotPasswordController {
 
 	@Autowired
 	private ForgotPasswordValidator forgotPasswordValidator;
-	
-	
+
 	/**
 	 * Show forgot password page.
 	 * 
@@ -45,10 +47,9 @@ public class ForgotPasswordController {
 	@RequestMapping(value = "/forgotPassword", method = RequestMethod.GET)
 	public String forgotPassword(Map<String, Object> map, Model model,
 			@RequestParam(required = false) String forgotMessage) {
-		List<Subject> subjects = null;
 		map.put("Registration", new Registration());
 		model.addAttribute("forgotMessage", forgotMessage);
-		subjects = questionAnswerService.getAllSubjectName();
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
 		model.addAttribute("subjectList", subjects);
 		return "forgotPassword";
 	}
@@ -64,8 +65,8 @@ public class ForgotPasswordController {
 	 * @return
 	 */
 	@RequestMapping(value = "/forgotPasswordAction", method = RequestMethod.POST)
-	public String verify(@ModelAttribute("Registration") Registration registration, BindingResult result, ModelMap model,
-			Map<String, Object> map, HttpServletRequest request) {
+	public String verify(@ModelAttribute("Registration") Registration registration, BindingResult result,
+			ModelMap model, Map<String, Object> map, HttpServletRequest request) {
 		boolean status = false;
 		forgotPasswordValidator.validate(registration, result);
 		if (result.hasErrors()) {

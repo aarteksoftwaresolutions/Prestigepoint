@@ -17,7 +17,11 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import org.apache.log4j.Logger;
+
 public class Demo {
+	private static final Logger logger = Logger.getLogger(Demo.class);
+
 	public static void main(String[] args) {
 		// Recipient's email ID needs to be mentioned.
 		String to = "meenalpathre01@gmail.com";
@@ -85,6 +89,7 @@ public class Demo {
 			// System.out.println("Sent message successfully....");
 
 		} catch (MessagingException e) {
+			logger.error("MessagingException"+e);
 			throw new RuntimeException(e);
 		}
 	}

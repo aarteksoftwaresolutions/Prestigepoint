@@ -58,7 +58,6 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 		try {
 			img = ImageIO.read(new File(imagePath + "/" + photoInFooter2.getStudentId() + ".png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(img);
@@ -137,7 +136,6 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 	}
 
 	public List<PhotoInFooter> getSingleStudentDetail(String studentId) {
-		// TODO Auto-generated method stub
 		List<PhotoInFooter> photoInFooter = null;
 		if (studentId != null) {
 			photoInFooter = footerPhotoRepository.getSingleStudentDetail(studentId);
@@ -147,9 +145,7 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 	}
 
 	public List<PhotoInFooter> listOfSelectedStudent() {
-		// TODO Auto-generated method stub
-		List<PhotoInFooter> photoInFooters = null;
-		photoInFooters = footerPhotoRepository.listOfSelectedStudent();
+		List<PhotoInFooter> photoInFooters = footerPhotoRepository.listOfSelectedStudent();
 		return photoInFooters;
 	}
 
@@ -161,10 +157,5 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 	public void deleteStudentData(Integer studentId) {
 		footerPhotoRepository.deleteStudentData(studentId);
 	}
-
-	/*
-	 * public boolean addBatch(PhotoInFooter photoInFooter) { // TODO
-	 * Auto-generated method stub return false; }
-	 */
 
 }

@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LearningController {
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(LearningController.class);
 	PrintWriter out = null;
 	HttpServletRequest req = null;
 	HttpServletResponse res = null;
@@ -52,29 +56,6 @@ public class LearningController {
 	@RequestMapping(value = "/editor", method = { RequestMethod.GET, RequestMethod.POST })
 	public String tryityourself(Model m, HttpServletRequest request, HttpServletResponse response)
 			throws FileNotFoundException, IOException, ServletException {
-//
-//		s = request.getParameter("content");
-//		File f = new File("Main.java");
-//		System.out.println(f.getAbsolutePath());
-//		FileOutputStream fos = new FileOutputStream(f);
-//		PrintStream ps = new PrintStream(fos);
-//		ps.println(s);
-//		ps.close();
-//		out = response.getWriter();
-//		req = request;
-//		res = response;
-//		list = new ArrayList<String>();
-//
-//		try {
-//
-//			int k = runProcess("javac Main.java");
-//			if (k == 0)
-//				k = runProcess("java Main");
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-
 		return "editor";
 	}
 

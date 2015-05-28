@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,9 @@ import com.aartek.prestigepoint.service.QuestionAnswerService;
 @Controller
 public class InterviewQuestionController {
 
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(InterviewQuestionController.class);
+
 	@Autowired
 	private QuestionAnswerService questionAnswerService;
 
@@ -34,8 +38,7 @@ public class InterviewQuestionController {
 	 */
 	@RequestMapping("/interviewQuestion")
 	public String showInterviewQuestionPage(Map<String, Object> map, Model model) {
-		List<Subject> subjects = null;
-		subjects = questionAnswerService.getAllSubjectName();
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
 		model.addAttribute("subjectList", subjects);
 		return "interviewQuestion";
 	}
@@ -55,13 +58,11 @@ public class InterviewQuestionController {
 	public String addBatchInfo(@ModelAttribute("QuestionAnswer") QuestionAnswer questionAnswer, BindingResult result,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request,
 			@RequestParam(required = false) Integer subjectId) {
-		List<Subject> subjects = null;
-		subjects = questionAnswerService.getAllSubjectName();
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
 		model.addAttribute("subjectList", subjects);
-		List<QuestionAnswer> questionAndAnswerList = null;
-		questionAndAnswerList = questionAnswerService.getQuestionAndAnswer(subjectId);
+		List<QuestionAnswer> questionAndAnswerList= questionAnswerService.getQuestionAndAnswer(subjectId);
 		model.addAttribute("questionAndAnswerList", questionAndAnswerList);
 		return "interviewQuestion";
 	}
-	
+
 }

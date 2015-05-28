@@ -38,6 +38,11 @@ import com.aartek.prestigepoint.util.SendMail;
 import com.aartek.prestigepoint.util.SendMailProperty;
 import com.aartek.prestigepoint.validator.SendValidator;
 
+/**
+ * 
+ * @author Meenal Pathre
+ *
+ */
 @Controller
 public class MailController {
 
@@ -64,7 +69,7 @@ public class MailController {
 	@RequestMapping("/sendMail")
 	public String showSendMail(Map<String, Object> map, Model model, HttpServletRequest request,
 			@RequestParam(required = false) String emailId) {
-		logger.info("Hello Mayank");
+		logger.info("this is mailer");
 		map.put("Registration", new Registration());
 		model.addAttribute("emailId", emailId);
 		return "sendMail";
@@ -102,34 +107,33 @@ public class MailController {
 						addressTo[i] = new InternetAddress(email[i]);
 
 					}
-					/*SendMail.sendMailmultiple(addressTo, subject, message);*/
 					Message message1 = new MimeMessage(SendMailProperty.mailProperty());
 					message1.setFrom(new InternetAddress(IConstant.FROM_EMAIL_ID));
 					message1.setRecipients(Message.RecipientType.TO, addressTo);
 					message1.setSubject(subject);
 					MimeBodyPart messageBodyPart = new MimeBodyPart();
-				    messageBodyPart.setContent(message, "text/html");
-				    Multipart multipart = new MimeMultipart();
-			        multipart.addBodyPart(messageBodyPart);
+					messageBodyPart.setContent(message, "text/html");
+					Multipart multipart = new MimeMultipart();
+					multipart.addBodyPart(messageBodyPart);
 					messageBodyPart = new MimeBodyPart();
-					 if (attachedFiles != null && attachedFiles.length > 0) {
-				            for (String aFile : attachedFiles) {
-				                MimeBodyPart attachPart = new MimeBodyPart();
-				 
-				                try {
-				                    attachPart.attachFile(aFile);
-				                } catch (IOException ex) {
-				                	logger.error("IOException" +ex);
-				                    ex.printStackTrace();
-				                }
-				 
-				                multipart.addBodyPart(attachPart);
-				            }
-				        }
-				 
-					 message1.setContent(multipart);
-				        Transport.send(message1);
-				 System.out.println("Sent message successfully....");
+					if (attachedFiles != null && attachedFiles.length > 0) {
+						for (String aFile : attachedFiles) {
+							MimeBodyPart attachPart = new MimeBodyPart();
+
+							try {
+								attachPart.attachFile(aFile);
+							} catch (IOException ex) {
+								logger.error("IOException" + ex);
+								ex.printStackTrace();
+							}
+
+							multipart.addBodyPart(attachPart);
+						}
+					}
+
+					message1.setContent(multipart);
+					Transport.send(message1);
+					System.out.println("Sent message successfully....");
 				}
 			}
 			if (registration.getAllEnquiry() != null) {
@@ -146,32 +150,32 @@ public class MailController {
 					message1.setRecipients(Message.RecipientType.TO, addressTo);
 					message1.setSubject(subject);
 					MimeBodyPart messageBodyPart = new MimeBodyPart();
-				    messageBodyPart.setContent(message, "text/html");
-				    Multipart multipart = new MimeMultipart();
-			        multipart.addBodyPart(messageBodyPart);
+					messageBodyPart.setContent(message, "text/html");
+					Multipart multipart = new MimeMultipart();
+					multipart.addBodyPart(messageBodyPart);
 					messageBodyPart = new MimeBodyPart();
-					 if (attachedFiles != null && attachedFiles.length > 0) {
-				            for (String aFile : attachedFiles) {
-				                MimeBodyPart attachPart = new MimeBodyPart();
-				 
-				                try {
-				                    attachPart.attachFile(aFile);
-				                } catch (IOException ex) {
-				                	logger.error("IOException" +ex);
-				                    ex.printStackTrace();
-				                }
-				 
-				                multipart.addBodyPart(attachPart);
-				            }
-				        }
-				 
-					 message1.setContent(multipart);
-				        Transport.send(message1);
-				 System.out.println("Sent message successfully....");
-				}
+					if (attachedFiles != null && attachedFiles.length > 0) {
+						for (String aFile : attachedFiles) {
+							MimeBodyPart attachPart = new MimeBodyPart();
+
+							try {
+								attachPart.attachFile(aFile);
+							} catch (IOException ex) {
+								logger.error("IOException" + ex);
+								ex.printStackTrace();
+							}
+
+							multipart.addBodyPart(attachPart);
+						}
+					}
+
+					message1.setContent(multipart);
+					Transport.send(message1);
+					System.out.println("Sent message successfully....");
 				}
 			}
-		
+		}
+
 		if (!emailTo.isEmpty() && emailTo != null) {
 			final String[] email2 = emailTo.split(",");
 			SendMail.sendMail(registration.getEmailId(), registration.getSubject(), registration.getMessage());

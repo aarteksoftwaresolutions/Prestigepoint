@@ -21,114 +21,111 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Table(name = "course")
 public class Course implements Serializable {
 
-  /**
-	 * 
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "COURSE_ID")
+	private Integer courseId;
+
+	@Column(name = "COURSE_NAME")
+	private String courseName;
+
+	@Column(name = "COURSE_FEE")
+	private Integer courseFee;
+
+	@Column(name = "IS_DELETED")
+	private Integer isDeleted;
+
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "COURSE_ID", updatable = false)
+	private List<Registration> registrationList;
+
+	@ManyToOne
+	@JoinColumn(name = "ADMIN_LOGIN_ID")
+	private AdminLogin adminLogin;
+
+	public AdminLogin getAdminLoginId() {
+		return adminLogin;
+	}
+
+	public void setAdminLoginId(AdminLogin adminLogin) {
+		this.adminLogin = adminLogin;
+	}
+
+	/**
+	 * @return the courseId
 	 */
-  private static final long serialVersionUID = 1L;
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "COURSE_ID")
-  private Integer courseId;
+	public Integer getCourseId() {
+		return courseId;
+	}
 
-  @Column(name = "COURSE_NAME")
-  private String courseName;
+	/**
+	 * @param courseId
+	 *            the courseId to set
+	 */
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
+	}
 
-  @Column(name = "COURSE_FEE")
-  private Integer courseFee;
+	/**
+	 * @return the courseName
+	 */
+	public String getCourseName() {
+		return courseName;
+	}
 
-  @Column(name = "IS_DELETED")
-  private Integer isDeleted;
+	/**
+	 * @param courseName
+	 *            the courseName to set
+	 */
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
 
-  @LazyCollection(LazyCollectionOption.FALSE)
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "COURSE_ID",updatable=false)
-  private List<Registration> registrationList;
+	/**
+	 * @return the isDeleted
+	 */
+	public Integer getIsDeleted() {
+		return isDeleted;
+	}
 
-  @ManyToOne
-  @JoinColumn(name = "ADMIN_LOGIN_ID")
-  private AdminLogin adminLogin;
+	/**
+	 * @param isDeleted
+	 *            the isDeleted to set
+	 */
+	public void setIsDeleted(Integer isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 
-  public AdminLogin getAdminLoginId() {
-    return adminLogin;
-  }
+	/**
+	 * @return the registrationList
+	 */
+	public List<Registration> getRegistrationList() {
+		return registrationList;
+	}
 
-  public void setAdminLoginId(AdminLogin adminLogin) {
-    this.adminLogin = adminLogin;
-  }
+	/**
+	 * @param registrationList
+	 *            the registrationList to set
+	 */
+	public void setRegistrationList(List<Registration> registrationList) {
+		this.registrationList = registrationList;
+	}
 
-  /**
-   * @return the courseId
-   */
-  public Integer getCourseId() {
-    return courseId;
-  }
+	/**
+	 * @return the courseFee
+	 */
+	public Integer getCourseFee() {
+		return courseFee;
+	}
 
-  /**
-   * @param courseId
-   *          the courseId to set
-   */
-  public void setCourseId(Integer courseId) {
-    this.courseId = courseId;
-  }
-
-  /**
-   * @return the courseName
-   */
-  public String getCourseName() {
-    return courseName;
-  }
-
-  /**
-   * @param courseName
-   *          the courseName to set
-   */
-  public void setCourseName(String courseName) {
-    this.courseName = courseName;
-  }
-
-  /**
-   * @return the isDeleted
-   */
-  public Integer getIsDeleted() {
-    return isDeleted;
-  }
-
-  /**
-   * @param isDeleted
-   *          the isDeleted to set
-   */
-  public void setIsDeleted(Integer isDeleted) {
-    this.isDeleted = isDeleted;
-  }
-
-  /**
-   * @return the registrationList
-   */
-  public List<Registration> getRegistrationList() {
-    return registrationList;
-  }
-
-  /**
-   * @param registrationList
-   *          the registrationList to set
-   */
-  public void setRegistrationList(List<Registration> registrationList) {
-    this.registrationList = registrationList;
-  }
-
-  /**
-   * @return the courseFee
-   */
-  public Integer getCourseFee() {
-    return courseFee;
-  }
-
-  /**
-   * @param courseFee
-   *          the courseFee to set
-   */
-  public void setCourseFee(Integer courseFee) {
-    this.courseFee = courseFee;
-  }
+	/**
+	 * @param courseFee
+	 *            the courseFee to set
+	 */
+	public void setCourseFee(Integer courseFee) {
+		this.courseFee = courseFee;
+	}
 
 }

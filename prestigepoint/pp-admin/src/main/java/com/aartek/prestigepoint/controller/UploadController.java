@@ -27,7 +27,6 @@ import com.aartek.prestigepoint.util.IConstant;
 @Controller
 public class UploadController {
 
-	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(UploadController.class);
 
 	@Autowired

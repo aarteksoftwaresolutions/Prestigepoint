@@ -2,6 +2,7 @@ package com.aartek.prestigepoint.repositoryImpl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -31,6 +32,9 @@ import com.aartek.prestigepoint.util.IConstant;
 @Repository
 @SuppressWarnings("unchecked")
 public class CurrentBatchRepositoryImpl implements CurrentBatchRepository {
+	
+	@SuppressWarnings("unused")
+	private static final Logger logger = Logger.getLogger(CurrentBatchRepositoryImpl.class);
 
   @Autowired
   private HibernateTemplate hibernateTemplate;

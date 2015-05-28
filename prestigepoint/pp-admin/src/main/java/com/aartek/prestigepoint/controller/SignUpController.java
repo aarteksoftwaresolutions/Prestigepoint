@@ -42,7 +42,15 @@ public class SignUpController {
 		model.addAttribute("message", message);
 		return "signup";
 	}
-
+/**
+ * use for SingUp
+ * @param login
+ * @param result
+ * @param model
+ * @param map
+ * @param request
+ * @return
+ */
 	@RequestMapping("adminsignup")
 	public String adminSignUp(@ModelAttribute("AdminLogin") AdminLogin login, BindingResult result, ModelMap model,
 			Map<String, Object> map, HttpServletRequest request) {

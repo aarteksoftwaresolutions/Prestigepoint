@@ -25,8 +25,4 @@ public interface CourseService {
 
 	public List<CurrentStatus> getAllCurrentStatus();
 
-	
-
-
-
 }

@@ -5,25 +5,24 @@ import com.aartek.prestigepoint.model.Emi;
 import com.aartek.prestigepoint.model.Registration;
 
 public interface EmiRepository {
- List<Emi> getFeesDetails(Integer emiId);
+	List<Emi> getFeesDetails(Integer emiId);
 
- List<Registration> getRegistrationDetails(Integer emiId);
-  
-List<Emi> getRegistrationId(Integer emiId);
+	List<Registration> getRegistrationDetails(Integer emiId);
 
-void deleteEmiDetails(Integer emiId);
+	List<Emi> getRegistrationId(Integer emiId);
 
-public List<Object> editEmi(Integer emiId);
+	void deleteEmiDetails(Integer emiId);
 
-List<Emi> getAllEmiId();
+	public List<Object> editEmi(Integer emiId);
 
-boolean addEmiInfo(Emi emi);
+	List<Emi> getAllEmiId();
 
-Emi editEimForSingleRecord(Integer emiId);
+	boolean addEmiInfo(Emi emi);
 
-boolean editEmiInfo(Emi emi);
+	Emi editEimForSingleRecord(Integer emiId);
 
-List<Registration> getEmiDetails(Integer stuRegistrationId);
+	boolean editEmiInfo(Emi emi);
 
+	List<Registration> getEmiDetails(Integer stuRegistrationId);
 
 }

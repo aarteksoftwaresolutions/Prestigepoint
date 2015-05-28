@@ -4,16 +4,17 @@ import java.util.List;
 
 import com.aartek.prestigepoint.model.Enquiry;
 
-  public interface EnquiryRepository {
+@SuppressWarnings("rawtypes")
+public interface EnquiryRepository {
 
-  public void addEnquiryMessage(Enquiry enquiry);
-  
-  public boolean addAdminEnquiry(Enquiry enquiry);
+	public void addEnquiryMessage(Enquiry enquiry);
 
-  public List getMonthAndYearWiseEnquiryDetails(String month, String year);
+	public boolean addAdminEnquiry(Enquiry enquiry);
 
-  public List getYearWiseEnquiry(String year);
+	public List getMonthAndYearWiseEnquiryDetails(String month, String year);
 
-  public List getMonthWiseEnquiry(String month);
+	public List getYearWiseEnquiry(String year);
+
+	public List getMonthWiseEnquiry(String month);
 
 }

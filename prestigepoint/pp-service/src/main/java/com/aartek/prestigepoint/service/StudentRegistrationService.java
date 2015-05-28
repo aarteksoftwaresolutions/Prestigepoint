@@ -11,9 +11,9 @@ import com.aartek.prestigepoint.model.Registration;
  */
 public interface StudentRegistrationService {
 
-  public boolean addStudentInfo(Registration registration);
+	public boolean addStudentInfo(Registration registration);
 
-  public Registration editStuRegs(Integer registrationId);
+	public Registration editStuRegs(Integer registrationId);
 
-  public Registration stuSignIn(Registration registration);
+	public Registration stuSignIn(Registration registration);
 }

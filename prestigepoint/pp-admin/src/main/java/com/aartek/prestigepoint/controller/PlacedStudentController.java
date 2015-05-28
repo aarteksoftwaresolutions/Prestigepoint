@@ -16,9 +16,14 @@ import com.aartek.prestigepoint.model.AddPlacedStudent;
 import com.aartek.prestigepoint.service.PlacedStudentService;
 import com.aartek.prestigepoint.util.IConstant;
 
+/**
+ * 
+ * @author Meenal pathre
+ *
+ */
 @Controller
 public class PlacedStudentController {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(PlacedStudentController.class);
 	@Autowired
@@ -39,9 +44,14 @@ public class PlacedStudentController {
 		return "addPlacedStudent";
 	}
 
-	/*
-	 * addstudent method is used for save data.
+	/**
+	 * addPlacedStudent method is used for save data.
+	 * 
+	 * @param addPlacedStudent
+	 * @param model
+	 * @return
 	 */
+
 	@RequestMapping(value = "/addPlacedStudentAction.do", method = { RequestMethod.GET, RequestMethod.POST })
 	private String addStudentInformation(@ModelAttribute("AddPlacedStudent") AddPlacedStudent addPlacedStudent,
 			ModelMap model) {
@@ -92,9 +102,16 @@ public class PlacedStudentController {
 		return "redirect:/addPlacedStudent.do";
 	}
 
-	/*
+	/**
 	 * editstudent method is used for update the information of user.
+	 * 
+	 * @param addPlacedStudent
+	 * @param model
+	 * @param map
+	 * @param studentId
+	 * @return
 	 */
+
 	@RequestMapping(value = "/updatePlacedStudentInformation")
 	public String updatePlacedStudentInformation(@ModelAttribute("AddPlacedStudent") AddPlacedStudent addPlacedStudent,
 			ModelMap model, Map<String, Object> map, @RequestParam(required = false) Integer studentId) {
@@ -104,8 +121,11 @@ public class PlacedStudentController {
 
 	}
 
-	/*
+	/**
 	 * delete method is used for delete the information of user.
+	 * 
+	 * @param studentId
+	 * @return
 	 */
 	@RequestMapping(value = "/deletePlacedStudentInformation", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deletePlacedStudentInformation(@RequestParam(required = false) Integer studentId) {

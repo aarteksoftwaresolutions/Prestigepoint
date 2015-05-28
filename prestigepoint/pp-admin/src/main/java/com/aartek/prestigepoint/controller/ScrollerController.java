@@ -20,12 +20,20 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Controller
 public class ScrollerController {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(ScrollerController.class);
 	@Autowired
 	private ScrollerService scrollerService;
 
+	/**
+	 * use for view jsp of scrollerView
+	 * 
+	 * @param map
+	 * @param message
+	 * @param model
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/scrollerView")
 	public String showScrollerPage(@SuppressWarnings("rawtypes") Map map,
@@ -39,6 +47,15 @@ public class ScrollerController {
 		return "scroller";
 	}
 
+	/**
+	 * use for addimageForScroller
+	 * 
+	 * @param map
+	 * @param scroller
+	 * @param message
+	 * @param model
+	 * @return
+	 */
 	@SuppressWarnings("unused")
 	@RequestMapping("/scrollerAction")
 	public String addimageForScroller(@SuppressWarnings("rawtypes") Map map,
@@ -63,6 +80,14 @@ public class ScrollerController {
 		return "redirect:/addFooterPhoto";
 	}
 
+	/**
+	 * use for deleteScroller
+	 * 
+	 * @param scroller
+	 * @param model
+	 * @param imageId
+	 * @return
+	 */
 	@RequestMapping(value = "/deleteScroller", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deleteSingleScrollerImage(@ModelAttribute("Scroller") Scroller scroller, ModelMap model,
 			@RequestParam(required = false) Integer imageId) {

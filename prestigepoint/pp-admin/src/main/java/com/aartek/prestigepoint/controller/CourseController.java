@@ -20,11 +20,17 @@ import com.aartek.prestigepoint.model.Enquiry;
 import com.aartek.prestigepoint.service.CourseService;
 import com.aartek.prestigepoint.util.IConstant;
 
+/**
+ * 
+ * @author Dell
+ *
+ */
 @Controller
 public class CourseController {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(CourseController.class);
+
 	@Autowired
 	private CourseService courseService;
 
@@ -38,8 +44,7 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping("/addCourse")
-	public String showaddCoursePage(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String message, HttpServletRequest request) {
+	public String showaddCoursePage(Map<String, Object> map, Model model, @RequestParam(required = false) String message) {
 		List<Course> courseList = courseService.getAllCourseName();
 		if (courseList != null) {
 			model.addAttribute("courseList", courseList);
@@ -105,7 +110,7 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteCourse", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCourse(@ModelAttribute("Course") Course course, ModelMap model, HttpServletRequest request,
+	public String deleteCourse(@ModelAttribute("Course") Course course, ModelMap model,
 			@RequestParam(required = false) Integer courseId) {
 		courseService.deleteCourse(courseId);
 		model.addAttribute("message", IConstant.COURSE_DELETE_MESSAGE);
@@ -120,7 +125,7 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping("/viewEnquiryDetails")
-	public String showviewEnquiryDetailsPage(Map<String, Object> map, Model model) {
+	public String showviewEnquiryDetailsPage(Model model) {
 		List<Enquiry> enquiryList = courseService.getAllEnquiryDetails();
 		if (enquiryList != null) {
 			model.addAttribute("enquiryList", enquiryList);

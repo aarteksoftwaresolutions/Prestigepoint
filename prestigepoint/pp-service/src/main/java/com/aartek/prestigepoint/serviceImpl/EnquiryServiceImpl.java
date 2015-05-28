@@ -20,10 +20,10 @@ import com.aartek.prestigepoint.util.IConstant;
 
 @Service
 public class EnquiryServiceImpl implements EnquiryService {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(EnquiryServiceImpl.class);
-	
+
 	@Autowired
 	private EnquiryRepository enquiryRepository;
 
@@ -74,8 +74,7 @@ public class EnquiryServiceImpl implements EnquiryService {
 	@SuppressWarnings("rawtypes")
 	public List getMonthAndYearWiseEnquiryDetails(String month, String year) {
 		List enquirylist = new ArrayList();
-		enquirylist = enquiryRepository.getMonthAndYearWiseEnquiryDetails(
-				month, year);
+		enquirylist = enquiryRepository.getMonthAndYearWiseEnquiryDetails(month, year);
 		return enquirylist;
 	}
 
