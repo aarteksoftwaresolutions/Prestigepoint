@@ -74,15 +74,6 @@ public class AdminLogin implements Serializable {
 		this.lastName = lastName;
 	}
 
-	/*
-	 * public String getUserName() { return userName; }
-	 * 
-	 * public void setUserName(String userName) { this.userName = userName; |
-	 * 
-	 * 
-	 * }
-	 */
-
 	public Integer getadminType() {
 		return adminType;
 	}

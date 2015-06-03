@@ -154,4 +154,8 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/forgotPassword.jsp" />
 		<put-attribute name="title" type="string" value="forgotPassword page" />
 	</definition>
+	<definition name="error" id="error" extends="baseTemplate">
+		<put-attribute name="body" value="/WEB-INF/jsp/error.jsp" />
+	</definition>
+	
 </tiles-definitions>

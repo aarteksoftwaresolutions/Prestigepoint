@@ -46,6 +46,7 @@
 			<mvc:exclude-mapping path="/editor.do*" />
 			<mvc:exclude-mapping path="/editorAction.do*" />
 			<mvc:exclude-mapping path="/blog.do*" />
+			<mvc:exclude-mapping path="/verify.do*" />
 			<bean class="com.aartek.prestigepoint.controller.LoggingWebInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

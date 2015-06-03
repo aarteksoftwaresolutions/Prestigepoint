@@ -16,6 +16,6 @@ public interface ChallengeRepository {
 
 	public void deleteChallengeInformation(Integer challengeId);
 
-	public AddChallenge ChallengeValue(Integer challengeValue);
+	//public AddChallenge ChallengeValue(Integer challengeValue);
 
 }

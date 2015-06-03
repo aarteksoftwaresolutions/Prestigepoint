@@ -67,7 +67,7 @@ public class ScrollerServiceImpl implements ScrollerService {
 					f.mkdirs();
 					ImageIO.write(newImg, "png", new File(imagePath + "/" + scroller.getImageId() + ".png"));
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error("IOException",e);
 				}
 			}
 			return status;

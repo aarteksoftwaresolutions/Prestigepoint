@@ -1,17 +1,10 @@
 package com.aartek.prestigepoint.util;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 public class SendMail {
 
@@ -54,10 +47,10 @@ public class SendMail {
 			msg += " <br>";
 			msg += "<b>Password:</b>" + userPassword;
 			msg += " <br>";
-//			msg += "http://localhost:8080/pp-web/verify.do?registrationId=" + regId; // used
+			msg += "http://localhost:9090/pp-web/verify.do?registrationId=" + regId; // used
 																						// on
 																						// local
-		 msg += "http://prestigepoint.in/verify.do?registrationId=" + regId; //used on the server
+//		 msg += "http://prestigepoint.in/verify.do?registrationId=" + regId; //used on the server
 			msg += " <br>";
 			msg += "Regards,<br>";
 			msg += "Prestige Point";
@@ -111,13 +104,9 @@ public class SendMail {
 			msg += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This letter is to acknowledge for submitting  of your EMI amount is-: "
 					+ amount + "&nbsp;&nbsp;Your Total fee is:" + totalFee;
 			msg += " <br>";
-			/* msg += "<b>Your Total fee is:</b>" + totalFee; */
-			/* msg += " <br>"; */
 			msg += "Your submitted fee is:" + "<b>" + submittedFee;
 			msg += " <br>";
-			/* msg += "Your Today's Emi is=" + amount; */
 			msg += " <br>";
-			/* msg +="for more info contact to hrd@prestigepoint.in"; */
 			msg += "Regards & Thanks <br>";
 			msg += "Prestige Point";
 			message.setContent(msg, "text/html");
@@ -142,13 +131,9 @@ public class SendMail {
 			msg += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sorry This letter is to acknowledge for editting  your EMI Amount because some of reason we add wrong EMI. Your Submmited EMI Amount is-: "
 					+ amount + "&nbsp;&nbsp;Your Total fee is:" + totalFee;
 			msg += " <br>";
-			/* msg += "<b>Your Total fee is:</b>" + totalFee; */
-			/* msg += " <br>"; */
 			msg += "Your submitted fee is:" + "<b>" + submittedFee;
 			msg += " <br>";
-			/* msg += "Your Today's Emi is=" + amount; */
 			msg += " <br>";
-			/* msg +="for more info contact to hrd@prestigepoint.in"; */
 			msg += "Regards & Thanks <br>";
 			msg += "Prestige Point";
 			message.setContent(msg, "text/html");
@@ -200,30 +185,5 @@ public class SendMail {
 			throw new RuntimeException(e);
 		}
 		return null;
-	}
-	public static String sendMailmultiple(InternetAddress[] addressTo,String subject, String message) {	
-		try {
-			Message message1 = new MimeMessage(SendMailProperty.mailProperty());
-			message1.setFrom(new InternetAddress(IConstant.FROM_EMAIL_ID));
-			message1.setRecipients(Message.RecipientType.TO, addressTo);
-			message1.setSubject(subject);
-			BodyPart messageBodyPart = new MimeBodyPart();
-			messageBodyPart.setText(message);
-			Multipart multipart = new MimeMultipart();
-			multipart.addBodyPart(messageBodyPart);
-			 messageBodyPart = new MimeBodyPart();
-	         String filename = "imagePath";
-	         DataSource source = new FileDataSource(filename);
-	         messageBodyPart.setDataHandler(new DataHandler(source));
-	         messageBodyPart.setFileName(filename);
-	         multipart.addBodyPart(messageBodyPart);
-             message1.setContent(multipart);
-    	         Transport.send(message1);
-			 System.out.println("Sent message successfully....");
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		}
-		return null;
-		
 	}
 }

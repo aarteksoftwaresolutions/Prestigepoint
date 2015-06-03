@@ -23,6 +23,7 @@
 	</bean>
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+	
 		<property name="driverClass">
 			<value>${connection.driver_class}</value>
 		</property>
@@ -100,22 +101,6 @@
 			</props>
 		</property> 
 	</bean> 
-	
-	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-	<property name="host" value="mail.prestigepoint.in" />
-	<property name="port" value="25"/>
-	<property name="username" value="hrd@prestigepoint.in" />
-	<property name="password" value="prestigepoint@123" /> 
-	<property name="javaMailProperties">
-            <props>
-               <prop key="mail.smtp.ssl.trust">mail.prestigepoint.in</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>                                
-                <prop key="mail.smtp.auth">true</prop>
-        
-            </props>
-	</property>
-</bean>  -->
-
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- max upload size in bytes -->

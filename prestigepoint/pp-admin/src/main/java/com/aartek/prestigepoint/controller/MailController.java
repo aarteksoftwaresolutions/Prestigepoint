@@ -123,8 +123,8 @@ public class MailController {
 							try {
 								attachPart.attachFile(aFile);
 							} catch (IOException ex) {
-								logger.error("IOException" + ex);
-								ex.printStackTrace();
+								
+								logger.error("context", ex);  
 							}
 
 							multipart.addBodyPart(attachPart);
@@ -161,7 +161,7 @@ public class MailController {
 							try {
 								attachPart.attachFile(aFile);
 							} catch (IOException ex) {
-								logger.error("IOException" + ex);
+								logger.error("IOException", ex);
 								ex.printStackTrace();
 							}
 
@@ -171,7 +171,7 @@ public class MailController {
 
 					message1.setContent(multipart);
 					Transport.send(message1);
-					System.out.println("Sent message successfully....");
+					logger.info("Sent message successfully....");
 				}
 			}
 		}

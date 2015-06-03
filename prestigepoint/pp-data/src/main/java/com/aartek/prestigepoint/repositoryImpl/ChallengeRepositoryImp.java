@@ -50,7 +50,7 @@ public class ChallengeRepositoryImp implements ChallengeRepository {
 		}
 	}
 
-	public AddChallenge ChallengeValue(Integer challengeValue) {
+	/*public AddChallenge ChallengeValue(Integer challengeValue) {
 		AddChallenge addChallenge2 = null;
 		List<AddChallenge> addChallenge = hibernateTemplate.find("from AddChallenge acw where acw.challengeId="
 				+ challengeValue);
@@ -58,6 +58,6 @@ public class ChallengeRepositoryImp implements ChallengeRepository {
 			addChallenge2 = addChallenge.get(0);
 		}
 		return addChallenge2;
-	}
+	}*/
 
 }

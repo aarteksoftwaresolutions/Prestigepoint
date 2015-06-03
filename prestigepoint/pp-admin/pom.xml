@@ -29,7 +29,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>pp-admin-dev</finalName>
+		<finalName>pp-admin</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugin</groupId>

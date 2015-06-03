@@ -34,7 +34,6 @@ import com.aartek.prestigepoint.util.SendMail;
 @Service
 public class StudentRegistrationServiceImpl implements StudentRegistrationService {
 
-	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(StudentRegistrationServiceImpl.class);
 	@Autowired
 	private StudentRegistrationRepository stuRegRepository;
@@ -67,7 +66,7 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 						ImageIO.write(newImg, "png", new File(imagePath + "/" + registration.getRegistrationId()
 								+ ".png"));
 					} catch (IOException e) {
-						e.printStackTrace();
+						logger.error("IOException",e);
 					}
 				}
 				SendMail.confirmationMail(registration2.getEmailId(), registration2.getPassword(),

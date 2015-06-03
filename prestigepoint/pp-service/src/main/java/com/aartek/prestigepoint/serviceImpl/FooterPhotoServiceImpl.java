@@ -25,7 +25,6 @@ import com.aartek.prestigepoint.util.ImageFormat;
 @Service
 public class FooterPhotoServiceImpl implements FooterPhotoService {
 
-	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(FooterPhotoServiceImpl.class);
 	@Autowired
 	private FooterPhotoRepository footerPhotoRepository;
@@ -58,7 +57,7 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 		try {
 			img = ImageIO.read(new File(imagePath + "/" + photoInFooter2.getStudentId() + ".png"));
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("IOException",e);
 		}
 		System.out.println(img);
 		String imageFormat = "png";
@@ -74,7 +73,7 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 
 				bos.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				logger.error("IOException",e);
 			}
 		}
 		for (Object object : list) {
@@ -106,7 +105,7 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 					f.mkdirs();
 					ImageIO.write(newImg, "png", new File(imagePath + "/" + photoInFooter.getStudentId() + ".png"));
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error("IOException",e);
 				}
 			}
 			return status;

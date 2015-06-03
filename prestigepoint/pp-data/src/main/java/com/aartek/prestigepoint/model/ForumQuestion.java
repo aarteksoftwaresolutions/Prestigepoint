@@ -17,9 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -31,9 +29,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Table(name = "forum_question")
 public class ForumQuestion implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 3443434433111660762L;
 
 	@Id
@@ -62,10 +57,6 @@ public class ForumQuestion implements Serializable {
 	@JoinColumn(name = "FORUM_QUESTION_ID")
 	private List<ForumAnswer> forumAnswerList;
 	
-	/*@ManyToOne
-	@JoinColumn(name = "REGISTRATION_ID")
-	private Registration registration;*/
-
 	public Integer getForumQuestionId() {
 		return forumQuestionId;
 	}
@@ -137,12 +128,5 @@ public class ForumQuestion implements Serializable {
 	public void setForumAnswerList(List<ForumAnswer> forumAnswerList) {
 		this.forumAnswerList = forumAnswerList;
 	}
-
-	/*
-	 * public Registration getRegistration() { return registration; }
-	 * 
-	 * public void setRegistration(Registration registration) {
-	 * this.registration = registration; }
-	 */
 
 }

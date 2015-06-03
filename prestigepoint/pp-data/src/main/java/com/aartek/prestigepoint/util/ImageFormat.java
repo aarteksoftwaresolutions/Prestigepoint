@@ -2,12 +2,18 @@ package com.aartek.prestigepoint.util;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+
 import javax.imageio.ImageIO;
+
+import org.apache.log4j.Logger;
+
 import sun.misc.BASE64Decoder;
 
 @SuppressWarnings("restriction")
 public class ImageFormat {
-
+	
+  private static final Logger logger = Logger.getLogger(ImageFormat.class);
+  
   public static BufferedImage decodeToImage(String imageString) {
     BufferedImage image = null;
     byte[] imageByte;
@@ -18,7 +24,7 @@ public class ImageFormat {
       image = ImageIO.read(bis);
       bis.close();
     } catch (Exception e) {
-      e.printStackTrace();
+    	logger.error("Exception",e);
     }
     return image;
   }

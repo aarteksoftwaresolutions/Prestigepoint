@@ -4,8 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
 public class DateFormat {
 	
+	private static final Logger logger = Logger.getLogger(DateFormat.class);
     public static String getYYYYMMDDDate(String date1) {
     SimpleDateFormat userDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     SimpleDateFormat dateFormatNeeded = new SimpleDateFormat("yyyy-MM-dd");
@@ -39,9 +42,9 @@ public class DateFormat {
       Date tempDate = simpleDateFormat.parse(datereleaseAartek);
       SimpleDateFormat outputDateFormat = new SimpleDateFormat("MM-dd-YYYY");
       formattedDate = outputDateFormat.format(tempDate);
-      System.out.println("Output date is = " + outputDateFormat.format(tempDate));
+     logger.info("Output date is = " + outputDateFormat.format(tempDate));
     } catch (ParseException ex) {
-      System.out.println("Parse Exception");
+    	logger.error("Parse Exception",ex);
     }
     return formattedDate;
   }

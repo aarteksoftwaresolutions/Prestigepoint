@@ -15,9 +15,6 @@ import javax.persistence.Table;
 @Table(name = "emi")
 public class Emi implements Serializable {
 
-  /**
-	 * 
-	 */
   private static final long serialVersionUID = 1L;
 private static final Registration emi = null;
   @Id
@@ -114,12 +111,10 @@ private static final Registration emi = null;
   }
 
 public Registration getEmi() {
-	// TODO Auto-generated method stub
 	return emi;
 }
 
 public Emi editEmi() {
-	// TODO Auto-generated method stub
 	return null;
 }
 

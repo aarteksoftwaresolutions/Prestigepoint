@@ -52,8 +52,7 @@ public class ChallengeServiceImp implements ChallengeService {
 	public void ChallengeValue(String challengeIdValue, Integer challengeValue) {
 
 		if (challengeIdValue != null && challengeValue != null) {
-			AddChallenge addChallenge = addChallengeRepository.ChallengeValue(challengeValue);
-			System.out.println("abc=" + addChallenge);
+			AddChallenge addChallenge = (AddChallenge) addChallengeRepository.updateChallengeInformation(challengeValue).get(0);
 			if (challengeIdValue.equals("true")) {
 
 				addChallenge.setIsActive(IConstant.IS_DELETED);

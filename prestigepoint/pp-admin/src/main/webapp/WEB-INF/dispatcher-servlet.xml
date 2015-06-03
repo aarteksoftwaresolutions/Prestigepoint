@@ -33,8 +33,6 @@
 			<mvc:exclude-mapping path="/logout.do*" />
 			<mvc:exclude-mapping path="/forgotPassword.do*" />
 			<mvc:exclude-mapping path="/forgotPasswordAction.do*" />
-			
-			
 			<bean class="com.aartek.prestigepoint.controller.LoggingInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
@@ -46,4 +44,5 @@
 			</list>
 		</property>
 	</bean>
+	
 </beans>

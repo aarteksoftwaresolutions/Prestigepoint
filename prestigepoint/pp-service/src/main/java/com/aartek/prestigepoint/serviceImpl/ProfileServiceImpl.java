@@ -45,8 +45,7 @@ public class ProfileServiceImpl implements ProfileService {
 					f.mkdirs();
 					ImageIO.write(newImg, "png", new File(imagePath + "/" + registration.getRegistrationId() + ".png"));
 				} catch (IOException e) {
-					logger.error("IOException" + e);
-					e.printStackTrace();
+					logger.error("IOException" , e);
 				}
 			}
 			registration.setIsDeleted(IConstant.IS_DELETED);

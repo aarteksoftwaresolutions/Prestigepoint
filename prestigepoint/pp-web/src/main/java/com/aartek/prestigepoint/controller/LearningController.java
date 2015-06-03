@@ -82,7 +82,7 @@ public class LearningController {
 				k = runProcess("java Main");
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("Exception",e);
 		}
 		return list;
 
@@ -109,7 +109,7 @@ public class LearningController {
 		printLines(" ", pro.getInputStream());
 		printLines(command + " stderr:", pro.getErrorStream());
 		pro.waitFor();
-		// System.out.println(command + " exitValue() " + pro.exitValue());
+		logger.info(command + " exitValue() " + pro.exitValue());
 		return pro.exitValue();
 	}
 
