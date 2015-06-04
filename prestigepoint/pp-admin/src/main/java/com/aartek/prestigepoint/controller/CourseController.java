@@ -114,7 +114,7 @@ public class CourseController {
 			@RequestParam(required = false) Integer courseId) {
 		courseService.deleteCourse(courseId);
 		model.addAttribute("message", IConstant.COURSE_DELETE_MESSAGE);
-		return "addCourse";
+		return "redirect:/addCourse.do";
 	}
 
 	/**

@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 
 public class DateFormat {
 	
-	private static final Logger logger = Logger.getLogger(DateFormat.class);
+	private static final Logger log = Logger.getLogger(DateFormat.class);
     public static String getYYYYMMDDDate(String date1) {
     SimpleDateFormat userDateFormat = new SimpleDateFormat("dd-MM-yyyy");
     SimpleDateFormat dateFormatNeeded = new SimpleDateFormat("yyyy-MM-dd");
@@ -16,7 +16,7 @@ public class DateFormat {
     try {
       date = userDateFormat.parse(date1);
     } catch (ParseException e) {
-      e.printStackTrace();
+    	log.error("Parse Exception",e);
     }
     String convertedDate = dateFormatNeeded.format(date);
     return convertedDate;
@@ -29,7 +29,7 @@ public class DateFormat {
     try {
       date = userDateFormat.parse(date1);
     } catch (ParseException e) {
-      e.printStackTrace();
+    	log.error("Parse Exception",e);
     }
     String convertedDate = dateFormatNeeded.format(date);
     return convertedDate;
@@ -42,9 +42,9 @@ public class DateFormat {
       Date tempDate = simpleDateFormat.parse(datereleaseAartek);
       SimpleDateFormat outputDateFormat = new SimpleDateFormat("MM-dd-YYYY");
       formattedDate = outputDateFormat.format(tempDate);
-     logger.info("Output date is = " + outputDateFormat.format(tempDate));
+     log.info("Output date is = " + outputDateFormat.format(tempDate));
     } catch (ParseException ex) {
-    	logger.error("Parse Exception",ex);
+    	log.error("Parse Exception",ex);
     }
     return formattedDate;
   }

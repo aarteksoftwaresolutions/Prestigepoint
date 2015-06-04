@@ -121,7 +121,7 @@ public class BatchController {
 			@RequestParam(required = false) Integer batchId) {
 		batchService.deleteBatch(batchId);
 		model.addAttribute("message", IConstant.BATCH_DELETE_MESSAGE);
-		return "addBatch";
+		return "redirect:/addBatch.do";
 	}
 
 }

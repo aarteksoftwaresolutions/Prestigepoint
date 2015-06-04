@@ -93,6 +93,8 @@ public class ScrollerController {
 			@RequestParam(required = false) Integer imageId) {
 		scrollerService.deleteScrollerImage(imageId);
 		model.addAttribute("message", IConstant.SCROLLER_IMAGE_DELETE_MESSAGE);
-		return "scroller";
+		
+		return "redirect:/scrollerView";
+		
 	}
 }

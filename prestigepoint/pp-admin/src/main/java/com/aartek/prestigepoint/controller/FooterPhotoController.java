@@ -131,7 +131,9 @@ public class FooterPhotoController {
 			ModelMap model, @RequestParam(required = false) Integer studentId) {
 		footerPhotoService.deleteStudentData(studentId);
 		model.addAttribute("message", IConstant.PLACED_STUDENT_DELETE_MESSAGE);
-		return "addPhotoInFooter";
+		
+		return "redirect:/addFooterPhoto.do";
+		
 	}
 
 }

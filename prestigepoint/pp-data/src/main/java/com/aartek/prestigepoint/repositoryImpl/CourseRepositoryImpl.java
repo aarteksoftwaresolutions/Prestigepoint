@@ -73,7 +73,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 	 */
 	public List<Enquiry> getAllEnquiryDetails() {
 		List<Enquiry> enquiries = hibernateTemplate.find("from Enquiry where IS_DELETED=" + IConstant.IS_DELETED
-				+ "order by name desc");
+				+ "order by date asc");
 		return enquiries;
 	}
 

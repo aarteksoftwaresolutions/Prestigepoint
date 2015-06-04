@@ -101,7 +101,7 @@ public class ChallengeController {
 	public String deleteStudentInformation(@RequestParam(required = false) Integer challengeId) {
 		addChallengeService.deleteChallengeInformation(challengeId);
 		System.out.println("challengeId");
-		return "addChallenge";
+		return "redirect:/addChallenge.do";
 	}
 
 	/**

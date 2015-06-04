@@ -131,7 +131,7 @@ public class PlacedStudentController {
 	public String deletePlacedStudentInformation(@RequestParam(required = false) Integer studentId) {
 		placedStudentservice.deletePlacedStudentInformation(studentId);
 
-		return "addPlacedStudent";
+		return "redirect:/addPlacedStudent.do";
 	}
 
 }

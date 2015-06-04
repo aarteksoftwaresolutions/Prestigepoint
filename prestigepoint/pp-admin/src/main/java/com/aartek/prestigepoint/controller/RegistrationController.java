@@ -374,6 +374,8 @@ public class RegistrationController {
 			@RequestParam(required = false) Integer registrationId) {
 		registrationService.deleteStudentDetails(registrationId);
 		model.addAttribute("message", IConstant.STUDENT_DELETE_MESSAGE);
-		return "registration";
+		
+		return "redirect:/registration.do";
+		
 	}
 }

@@ -19,16 +19,13 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.aartek.prestigepoint.model.AdminLogin;
 import com.aartek.prestigepoint.model.Registration;
@@ -36,7 +33,6 @@ import com.aartek.prestigepoint.service.RegistrationService;
 import com.aartek.prestigepoint.util.IConstant;
 import com.aartek.prestigepoint.util.SendMail;
 import com.aartek.prestigepoint.util.SendMailProperty;
-import com.aartek.prestigepoint.validator.SendValidator;
 
 /**
  * 
@@ -49,13 +45,7 @@ public class MailController {
 	@Autowired
 	private RegistrationService registrationService;
 
-	@Autowired
-	private JavaMailSender mailSender;
-
-	@Autowired
-	private SendValidator sendValidator;
-
-	private static Logger logger = LoggerFactory.getLogger(MailController.class);
+	private static Logger log = LoggerFactory.getLogger(MailController.class);
 
 	/**
 	 * Display mail sending page
@@ -67,9 +57,9 @@ public class MailController {
 	 * @return
 	 */
 	@RequestMapping("/sendMail")
-	public String showSendMail(Map<String, Object> map, Model model, HttpServletRequest request,
+	public String showSendMail(Map<String, Object> map, Model model,
 			@RequestParam(required = false) String emailId) {
-		logger.info("this is mailer");
+		log.info("this is mailer");
 		map.put("Registration", new Registration());
 		model.addAttribute("emailId", emailId);
 		return "sendMail";
@@ -89,26 +79,29 @@ public class MailController {
 	 */
 	@SuppressWarnings("unused")
 	@RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
-	public String sendEmail(@ModelAttribute("Registration") Registration registration, BindingResult result,
-			ModelMap model, Map<String, Object> map, HttpSession session, HttpServletRequest request,
-			final @RequestParam CommonsMultipartFile attachFile, String[] attachedFiles) throws MessagingException {
+	public String sendEmail(
+			@ModelAttribute("Registration") Registration registration,
+			String[] attachedFiles) throws MessagingException {
 		// reads form input
 		List<String> emailList = new ArrayList<String>();
 		final String emailTo = registration.getEmailId();
 		final String subject = registration.getSubject();
 		final String message = registration.getMessage();
-		if (emailTo == null || emailTo.isEmpty()) {
+		if ( emailTo.isEmpty() || emailTo == null ) {
 			if (registration.getAllStudent() != null) {
 				if (registration.getAllStudent().equals("allstudent")) {
 					emailList = registrationService.getallStudentEmailId();
-					final String[] email = emailList.toArray(new String[emailList.size()]);
+					final String[] email = emailList
+							.toArray(new String[emailList.size()]);
 					InternetAddress[] addressTo = new InternetAddress[email.length];
 					for (int i = 0; i < email.length; i++) {
 						addressTo[i] = new InternetAddress(email[i]);
 
 					}
-					Message message1 = new MimeMessage(SendMailProperty.mailProperty());
-					message1.setFrom(new InternetAddress(IConstant.FROM_EMAIL_ID));
+					Message message1 = new MimeMessage(
+							SendMailProperty.mailProperty());
+					message1.setFrom(new InternetAddress(
+							IConstant.FROM_EMAIL_ID));
 					message1.setRecipients(Message.RecipientType.TO, addressTo);
 					message1.setSubject(subject);
 					MimeBodyPart messageBodyPart = new MimeBodyPart();
@@ -123,8 +116,8 @@ public class MailController {
 							try {
 								attachPart.attachFile(aFile);
 							} catch (IOException ex) {
-								
-								logger.error("context", ex);  
+
+								log.error("context", ex);
 							}
 
 							multipart.addBodyPart(attachPart);
@@ -133,20 +126,23 @@ public class MailController {
 
 					message1.setContent(multipart);
 					Transport.send(message1);
-					System.out.println("Sent message successfully....");
+					log.info("Sent message successfully....");
 				}
 			}
 			if (registration.getAllEnquiry() != null) {
 				if (registration.getAllEnquiry().equals("allenquiry")) {
 					emailList = registrationService.getallEnquiryEmailId();
-					final String[] email = emailList.toArray(new String[emailList.size()]);
+					final String[] email = emailList
+							.toArray(new String[emailList.size()]);
 					InternetAddress[] addressTo = new InternetAddress[email.length];
 					for (int i = 0; i < email.length; i++) {
 						addressTo[i] = new InternetAddress(email[i]);
 
 					}
-					Message message1 = new MimeMessage(SendMailProperty.mailProperty());
-					message1.setFrom(new InternetAddress(IConstant.FROM_EMAIL_ID));
+					Message message1 = new MimeMessage(
+							SendMailProperty.mailProperty());
+					message1.setFrom(new InternetAddress(
+							IConstant.FROM_EMAIL_ID));
 					message1.setRecipients(Message.RecipientType.TO, addressTo);
 					message1.setSubject(subject);
 					MimeBodyPart messageBodyPart = new MimeBodyPart();
@@ -161,7 +157,7 @@ public class MailController {
 							try {
 								attachPart.attachFile(aFile);
 							} catch (IOException ex) {
-								logger.error("IOException", ex);
+								log.error("IOException", ex);
 								ex.printStackTrace();
 							}
 
@@ -171,14 +167,15 @@ public class MailController {
 
 					message1.setContent(multipart);
 					Transport.send(message1);
-					logger.info("Sent message successfully....");
+					log.info("Sent message successfully....");
 				}
 			}
 		}
 
 		if (!emailTo.isEmpty() && emailTo != null) {
 			final String[] email2 = emailTo.split(",");
-			SendMail.sendMail(registration.getEmailId(), registration.getSubject(), registration.getMessage());
+			SendMail.sendMail(registration.getEmailId(),
+					registration.getSubject(), registration.getMessage());
 		}
 
 		return "redirect:/mailSuccess.do";
@@ -193,7 +190,8 @@ public class MailController {
 	 * @return
 	 */
 	@RequestMapping("/mailSuccess")
-	public String showSuccessPage(Map<String, Object> map, Model model, HttpServletRequest request) {
+	public String showSuccessPage(Map<String, Object> map, Model model,
+			HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
 		if (loginMember != null) {
@@ -212,8 +210,10 @@ public class MailController {
 	 * @param emailId
 	 * @return
 	 */
-	@RequestMapping(value = "/getEmailId", method = { RequestMethod.GET, RequestMethod.POST })
-	public String sendSingleMail(ModelMap model, Map<String, Object> map, HttpServletRequest request,
+	@RequestMapping(value = "/getEmailId", method = { RequestMethod.GET,
+			RequestMethod.POST })
+	public String sendSingleMail(ModelMap model, Map<String, Object> map,
+			HttpServletRequest request,
 			@RequestParam(required = false) String emailId) {
 		model.addAttribute("emailId", emailId);
 		return "redirect:/sendMail.do";

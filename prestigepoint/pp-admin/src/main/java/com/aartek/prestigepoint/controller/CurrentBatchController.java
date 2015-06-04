@@ -134,7 +134,7 @@ public class CurrentBatchController {
 			@RequestParam(required = false) Integer currentBatchId) {
 		currentBatchService.deleteCurrentBatch(currentBatchId);
 		model.addAttribute("message", IConstant.CURRENT_BATCH_DELETE_MESSAGE);
-		return "currentBatch";
+		return "redirect:/currentBatch.do";
 	}
 
 }
