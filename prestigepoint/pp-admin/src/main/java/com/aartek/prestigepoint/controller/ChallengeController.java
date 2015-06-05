@@ -82,7 +82,7 @@ public class ChallengeController {
 	 * @return
 	 */
 	@RequestMapping(value = "/updateChallengeInformatin")
-	public String updateChallengeInformation(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model,
+	public String updateChallengeInformation(@ModelAttribute("AddChallenge") AddChallenge addChallenge,
 			Map<String, Object> map, @RequestParam(required = false) Integer challengeId) {
 		addChallenge = addChallengeService.updateChallengeInformation(challengeId);
 		map.put("AddChallenge", addChallenge);
@@ -100,7 +100,7 @@ public class ChallengeController {
 	@RequestMapping(value = "/deleteChallengeInformation", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deleteStudentInformation(@RequestParam(required = false) Integer challengeId) {
 		addChallengeService.deleteChallengeInformation(challengeId);
-		System.out.println("challengeId");
+		logger.info("challengeId");
 		return "redirect:/addChallenge.do";
 	}
 
@@ -130,7 +130,7 @@ public class ChallengeController {
 	 */
 	@RequestMapping(value = "changeActiveStatusAction", method = RequestMethod.GET)
 	@ResponseBody
-	public void ActiveStatus(@RequestParam(required = false) String challengeIdValue, Integer challengeValue) {
+	public void ActiveStatusinfo(@RequestParam(required = false) String challengeIdValue, Integer challengeValue) {
 		addChallengeService.ChallengeValue(challengeIdValue, challengeValue);
 
 	}

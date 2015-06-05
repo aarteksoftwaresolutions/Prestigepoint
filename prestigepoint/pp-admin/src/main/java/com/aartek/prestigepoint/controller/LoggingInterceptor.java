@@ -1,5 +1,4 @@
 package com.aartek.prestigepoint.controller;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,7 +16,7 @@ import com.aartek.prestigepoint.model.AdminLogin;
 @Component
 public class LoggingInterceptor extends HandlerInterceptorAdapter {
 
-	private static final Logger logger = Logger.getLogger(LoggingInterceptor.class);
+	private static final Logger log = Logger.getLogger(LoggingInterceptor.class);
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -29,21 +28,21 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter {
 			return false;
 		}
 
-		logger.info("This is preHandle !");
+		log.info("This is preHandle !");
 		return true;
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		logger.info("This is postHandle !");
+		log.info("This is postHandle !");
 
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		logger.info("This is aftercompletion !");
+		log.info("This is aftercompletion !");
 
 	}
 }

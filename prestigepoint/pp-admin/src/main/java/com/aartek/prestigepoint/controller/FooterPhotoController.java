@@ -29,7 +29,7 @@ import com.aartek.prestigepoint.util.IConstant;
 public class FooterPhotoController {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(FooterPhotoController.class);
+	private static final Logger log = Logger.getLogger(FooterPhotoController.class);
 
 	@Autowired
 	private FooterPhotoService footerPhotoService;
@@ -75,7 +75,7 @@ public class FooterPhotoController {
 
 		String method = request.getMethod();
 		// Below if condition is for edit functionality
-		if (method.equals("GET")) {
+		if (("GET").equals(method)) {
 
 			photoInFooter = footerPhotoService.editSingleStudentDetail(studentId);
 
@@ -111,7 +111,7 @@ public class FooterPhotoController {
 
 		List<PhotoInFooter> photoInFooter2 = footerPhotoService.getSingleStudentDetail(studentId);
 		photoInFooter = photoInFooter2.get(0);
-		if (checkedValue.equals("checked")) {
+		if (("checked").equals(checkedValue)) {
 			footerPhotoService.changeStatusByStudentId(photoInFooter);
 		} else {
 			footerPhotoService.uncheckStatusByStudentId(photoInFooter);

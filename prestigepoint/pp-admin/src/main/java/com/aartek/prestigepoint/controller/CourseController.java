@@ -29,7 +29,7 @@ import com.aartek.prestigepoint.util.IConstant;
 public class CourseController {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(CourseController.class);
+	private static final Logger log = Logger.getLogger(CourseController.class);
 
 	@Autowired
 	private CourseService courseService;
@@ -72,7 +72,7 @@ public class CourseController {
 		boolean status = false;
 		List<Course> courseList = courseService.getAllCourseName();
 		String method = request.getMethod();
-		if (method.equals("GET")) {
+		if (("GET").equals(method)) {
 			course = courseService.editCourse(courseId);
 			model.addAttribute("courseList", courseList);
 			map.put("Course", course);

@@ -31,7 +31,7 @@ import com.aartek.prestigepoint.validator.EnquiryValidator;
 public class ReportController {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(ReportController.class);
+	private static final Logger log = Logger.getLogger(ReportController.class);
 
 	@Autowired
 	private CourseService courseService;
@@ -52,8 +52,7 @@ public class ReportController {
 	 * @return
 	 */
 	@RequestMapping("/viewEnquiryByMonth")
-	public String showEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map, Model model,
-			HttpServletRequest request) {
+	public String showEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map, Model model) {
 
 		map.put("Enquiry", new Enquiry());
 		List<Year> yearList = courseService.getAllYearName();
@@ -63,8 +62,8 @@ public class ReportController {
 	}
 
 	@RequestMapping("/addAdminEnquiry")
-	public String showaddAddEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Model model,
-			Map<String, Object> map, @RequestParam(required = false) String message, HttpServletRequest request) {
+	public String showaddAddEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry,
+			Map<String, Object> map, @RequestParam(required = false) String message) {
 		map.put("Enquiry", new Enquiry());
 		return "addAdminEnquiry";
 	}
@@ -89,8 +88,8 @@ public class ReportController {
 
 	@SuppressWarnings({ "rawtypes", "unused" })
 	@RequestMapping(value = "/getEnquiryDetails", method = { RequestMethod.GET, RequestMethod.POST })
-	public String viewEnquiryReport(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, ModelMap model,
-			Map<String, Object> map, HttpServletRequest request, @RequestParam(required = false) Integer enquiryId)
+	public String viewEnquiryReport(@ModelAttribute("Enquiry") Enquiry enquiry, ModelMap model,
+			 HttpServletRequest request, @RequestParam(required = false) Integer enquiryId)
 			throws ParseException {
 		String method = request.getMethod();
 		List<Year> yearList = null;

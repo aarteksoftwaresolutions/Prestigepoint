@@ -22,7 +22,7 @@ import com.aartek.prestigepoint.util.IConstant;
 public class ScrollerController {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(ScrollerController.class);
+	private static final Logger log = Logger.getLogger(ScrollerController.class);
 	@Autowired
 	private ScrollerService scrollerService;
 
@@ -58,8 +58,7 @@ public class ScrollerController {
 	 */
 	@SuppressWarnings("unused")
 	@RequestMapping("/scrollerAction")
-	public String addimageForScroller(@SuppressWarnings("rawtypes") Map map,
-			@ModelAttribute("Scroller") Scroller scroller, @RequestParam(required = false) String message, Model model) {
+	public String addimageForScroller(@ModelAttribute("Scroller") Scroller scroller) {
 
 		boolean status = false;
 		status = scrollerService.addScrollerPhoto(scroller);

@@ -37,10 +37,6 @@ public class AdminLogin implements Serializable {
 	@Column(name = "LAST_NAME")
 	private String lastName;
 
-	/*
-	 * @Column(name = "USER_NAME") private String userName;
-	 */
-
 	@Column(name = "ADMIN_TYPE")
 	private Integer adminType;
 

@@ -3,7 +3,6 @@ package com.aartek.prestigepoint.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +26,7 @@ import com.aartek.prestigepoint.service.LoginService;
 @Controller
 public class LoginController {
 
-	private static final Logger logger = Logger.getLogger(LoggingInterceptor.class);
+	private static final Logger log = Logger.getLogger(LoggingInterceptor.class);
 
 	@Autowired
 	private LoginService loginService;
@@ -47,7 +45,7 @@ public class LoginController {
 		map.put("AdminLogin", new AdminLogin());
 		model.addAttribute("forgotMessage", forgotMessage);
 		model.addAttribute("invalid", invalid);
-		logger.info("--------------login Controller----------");
+		log.info("--------------login Controller----------");
 		return "login";
 
 	}
@@ -64,8 +62,8 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/userSignIn", method = RequestMethod.POST)
-	public String signInAction(@ModelAttribute("AdminLogin") AdminLogin login, BindingResult result, ModelMap model,
-			Map<String, Object> map, HttpServletRequest request) {
+	public String signInAction(@ModelAttribute("AdminLogin") AdminLogin login, ModelMap model,
+			HttpServletRequest request) {
 		login = loginService.userSignIn(login);
 		if (login == null) {
 			model.addAttribute("invalid", "Invalid user name and password");
@@ -98,7 +96,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/logout")
-	public String showLogout(Map<String, Object> map, HttpServletRequest request, HttpServletResponse httpResponse) {
+	public String showLogout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		return "redirect:/login.do";

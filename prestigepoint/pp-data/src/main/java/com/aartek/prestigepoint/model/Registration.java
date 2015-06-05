@@ -23,9 +23,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Table(name = "registration")
 public class Registration implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final Integer emiId = null;
 	@Id
@@ -112,25 +109,6 @@ public class Registration implements Serializable {
 	  @OneToMany(cascade = CascadeType.ALL)
 	  @JoinColumn(name = "REGISTRATION_ID",updatable=false)
 	  private List<AddPlacedStudent> AddPlacedStudentList;
-	 
-	 
-	/*
-	 * @LazyCollection(LazyCollectionOption.FALSE)
-	 * 
-	 * @OneToMany(cascade = CascadeType.ALL)
-	 * 
-	 * @JoinColumn(name = "REGISTRATION_ID") private List<ForumQuestion>
-	 * forumQuestionList;
-	 */
-
-	/*
-	 * @LazyCollection(LazyCollectionOption.FALSE)
-	 * 
-	 * @OneToMany(cascade = CascadeType.ALL)
-	 * 
-	 * @JoinColumn(name = "REGISTRATION_ID") private List<ForumAnswer>
-	 * forumAnswerList;
-	 */
 
 	public List<AddPlacedStudent> getAddPlacedStudentList() {
     return AddPlacedStudentList;
@@ -618,22 +596,4 @@ public void setTotalFee(Double totalFee) {
 	this.totalFee = totalFee;
 }
 
- 
-
-
-
-
-
-	/*
-	 * public List<ForumQuestion> getForumQuestionList() { return
-	 * forumQuestionList; }
-	 * 
-	 * public void setForumQuestionList(List<ForumQuestion> forumQuestionList) {
-	 * this.forumQuestionList = forumQuestionList; }
-	 * 
-	 * public List<ForumAnswer> getForumAnswerList() { return forumAnswerList; }
-	 * 
-	 * public void setForumAnswerList(List<ForumAnswer> forumAnswerList) {
-	 * this.forumAnswerList = forumAnswerList; }
-	 */
 }

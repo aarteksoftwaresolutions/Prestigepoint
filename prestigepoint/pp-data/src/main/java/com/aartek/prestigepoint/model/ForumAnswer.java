@@ -11,9 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @Entity
 @Table(name = "forum_answer")
@@ -44,12 +42,6 @@ public class ForumAnswer implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "FORUM_QUESTION_ID")
 	private ForumQuestion forumQuestion;
-
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name = "REGISTRATION_ID") private Registration registration;
-	 */
 
 	public Integer getForumAnswerId() {
 		return forumAnswerId;
@@ -106,12 +98,5 @@ public class ForumAnswer implements Serializable {
 	public void setForumQuestion(ForumQuestion forumQuestion) {
 		this.forumQuestion = forumQuestion;
 	}
-
-	/*
-	 * public Registration getRegistration() { return registration; }
-	 * 
-	 * public void setRegistration(Registration registration) {
-	 * this.registration = registration; }
-	 */
 
 }

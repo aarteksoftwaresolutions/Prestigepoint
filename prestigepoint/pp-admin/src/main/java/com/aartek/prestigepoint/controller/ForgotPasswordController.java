@@ -2,8 +2,6 @@ package com.aartek.prestigepoint.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +25,7 @@ import com.aartek.prestigepoint.validator.ForgotPasswordValidator;
 public class ForgotPasswordController {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(ForgotPasswordController.class);
+	private static final Logger log = Logger.getLogger(ForgotPasswordController.class);
 
 	@Autowired
 	private ForgotPasswordAdminService forgotPasswordService;
@@ -51,8 +49,7 @@ public class ForgotPasswordController {
 	}
 
 	@RequestMapping(value = "/forgotPasswordAction", method = RequestMethod.POST)
-	public String verify(@ModelAttribute("AdminLogin") AdminLogin adminLogin, BindingResult result, ModelMap model,
-			Map<String, Object> map, HttpServletRequest request) {
+	public String verify(@ModelAttribute("AdminLogin") AdminLogin adminLogin, BindingResult result, ModelMap model) {
 		boolean status = false;
 		forgotPasswordValidator.validate(adminLogin, result);
 		if (result.hasErrors()) {

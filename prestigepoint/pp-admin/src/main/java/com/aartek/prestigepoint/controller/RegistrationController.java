@@ -1,5 +1,4 @@
 package com.aartek.prestigepoint.controller;
-
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +31,7 @@ import com.aartek.prestigepoint.validator.RegistrationValidator;
 @Controller
 public class RegistrationController {
 
-	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(RegistrationController.class);
+	private static final Logger log = Logger.getLogger(RegistrationController.class);
 	@Autowired
 	private CourseService courseService;
 
@@ -57,7 +55,7 @@ public class RegistrationController {
 	 */
 	@RequestMapping("/registration")
 	public String showregistrationPage(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String message, HttpServletRequest request) {
+			@RequestParam(required = false) String message) {
 		map.put("Registration", new Registration());
 		List<CurrentStatus> currentStatusList = null;
 		List<Course> courseList = courseService.getAllCourseName();
@@ -92,8 +90,7 @@ public class RegistrationController {
 	 */
 	@RequestMapping(value = "/registerStudent", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addStudent(@ModelAttribute("Registration") Registration registration, BindingResult result,
-			ModelMap model, Map<String, Object> map, HttpServletRequest request, Integer registrationId,
-			AddPlacedStudent addPlacedStudent) {
+			ModelMap model) {
 		int currentId = registration.getCurrentStatus().getCurrent_status_Id();
 		boolean status = false;
 		List<CurrentStatus> currentStatusList = null;
@@ -161,7 +158,7 @@ public class RegistrationController {
 	 * @return
 	 */
 	@RequestMapping("/viewStudentDetails")
-	public String showviewStudentDetailsPage(Map<String, Object> map, Model model, HttpServletRequest request) {
+	public String showviewStudentDetailsPage(Map<String, Object> map, Model model) {
 		map.put("Registration", new Registration());
 		List<CurrentStatus> currentStatusList = null;
 		List<Course> courseList = courseService.getAllCourseName();
@@ -194,12 +191,12 @@ public class RegistrationController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getStudentDetails", method = { RequestMethod.GET, RequestMethod.POST })
-	public String viewDetails(@ModelAttribute("Registration") Registration registration, BindingResult result,
+	public String viewDetails(@ModelAttribute("Registration") Registration registration,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request,
 			@RequestParam(required = false) Integer registrationId) {
 		List<Registration> studentDetails = null;
 		String method = request.getMethod();
-		if (method.equals("GET") && registrationId != null) {
+		if (("GET").equals(method) && registrationId != null) {
 			List<Course> courseList = courseService.getAllCourseName();
 			if (courseList != null) {
 				model.addAttribute("course", courseList);
@@ -264,14 +261,14 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(value = "/getStudentDetailsByName", method = { RequestMethod.GET, RequestMethod.POST })
-	public String viewDetailsByName(@ModelAttribute("Registration") Registration registration, BindingResult result,
-			ModelMap model, Map<String, Object> map, HttpServletRequest request,
+	public String viewDetailsByName(@ModelAttribute("Registration") Registration registration,
+			ModelMap model,HttpServletRequest request,
 			@RequestParam(required = false) Integer registrationId) {
 		String firstName = request.getParameter("registration");
 		model.addAttribute("firstName", firstName);
 		List<Registration> studentDetails = registrationService.getStudentDetailsByName(firstName);
 		model.addAttribute("studentDetails", studentDetails);
-		System.out.println("firstName is=" + firstName);
+	    log.info("firstName is=" + firstName);
 		return "viewStudentDetails";
 	}
 
@@ -340,7 +337,7 @@ public class RegistrationController {
 			Map<String, Object> map, HttpServletRequest request, Integer registrationId,
 			AddPlacedStudent addPlacedStudent) {
 		String method = request.getMethod();
-		if (method.equals("GET")) {
+		if (("GET").equals(method)) {
 			registration = registrationService.makeAsPaidUser(registrationId);
 			map.put("Registration", new Registration());
 			List<Course> courseList = courseService.getAllCourseName();

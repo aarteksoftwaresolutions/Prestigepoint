@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.aartek.prestigepoint.model.AdminLogin;
 import com.aartek.prestigepoint.model.Emi;
@@ -33,14 +32,11 @@ import com.aartek.prestigepoint.util.IConstant;
 public class EmiController {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(ChallengeController.class);
+	private static final Logger log = Logger.getLogger(ChallengeController.class);
 
 	@Autowired
 	private EmiService emiService;
 
-	/*
-	 * @Autowired private EmiValidator emiValidator;
-	 */
 	/**
 	 * Method for view emi details of students.
 	 * 
@@ -108,14 +104,12 @@ public class EmiController {
 	 * @return
 	 * @throws ParseException
 	 */
+	@SuppressWarnings("unused")
 	@RequestMapping(value = "/addEmi", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addEmiData(@ModelAttribute("Emi") Emi emi, ModelMap model,
-			final RedirectAttributes redirectAttributes, Map<String, Object> map, HttpServletRequest request)
+	public String addEmiData(@ModelAttribute("Emi") Emi emi, ModelMap model, HttpServletRequest request)
 			throws ParseException {
 		HttpSession session = request.getSession();
 		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
-		@SuppressWarnings("unused")
-		String abc = loginMember.getFirstName();
 		boolean status = false;
 		if (emi.getEmiId() != null) {
 			Integer registrationId = emiService.getRegistrationId(emi.getEmiId());

@@ -2,8 +2,6 @@ package com.aartek.prestigepoint.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +20,7 @@ import com.aartek.prestigepoint.validator.SignUpValidator;
 @Controller
 public class SignUpController {
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(SignUpController.class);
+	private static final Logger log = Logger.getLogger(SignUpController.class);
 	@Autowired
 	private LoginService loginService;
 	@Autowired
@@ -52,8 +50,7 @@ public class SignUpController {
  * @return
  */
 	@RequestMapping("adminsignup")
-	public String adminSignUp(@ModelAttribute("AdminLogin") AdminLogin login, BindingResult result, ModelMap model,
-			Map<String, Object> map, HttpServletRequest request) {
+	public String adminSignUp(@ModelAttribute("AdminLogin") AdminLogin login, BindingResult result, ModelMap model) {
 		boolean status = false;
 		signUpValidator.validate(login, result);
 		if (result.hasErrors()) {

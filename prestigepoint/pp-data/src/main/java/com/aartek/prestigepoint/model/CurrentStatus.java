@@ -20,18 +20,11 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Table(name = "currentstatus")
 public class CurrentStatus implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CURRENT_STATUS_ID")
 	private Integer current_status_Id;
-
-	
-
-	
 
 	public Integer getCurrent_status_Id() {
 		return current_status_Id;
@@ -42,12 +35,8 @@ public class CurrentStatus implements Serializable {
 	}
 
 
-
 	@Column(name = "CURRENTSTATUS")
 	private String currentStatus;
-
-	
-
 
 
 	public String getCurrentStatus() {

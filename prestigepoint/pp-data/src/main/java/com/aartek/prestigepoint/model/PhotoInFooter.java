@@ -41,7 +41,6 @@ public class PhotoInFooter implements Serializable {
   
   @Transient
 	private String imgPath;
-//  private String browseImage;
   
   public String getImgPath() {
 	return imgPath;
@@ -99,19 +98,6 @@ public String getPlacedInCompany() {
 public void setPlacedInCompany(String placedInCompany) {
 	this.placedInCompany = placedInCompany;
 }
-
-/*public String getBrowseImage() {
-	return browseImage;
-}
-
-public void setBrowseImage(String browseImage) {
-	this.browseImage = browseImage;
-}*/
-
- // @LazyCollection(LazyCollectionOption.FALSE)
- // @OneToMany(cascade = CascadeType.ALL)
- // @JoinColumn(name = "COURSE_ID")
- // private List<Registration> registrationList;
 
  
 }

@@ -14,73 +14,50 @@ import javax.persistence.Transient;
 @Table(name = "scroller")
 public class Scroller implements Serializable {
 
-  /**
-	 * 
-	 */
-  private static final long serialVersionUID = 1L;
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "IMAGE_ID")
-  private Integer imageId;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "IMAGE_ID")
+	private Integer imageId;
 
-  @Column(name = "IS_DELETED")
-  private Integer isDeleted;
-  
- 
-  @Column(name="IS_STATUS_ACTIVE")
-  private Integer isStatusActive;
-  
-  
-    @Transient
+	@Column(name = "IS_DELETED")
+	private Integer isDeleted;
+
+	@Column(name = "IS_STATUS_ACTIVE")
+	private Integer isStatusActive;
+
+	@Transient
 	private String imgPath;
-//  private String browseImage;
-  
-  public String getImgPath() {
-	return imgPath;
-}
 
-public void setImgPath(String imgPath) {
-	this.imgPath = imgPath;
-}
+	public String getImgPath() {
+		return imgPath;
+	}
 
-public Integer getIsStatusActive() {
-	return isStatusActive;
-}
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
+	}
 
-public void setIsStatusActive(Integer isStatusActive) {
-	this.isStatusActive = isStatusActive;
-}
+	public Integer getIsStatusActive() {
+		return isStatusActive;
+	}
 
-public Integer getImageId() {
-	return imageId;
-}
+	public void setIsStatusActive(Integer isStatusActive) {
+		this.isStatusActive = isStatusActive;
+	}
 
-public void setImageId(Integer imageId) {
-	this.imageId = imageId;
-}
+	public Integer getImageId() {
+		return imageId;
+	}
 
-public Integer getIsDeleted() {
-	return isDeleted;
-}
+	public void setImageId(Integer imageId) {
+		this.imageId = imageId;
+	}
 
-public void setIsDeleted(Integer isDeleted) {
-	this.isDeleted = isDeleted;
-}
+	public Integer getIsDeleted() {
+		return isDeleted;
+	}
 
-
-
-/*public String getBrowseImage() {
-	return browseImage;
-}
-
-public void setBrowseImage(String browseImage) {
-	this.browseImage = browseImage;
-}*/
-
- // @LazyCollection(LazyCollectionOption.FALSE)
- // @OneToMany(cascade = CascadeType.ALL)
- // @JoinColumn(name = "COURSE_ID")
- // private List<Registration> registrationList;
-
- 
+	public void setIsDeleted(Integer isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 }

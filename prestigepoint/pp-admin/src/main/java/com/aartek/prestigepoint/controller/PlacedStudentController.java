@@ -25,7 +25,7 @@ import com.aartek.prestigepoint.util.IConstant;
 public class PlacedStudentController {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(PlacedStudentController.class);
+	private static final Logger log = Logger.getLogger(PlacedStudentController.class);
 	@Autowired
 	private PlacedStudentService placedStudentservice;
 
@@ -114,7 +114,7 @@ public class PlacedStudentController {
 
 	@RequestMapping(value = "/updatePlacedStudentInformation")
 	public String updatePlacedStudentInformation(@ModelAttribute("AddPlacedStudent") AddPlacedStudent addPlacedStudent,
-			ModelMap model, Map<String, Object> map, @RequestParam(required = false) Integer studentId) {
+			 Map<String, Object> map, @RequestParam(required = false) Integer studentId) {
 		addPlacedStudent = placedStudentservice.updatePlacedStudentInformation(studentId);
 		map.put("AddPlacedStudent", addPlacedStudent);
 		return "addPlacedStudent";

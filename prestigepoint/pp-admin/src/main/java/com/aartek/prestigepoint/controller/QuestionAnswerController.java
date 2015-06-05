@@ -1,9 +1,6 @@
 package com.aartek.prestigepoint.controller;
-
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +22,7 @@ import com.aartek.prestigepoint.validator.QuestionAndAnswerValidator;
 public class QuestionAnswerController {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(QuestionAnswerController.class);
+	private static final Logger log = Logger.getLogger(QuestionAnswerController.class);
 
 	@Autowired
 	private QuestionAnswerService questionAnswerService;
@@ -51,7 +48,7 @@ public class QuestionAnswerController {
 
 	@RequestMapping(value = "/questionAction", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addQuestionAnswer(@ModelAttribute("QuestionAnswer") QuestionAnswer questionAnswer,
-			BindingResult result, ModelMap model, Map<String, Object> map, HttpServletRequest request) {
+			BindingResult result, ModelMap model) {
 		boolean status = false;
 		List<Subject> subjects = questionAnswerService.getAllSubjectName();
 		questionAndAnswerValidator.validate(questionAnswer, result);
@@ -81,7 +78,7 @@ public class QuestionAnswerController {
 
 	@RequestMapping(value = "/differenceQuestionAction", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addDifferenceQuestion(@ModelAttribute("QuestionAnswer") QuestionAnswer questionAnswer,
-			BindingResult result, ModelMap model, Map<String, Object> map, HttpServletRequest request) {
+			BindingResult result, ModelMap model) {
 		boolean status = false;
 		List<Subject> subjects = questionAnswerService.getAllSubjectName();
 		questionAndAnswerValidator.validate(questionAnswer, result);

@@ -50,7 +50,7 @@ public class CurrentBatchController {
 	 */
 	@RequestMapping("/currentBatch")
 	public String showCurrentbatch(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String message, HttpServletRequest request) {
+			@RequestParam(required = false) String message) {
 
 		map.put("CurrentBatch", new CurrentBatch());
 		List<Batch> batchList = batchService.getAllBatchName();
@@ -89,7 +89,7 @@ public class CurrentBatchController {
 		}
 		String method = request.getMethod();
 
-		if (method.equals("GET")) {
+		if (("GET").equals(method)) {
 			currentBatch = currentBatchService.updateCurrentBatch(currentBatchId);
 			model.addAttribute("currentBatchList", currentBatchList);
 			map.put("CurrentBatch", currentBatch);

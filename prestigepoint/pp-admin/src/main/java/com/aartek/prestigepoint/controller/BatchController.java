@@ -75,7 +75,7 @@ public class BatchController {
 		boolean status = false;
 		List<Batch> batchList = batchService.getAllBatchName();
 		String method = request.getMethod();
-		if (method.equals("GET")) {
+		if (("GET").equals(method)) {
 			batch = batchService.editBatch(batchId);
 			model.addAttribute("batchList", batchList);
 			map.put("Batch", batch);
