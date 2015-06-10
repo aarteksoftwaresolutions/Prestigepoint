@@ -20,6 +20,28 @@
     var src = $("#preview").attr("src");
     $('#imagePath').attr("value", src);
   }
+   function emailVarification(p) {
+	   var emailId = p.value;
+	     $.ajax({
+	  		url : "verifyUserEmailId.do?emailId=" + emailId,
+	  		type : "GET",
+	  		contentType : "application/json; charset=utf-8",
+	  		
+	  		success : function(t) {
+	  			if(t){
+	  				alert("your emailId already existed!");
+	  			 	document.getElementById("emailId").value="";  
+	  				
+	  				
+	  			}
+	  		
+	  		},
+	  		
+	  		error : function() {
+	  			alert("error");
+	  		}
+	  	})
+	  }  
 </script>
 </head>
 <body>
@@ -79,7 +101,7 @@
                   <p>
                     Email Id<small class="required">*</small>
                   </p> <form:input path="emailId" class="inputControl" placeholder="Email Id" required="autofocus"
-                    maxlength="100" /> </label>
+                    maxlength="100" onblur="emailVarification(this);" /> </label>
               </div>
             </td>
             <td><div class="form-control">
@@ -182,7 +204,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2"><input type="submit" value="Submit" class="btn lg-btn" onclick="imgvalue()"
+            <td colspan="2"><input type="submit" value="Submit" id="Submit" class="btn lg-btn" onclick="imgvalue()"
               style="width: 17%; float: right;" />
             </td>
           </tr>

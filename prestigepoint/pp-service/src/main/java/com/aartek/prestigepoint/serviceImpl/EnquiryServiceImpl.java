@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aartek.prestigepoint.model.AddChallenge;
 import com.aartek.prestigepoint.model.Enquiry;
 import com.aartek.prestigepoint.repository.EnquiryRepository;
 import com.aartek.prestigepoint.service.EnquiryService;
@@ -26,6 +27,9 @@ public class EnquiryServiceImpl implements EnquiryService {
 
 	@Autowired
 	private EnquiryRepository enquiryRepository;
+	
+	@Autowired
+	private EnquiryRepository addEnquiryRepository;
 
 	public void addEnquiryMessage(Enquiry enquiry) throws ParseException {
 		java.text.DateFormat dateFormat1 = new SimpleDateFormat("dd-MM-yyyy");
@@ -83,5 +87,19 @@ public class EnquiryServiceImpl implements EnquiryService {
 		List enquirylist = new ArrayList();
 		enquirylist = enquiryRepository.getMonthWiseEnquiry(month);
 		return enquirylist;
+	}
+	
+	public Enquiry updateEnquiryInformation(Integer enquiryId) {
+		List<Object> enquiryList = new ArrayList<Object>();
+		Enquiry enquiry = null;
+		enquiryList = addEnquiryRepository.updateEnquiryInformation(enquiryId);
+		for (Object object : enquiryList) {
+			enquiry = (Enquiry) object;
+		}
+		return enquiry;
+	}
+	
+	public void deleteEnquiryInformation(Integer enquiryId) {
+		enquiryRepository. deleteEnquiryInformation(enquiryId);
 	}
 }

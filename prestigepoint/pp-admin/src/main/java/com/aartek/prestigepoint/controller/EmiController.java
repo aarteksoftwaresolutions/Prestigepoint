@@ -49,8 +49,7 @@ public class EmiController {
 	 * @return
 	 */
 	@RequestMapping(value = "/viewDetails", method = { RequestMethod.GET, RequestMethod.POST })
-	public String viewFeesDetails(@ModelAttribute("Emi") Emi emi, ModelMap model,
-			@RequestParam(required = false) Integer registrationId, Integer emiId) {
+	public String viewFeesDetails(ModelMap model,@RequestParam(required = false) Integer registrationId, Integer emiId) {
 		List<Emi> emi1 = emiService.getFeesDetails(registrationId);
 		List<Registration> registrations = emiService.getRegistrationDetails(registrationId);
 		model.addAttribute("registrationList", registrations);

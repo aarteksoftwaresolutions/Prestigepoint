@@ -101,4 +101,11 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 		}
 		return loginMember;
 	}
+	
+	public boolean verifyUserEmailId(String emailId) {
+		boolean status = false;
+		status= stuRegRepository.verifyUserEmailId(emailId);
+		return status;
+		
+}
 }

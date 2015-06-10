@@ -110,8 +110,7 @@ public class CourseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteCourse", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCourse(@ModelAttribute("Course") Course course, ModelMap model,
-			@RequestParam(required = false) Integer courseId) {
+	public String deleteCourse( ModelMap model,@RequestParam(required = false) Integer courseId) {
 		courseService.deleteCourse(courseId);
 		model.addAttribute("message", IConstant.COURSE_DELETE_MESSAGE);
 		return "redirect:/addCourse.do";

@@ -11,24 +11,6 @@ import com.aartek.prestigepoint.model.CurrentBatch;
 import com.aartek.prestigepoint.repository.CurrentBatchRepository;
 import com.aartek.prestigepoint.util.IConstant;
 
-/**
- * CurrentButchRepositoryImpl, all the business logics related to current batch
- * defined here.
- * 
- * The functionality it performs are:
- * <ul>
- * <li>Add current batch information</li>
- * <li>Show the current batch information</li>
- * <li>Delete the current batch information</li>
- * <li>Edit the current batch information</li>
- * </ul>
- * 
- * @version 1.0
- * @author Aartek Software Solutions
- * @purpose Current batch business logic
- * @last_modified_dt 18th Nov 2014
- * @last_modified_by Aartek Software Solutions
- */
 @Repository
 @SuppressWarnings("unchecked")
 public class CurrentBatchRepositoryImpl implements CurrentBatchRepository {

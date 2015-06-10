@@ -19,4 +19,6 @@ public interface StudentRegistrationRepository {
 
 	public List<Object> studentSignIn(String emailId, String password);
 
+	public boolean verifyUserEmailId(String emailId);
+
 }

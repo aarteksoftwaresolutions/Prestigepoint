@@ -17,4 +17,8 @@ public interface EnquiryRepository {
 
 	public List getMonthWiseEnquiry(String month);
 
+	public List<Object> updateEnquiryInformation(Integer enquiryId);
+
+	public void deleteEnquiryInformation(Integer enquiryId);
+
 }

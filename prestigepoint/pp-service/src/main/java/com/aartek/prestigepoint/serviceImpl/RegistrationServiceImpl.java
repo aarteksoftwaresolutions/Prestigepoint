@@ -176,5 +176,12 @@ public class RegistrationServiceImpl implements RegistrationService {
 		registrationRepository.deleteStudentDetails(registrationId);
 
 	}
+	
+	public boolean verifyUserEmailId(String emailId) {
+		boolean status = false;
+		status= registrationRepository.verifyUserEmailId(emailId);
+		return status;
+		
+}
 
 }

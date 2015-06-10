@@ -117,8 +117,7 @@ public class BatchController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteBatch", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCatageory(@ModelAttribute("Batch") Batch batch, ModelMap model,
-			@RequestParam(required = false) Integer batchId) {
+	public String deleteCatageory(ModelMap model,@RequestParam(required = false) Integer batchId) {
 		batchService.deleteBatch(batchId);
 		model.addAttribute("message", IConstant.BATCH_DELETE_MESSAGE);
 		return "redirect:/addBatch.do";

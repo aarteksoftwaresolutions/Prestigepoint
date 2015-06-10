@@ -49,4 +49,12 @@ public class StudentRegistrationRepositoryImpl implements StudentRegistrationRep
 				IConstant.IS_DELETED);
 		return stuLogin;
 	}
+	
+	public boolean verifyUserEmailId(String emailId){
+		List list = hibernateTemplate.find("from Registration re where re.emailId = ? and re.isDeleted=?", emailId, IConstant.IS_DELETED);
+		if(!list.isEmpty()){
+    	return true;
+}
+		return false;
+}
 }

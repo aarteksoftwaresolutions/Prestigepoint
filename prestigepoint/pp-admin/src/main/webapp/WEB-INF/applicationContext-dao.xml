@@ -36,7 +36,30 @@
 		<property name="password">
 			<value>${connection.password}</value>
 		</property>
-
+  <!-- Connection pool code start -->
+    <property name="testConnectionOnCheckin" value="true" />
+    <property name="checkoutTimeout">
+      <value>600000</value>
+    </property>
+    <property name="maxIdleTime">
+      <value>30</value>
+    </property>
+    <property name="maxPoolSize">
+      <value>50</value>
+    </property>
+    <property name="minPoolSize">
+      <value>5</value>
+    </property>
+    <property name="initialPoolSize">
+      <value>5</value>
+    </property>
+    <property name="unreturnedConnectionTimeout">
+      <value>50</value>
+    </property>
+    <property name="maxStatements" value="2000" />
+    <property name="idleConnectionTestPeriod" value="30" />
+    <property name="automaticTestTable" value="c3p0_con_test" />
+    <!-- Connection pool code end -->
 	</bean>
 
 	<bean id="propertyConfigurer"

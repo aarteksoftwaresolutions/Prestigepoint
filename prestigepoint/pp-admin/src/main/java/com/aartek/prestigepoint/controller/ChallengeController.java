@@ -114,7 +114,7 @@ public class ChallengeController {
 	 * @return
 	 */
 	@RequestMapping(value = "/viewChallengeInformation")
-	public String viewChallengeList(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model,
+	public String viewChallengeList(@ModelAttribute("AddChallenge") AddChallenge addChallenge,
 			Map<String, Object> map, @RequestParam(required = false) Integer challengeId) {
 		addChallenge = addChallengeService.updateChallengeInformation(challengeId);
 		map.put("AddChallenge", addChallenge);

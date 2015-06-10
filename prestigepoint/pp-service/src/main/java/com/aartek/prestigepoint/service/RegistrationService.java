@@ -28,6 +28,8 @@ public interface RegistrationService {
 
   public List<Registration> getStudentDetailsByName(String firstName);
 
+  public boolean verifyUserEmailId(String emailId);
+
 
 
 }

@@ -49,8 +49,7 @@
 		<put-attribute name="title" type="string" value="addBatch Page" />
 	</definition>
 	<!-- rahul work -->
-	<definition name="addAdminEnquiry" id="addAdminEnquiry"
-		extends="baseTemplate">
+	<definition name="addAdminEnquiry" id="addAdminEnquiry" extends="baseTemplate">
 		<put-attribute name="body" value="/WEB-INF/jsp/addAdminEnquiry.jsp" />
 		<put-attribute name="title" type="string" value="add Enquiry Page" />
 	</definition>

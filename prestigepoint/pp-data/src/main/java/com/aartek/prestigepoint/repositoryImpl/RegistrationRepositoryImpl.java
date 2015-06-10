@@ -30,50 +30,47 @@ public class RegistrationRepositoryImpl implements RegistrationRepository {
 	}
 
 	public List<Registration> getAllStudentDetails() {
-		List<Registration> studentList = null;
-		studentList = hibernateTemplate.find("from Registration  where IS_DELETED=" + IConstant.IS_DELETED
+		
+		List<Registration> studentList = hibernateTemplate.find("from Registration  where IS_DELETED=" + IConstant.IS_DELETED
 				+ "order by registrationId desc");
 		return studentList;
 	}
 
 	public List<Registration> getStudentDetailsByName(String firstName) {
-		List<Registration> studentList = null;
-		studentList = hibernateTemplate.find("from Registration r  where  r.firstName='" + firstName
+		
+		List<Registration> studentList = hibernateTemplate.find("from Registration r  where  r.firstName='" + firstName
 				+ "' or  r.firstName LIKE '%" + firstName + "%' and  r.isDeleted=" + IConstant.IS_DELETED
 				+ " order by registrationId desc");
 		return studentList;
 	}
 
 	public List<Registration> getCourseWiseStudentDetails(Integer courseId) {
-		List<Registration> studentList = null;
-		studentList = hibernateTemplate.find("from Registration r where r.isDeleted=" + IConstant.IS_DELETED
+		
+		List<Registration> studentList = hibernateTemplate.find("from Registration r where r.isDeleted=" + IConstant.IS_DELETED
 				+ " and r.course.courseId=" + courseId);
 		return studentList;
 	}
 
 	public List<Registration> getBatchWiseStudentDetails(Integer batchId) {
-		List<Registration> studentList = null;
-		studentList = hibernateTemplate.find("from Registration r where r.isDeleted=" + IConstant.IS_DELETED
+	
+		List<Registration> studentList = hibernateTemplate.find("from Registration r where r.isDeleted=" + IConstant.IS_DELETED
 				+ " and r.batch.batchId=" + batchId);
 		return studentList;
 	}
 
 	public List<String> getallStudentEmailId() {
-		List<String> emailList = null;
-		emailList = hibernateTemplate.find("select r.emailId from Registration r where r.isDeleted="
+		List<String> emailList = hibernateTemplate.find("select r.emailId from Registration r where r.isDeleted="
 				+ IConstant.IS_DELETED);
 		return emailList;
 	}
 
 	public List<String> getallEnquiryEmailId() {
-		List<String> emailList = null;
-		emailList = hibernateTemplate.find("select e.emailId from Enquiry e where e.isDeleted=" + IConstant.IS_DELETED);
+		List<String> emailList  = hibernateTemplate.find("select e.emailId from Enquiry e where e.isDeleted=" + IConstant.IS_DELETED);
 		return emailList;
 	}
 
 	public List<Object> makeAsPaidUser(Integer registrationId) {
-		List<Object> student = null;
-		student = hibernateTemplate.find("from Registration r where r.isDeleted=" + IConstant.IS_DELETED
+		List<Object> student = hibernateTemplate.find("from Registration r where r.isDeleted=" + IConstant.IS_DELETED
 				+ " and r.registrationId=" + registrationId);
 		return student;
 	}
@@ -88,8 +85,8 @@ public class RegistrationRepositoryImpl implements RegistrationRepository {
 	}
 
 	public List<Object> editStudentDetails(Integer registrationId) {
-		List<Object> list = null;
-		list = hibernateTemplate.find("from Registration r where r.registrationId=" + registrationId);
+		
+		List<Object> list = hibernateTemplate.find("from Registration r where r.registrationId=" + registrationId);
 		return list;
 	}
 
@@ -100,4 +97,12 @@ public class RegistrationRepositoryImpl implements RegistrationRepository {
 			hibernateTemplate.update(rest);
 		}
 	}
+	public boolean verifyUserEmailId(String emailId){
+		@SuppressWarnings("rawtypes")
+		List list = hibernateTemplate.find("from Registration re where re.emailId = ? and re.isDeleted=?", emailId, IConstant.IS_DELETED);
+		if(!list.isEmpty()){
+    	return true;
+}
+		return false;
+}
 }

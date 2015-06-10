@@ -16,4 +16,6 @@ public interface StudentRegistrationService {
 	public Registration editStuRegs(Integer registrationId);
 
 	public Registration stuSignIn(Registration registration);
+
+	public boolean verifyUserEmailId(String emailId);
 }

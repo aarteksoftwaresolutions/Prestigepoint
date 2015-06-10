@@ -375,4 +375,14 @@ public class RegistrationController {
 		return "redirect:/registration.do";
 		
 	}
+	
+	@RequestMapping(value = "/emailIdAction", method = { RequestMethod.GET })
+	@ResponseBody
+	public boolean verifyUserEmailId(@RequestParam(required = false) String emailId) {
+		System.out.println("saf"+emailId);
+		boolean status = false;
+		status = registrationService.verifyUserEmailId(emailId);
+		return status;
+		
+	}
 }

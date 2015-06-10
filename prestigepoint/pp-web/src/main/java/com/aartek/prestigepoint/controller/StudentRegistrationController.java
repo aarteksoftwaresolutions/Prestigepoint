@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aartek.prestigepoint.model.Course;
 import com.aartek.prestigepoint.model.PhotoInFooter;
@@ -39,7 +40,8 @@ import com.aartek.prestigepoint.validator.StudentRegistrationValidator;
 public class StudentRegistrationController {
 
 	@SuppressWarnings("unused")
-	private static final Logger logger = Logger.getLogger(StudentRegistrationController.class);
+	private static final Logger logger = Logger
+			.getLogger(StudentRegistrationController.class);
 	@Autowired
 	private StudentRegistrationService stuRegService;
 
@@ -57,12 +59,14 @@ public class StudentRegistrationController {
 
 	@RequestMapping("/stuRegistration")
 	public String showStuRegistrationPage(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String message, HttpServletRequest request) {
+			@RequestParam(required = false) String message,
+			HttpServletRequest request) {
 		map.put("Registration", new Registration());
 		List<Subject> subjects = questionAnswerService.getAllSubjectName();
 		model.addAttribute("subjectList", subjects);
 		List<Course> courseList = courseService.getAllCourseName();
-		List<PhotoInFooter> listOfSelectedStudent = footerPhotoService.listOfSelectedStudent();
+		List<PhotoInFooter> listOfSelectedStudent = footerPhotoService
+				.listOfSelectedStudent();
 		model.addAttribute("allStudentDetail", listOfSelectedStudent);
 		model.addAttribute("course", courseList);
 		List<Year> yearList = courseService.getAllYearName();
@@ -71,9 +75,12 @@ public class StudentRegistrationController {
 		return "stuRegistration";
 	}
 
-	@RequestMapping(value = "/registration", method = { RequestMethod.GET, RequestMethod.POST })
-	public String signUp(@ModelAttribute("Registration") Registration registration, BindingResult result,
-			ModelMap model, Map<String, Object> map, HttpServletRequest request) {
+	@RequestMapping(value = "/registration", method = { RequestMethod.GET,
+			RequestMethod.POST })
+	public String signUp(
+			@ModelAttribute("Registration") Registration registration,
+			BindingResult result, ModelMap model, Map<String, Object> map,
+			HttpServletRequest request) {
 		boolean status = false;
 		registrationValidator.validate(registration, result);
 		if (result.hasErrors()) {
@@ -85,18 +92,35 @@ public class StudentRegistrationController {
 		}
 		status = stuRegService.addStudentInfo(registration);
 		if (status) {
-			model.addAttribute("message", IConstant.REGISTRATION_SUCCESS_MESSAGE);
+			model.addAttribute("message",
+					IConstant.REGISTRATION_SUCCESS_MESSAGE);
 		} else {
-			model.addAttribute("message", IConstant.REGISTRATION_FAILURE_MESSAGE);
+			model.addAttribute("message",
+					IConstant.REGISTRATION_FAILURE_MESSAGE);
 		}
 		return "redirect:/stuRegistration.do";
 	}
 
-	@RequestMapping(value = "/verify", method = { RequestMethod.GET, RequestMethod.POST })
-	public String verifyUser(@ModelAttribute("Registration") Registration registration, BindingResult result,
-			ModelMap model, Map<String, Object> map, HttpServletRequest request,
+	@RequestMapping(value = "/verify", method = { RequestMethod.GET,
+			RequestMethod.POST })
+	public String verifyUser(
+			@ModelAttribute("Registration") Registration registration,
+			BindingResult result, ModelMap model, Map<String, Object> map,
+			HttpServletRequest request,
 			@RequestParam(required = false) Integer registrationId) {
 		registration = stuRegService.editStuRegs(registrationId);
 		return "redirect:/login.do";
 	}
+
+	@RequestMapping(value = "/verifyUserEmailId", method = { RequestMethod.GET })
+	@ResponseBody
+	public boolean verifyUserEmailId(
+			@RequestParam(required = false) String emailId) {
+		System.out.println("saf" + emailId);
+		boolean status = false;
+		status = stuRegService.verifyUserEmailId(emailId);
+		return status;
+
+	}
+
 }

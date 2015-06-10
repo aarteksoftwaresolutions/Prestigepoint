@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LearningController {
 	
-	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(LearningController.class);
 	PrintWriter out = null;
 	HttpServletRequest req = null;

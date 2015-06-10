@@ -20,7 +20,7 @@
     <div class="conact-form">
       <c:set var="count" value="0" scope="page" />
       <p>&nbsp;</p>
-      <display:table name="enquiryList" pagesize="10" class="basic-table" uid="cat" requestURI="viewEnquiryDetails.do">
+      <display:table name="enquiryList" pagesize="80" class="basic-table" uid="enquiryList">
         <c:set var="count" value="${count+1}" scope="page" />
         <display:column title="S.NO" class="showHeading" style=" width:1%;">
      ${count}
@@ -30,7 +30,11 @@
         <display:column property="mobileNo" title="MOBILE No." />
         <display:column property="comment" title="COMMENT" />
         <display:column property="date" title="DATE" />
-        <display:column property="subject" title="SUBJECT" />
+        <display:column title="Edit"> <a href="updateEnquiry.do?enquiryId=${enquiryList.enquiryId}"> Edit</a>
+        </display:column>
+         <display:column title="Delete"><a href="deleteEnquiryInformation.do?enquiryId=${enquiryList.enquiryId}"
+                            onclick="return confirm('Please confirm if you want to delete this enquiry!');">Delete</a>
+                    </display:column>
       </display:table>
     </div>
   </div>

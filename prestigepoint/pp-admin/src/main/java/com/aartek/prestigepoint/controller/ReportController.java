@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.aartek.prestigepoint.model.AddChallenge;
 import com.aartek.prestigepoint.model.Enquiry;
 import com.aartek.prestigepoint.model.Year;
 import com.aartek.prestigepoint.service.CourseService;
@@ -119,4 +120,21 @@ public class ReportController {
 		return "viewEnquiryByMonth";
 	}
 
+	
+	@RequestMapping(value = "/updateEnquiry")
+	public String updateEnquiryInformation(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map,
+			 HttpServletRequest request, @RequestParam(required = false) Integer enquiryId)throws ParseException
+	{
+		enquiry =  enquiryService.updateEnquiryInformation(enquiryId);
+		map.put("Enquiry", enquiry);
+
+		return "addAdminEnquiry";
+
+	}
+	@RequestMapping(value = "/deleteEnquiryInformation", method = { RequestMethod.GET, RequestMethod.POST })
+	public String deleteEnquiryInformation(@RequestParam(required = false) Integer enquiryId) {
+		enquiryService.deleteEnquiryInformation(enquiryId);
+		
+		return "redirect:/viewEnquiryDetails.do";
+	}
 }

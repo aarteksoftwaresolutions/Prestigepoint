@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -11,7 +11,7 @@
 <!--stylesheet begins here -->
 <link rel="stylesheet" type="text/css" href="css/reset.css" media="all">
 <link rel="stylesheet" type="text/css" href="fonts/font-class.css"
-  media="all">
+	media="all">
 <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
 <!--javascript libraries begins here -->
 <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
@@ -35,76 +35,79 @@
 <!-- Google Analytics code end  -->
 </head>
 <body>
-  <!--header starts here-->
-  <header> <section class="top-header">
-  <div class="container clearfix">
-    <ul class="contact-info">
-      <c:choose>
-        <c:when test="${sessionScope.registration!=null}">
-          <li><i></i><font color="#873d80"><c:out
-                value="Welcome," /><a href="viewProfile.do">&nbsp;&nbsp;<c:out
-                  value="${sessionScope.registration.firstName}" />
-            </a> </font>&nbsp;&nbsp;</li>
-        </c:when>
-      </c:choose>
-      <li>&nbsp;&nbsp;</li>
-      <li><i class="icon icon-email"></i><a
-        href="mailto:hrd@prestigepoint.in">hrd@prestigepoint.in</a></li>
-      <li><i class="icon  icon-call"></i> 91-731-3087869</li>
-    </ul>
-    <div class="registration-alert">
-      <img src="img/icon-new.png" alt=" " />Registration open for new <span>JAVA
-        BATCH</span>
-    </div>
-  </div>
-  </section> <section class="main-header">
-  <div class="container clearfix bottom-border">
-    <nav>
-    <ul>
-      <li><a href="welcome.do">Home</a></li>
-      <li><a href="aboutUs.do">About Us</a></li>
-      <li><a href="course.do">Courses</a></li>
-      <li><a href="viewCurrentBatch.do">Current Batch</a></li>
-      <li><a href="placementCell.do">Placement Cell</a></li>
-      <li><a href="features.do">Features</a></li>
-      <li><a href="contactUs.do">Contact</a></li>
-     <!--  <li><a href="forum.do">Forum</a></li> -->
-     <!--  -->
+	<!--header starts here-->
+	<header> <section class="top-header">
+	<div class="container clearfix">
+		<ul class="contact-info">
 			<c:choose>
-        <c:when test="${sessionScope.registration!=null}">
-          <li><a href="javascript:;">Student Utilities</a>
-            <ul>
-            <li><a href="javascript:;">Interview Question</a>
+				<c:when test="${sessionScope.registration!=null}">
+					<li><i></i><font color="#873d80"><c:out
+								value="Welcome," /><a href="viewProfile.do">&nbsp;&nbsp;<c:out
+									value="${sessionScope.registration.firstName}" />
+						</a> </font>&nbsp;&nbsp;</li>
+				</c:when>
+			</c:choose>
+			<li>&nbsp;&nbsp;</li>
+			<li><i class="icon icon-email"></i><a
+				href="mailto:hrd@prestigepoint.in">hrd@prestigepoint.in</a></li>
+			<li><i class="icon  icon-call"></i> 91-731-3087869</li>
+		</ul>
+		<div class="registration-alert">
+			<img src="img/icon-new.png" alt=" " />Registration open for new <span>JAVA
+				BATCH</span>
+		</div>
+	</div>
+	</section> <section class="main-header">
+	<div class="container clearfix bottom-border">
+		<nav>
+		<ul>
+			<li><a href="welcome.do">Home</a></li>
+			<li><a href="#">Prestigepoint</a>
 				<ul>
-					<c:forEach items="${subjectList}" var="sub">
-						<li><a href="QuestionAndAnswer.do?subjectId=${sub.subjectId}">${sub.subjectName}</a>
-						</li>
-					</c:forEach>
-				</ul>
-			</li>
-              <li><a href="downloadJars.do">Download jar</a></li>
-               <li><a href="forum.do">Forum</a></li>
-                <li><a href="viewProfile.do">Profile</a></li>
-                 <li><a href="viewChallengeDetails.do">Challenge Title</a></li>
-                 <li><a href="editor.do">Java Editor</a></li>
-            </ul></li>
-         <!--  <li><a href="viewProfile.do">Profile</a></li> -->
+					<li><a href="aboutUs.do">About Us</a></li>
+					<li><a href="directorMessage.do">Director Message</a></li>
+					<li><a href="directorMessage.do">Key People</a></li>
+				</ul></li>
+			<li><a href="course.do">Courses</a></li>
+			<li><a href="viewCurrentBatch.do">Current Batch</a></li>
+			<li><a href="placementCell.do">Placement Cell</a></li>
+			<li><a href="features.do">Features</a></li>
+			<li><a href="contactUs.do">Contact</a></li>
+			<c:choose>
+				<c:when test="${sessionScope.registration!=null}">
+					<li><a href="javascript:;">Student Utilities</a>
+						<ul>
+							<li><a href="javascript:;">Interview Question</a>
+								<ul>
+									<c:forEach items="${subjectList}" var="sub">
+										<li><a
+											href="QuestionAndAnswer.do?subjectId=${sub.subjectId}">${sub.subjectName}</a>
+										</li>
+									</c:forEach>
+								</ul></li>
+							<li><a href="downloadJars.do">Download jar</a></li>
+							<li><a href="forum.do">Forum</a></li>
+							<li><a href="viewProfile.do">Profile</a></li>
+							<li><a href="viewChallengeDetails.do">Challenge Title</a></li>
+							<li><a href="editor.do">Java Editor</a></li>
+						</ul></li>
+					<!--  <li><a href="viewProfile.do">Profile</a></li> -->
 					<li class="link-login"><a href="logout.do">Logout</a></li>
-        </c:when>
-        <c:otherwise>
+				</c:when>
+				<c:otherwise>
 
-          <li class="link-login"><a href="login.do">Login</a></li>
-          <li><a class="btn" href="stuRegistration.do">Signup</a></li>
-        </c:otherwise>
-      </c:choose>
-    </ul>
-    </nav>
-    <div class="brand-logo">
-      <a href="welcome.do"><img src="img/logo-prestige-point.png"
-        alt="Brand Logo"> </a>
-    </div>
-  </div>
-  </section> </header>
-  <!--header ends here-->
+					<li class="link-login"><a href="login.do">Login</a></li>
+					<li><a class="btn" href="stuRegistration.do">Signup</a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+		</nav>
+		<div class="brand-logo">
+			<a href="welcome.do"><img src="img/logo-prestige-point.png"
+				alt="Brand Logo"> </a>
+		</div>
+	</div>
+	</section> </header>
+	<!--header ends here-->
 </body>
 </html>

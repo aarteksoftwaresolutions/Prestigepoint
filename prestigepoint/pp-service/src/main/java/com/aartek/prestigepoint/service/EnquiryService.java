@@ -18,4 +18,8 @@ public interface EnquiryService {
 
 	public List getMonthWiseEnquiry(String month);
 
+	public Enquiry updateEnquiryInformation(Integer enquiryId);
+
+	public void deleteEnquiryInformation(Integer enquiryId);
+
 }

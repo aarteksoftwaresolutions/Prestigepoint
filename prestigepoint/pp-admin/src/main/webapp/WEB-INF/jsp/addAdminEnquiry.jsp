@@ -108,7 +108,7 @@
 										Qualification<small></small>
 									</p> <form:input path="qualification" class="inputControl1"
 										placeholder="Qualification" required="autofocus"
-										maxlength="50" onkeypress="return Alphabets(event)" /> <form:hidden
+										maxlength="50"/> <form:hidden
 										path="enquiryId" />
 								</label>
 							</div></td>
@@ -118,8 +118,7 @@
 									<p>
 										Collage<small></small>
 									</p> <form:input path="collage" class="inputControl1"
-										placeholder="Collage" required="autofocus" maxlength="50"
-										onkeypress="return Alphabets(event)" /> <form:hidden
+										placeholder="Collage" required="autofocus" maxlength="50"/> <form:hidden
 										path="enquiryId" />
 								</label>
 							</div></td>
@@ -169,8 +168,7 @@
 								<p>
 										Comment<small></small>
 									</p> <form:textarea path="comment" class="inputControl1"
-										placeholder="comment" required="autofocus" maxlength="50"
-										onkeypress="return Alphabets(event)" /> <form:hidden
+										placeholder="comment" required="autofocus" maxlength="50" /> <form:hidden
 										path="enquiryId" />
 								</label>
 							</div></td>

@@ -28,5 +28,7 @@ public interface RegistrationRepository {
 
   public List<Registration> getStudentDetailsByName(String firstName);
 
+  public boolean verifyUserEmailId(String emailId);
+
 
 }

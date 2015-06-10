@@ -68,6 +68,13 @@ public class UserLoginController {
 		return "aboutUs";
 
 	}
+	
+	@RequestMapping(value = "/directorMessage", method = RequestMethod.GET)
+	public String directorMessage(Map<String, Object> map, Model model) {
+
+		return "directorMessage";
+
+	}
 
 	@RequestMapping(value = "/features", method = RequestMethod.GET)
 	public String features(Map<String, Object> map, Model model) {
@@ -77,7 +84,7 @@ public class UserLoginController {
 		model.addAttribute("subjectList", subjects);
 		return "features";
 	}
-
+	
 	@RequestMapping(value = "/termAndCondition", method = RequestMethod.GET)
 	public String termAndCondition(Map<String, Object> map, Model model) {
 		List<Subject> subjects = questionAnswerService.getAllSubjectName();

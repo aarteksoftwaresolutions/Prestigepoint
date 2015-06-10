@@ -38,6 +38,11 @@
     <put-attribute name="body" value="/WEB-INF/jsp/features.jsp" />
     <put-attribute name="title" type="string" value="Features Page" />
   </definition>
+  
+   <definition name="directorMessage" id="directorMessage" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/directorMessage.jsp" />
+    <put-attribute name="title" type="string" value="directorMessage Page" />
+  </definition>
 
   <definition name="termAndCondition" id="termAndCondition" extends="baseTemplate">
     <put-attribute name="body" value="/WEB-INF/jsp/termAndCondition.jsp" />

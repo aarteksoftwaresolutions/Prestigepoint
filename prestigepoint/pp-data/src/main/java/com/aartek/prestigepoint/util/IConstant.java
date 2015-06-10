@@ -59,5 +59,5 @@ public static final String PLACED_SUCCESS_MESSAGE = "Your data successfully inse
 public static final String PLASED_FAILURE_MESSAGE = "Your data not successfully inserted";
 public static final String CHALLENGE_SUCCESS_MESSAGE = "Your challenge successfully added";
 public static final String CHALLENGE_UPDATE_MESSAGE = "Your data successfully updated";
-
+public static final String VARIFY_SUCCESS_MESSAGE = "Your emailId alreay existed!";
 }
