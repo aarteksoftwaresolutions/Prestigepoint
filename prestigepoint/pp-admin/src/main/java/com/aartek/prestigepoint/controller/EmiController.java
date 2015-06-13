@@ -32,7 +32,7 @@ import com.aartek.prestigepoint.util.IConstant;
 public class EmiController {
 
 	@SuppressWarnings("unused")
-	private static final Logger log = Logger.getLogger(ChallengeController.class);
+	private static final Logger log = Logger.getLogger(ChallengeController.class); //Please Meenal don't do cut and paste code.Change class name in logger
 
 	@Autowired
 	private EmiService emiService;
@@ -48,13 +48,13 @@ public class EmiController {
 	 * @param registrationId
 	 * @return
 	 */
-	@RequestMapping(value = "/viewDetails", method = { RequestMethod.GET, RequestMethod.POST })
-	public String viewFeesDetails(ModelMap model,@RequestParam(required = false) Integer registrationId, Integer emiId) {
+	@RequestMapping(value = "/viewDetails", method = { RequestMethod.GET, RequestMethod.POST }) //change viewDetails to getEmiDetails
+	public String viewFeesDetails(ModelMap model,@RequestParam(required = false) Integer registrationId, Integer emiId) {//change method name
 		List<Emi> emi1 = emiService.getFeesDetails(registrationId);
 		List<Registration> registrations = emiService.getRegistrationDetails(registrationId);
 		model.addAttribute("registrationList", registrations);
 		model.addAttribute("feesDetails", emi1);
-		model.addAttribute("registrationId", registrationId);
+		model.addAttribute("registrationId", registrationId);  
 		model.addAttribute("emiId", emiId);
 		return "emi";
 	}
@@ -72,8 +72,8 @@ public class EmiController {
 	@RequestMapping("/emi")
 	public String showFee(Map<String, Object> map, Model model, @RequestParam(required = false) Integer registrationId,
 			@RequestParam(required = false) String message, @RequestParam(required = false) Integer emiId,
-			HttpServletRequest request) {
-		HttpSession session = request.getSession();
+			HttpServletRequest request) { //Please change method name showFee to getFeeDetails
+		HttpSession session = request.getSession(); //Meenal why use session here because i thing you are using interceptor
 		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
 		if (loginMember != null) {
 			if (emiId != null) {
@@ -103,11 +103,11 @@ public class EmiController {
 	 * @return
 	 * @throws ParseException
 	 */
-	@SuppressWarnings("unused")
-	@RequestMapping(value = "/addEmi", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addEmiData(@ModelAttribute("Emi") Emi emi, ModelMap model, HttpServletRequest request)
-			throws ParseException {
-		HttpSession session = request.getSession();
+	@SuppressWarnings("unused") //Please put this line top of the class
+	@RequestMapping(value = "/addEmi", method = { RequestMethod.GET, RequestMethod.POST }) //change action addEmi to saveEmi
+	public String addEmiData(@ModelAttribute("Emi") Emi emi, ModelMap model, HttpServletRequest request) //change method name
+			throws ParseException { 
+		HttpSession session = request.getSession(); //Please reomve session
 		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
 		boolean status = false;
 		if (emi.getEmiId() != null) {
@@ -123,7 +123,7 @@ public class EmiController {
 			}
 
 		} else {
-			status = emiService.addEmiInfo(emi);
+			status = emiService.addEmiInfo(emi); //change method name addEmiInfo to saveEmi
 			if (status) {
 				model.addAttribute("registrationId", emi.getRegistration().getRegistrationId());
 				model.addAttribute("message", "Emi Save successfully");
@@ -143,11 +143,11 @@ public class EmiController {
 	 * @param emiId
 	 * @return
 	 */
-	@RequestMapping(value = "/editEmiAction", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/editEmiAction", method = { RequestMethod.GET, RequestMethod.POST }) //change action editEmiAction to editEmi
 	public String editEmiData(@ModelAttribute("Emi") Emi emi, ModelMap model, Integer emiId) {
-		emi = emiService.editEimForSingleRecord(emiId);
+		emi = emiService.editEimForSingleRecord(emiId); //Method name should be editEmi
 
-		if (emi != null) {
+		if (emi != null) {//remove spaces
 			model.put("Emi", emi);
 		}
 		return "emi";
@@ -163,8 +163,8 @@ public class EmiController {
 	 */
 
 	@RequestMapping(value = "/deleteEmiDetails", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCatageory(@ModelAttribute("Emi") Emi emi, ModelMap model,
-			@RequestParam(required = false) Integer emiId) {
+	public String deleteCatageory(@ModelAttribute("Emi") Emi emi, ModelMap model, //Please Meenal don't cut and paste code. Because you are in EMi controller and using deleteCategory name why
+			@RequestParam(required = false) Integer emiId) { //Remove unused parameter like @ModelAttribute("Emi") Emi emi
 		emiService.deleteEmiDetails(emiId);
 		model.addAttribute("message", IConstant.STUDENT_DELETE_MESSAGE);
 		model.addAttribute("emiId", emiId);
