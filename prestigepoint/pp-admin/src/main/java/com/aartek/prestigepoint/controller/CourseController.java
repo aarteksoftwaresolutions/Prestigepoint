@@ -43,9 +43,9 @@ public class CourseController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/addCourse")
-	public String showaddCoursePage(Map<String, Object> map, Model model, @RequestParam(required = false) String message) {
-		List<Course> courseList = courseService.getAllCourseName();
+	@RequestMapping("/addCourse") //change addCourse to course
+	public String showaddCoursePage(Map<String, Object> map, Model model, @RequestParam(required = false) String message) { //change method name showaddCoursePage
+		List<Course> courseList = courseService.getAllCourseName();//change method name getAllCourseName to getCourses 
 		if (courseList != null) {
 			model.addAttribute("courseList", courseList);
 		}
@@ -53,7 +53,7 @@ public class CourseController {
 		model.addAttribute("message", message);
 		return "addCourse";
 
-	}
+	}//Remove space
 
 	/**
 	 * Use for save and update course information.
@@ -66,11 +66,11 @@ public class CourseController {
 	 * @param courseId
 	 * @return
 	 */
-	@RequestMapping(value = "/addCourseAction", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addCourseInfo(@ModelAttribute("Course") Course course, ModelMap model, Map<String, Object> map,
+	@RequestMapping(value = "/addCourseAction", method = { RequestMethod.GET, RequestMethod.POST })//change addCourseAction action name to saveCourse
+	public String addCourseInfo(@ModelAttribute("Course") Course course, ModelMap model, Map<String, Object> map,//change method name
 			HttpServletRequest request, @RequestParam(required = false) Integer courseId) {
 		boolean status = false;
-		List<Course> courseList = courseService.getAllCourseName();
+		List<Course> courseList = courseService.getAllCourseName();//change method name like above
 		String method = request.getMethod();
 		if (("GET").equals(method)) {
 			course = courseService.editCourse(courseId);
@@ -80,14 +80,14 @@ public class CourseController {
 		} else {
 			model.addAttribute("courseList", courseList);
 			if (course.getCourseId() != null) {
-				status = courseService.addCourse(course);
+				status = courseService.addCourse(course); //change method name addCourse to saveCourse
 				if (status) {
 					model.addAttribute("message", IConstant.COURSE_EDIT_SUCCESS_MESSAGE);
 				} else {
 					model.addAttribute("message", IConstant.COURSE_EDIT_FAILURE_MESSAGE);
 				}
 			} else {
-				status = courseService.addCourse(course);
+				status = courseService.addCourse(course);//change like above
 				if (status) {
 					model.addAttribute("message", IConstant.COURSE_SUCCESS_MESSAGE);
 				} else {
@@ -123,7 +123,7 @@ public class CourseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/viewEnquiryDetails")
+	@RequestMapping("/viewEnquiryDetails")//change viewEnquiryDetails to getEnquiry 
 	public String showviewEnquiryDetailsPage(Model model) {
 		List<Enquiry> enquiryList = courseService.getAllEnquiryDetails();
 		if (enquiryList != null) {
