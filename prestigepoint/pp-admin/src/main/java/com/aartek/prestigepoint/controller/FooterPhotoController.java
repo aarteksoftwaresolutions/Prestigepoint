@@ -42,9 +42,9 @@ public class FooterPhotoController {
 	 * @param model
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
-	@RequestMapping("/addFooterPhoto")
-	public String showPageForFooterPhoto(@SuppressWarnings("rawtypes") Map map,
+	@SuppressWarnings("unchecked")//this line should me top of the class
+	@RequestMapping("/addFooterPhoto") //change addFooterPhoto to getFooterPhotoPage
+	public String showPageForFooterPhoto(@SuppressWarnings("rawtypes") Map map, //change method name
 			@RequestParam(required = false) String message, Model model) {
 		List<PhotoInFooter> photoInFooterList = footerPhotoService.getAllStudentName();
 		model.addAttribute("photoInFooterList", photoInFooterList);
@@ -64,8 +64,8 @@ public class FooterPhotoController {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/addFooterPhotoAction", method = { RequestMethod.GET, RequestMethod.POST })
-	public String insertFooterPhotoDetail(@ModelAttribute("PhotoInFooter") PhotoInFooter photoInFooter,
+	@RequestMapping(value = "/addFooterPhotoAction", method = { RequestMethod.GET, RequestMethod.POST }) //change method name addFooterPhotoAction to saveFooterPhoto
+	public String insertFooterPhotoDetail(@ModelAttribute("PhotoInFooter") PhotoInFooter photoInFooter,//change method name
 			HttpServletRequest request, @RequestParam(required = false) Integer studentId,
 			@SuppressWarnings("rawtypes") Map map, ModelMap model) {
 		@SuppressWarnings("unused")
@@ -86,14 +86,14 @@ public class FooterPhotoController {
 
 			model.addAttribute("photoInFooterList", photoInFooterList);
 			if (photoInFooter.getStudentId() != null) {
-				status = footerPhotoService.addFooterPhoto(photoInFooter);
+				status = footerPhotoService.addFooterPhoto(photoInFooter);//Method should be saveFooterPhoto
 				if (status) {
 					model.addAttribute("message", IConstant.STUDENT_EDIT_SUCCESS_MESSAGE);
 				} else {
 					model.addAttribute("message", IConstant.STUDENT_EDIT_FAILURE_MESSAGE);
 				}
 			} else {
-				status = footerPhotoService.addFooterPhoto(photoInFooter);
+				status = footerPhotoService.addFooterPhoto(photoInFooter);//MEthod should be saveFooterPhoto
 				if (status) {
 					model.addAttribute("message", IConstant.PLACED_STUDENT_SUCCESS_MESSAGE);
 				} else {
@@ -107,17 +107,17 @@ public class FooterPhotoController {
 
 	@RequestMapping(value = "/changeStudentStatus", method = { RequestMethod.GET, RequestMethod.POST })
 	public String changeStudentStatus(@ModelAttribute("PhotoInFooter") PhotoInFooter photoInFooter,
-			@RequestParam(required = false) String studentId, @RequestParam(required = false) String checkedValue) {
+			@RequestParam(required = false) String studentId, @RequestParam(required = false) String checkedValue) { //Remove unsed parameter
 
 		List<PhotoInFooter> photoInFooter2 = footerPhotoService.getSingleStudentDetail(studentId);
-		photoInFooter = photoInFooter2.get(0);
+		photoInFooter = photoInFooter2.get(0); //Please check condition before get(0) and 0 should be from IConstant
 		if (("checked").equals(checkedValue)) {
 			footerPhotoService.changeStatusByStudentId(photoInFooter);
 		} else {
 			footerPhotoService.uncheckStatusByStudentId(photoInFooter);
 		}
 		return "redirect:/addFooterPhoto";
-	}
+	} //Remove spaces
 	/**
 	 * use for delete the student information
 	 * @param photoInFooter
@@ -132,7 +132,7 @@ public class FooterPhotoController {
 		footerPhotoService.deleteStudentData(studentId);
 		model.addAttribute("message", IConstant.PLACED_STUDENT_DELETE_MESSAGE);
 		
-		return "redirect:/addFooterPhoto.do";
+		return "redirect:/addFooterPhoto.do"; //Remove unsed parameter and white spaces
 		
 	}
 
