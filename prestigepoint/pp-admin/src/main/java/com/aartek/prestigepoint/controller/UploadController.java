@@ -37,12 +37,12 @@ public class UploadController {
 
 	@RequestMapping("/upload")
 	public String showUploadPage(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String uploadMessage) {
+			@RequestParam(required = false) String uploadMessage) {//method name shold be getUploadPage
 		model.addAttribute("uploadMessage", uploadMessage);
 		return "upload";
 	}
 
-	@RequestMapping(value = "/Uploadjar", method = RequestMethod.POST)
+	@RequestMapping(value = "/Uploadjar", method = RequestMethod.POST)//action name should be saveJar
 	public String handleFileUpload(Model model, @RequestParam("type") String type,
 			@RequestParam("file") MultipartFile file, HttpServletResponse response, Upload upload) throws IOException {
 		response.setContentType("text/html;charset=UTF-8");
@@ -65,7 +65,7 @@ public class UploadController {
 			upload.setNameOfJar(fileName);
 			upload.setPathOfJar(path + File.separator + fileName);
 			uploadService.uploadJar(upload);
-		} catch (FileNotFoundException fne) {
+		} catch (FileNotFoundException fne) {//chnage variable name
 			logger.info("FileNotFoundException!" + fne);
 			model.addAttribute("uploadMessage", IConstant.JAR_FAILURE_MESSAGE);
 		} finally {
