@@ -59,7 +59,7 @@ public class MailController {
 	@RequestMapping("/sendMail")
 	public String showSendMail(Map<String, Object> map, Model model,
 			@RequestParam(required = false) String emailId) {
-		log.info("this is mailer");
+		log.info("this is mailer");//please chnage comment and comment should meaningful
 		map.put("Registration", new Registration());
 		model.addAttribute("emailId", emailId);
 		return "sendMail";
@@ -77,8 +77,8 @@ public class MailController {
 	 * @return
 	 * @throws MessagingException
 	 */
-	@SuppressWarnings("unused")
-	@RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
+	@SuppressWarnings("unused") //use top of the class and code should be formatted
+	@RequestMapping(value = "/sendEmail", method = RequestMethod.POST) //Why use doublicate action name , sendEmail you have used in above method
 	public String sendEmail(
 			@ModelAttribute("Registration") Registration registration,
 			String[] attachedFiles) throws MessagingException {
@@ -191,7 +191,7 @@ public class MailController {
 	 */
 	@RequestMapping("/mailSuccess")
 	public String showSuccessPage(Map<String, Object> map, Model model,
-			HttpServletRequest request) {
+			HttpServletRequest request) {//change method name
 		HttpSession session = request.getSession();
 		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
 		if (loginMember != null) {
