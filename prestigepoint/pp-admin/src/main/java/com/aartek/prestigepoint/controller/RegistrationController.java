@@ -54,10 +54,10 @@ public class RegistrationController {
 	 * @return
 	 */
 	@RequestMapping("/registration")
-	public String showregistrationPage(Map<String, Object> map, Model model,
+	public String showregistrationPage(Map<String, Object> map, Model model,//change method name
 			@RequestParam(required = false) String message) {
 		map.put("Registration", new Registration());
-		List<CurrentStatus> currentStatusList = null;
+		List<CurrentStatus> currentStatusList = null; //why use this line please remove this line
 		List<Course> courseList = courseService.getAllCourseName();
 		if (courseList != null) {
 			model.addAttribute("course", courseList);
@@ -88,12 +88,12 @@ public class RegistrationController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/registerStudent", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addStudent(@ModelAttribute("Registration") Registration registration, BindingResult result,
+	@RequestMapping(value = "/registerStudent", method = { RequestMethod.GET, RequestMethod.POST }) //action name should be saveStudentDetails
+	public String addStudent(@ModelAttribute("Registration") Registration registration, BindingResult result, //change method name
 			ModelMap model) {
 		int currentId = registration.getCurrentStatus().getCurrent_status_Id();
 		boolean status = false;
-		List<CurrentStatus> currentStatusList = null;
+		List<CurrentStatus> currentStatusList = null; //remove this line 
 		registrationValidator.validate(registration, result);
 		if (result.hasErrors()) {
 			List<Course> courseList = courseService.getAllCourseName();
@@ -116,7 +116,7 @@ public class RegistrationController {
 		}
 		if (registration.getRegistrationId() != null) {
 			status = registrationService.updateStudentAsPaid(registration);
-			if (currentId == 8) {
+			if (currentId == 8) {//why use hardcode value please change this
 				model.addAttribute("firstName", registration.getFirstName());
 				model.addAttribute("lastName", registration.getLastName());
 				model.addAttribute("registrationId", registration.getRegistrationId());
@@ -128,7 +128,7 @@ public class RegistrationController {
 				model.addAttribute("message", IConstant.PROFILE_UPDATE_FAILURE_MESSAGE);
 			}
 		} else {
-			status = registrationService.addStudentInfo(registration);
+			status = registrationService.addStudentInfo(registration);//method name should be saveStudentDetails
 			if (status) {
 				model.addAttribute("message", IConstant.REGISTRATION_SUCCESS_MESSAGE);
 			} else {
@@ -139,9 +139,9 @@ public class RegistrationController {
 		return "redirect:/getStudentDetails.do";
 	}
 
-	@RequestMapping(value = "/amountByCourseTypeId", method = RequestMethod.GET)
+	@RequestMapping(value = "/amountByCourseTypeId", method = RequestMethod.GET)//action should be meaningfull
 	@ResponseBody
-	public Integer getAmountByPassTypeId(@RequestParam Integer courseIdId) {
+	public Integer getAmountByPassTypeId(@RequestParam Integer courseIdId) {//please change method name 
 		Integer amount = null;
 		if (courseIdId != null) {
 			amount = courseService.getFeeByCourseType(courseIdId);
@@ -157,10 +157,10 @@ public class RegistrationController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/viewStudentDetails")
-	public String showviewStudentDetailsPage(Map<String, Object> map, Model model) {
+	@RequestMapping("/viewStudentDetails") //name should be getStudentDetails
+	public String showviewStudentDetailsPage(Map<String, Object> map, Model model) { //change method name
 		map.put("Registration", new Registration());
-		List<CurrentStatus> currentStatusList = null;
+		List<CurrentStatus> currentStatusList = null; //remove this line from here
 		List<Course> courseList = courseService.getAllCourseName();
 		if (courseList != null) {
 			model.addAttribute("course", courseList);
@@ -282,8 +282,8 @@ public class RegistrationController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/getStudentList", method = { RequestMethod.GET, RequestMethod.POST })
-	public String viewList(@ModelAttribute("Registration") Registration registration, BindingResult result,
+	@RequestMapping(value = "/getStudentList", method = { RequestMethod.GET, RequestMethod.POST })//action should be getStudentDetails
+	public String viewList(@ModelAttribute("Registration") Registration registration, BindingResult result,//change method name
 			ModelMap model, Map<String, Object> map, HttpServletRequest request) {
 
 		List<Course> courseList = courseService.getAllCourseName();
@@ -316,9 +316,9 @@ public class RegistrationController {
 				}
 			}
 		} else {
-			model.addAttribute("message", "Please select atleast one");
+			model.addAttribute("message", "Please select atleast one"); //message should be come from IConstant
 		}
-		return "sendMail";
+		return "sendMail"; //please remove white spaces
 	}
 
 	/**
@@ -368,18 +368,18 @@ public class RegistrationController {
 
 	@RequestMapping(value = "/deleteStudentDetails", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deleteCatageory(@ModelAttribute("Registration") Registration registration, ModelMap model,
-			@RequestParam(required = false) Integer registrationId) {
+			@RequestParam(required = false) Integer registrationId) { //please remove unsed parameter like @ModelAttribute("Registration") Registration registration
 		registrationService.deleteStudentDetails(registrationId);
 		model.addAttribute("message", IConstant.STUDENT_DELETE_MESSAGE);
 		
-		return "redirect:/registration.do";
+		return "redirect:/registration.do";//remove white space
 		
 	}
 	
-	@RequestMapping(value = "/emailIdAction", method = { RequestMethod.GET })
+	@RequestMapping(value = "/emailIdAction", method = { RequestMethod.GET })//change actin name, action name should be meaningful
 	@ResponseBody
 	public boolean verifyUserEmailId(@RequestParam(required = false) String emailId) {
-		System.out.println("saf"+emailId);
+		System.out.println("saf"+emailId); //why use sop(this is bad practice Meenal)
 		boolean status = false;
 		status = registrationService.verifyUserEmailId(emailId);
 		return status;
