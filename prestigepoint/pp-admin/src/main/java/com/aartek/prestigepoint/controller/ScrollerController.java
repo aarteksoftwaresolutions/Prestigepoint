@@ -34,12 +34,12 @@ public class ScrollerController {
 	 * @param model
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked") //please use this line on top
 	@RequestMapping("/scrollerView")
 	public String showScrollerPage(@SuppressWarnings("rawtypes") Map map,
 			@RequestParam(required = false) String message, Model model) {
 
-		List<Scroller> scrollerPhotoList = null;
+		List<Scroller> scrollerPhotoList = null; //remove this line because use this line like  List<Scroller> scrollerPhotoList= scrollerService.getAllImage();
 		scrollerPhotoList = scrollerService.getAllImage();
 		model.addAttribute("scrollerPhotoList", scrollerPhotoList);
 		map.put("Scroller", new Scroller());
@@ -56,12 +56,12 @@ public class ScrollerController {
 	 * @param model
 	 * @return
 	 */
-	@SuppressWarnings("unused")
-	@RequestMapping("/scrollerAction")
+	@SuppressWarnings("unused")//please use this line on top
+	@RequestMapping("/scrollerAction") //saveScoller
 	public String addimageForScroller(@ModelAttribute("Scroller") Scroller scroller) {
 
 		boolean status = false;
-		status = scrollerService.addScrollerPhoto(scroller);
+		status = scrollerService.addScrollerPhoto(scroller);// method should be saveScrollerPhoto
 		return "redirect:/scrollerView.do";
 	}
 
@@ -70,7 +70,7 @@ public class ScrollerController {
 			@RequestParam(required = false) String imageId, @RequestParam(required = false) String checkedValue) {
 
 		List<Scroller> scrollers = scrollerService.getSingleScrollDetail(imageId);
-		scroller = scrollers.get(0);
+		scroller = scrollers.get(0);//USe condition before use getr(0);
 		if (checkedValue.equals("checked")) {
 			scrollerService.changeStatusByImageId(scroller);
 		} else {
@@ -89,11 +89,11 @@ public class ScrollerController {
 	 */
 	@RequestMapping(value = "/deleteScroller", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deleteSingleScrollerImage(@ModelAttribute("Scroller") Scroller scroller, ModelMap model,
-			@RequestParam(required = false) Integer imageId) {
+			@RequestParam(required = false) Integer imageId) {//remove unsed parameter
 		scrollerService.deleteScrollerImage(imageId);
 		model.addAttribute("message", IConstant.SCROLLER_IMAGE_DELETE_MESSAGE);
 		
-		return "redirect:/scrollerView";
+		return "redirect:/scrollerView";//remove white spaces
 		
 	}
 }
