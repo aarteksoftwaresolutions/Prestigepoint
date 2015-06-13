@@ -27,7 +27,7 @@ import com.aartek.prestigepoint.validator.CurrentBatchValidator;
  * @author Dell
  *
  */
-@Controller
+@Controller //Please write author name 
 public class CurrentBatchController {
 
 	@Autowired
@@ -75,8 +75,8 @@ public class CurrentBatchController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/addCurrentBatch", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addCurrrentBatchInfo(@ModelAttribute("CurrentBatch") CurrentBatch currentBatch, BindingResult result,
+	@RequestMapping(value = "/addCurrentBatch", method = { RequestMethod.GET, RequestMethod.POST })//change action name addCurrentBatch to saveCurrentBatch
+	public String addCurrrentBatchInfo(@ModelAttribute("CurrentBatch") CurrentBatch currentBatch, BindingResult result, //change method name
 			ModelMap model, Map<String, Object> map, HttpServletRequest request,
 			@RequestParam(required = false) Integer currentBatchId) {
 		List<Batch> batchList = batchService.getAllBatchName();
@@ -96,7 +96,7 @@ public class CurrentBatchController {
 			return "currentBatch";
 		} else {
 			if (currentBatch.getCurrentBatchId() != null) {
-				boolean status = currentBatchService.addCurrentBatchInformation(currentBatch);
+				boolean status = currentBatchService.addCurrentBatchInformation(currentBatch); //Change method name addCurrentBatchInformation to saveCurrentBatch 
 				if (status) {
 					model.addAttribute("message", IConstant.UPDATE_CURRENT_BATCH_SUCCESS_MESSAGE);
 				} else {
@@ -104,7 +104,7 @@ public class CurrentBatchController {
 				}
 			} else {
 				currentBatchValidator.validate(currentBatch, result);
-				if (result.hasErrors()) {
+				if (result.hasErrors()) { //remove spaces
 
 					return "currentBatch";
 				}
@@ -130,7 +130,7 @@ public class CurrentBatchController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteCurrentBatch", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCurrentBatch(@ModelAttribute("CurrentBatch") CurrentBatch currentBatch, ModelMap model,
+	public String deleteCurrentBatch(@ModelAttribute("CurrentBatch") CurrentBatch currentBatch, ModelMap model, //please remove unused variable name like @ModelAttribute("CurrentBatch") CurrentBatch currentBatch
 			@RequestParam(required = false) Integer currentBatchId) {
 		currentBatchService.deleteCurrentBatch(currentBatchId);
 		model.addAttribute("message", IConstant.CURRENT_BATCH_DELETE_MESSAGE);
