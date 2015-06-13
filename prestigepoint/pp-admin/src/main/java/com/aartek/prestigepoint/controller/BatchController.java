@@ -46,10 +46,10 @@ public class BatchController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/addBatch")
-	public String addBatch(Map<String, Object> map, Model model, @RequestParam(required = false) String message) {
+	@RequestMapping("/addBatch")   //change addBatch to batch
+	public String addBatch(Map<String, Object> map, Model model, @RequestParam(required = false) String message) { //change method name addBatch to getBtachPage
 		List<Batch> batchList = batchService.getAllBatchName();
-		logger.info("This is Info controller!");
+		logger.info("This is Info controller!");  //Change statement.
 		if (batchList != null) {
 			model.addAttribute("batchList", batchList);
 		}
@@ -69,8 +69,8 @@ public class BatchController {
 	 * @param batchId
 	 * @return
 	 */
-	@RequestMapping(value = "/addBatchAction", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addBatchInfo(@ModelAttribute("Batch") Batch batch, BindingResult result, ModelMap model,
+	@RequestMapping(value = "/addBatchAction", method = { RequestMethod.GET, RequestMethod.POST }) //change action name addBatchAction to saveBatch
+	public String addBatchInfo(@ModelAttribute("Batch") Batch batch, BindingResult result, ModelMap model, //change addBatchInfo method name
 			Map<String, Object> map, HttpServletRequest request, @RequestParam(required = false) Integer batchId) {
 		boolean status = false;
 		List<Batch> batchList = batchService.getAllBatchName();
