@@ -53,11 +53,11 @@ public class RegistrationController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/registration")
+	@RequestMapping("/registration") //code should be formatted
 	public String showregistrationPage(Map<String, Object> map, Model model,
 			@RequestParam(required = false) String message) {
 		map.put("Registration", new Registration());
-		List<CurrentStatus> currentStatusList = null;
+		List<CurrentStatus> currentStatusList = null; //remove this line 
 		List<Course> courseList = courseService.getAllCourseName();
 		if (courseList != null) {
 			model.addAttribute("course", courseList);
@@ -76,7 +76,7 @@ public class RegistrationController {
 		}
 		model.addAttribute("message", message);
 		return "registration";
-	}
+	}//remove white spaces
 
 	/**
 	 * Use for register student.
@@ -88,12 +88,12 @@ public class RegistrationController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/registerStudent", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/registerStudent", method = { RequestMethod.GET, RequestMethod.POST }) //action should be saveStudentDeatils
 	public String addStudent(@ModelAttribute("Registration") Registration registration, BindingResult result,
-			ModelMap model) {
+			ModelMap model) {//change method name
 		int currentId = registration.getCurrentStatus().getCurrent_status_Id();
 		boolean status = false;
-		List<CurrentStatus> currentStatusList = null;
+		List<CurrentStatus> currentStatusList = null;//remove this line 
 		registrationValidator.validate(registration, result);
 		if (result.hasErrors()) {
 			List<Course> courseList = courseService.getAllCourseName();
@@ -157,10 +157,10 @@ public class RegistrationController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/viewStudentDetails")
-	public String showviewStudentDetailsPage(Map<String, Object> map, Model model) {
+	@RequestMapping("/viewStudentDetails") //action should be getStudentDetails
+	public String showviewStudentDetailsPage(Map<String, Object> map, Model model) { //change method name
 		map.put("Registration", new Registration());
-		List<CurrentStatus> currentStatusList = null;
+		List<CurrentStatus> currentStatusList = null;//remove this line 
 		List<Course> courseList = courseService.getAllCourseName();
 		if (courseList != null) {
 			model.addAttribute("course", courseList);
@@ -194,7 +194,7 @@ public class RegistrationController {
 	public String viewDetails(@ModelAttribute("Registration") Registration registration,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request,
 			@RequestParam(required = false) Integer registrationId) {
-		List<Registration> studentDetails = null;
+		List<Registration> studentDetails = null;//remove this line 
 		String method = request.getMethod();
 		if (("GET").equals(method) && registrationId != null) {
 			List<Course> courseList = courseService.getAllCourseName();
@@ -239,7 +239,7 @@ public class RegistrationController {
 					}
 				}
 				if (registration.getCourse() != null) {
-					if (!(registration.getCourse().getCourseId() == 0)
+					if (!(registration.getCourse().getCourseId() == 0) //why use hardcode value here
 							&& (registration.getCourse().getCourseId() != null)) {
 						studentDetails = registrationService.getCourseWiseStudentDetails(registration.getCourse()
 								.getCourseId());
@@ -247,14 +247,14 @@ public class RegistrationController {
 					}
 				}
 				if (registration.getBatch() != null) {
-					if (!(registration.getBatch().getBatchId() == 0) && (registration.getBatch().getBatchId() != null)) {
+					if (!(registration.getBatch().getBatchId() == 0) && (registration.getBatch().getBatchId() != null)) { // 0 should be come from IConstant
 						studentDetails = registrationService.getBatchWiseStudentDetails(registration.getBatch()
 								.getBatchId());
 						model.addAttribute("studentDetails", studentDetails);
 					}
 				}
 			} else {
-				model.addAttribute("message", "Please select atleast one");
+				model.addAttribute("message", "Please select atleast one");//please message should be come from IConstant
 			}
 		}
 		return "viewStudentDetails";
@@ -264,7 +264,7 @@ public class RegistrationController {
 	public String viewDetailsByName(@ModelAttribute("Registration") Registration registration,
 			ModelMap model,HttpServletRequest request,
 			@RequestParam(required = false) Integer registrationId) {
-		String firstName = request.getParameter("registration");
+		String firstName = request.getParameter("registration");  //why use this line
 		model.addAttribute("firstName", firstName);
 		List<Registration> studentDetails = registrationService.getStudentDetailsByName(firstName);
 		model.addAttribute("studentDetails", studentDetails);
@@ -282,8 +282,8 @@ public class RegistrationController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/getStudentList", method = { RequestMethod.GET, RequestMethod.POST })
-	public String viewList(@ModelAttribute("Registration") Registration registration, BindingResult result,
+	@RequestMapping(value = "/getStudentList", method = { RequestMethod.GET, RequestMethod.POST })//action should be getStudentDetails
+	public String viewList(@ModelAttribute("Registration") Registration registration, BindingResult result,//change method name
 			ModelMap model, Map<String, Object> map, HttpServletRequest request) {
 
 		List<Course> courseList = courseService.getAllCourseName();
@@ -302,23 +302,23 @@ public class RegistrationController {
 				}
 			}
 			if (registration.getCourse() != null) {
-				if (!(registration.getCourse().getCourseId() == 0) && (registration.getCourse().getCourseId() != null)) {
+				if (!(registration.getCourse().getCourseId() == 0) && (registration.getCourse().getCourseId() != null)) {//why use hardcode value 0 , please use iconstant
 					List<Registration> studentDetails = registrationService.getCourseWiseStudentDetails(registration
 							.getCourse().getCourseId());
 					model.addAttribute("studentDetails", studentDetails);
 				}
 			}
 			if (registration.getBatch() != null) {
-				if (!(registration.getBatch().getBatchId() == 0) && (registration.getBatch().getBatchId() != null)) {
+				if (!(registration.getBatch().getBatchId() == 0) && (registration.getBatch().getBatchId() != null)) { //use inconstant
 					List<Registration> studentDetails = registrationService.getBatchWiseStudentDetails(registration
 							.getBatch().getBatchId());
 					model.addAttribute("studentDetails", studentDetails);
 				}
 			}
 		} else {
-			model.addAttribute("message", "Please select atleast one");
+			model.addAttribute("message", "Please select atleast one"); //message come from iconstant
 		}
-		return "sendMail";
+		return "sendMail"; //remove unsed code.
 	}
 
 	/**
@@ -368,18 +368,18 @@ public class RegistrationController {
 
 	@RequestMapping(value = "/deleteStudentDetails", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deleteCatageory(@ModelAttribute("Registration") Registration registration, ModelMap model,
-			@RequestParam(required = false) Integer registrationId) {
+			@RequestParam(required = false) Integer registrationId) {//Remove unsed parameter
 		registrationService.deleteStudentDetails(registrationId);
 		model.addAttribute("message", IConstant.STUDENT_DELETE_MESSAGE);
 		
-		return "redirect:/registration.do";
+		return "redirect:/registration.do"; //remove space
 		
 	}
 	
-	@RequestMapping(value = "/emailIdAction", method = { RequestMethod.GET })
+	@RequestMapping(value = "/emailIdAction", method = { RequestMethod.GET })//change action name should be meaningfull
 	@ResponseBody
 	public boolean verifyUserEmailId(@RequestParam(required = false) String emailId) {
-		System.out.println("saf"+emailId);
+		System.out.println("saf"+emailId);//why use SOP 
 		boolean status = false;
 		status = registrationService.verifyUserEmailId(emailId);
 		return status;
