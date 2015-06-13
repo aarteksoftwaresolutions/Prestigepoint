@@ -33,8 +33,9 @@ public class PlacedStudentController {
 	 * firstName,lastName is used for print the value in textfield and it is
 	 * define in head part of jsp.
 	 */
-	@RequestMapping("/addPlacedStudent")
-	private String addStudentInformation(Map<String, Object> map, ModelMap model,
+	 //Meenal write meaningfull comment
+	@RequestMapping("/addPlacedStudent")//should be placedStudent
+	private String addStudentInformation(Map<String, Object> map, ModelMap model,//Method name should be getPlacedStudent
 			@RequestParam(required = false) String firstName, String lastName, Integer registrationId, String message) {
 		map.put("AddPlacedStudent", new AddPlacedStudent());
 		model.addAttribute("registrationId", registrationId);
@@ -52,18 +53,18 @@ public class PlacedStudentController {
 	 * @return
 	 */
 
-	@RequestMapping(value = "/addPlacedStudentAction.do", method = { RequestMethod.GET, RequestMethod.POST })
-	private String addStudentInformation(@ModelAttribute("AddPlacedStudent") AddPlacedStudent addPlacedStudent,
+	@RequestMapping(value = "/addPlacedStudentAction.do", method = { RequestMethod.GET, RequestMethod.POST }) //action should be savePlacedStudent
+	private String addStudentInformation(@ModelAttribute("AddPlacedStudent") AddPlacedStudent addPlacedStudent,//change method name
 			ModelMap model) {
 		boolean status = true;
-		status = placedStudentservice.addStudentInformation(addPlacedStudent);
+		status = placedStudentservice.addStudentInformation(addPlacedStudent); //method name should be savePlacedStudent
 		if (status) {
 			model.addAttribute("message", IConstant.PLACED_SUCCESS_MESSAGE);
 		} else {
 			model.addAttribute("message", IConstant.PLASED_FAILURE_MESSAGE);
 		}
 
-		return "redirect:/registration.do";
+		return "redirect:/registration.do"; //Remove white spaces
 	}
 
 	@RequestMapping("/viewPlacedStudent")
@@ -82,12 +83,12 @@ public class PlacedStudentController {
 	 * list attribute is used for show the whole information in jsp.
 	 */
 
-	@RequestMapping("/viewPlacedStudentAction")
-	private String viewAllPlacedStudent(@ModelAttribute("AddPlacedStudent") AddPlacedStudent addPlacedStudent,
+	@RequestMapping("/viewPlacedStudentAction") //changes action name
+	private String viewAllPlacedStudent(@ModelAttribute("AddPlacedStudent") AddPlacedStudent addPlacedStudent,//change mwthod name
 			ModelMap model) {
 
 		if (addPlacedStudent.getSearchType() != null) {
-			List<AddPlacedStudent> placedStudentList = placedStudentservice.viewAllPlacedStudent();
+			List<AddPlacedStudent> placedStudentList = placedStudentservice.viewAllPlacedStudent(); //method name should be getPlacedStudent
 			model.addAttribute("placedStudentList", placedStudentList);
 			return "viewPlacedStudent";
 		}
@@ -99,7 +100,7 @@ public class PlacedStudentController {
 			return "viewPlacedStudent";
 		}
 
-		return "redirect:/addPlacedStudent.do";
+		return "redirect:/addPlacedStudent.do";//remove white spaces
 	}
 
 	/**
@@ -112,10 +113,10 @@ public class PlacedStudentController {
 	 * @return
 	 */
 
-	@RequestMapping(value = "/updatePlacedStudentInformation")
-	public String updatePlacedStudentInformation(@ModelAttribute("AddPlacedStudent") AddPlacedStudent addPlacedStudent,
+	@RequestMapping(value = "/updatePlacedStudentInformation")//action should be editPlacedStudent
+	public String updatePlacedStudentInformation(@ModelAttribute("AddPlacedStudent") AddPlacedStudent addPlacedStudent, //change method name
 			 Map<String, Object> map, @RequestParam(required = false) Integer studentId) {
-		addPlacedStudent = placedStudentservice.updatePlacedStudentInformation(studentId);
+		addPlacedStudent = placedStudentservice.updatePlacedStudentInformation(studentId);//method name should be editPlacedStudent
 		map.put("AddPlacedStudent", addPlacedStudent);
 		return "addPlacedStudent";
 
@@ -127,11 +128,11 @@ public class PlacedStudentController {
 	 * @param studentId
 	 * @return
 	 */
-	@RequestMapping(value = "/deletePlacedStudentInformation", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/deletePlacedStudentInformation", method = { RequestMethod.GET, RequestMethod.POST }) //should be deletePlacedStudent
 	public String deletePlacedStudentInformation(@RequestParam(required = false) Integer studentId) {
-		placedStudentservice.deletePlacedStudentInformation(studentId);
+		placedStudentservice.deletePlacedStudentInformation(studentId);//method should be deletePlacedStudent
 
-		return "redirect:/addPlacedStudent.do";
+		return "redirect:/addPlacedStudent.do"; //remove unsed spaces
 	}
 
 }
