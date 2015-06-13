@@ -52,32 +52,32 @@ public class ReportController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/viewEnquiryByMonth")
-	public String showEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map, Model model) {
+	@RequestMapping("/viewEnquiryByMonth") //should be getEnquiryByMonth
+	public String showEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map, Model model) {//change method name
 
 		map.put("Enquiry", new Enquiry());
 		List<Year> yearList = courseService.getAllYearName();
 		model.addAttribute("year", yearList);
 
-		return "viewEnquiryByMonth";
+		return "viewEnquiryByMonth";//remove white spaces
 	}
 
-	@RequestMapping("/addAdminEnquiry")
-	public String showaddAddEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry,
-			Map<String, Object> map, @RequestParam(required = false) String message) {
+	@RequestMapping("/addAdminEnquiry") //action should be adminEnquiry
+	public String showaddAddEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, //change method name
+			Map<String, Object> map, @RequestParam(required = false) String message) {//Remove unsed parameter
 		map.put("Enquiry", new Enquiry());
 		return "addAdminEnquiry";
 	}
 
-	@RequestMapping(value = "/addAdminEnquiryAction", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/addAdminEnquiryAction", method = { RequestMethod.GET, RequestMethod.POST })//action name should be saveAdminEnquiry
 	public String addEnquiryByAdmin(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, Model model,
-			Map<String, Object> map, @RequestParam(required = false) String message) throws ParseException {
+			Map<String, Object> map, @RequestParam(required = false) String message) throws ParseException {//remove unused parameter like @RequestParam(required = false) String message
 		boolean status = false;
 		enquiryValidator.validate(enquiry, result);
 		if (result.hasErrors()) {
 			return "addAdminEnquiry";
 		}
-		status = enquiryService.addAdminEnquiry(enquiry);
+		status = enquiryService.addAdminEnquiry(enquiry);//method name should be saveAdminEnquiry
 		if (status) {
 			model.addAttribute("message", IConstant.ENQUIRY_BY_ADMIN_SUCCESS);
 		} else {
@@ -87,23 +87,23 @@ public class ReportController {
 		return "addAdminEnquiry";
 	}
 
-	@SuppressWarnings({ "rawtypes", "unused" })
+	@SuppressWarnings({ "rawtypes", "unused" }) //please wrute this line should be on top
 	@RequestMapping(value = "/getEnquiryDetails", method = { RequestMethod.GET, RequestMethod.POST })
 	public String viewEnquiryReport(@ModelAttribute("Enquiry") Enquiry enquiry, ModelMap model,
 			 HttpServletRequest request, @RequestParam(required = false) Integer enquiryId)
 			throws ParseException {
 		String method = request.getMethod();
-		List<Year> yearList = null;
+		List<Year> yearList = null;//why use this line , remove this line 
 
 		yearList = courseService.getAllYearName();
 
-		if (!enquiry.getMonth().equals("0") && !enquiry.getYear().equals("0")) {
+		if (!enquiry.getMonth().equals("0") && !enquiry.getYear().equals("0")) {//please use IConstant for 0
 			List enquirylist = enquiryService.getMonthAndYearWiseEnquiryDetails(enquiry.getMonth(), enquiry.getYear());
 			if (enquirylist != null) {
 				model.addAttribute("enquirylist", enquirylist);
 			}
 		} else {
-			if (enquiry.getMonth().equals("0")) {
+			if (enquiry.getMonth().equals("0")) {//please use IConstant for 0
 				List enquirylist = enquiryService.getYearWiseEnquiry(enquiry.getYear());
 				if (enquirylist != null) {
 					model.addAttribute("enquirylist", enquirylist);
@@ -116,23 +116,23 @@ public class ReportController {
 			}
 		}
 		model.addAttribute("year", yearList);
-		model.addAttribute("message", "Please select atleast one");
-		return "viewEnquiryByMonth";
+		model.addAttribute("message", "Please select atleast one");//please use IConstant for message , don't write message here
+		return "viewEnquiryByMonth";//remove white spaces
 	}
 
 	
 	@RequestMapping(value = "/updateEnquiry")
 	public String updateEnquiryInformation(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map,
 			 HttpServletRequest request, @RequestParam(required = false) Integer enquiryId)throws ParseException
-	{
+	{ //remove unsed parameter
 		enquiry =  enquiryService.updateEnquiryInformation(enquiryId);
 		map.put("Enquiry", enquiry);
 
 		return "addAdminEnquiry";
 
 	}
-	@RequestMapping(value = "/deleteEnquiryInformation", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteEnquiryInformation(@RequestParam(required = false) Integer enquiryId) {
+	@RequestMapping(value = "/deleteEnquiryInformation", method = { RequestMethod.GET, RequestMethod.POST })//action should be deleteEnquiry
+	public String deleteEnquiryInformation(@RequestParam(required = false) Integer enquiryId) { //change method name
 		enquiryService.deleteEnquiryInformation(enquiryId);
 		
 		return "redirect:/viewEnquiryDetails.do";
