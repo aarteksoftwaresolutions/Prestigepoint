@@ -90,12 +90,12 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 	 * 
 	 * @param batch
 	 */
-	public boolean addFooterPhoto(PhotoInFooter photoInFooter) {
+	public boolean saveFooterPhoto(PhotoInFooter photoInFooter) {
 		boolean status = false;
 		if (photoInFooter != null) {
 			photoInFooter.setIsDeleted(IConstant.IS_DELETED);
 			photoInFooter.setIsStatusActive(IConstant.IS_STATUS_ACTIVE);
-			status = footerPhotoRepository.addFooterPhoto(photoInFooter);
+			status = footerPhotoRepository.saveFooterPhoto(photoInFooter);
 			BufferedImage newImg;
 			String imageData = photoInFooter.getImgPath().replaceFirst("^data:image/[^;]*;base64,?", "");
 			newImg = ImageFormat.decodeToImage(imageData);

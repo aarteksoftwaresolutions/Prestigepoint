@@ -18,7 +18,7 @@ public interface FooterPhotoService {
 
 	public List<PhotoInFooter> getSingleStudentDetail(String studentId);
 
-	public boolean addFooterPhoto(PhotoInFooter photoInFooter);
+	public boolean saveFooterPhoto(PhotoInFooter photoInFooter);
 
 	public void deleteStudentData(Integer studentId);
 

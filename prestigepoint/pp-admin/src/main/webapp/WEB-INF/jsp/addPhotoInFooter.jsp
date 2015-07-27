@@ -21,7 +21,7 @@
   <div class="container clearfix">
     <div class="conact-form">
       <h3 style="color: red;">${message}</h3>
-      <form:form method="POST" action="addFooterPhotoAction.do" modelAttribute="PhotoInFooter" autocomplete="off">
+      <form:form method="POST" action="saveFooterPhoto.do" modelAttribute="PhotoInFooter" autocomplete="off">
        <h3 style="color: #873d80;">Add Placed Student Detail For Dynamic Photo In Footer  </h3>
       
      			
@@ -62,17 +62,8 @@
               <td><div class="form-control">
              	<h4>
 					<b>Please browse student image</b>
-				</h4><%-- src="${imgPath}${PhotoInFooter.studentId}.png" --%>
-             	 <img id="preview" src="${imgPath}${PhotoInFooter.studentId}.png" style="width: 50px; height: 50px" /><%-- onerror="this.src='${imgPath}image.jpg'" --%>
-             <!-- 	<div id="error">You should select valid image files only!</div>
-				<div id="error2">An error occurred while uploading the file</div>
-				<div id="abort">The upload has been canceled by the user or
-					the browser dropped the connection</div>
-				<div id="warnsize">Your file is very big. We can't accept it.
-					Please select more small file</div>
-				<div id="progress_info">
-					<div id="upload_response"></div>
-				</div> -->
+				</h4>
+             	 <img id="preview" src="${imgPath}${PhotoInFooter.studentId}.png" style="width: 50px; height: 50px" />
              	<input type="file" name="image_file" id="image_file"
 							onchange="fileSelected();" />
 						
@@ -94,7 +85,7 @@
         </table>
     	<form:hidden path="imgPath" id="imagePath" />
       <c:set var="count" value="0" scope="page" />
-      <display:table name="photoInFooterList" pagesize="8" class="basic-table" uid="cat" requestURI="addFooterPhoto.do">
+      <display:table name="photoInFooterList" pagesize="8" class="basic-table" uid="cat" requestURI="getFooterPhotoPage.do">
         <c:set var="count" value="${count+1}" scope="page" />
         <display:column title="S.NO" class="showHeading" style="width:1%;">
      ${count}
@@ -115,10 +106,10 @@
       
         </display:column>
         <display:column title="Edit">
-          <a href="addFooterPhotoAction.do?studentId=${cat.studentId}">Edit</a>
+          <a href="saveFooterPhoto.do?studentId=${cat.studentId}">Edit</a>
         </display:column>
         <display:column title="Delete">
-          <a href="deleteStudentInfo.do?studentId=${cat.studentId}"
+          <a href="deleteStudent.do?studentId=${cat.studentId}"
             onclick="return confirm('Please confirm if you want to delete this course!');">Delete</a>
         </display:column>
       </display:table>

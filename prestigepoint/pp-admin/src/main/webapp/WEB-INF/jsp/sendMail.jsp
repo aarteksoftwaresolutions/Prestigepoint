@@ -1,59 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://displaytag.sf.net" prefix="display"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Add Courses</title>
-<style>
-.basic-table {
-  width: 100%;
-}
-</style>
-<script type="text/javascript">
-  $(document).ready(function() {
-    var email = "${emailId}";
-    document.getElementById("emailId").value = email;
-  });
-function emailCheck(){
-var emailId = document.getElementById('emailId').value;
-var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-if(emailId!=null && emailId!='')
-if (!pattern.test(emailId)) {
-	alert("please enter valid email");
-	return false;
-}
-}
-</script>
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Email Send</title>
+<!-- <script type="text/javascript" src="js/page-js/emailSend.js"></script> -->
 </head>
 <body>
   <div class="container clearfix">
     <div class="conact-form">
-      <form:form method="POST" action="sendEmail.do" modelAttribute="Registration" enctype="multipart/form-data">
+      <form:form method="POST" action="sendMail.do" modelAttribute="Registration" enctype="multipart/form-data">
         <table width="100%" border="0">
+         <tr>
+          <td><span id="Mail" style="color: red;"></span></td>
+          </tr>
           <tr>
             <td><div class="form-control">
                 <label>
-
                   <h3 style="color: #873d80;">Send e-mail with attachments</h3> <small class="required"></small> </label> <label>
-                  <form:checkbox path="allStudent" value="allstudent" id="student" /> All Student<small
+                  <form:checkbox path="allStudent" value="allstudent" id="student" onclick="disablefields()" /> All Student<small
                   class="required"></small> </label>&nbsp; &nbsp; <label> <form:checkbox path="allEnquiry"
-                    value="allenquiry" id="enquiry" /> All Enquiry<small class="required"></small> </label>
+                    value="allenquiry" id="allEnquiry" onclick="disablefields()" /> All Enquiry<small class="required"></small> </label>
               </div></td>
           </tr>
           <tr>
             <td><div class="form-control">
-            <form:errors path="emailId" class="label error-label"></form:errors>
                 <label>
                   <p>
                     Email To:<small class="required"></small>
                   </p> <form:input path="emailId" class="inputControl1" placeholder="Email Address" maxlength="80"
-                    id="emailId" /> </label>
+                    id="emailId" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" /> </label>
               </div></td>
           </tr>
           <tr>
@@ -83,7 +60,7 @@ if (!pattern.test(emailId)) {
               </div></td>
           </tr>
           <tr>
-            <td colspan="2"><input type="submit" value="Submit" class="btn lg-btn" onclick=" return emailCheck();" />
+            <td colspan="2"><input type="submit" value="Submit" class="btn lg-btn"/>
             </td>
           </tr>
         </table>

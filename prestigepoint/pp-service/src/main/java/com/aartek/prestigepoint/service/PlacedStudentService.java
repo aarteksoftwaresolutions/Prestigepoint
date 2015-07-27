@@ -6,13 +6,13 @@ import com.aartek.prestigepoint.model.AddPlacedStudent;
 
 public interface PlacedStudentService {
 
-	java.util.List<AddPlacedStudent> viewAllPlacedStudent();
+	java.util.List<AddPlacedStudent> getPlacedStudent();
 
-	public boolean addStudentInformation(AddPlacedStudent addPlacedStudent);
+	public boolean savePlacedStudent(AddPlacedStudent addPlacedStudent);
 
-	public AddPlacedStudent updatePlacedStudentInformation(Integer studentId);
+	public AddPlacedStudent editPlacedStudent(Integer studentId);
 
-	public void deletePlacedStudentInformation(Integer studentId);
+	public void deletePlacedStudent(Integer studentId);
 
 	public List<AddPlacedStudent> generatePlacedStudentReportMonthlyWise(String fromDate, String toDate);
 

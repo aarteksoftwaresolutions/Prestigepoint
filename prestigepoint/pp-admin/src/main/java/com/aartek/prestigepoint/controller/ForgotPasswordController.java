@@ -46,16 +46,16 @@ public class ForgotPasswordController {
 
 		return "forgotPassword";
 
-	}//remove white spaces
+	}
 
-	@RequestMapping(value = "/forgotPasswordAction", method = RequestMethod.POST) //action name should be forgotPassword
-	public String verify(@ModelAttribute("AdminLogin") AdminLogin adminLogin, BindingResult result, ModelMap model) {//change method name 
+	@RequestMapping(value = "/userForgotPassword", method = RequestMethod.POST)
+	public String forgotPassword(@ModelAttribute("AdminLogin") AdminLogin adminLogin, BindingResult result, ModelMap model) {
 		boolean status = false;
 		forgotPasswordValidator.validate(adminLogin, result);
 		if (result.hasErrors()) {
 			return "forgotPassword";
 		}
-		status = forgotPasswordService.getPassword(adminLogin.getEmailId());
+ 		status = forgotPasswordService.getPassword(adminLogin.getEmailId());
 		if (status) {
 			model.addAttribute("forgotMessage", IConstant.FORGOT_SUCCESS_MESSAGE);
 		} else {

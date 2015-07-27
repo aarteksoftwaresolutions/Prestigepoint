@@ -24,7 +24,7 @@ public class CurrentBatchRepositoryImpl implements CurrentBatchRepository {
   /**
    * Add current batch information into database.
    */
-  public boolean addCurrentBatchInformation(CurrentBatch currentBatch) {
+  public boolean saveCurrentBatch(CurrentBatch currentBatch) {
     if (currentBatch != null) {
       hibernateTemplate.saveOrUpdate(currentBatch);
       return true;

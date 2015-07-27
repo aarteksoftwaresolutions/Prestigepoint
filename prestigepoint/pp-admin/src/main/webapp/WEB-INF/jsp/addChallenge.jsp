@@ -8,15 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add Charge</title>
-<script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.9.1.custom.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="js/page-js/commonDate.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/page-js/challenge.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/page-js/registration.js"></script>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
-<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.1.custom.min.css" />
 </head>
 <body>
     <div class="container clearfix">
@@ -24,7 +18,7 @@
 
             <p>&nbsp;</p>
             <h3 style="color: red;">${message}</h3>
-            <form:form method="POST" action="addChallengeAction.do" modelAttribute="AddChallenge" autocomplete="off">
+            <form:form method="POST" action="saveChallenge.do" modelAttribute="AddChallenge" autocomplete="off">
 
                 <table width="100%" border="0">
                     <tr>
@@ -37,7 +31,7 @@
                                 </label>
                             </div></td>
                         <td><div class="form-control">
-
+                                <form:errors path="price"  class="label error-label"></form:errors> 
                                 <label>
                                     <p>Price</p> <form:input path="price" class="inputControl" placeholder="Price"
                                         required="autofocus" maxlength="10" onkeypress="return onlyNos(event,this);" />
@@ -85,7 +79,7 @@
                 </table>
                 <c:set var="count" value="0" scope="page" />
 
-                <display:table name="allAddChallengeList" pagesize="20" class="basic-table" uid="addChallengeList">
+                <display:table name="getAllchallenge" pagesize="8" class="basic-table" uid="addChallengeList" requestURI="challenge.do">
                     <!-- uid is user define -->
                     <c:set var="count" value="${count+1}" scope="page" />
                     <display:column title="S.NO" style="width:1%;">
@@ -93,14 +87,19 @@
     </display:column>
                     <%-- <display:column property="challengeCondition" title="Challenge Name" /> --%>
                     <display:column title="Challenge Title">
-                        <a href="viewChallengeInformation.do?challengeId=${addChallengeList.challengeId}">${addChallengeList.title}</a>
+                        <a href="getChallengeDetails.do?challengeId=${addChallengeList.challengeId}">${addChallengeList.title}</a>
                     </display:column>
                     <display:column property="price" title="Price" />
                     <display:column title="Edit">
-                        <a href="updateChallengeInformatin.do?challengeId=${addChallengeList.challengeId}"> Edit</a>
-                    </display:column>
+                        <a href="editChallenge.do?challengeId=${addChallengeList.challengeId}">Edit</a>
+                    </display:column> 
+                    <%-- <display:column title="Edit">
+                        <a href="editChallenge.do">Edit</a>
+                         <input type="hidden" value="${addChallengeList.challengeId}"/>
+                    </display:column> --%>
+                    
                     <display:column title="Delete">
-                        <a href="deleteChallengeInformation.do?challengeId=${addChallengeList.challengeId}"
+                        <a href="deleteChallenge.do?challengeId=${addChallengeList.challengeId}"
                             onclick="return confirm('Please confirm if you want to delete this batch!');">Delete</a>
                     </display:column>
                     <display:column title="Is_Active">

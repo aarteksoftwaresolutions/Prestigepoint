@@ -40,7 +40,7 @@
        function emailVarification(p) {
 	    var emailId = p.value;
 	     $.ajax({
-	  		url : "emailIdAction.do?emailId=" + emailId,
+	  		url : "verifyUserEmailId.do?emailId=" + emailId,
 	  		type : "GET",
 	  		contentType : "application/json; charset=utf-8",
 	  		
@@ -65,7 +65,7 @@
 		<div class="conact-form">
 			<h3 style="color: red;">${message}</h3>
 			<p>&nbsp;</p>
-			<form:form method="POST" action="registerStudent.do"
+			<form:form method="POST" action="saveStudentDeatils.do"
 				modelAttribute="Registration" autocomplete="off">
 				<h4>
 					<b>Please browse student image</b>
@@ -267,21 +267,7 @@
 										placeholder="HandledBy" required="autofocus" maxlength="50"
 										onkeypress="return Alphabets(event)" />
 								</label>
-							</div></td>
-						<%-- 	<!--remark TextArea -->
-							<td><div class="form-control">
-								<form:errors path="remark" class="label error-label"></form:errors>
-								<label>
-									<p>
-										Remark<small class="required"></small>
-									</p> <form:textarea path="remark" class="inputControl"
-										placeholder="Remark Max 100 Words" required="autofocus" maxlength="100"
-										onkeypress="return Alphabets(event)" />
-								</label>
-							</div></td> --%>
-							
 					<tr>
-					
 						<td><div class="form-control">
 								<label>
 									<p>
@@ -359,8 +345,7 @@
 									<p>
 										Remark<small ></small>
 									</p> <form:textarea path="remark" class="inputControl"
-										placeholder="Remark Max 100 Words" required="autofocus" maxlength="100"
-										 />
+										placeholder="Remark Max 100 Words" required="autofocus" maxlength="100"/>
 								</label>
 							</div></td>
 					<tr>

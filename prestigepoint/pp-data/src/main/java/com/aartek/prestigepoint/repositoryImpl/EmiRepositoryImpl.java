@@ -29,7 +29,7 @@ public class EmiRepositoryImpl implements EmiRepository {
 		return list;
 	}
 
-	public boolean addEmiInfo(Emi emi) {
+	public boolean saveEmi(Emi emi) {
 		Integer oldAmount = 0;
 		if (emi != null) {
 			if (emi.getEmiId() != null) {

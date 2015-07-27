@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +29,7 @@ public class ChallengeController {
 	private static final Logger logger = Logger.getLogger(ChallengeController.class);
 
 	@Autowired
-	private ChallengeService addChallengeService; //change addChallengeService to challengeService
+	private ChallengeService challengeService;
 
 	/**
 	 * display addChallenge jsp for add Challenge.
@@ -39,16 +40,15 @@ public class ChallengeController {
 	 * @return
 	 */
 
-	@RequestMapping("/addChallenge")  //change addChallenge to challenge
-	private String addChallenge(Map<String, Object> map, ModelMap model, @RequestParam(required = false) String message) { //change method name addChallenge to showChallengePage
+	@RequestMapping("/challenge")
+	private String showChallengePage(Map<String, Object> map, ModelMap model,
+			@RequestParam(required = false) String message) {
+		logger.info("start the showChallengePage method !");
 		map.put("AddChallenge", new AddChallenge());
-
-		List<AddChallenge> allAddChallengeList = addChallengeService.allAddChallengeList(); //change method name allAddChallengeList() to getAllchallenge()
-		//change list name allAddChallengeList to allChallenge
-		logger.info("This is Info controller!"); //Change logger information
-		model.addAttribute("allAddChallengeList", allAddChallengeList);
+		List<AddChallenge> getAllchallenge = challengeService.getAllchallenge();
+		model.addAttribute("getAllchallenge", getAllchallenge);
 		model.addAttribute("message", message);
-		return "addChallenge";
+		return "challenge";
 	}
 
 	/**
@@ -59,18 +59,17 @@ public class ChallengeController {
 	 * @return
 	 */
 
-	@RequestMapping(value = "/addChallengeAction.do", method = { RequestMethod.GET, RequestMethod.POST }) //change action name addChallengeAction to saveChallenge
-	private String addChallengeInformation(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model) { //Change method name addChallengeInformation
+	@RequestMapping(value = "/saveChallenge.do", method = { RequestMethod.GET, RequestMethod.POST })
+	private String saveChallenge(@ModelAttribute("AddChallenge") AddChallenge addChallenge, ModelMap model,
+			BindingResult result) {
 		if (addChallenge.getChallengeId() != null) {
-			addChallengeService.addChallengeInformation(addChallenge); //change method name addChallengeInformation to saveChallengeName
+			challengeService.saveChallenge(addChallenge);
 			model.addAttribute("message", IConstant.CHALLENGE_UPDATE_MESSAGE);
 		} else {
-			addChallengeService.addChallengeInformation(addChallenge); //Same change method name
+			challengeService.saveChallenge(addChallenge);
 			model.addAttribute("message", IConstant.CHALLENGE_SUCCESS_MESSAGE);
-
 		}
-
-		return "redirect:/addChallenge.do"; //Remove above space
+		return "redirect:/challenge.do";
 	}
 
 	/**
@@ -82,15 +81,13 @@ public class ChallengeController {
 	 * @param challengeId
 	 * @return
 	 */
-	@RequestMapping(value = "/updateChallengeInformatin")  //change updateChallengeInformatin to editChallenge
-	public String updateChallengeInformation(@ModelAttribute("AddChallenge") AddChallenge addChallenge, //Change method name
+	@RequestMapping(value = "/editChallenge")
+	public String editChallengeDetails(@ModelAttribute("AddChallenge") AddChallenge addChallenge,
 			Map<String, Object> map, @RequestParam(required = false) Integer challengeId) {
-		addChallenge = addChallengeService.updateChallengeInformation(challengeId); //Change method name updateChallengeInformation to editChallengeDetails
+		addChallenge = challengeService.editChallengeDetails(challengeId);
 		map.put("AddChallenge", addChallenge);
-
-		return "addChallenge";
-
-	} //Please remove spaces
+		return "challenge";
+	}
 
 	/**
 	 * Use for delete ChallengeInformation.
@@ -98,11 +95,11 @@ public class ChallengeController {
 	 * @param challengeId
 	 * @return
 	 */
-	@RequestMapping(value = "/deleteChallengeInformation", method = { RequestMethod.GET, RequestMethod.POST })//Change deleteChallengeInformation to deleteChallenge
-	public String deleteStudentInformation(@RequestParam(required = false) Integer challengeId) {
-		addChallengeService.deleteChallengeInformation(challengeId); //change method name deleteChallengeInformation to deleteChallenge
-		logger.info("challengeId"); //Why use this line.
-		return "redirect:/addChallenge.do";
+	@RequestMapping(value = "/deleteChallenge", method = { RequestMethod.GET, RequestMethod.POST })
+	public String deleteChallenge(@RequestParam(required = false) Integer challengeId,ModelMap model) {
+		challengeService.deleteChallenge(challengeId);
+		model.addAttribute("message", IConstant.CHALLENGE_DELETE_MESSAGE);
+		return "redirect:/challenge.do";
 	}
 
 	/**
@@ -114,14 +111,13 @@ public class ChallengeController {
 	 * @param challengeId
 	 * @return
 	 */
-	@RequestMapping(value = "/viewChallengeInformation") //Change viewChallengeInformation to getChallengeDetails
-	public String viewChallengeList(@ModelAttribute("AddChallenge") AddChallenge addChallenge,
+	@RequestMapping(value = "/getChallengeDetails")
+	public String getChallengeDetails(@ModelAttribute("AddChallenge") AddChallenge addChallenge,
 			Map<String, Object> map, @RequestParam(required = false) Integer challengeId) {
-		addChallenge = addChallengeService.updateChallengeInformation(challengeId);
+		addChallenge = challengeService.editChallengeDetails(challengeId);
 		map.put("AddChallenge", addChallenge);
 		return "viewChallenge";
-
-	}//Remove spaces
+	}
 
 	/**
 	 * Use for ActiveStatus.
@@ -129,10 +125,9 @@ public class ChallengeController {
 	 * @param challengeIdValue
 	 * @param challengeValue
 	 */
-	@RequestMapping(value = "changeActiveStatusAction", method = RequestMethod.GET) //Change changeActiveStatusAction to activeChallengeStatus
+	@RequestMapping(value = "activeChallengeStatus", method = RequestMethod.GET)
 	@ResponseBody
-	public void ActiveStatusinfo(@RequestParam(required = false) String challengeIdValue, Integer challengeValue) { //change method name ActiveStatusinfo activeChallengeStatus
-		addChallengeService.ChallengeValue(challengeIdValue, challengeValue); //change method name ChallengeValue to changeChallengeStatus
-
-	}//Remove spaces
+	public void activeChallengeStatus(@RequestParam(required = false) String challengeIdValue, Integer challengeValue) {
+		challengeService.changeChallengeStatus(challengeIdValue, challengeValue);
+	}
 }

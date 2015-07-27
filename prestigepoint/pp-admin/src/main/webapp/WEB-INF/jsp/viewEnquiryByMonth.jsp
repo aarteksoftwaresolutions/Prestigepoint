@@ -33,18 +33,6 @@
 							enquiry details</h3> <small class="required"></small>
 						</p>
 					</label>
-					<%--  <tr>
-            <td><div class="form-control">
-                <label>
-                  <p>
-                  <h3 style="color: #873d80;">Please select atleast one for student details</h3> <small class="required"></small>
-                  </p> </label> <label>
-                  <p>
-                    <small class="required"></small>
-                  </p> ALL&nbsp;&nbsp;&nbsp;<form:checkbox path="searchType" value="all" id="all" onclick="callAll()" /> </label>
-              </div>
-            </td>
-          </tr> --%>
 					<tr>
 						<td><div class="form-control">
 								<label>

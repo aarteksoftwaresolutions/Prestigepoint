@@ -41,7 +41,7 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 	@Value("${pp.imagePath}")
 	private String imagePath;
 
-	public boolean addStudentInfo(Registration registration) {
+	public boolean saveStudent(Registration registration) {
 		boolean status = false;
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -54,7 +54,7 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 			List<Emi> emis = new ArrayList<Emi>();
 			emis.add(emi);
 			registration.setEmiList(emis);
-			Registration registration2 = stuRegRepository.addStudentInfo(registration);
+			Registration registration2 = stuRegRepository.saveStudent(registration);
 			if (registration2 != null) {
 				BufferedImage newImg;
 				String imageData = registration.getImgPath().replaceFirst("^data:image/[^;]*;base64,?", "");

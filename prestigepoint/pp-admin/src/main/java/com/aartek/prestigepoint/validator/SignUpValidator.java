@@ -15,11 +15,9 @@ public class SignUpValidator {
 
 	public void validate(Object target, Errors errors) {
 		AdminLogin login = (AdminLogin) target;
-		ValidationUtils.rejectIfEmpty(errors, "firstName", "error.firstName.empty");
-		ValidationUtils.rejectIfEmpty(errors, "password", "error.password.empty");
+
 		ValidationUtils.rejectIfEmpty(errors, "contactNo", "error.contact.empty");
 		ValidationUtils.rejectIfEmpty(errors, "emailId", "error.email.empty");
-		ValidationUtils.rejectIfEmpty(errors, "lastName", "error.lastName.empty");
 		if (login.getEmailId() != null && login.getEmailId().trim().length() > 0) {
 			boolean b = ValidationUtil.validateEmail(login.getEmailId());
 			if (login.getEmailId().contains("@") != true && !b) {
@@ -36,8 +34,11 @@ public class SignUpValidator {
 				errors.rejectValue("contactNo", "error.contactAdminNo.length");
 			}
 		}
-		if (login.getadminType() == 0) {
-			errors.rejectValue("adminType", "error.adminType.rule");
+		if(login.getadminType()!=null)
+		{
+			if (login.getadminType() == 0) {
+				errors.rejectValue("adminType", "error.adminType.rule");
+			}
 		}
 	}
 }

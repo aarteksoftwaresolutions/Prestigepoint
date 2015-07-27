@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.aartek.prestigepoint.model.AddChallenge;
 import com.aartek.prestigepoint.model.Enquiry;
 import com.aartek.prestigepoint.repository.EnquiryRepository;
 import com.aartek.prestigepoint.util.IConstant;
@@ -21,11 +20,11 @@ public class EnquiryRepositoryImpl implements EnquiryRepository {
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
 
-	public void addEnquiryMessage(Enquiry enquiry) {
+	public void saveEnquiryMessage(Enquiry enquiry) {
 		hibernateTemplate.saveOrUpdate(enquiry);
 	}
 
-	public boolean addAdminEnquiry(Enquiry enquiry) {
+	public boolean saveAdminEnquiry(Enquiry enquiry) {
 		if (enquiry != null) {
 			hibernateTemplate.saveOrUpdate(enquiry);
 			return true;
@@ -54,19 +53,18 @@ public class EnquiryRepositoryImpl implements EnquiryRepository {
 	}
 
 	public List getMonthWiseEnquiry(String month) {
-		List enquiryList = hibernateTemplate
-				.find("select COUNT(e.enquiryId) ,e.date, SUM(CASE WHEN e.status = '1' THEN 1 ELSE 0 END) from Enquiry e where e.isDeleted="
+		List enquiryList = hibernateTemplate.find("select COUNT(e.enquiryId) ,e.date, SUM(CASE WHEN e.status = '1' THEN 1 ELSE 0 END) from Enquiry e where e.isDeleted="
 						+ IConstant.IS_DELETED + " and MONTH(e.date) = '" + month + "' GROUP BY YEAR(e.date)");
 		return enquiryList;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Object> updateEnquiryInformation(Integer enquiryId) {
+	public List<Object> editEnquiry(Integer enquiryId) {
 		List<Object> enquiryList = hibernateTemplate.find("from Enquiry en where en.enquiryId=" + enquiryId);
 		return enquiryList;
 	}
 	
-	public void deleteEnquiryInformation(Integer enquiryId) {
+	public void deleteEnquiry(Integer enquiryId) {
 		Enquiry enquiry = hibernateTemplate.get( Enquiry.class,  enquiryId);
 		enquiry.setIsDeleted(IConstant.IS_DELETED_DEACTIVE);
 		if (null != enquiry) {

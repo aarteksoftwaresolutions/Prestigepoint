@@ -9,7 +9,7 @@ public interface QuestionAnswerService {
 
 	public List<Subject> getAllSubjectName();
 
-	public boolean addQuestionAndAnswer(QuestionAnswer questionAnswer);
+	public boolean saveQuestionAndAnswer(QuestionAnswer questionAnswer);
 
 	public List<QuestionAnswer> getQuestionAndAnswer(Integer subjectId);
 

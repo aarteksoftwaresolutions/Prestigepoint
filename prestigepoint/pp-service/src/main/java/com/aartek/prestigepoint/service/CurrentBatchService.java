@@ -6,7 +6,7 @@ import com.aartek.prestigepoint.model.CurrentBatch;
 
 public interface CurrentBatchService {
 
-	public boolean addCurrentBatchInformation(CurrentBatch currentBatch);
+	public boolean saveCurrentBatch(CurrentBatch currentBatch);
 
 	public List<CurrentBatch> getAllCurrentBatch();
 

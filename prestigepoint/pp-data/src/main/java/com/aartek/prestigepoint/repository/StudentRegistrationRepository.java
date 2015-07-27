@@ -13,7 +13,7 @@ import com.aartek.prestigepoint.model.Registration;
  */
 public interface StudentRegistrationRepository {
 
-	public Registration addStudentInfo(Registration registration);
+	public Registration saveStudent(Registration registration);
 
 	public Registration editStuRegs(Integer registrationId);
 

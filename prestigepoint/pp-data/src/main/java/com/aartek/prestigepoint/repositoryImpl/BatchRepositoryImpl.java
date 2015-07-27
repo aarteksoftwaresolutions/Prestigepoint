@@ -39,7 +39,7 @@ public class BatchRepositoryImpl implements BatchRepository {
 	/**
 	 * Method use for save batch details into database.
 	 */
-	public boolean addBatch(Batch batch) {
+	public boolean saveBatch(Batch batch) {
 		if (batch != null) {
 			hibernateTemplate.saveOrUpdate(batch);
 			return true;

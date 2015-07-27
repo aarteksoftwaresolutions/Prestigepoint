@@ -4,6 +4,6 @@ import com.aartek.prestigepoint.model.Enquiry;
 
 public interface ContactService {
 
-	public boolean addContactMessage(Enquiry enquiry);
+	public boolean saveContact(Enquiry enquiry);
 
 }

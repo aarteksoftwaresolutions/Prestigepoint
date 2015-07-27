@@ -26,7 +26,7 @@ width: 50%;
   <div class="container clearfix">
     <div class="conact-form">
       <h3 style="color: red;">${invalid}</h3>
-      <form:form method="POST" action="forgotPasswordAction.do" modelAttribute="AdminLogin" autocomplete="off">
+      <form:form method="POST" action="userForgotPassword.do" modelAttribute="AdminLogin" autocomplete="off">
         <table width="100%" border="0">
           <tr>
             <td><div class="form-control">

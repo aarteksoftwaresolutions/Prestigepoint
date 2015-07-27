@@ -29,7 +29,7 @@ public class EmiServiceImpl implements EmiService {
 		return emis;
 	}
 
-	public boolean addEmiInfo(Emi emi) {
+	public boolean saveEmi(Emi emi) {
 		boolean status = false;
 		if (emi != null) {
 
@@ -40,7 +40,7 @@ public class EmiServiceImpl implements EmiService {
 			System.out.println("date 2=" + emiDate);
 			Registration registration = emi.getRegistration();
 			Integer stuRegistrationId = registration.getRegistrationId();
-			status = emiRepository.addEmiInfo(emi);
+			status = emiRepository.saveEmi(emi);
 			List<Registration> studentDetails = emiRepository.getEmiDetails(stuRegistrationId);
 			registration = studentDetails.get(0);
 			SendMail.emiMail(registration.getEmailId(), registration.getSubmittedFee(), registration.getFirstName(),
@@ -121,7 +121,7 @@ public class EmiServiceImpl implements EmiService {
 
 	}
 
-	public Emi editEimForSingleRecord(Integer emiId) {
+	public Emi editEmiDetails(Integer emiId) {
 		List<Object> list = new ArrayList<Object>();
 		Emi emi = null;
 		list = emiRepository.editEmi(emiId);

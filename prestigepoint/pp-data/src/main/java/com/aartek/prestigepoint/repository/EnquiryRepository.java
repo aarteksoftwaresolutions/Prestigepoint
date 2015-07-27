@@ -7,9 +7,9 @@ import com.aartek.prestigepoint.model.Enquiry;
 @SuppressWarnings("rawtypes")
 public interface EnquiryRepository {
 
-	public void addEnquiryMessage(Enquiry enquiry);
+	public void saveEnquiryMessage(Enquiry enquiry);
 
-	public boolean addAdminEnquiry(Enquiry enquiry);
+	public boolean saveAdminEnquiry(Enquiry enquiry);
 
 	public List getMonthAndYearWiseEnquiryDetails(String month, String year);
 
@@ -17,8 +17,8 @@ public interface EnquiryRepository {
 
 	public List getMonthWiseEnquiry(String month);
 
-	public List<Object> updateEnquiryInformation(Integer enquiryId);
+	public List<Object> editEnquiry(Integer enquiryId);
 
-	public void deleteEnquiryInformation(Integer enquiryId);
+	public void deleteEnquiry(Integer enquiryId);
 
 }

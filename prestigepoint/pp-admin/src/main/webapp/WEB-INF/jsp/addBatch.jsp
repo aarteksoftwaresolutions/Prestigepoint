@@ -17,7 +17,7 @@
   <div class="container clearfix">
     <div class="conact-form">
       <h3 style="color: red;">${message}</h3>
-      <form:form method="POST" action="addBatchAction.do" modelAttribute="Batch" autocomplete="off">
+      <form:form method="POST" action="saveBatch.do" modelAttribute="Batch" autocomplete="off">
         <table width="100%" border="0">
           <tr>
             <td><div class="form-control">
@@ -51,7 +51,7 @@
         </table>
       </form:form>
       <c:set var="count" value="0" scope="page" />
-      <display:table name="batchList" pagesize="8" class="basic-table" uid="cat" requestURI="addBatch.do">
+      <display:table name="batchList" pagesize="8" class="basic-table" uid="cat" requestURI="batch.do">
         <c:set var="count" value="${count+1}" scope="page" />
         <display:column title="S.NO" style="width:1%;">
      ${count}
@@ -59,7 +59,7 @@
         <display:column property="batchName" title="BATCH NAME" />
         <display:column property="startDate" title="START DATE" />
         <display:column title="Edit">
-          <a href="addBatchAction.do?batchId=${cat.batchId}">Edit</a>
+          <a href="saveBatch.do?batchId=${cat.batchId}">Edit</a>
         </display:column>
         <display:column title="Delete">
           <a href="deleteBatch.do?batchId=${cat.batchId}"

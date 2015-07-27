@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.aartek.prestigepoint.model.AddChallenge;
 import com.aartek.prestigepoint.model.Enquiry;
 import com.aartek.prestigepoint.model.Year;
 import com.aartek.prestigepoint.service.CourseService;
@@ -52,32 +51,31 @@ public class ReportController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/viewEnquiryByMonth") //should be getEnquiryByMonth
-	public String showEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map, Model model) {//change method name
-
+	@RequestMapping("/getEnquiryByMonth")
+	public String showEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map, Model model) {
 		map.put("Enquiry", new Enquiry());
 		List<Year> yearList = courseService.getAllYearName();
 		model.addAttribute("year", yearList);
-
-		return "viewEnquiryByMonth";//remove white spaces
+		return "viewEnquiryByMonth";
 	}
 
-	@RequestMapping("/addAdminEnquiry") //action should be adminEnquiry
-	public String showaddAddEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, //change method name
-			Map<String, Object> map, @RequestParam(required = false) String message) {//Remove unsed parameter
+	@RequestMapping("/adminEnquiry")
+	public String showaddAddEnquiryPage(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map,
+			@RequestParam(required = false) String message) {
 		map.put("Enquiry", new Enquiry());
 		return "addAdminEnquiry";
 	}
 
-	@RequestMapping(value = "/addAdminEnquiryAction", method = { RequestMethod.GET, RequestMethod.POST })//action name should be saveAdminEnquiry
-	public String addEnquiryByAdmin(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, Model model,
-			Map<String, Object> map, @RequestParam(required = false) String message) throws ParseException {//remove unused parameter like @RequestParam(required = false) String message
+	@RequestMapping(value = "/saveAdminEnquiry", method = { RequestMethod.GET, RequestMethod.POST })
+	public String saveAdminEnquiry(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, Model model,
+			Map<String, Object> map, @RequestParam(required = false) String message) throws ParseException {
 		boolean status = false;
+		if (enquiry != null && !enquiry.equals("null")) {
 		enquiryValidator.validate(enquiry, result);
 		if (result.hasErrors()) {
 			return "addAdminEnquiry";
 		}
-		status = enquiryService.addAdminEnquiry(enquiry);//method name should be saveAdminEnquiry
+		status = enquiryService.saveAdminEnquiry(enquiry);
 		if (status) {
 			model.addAttribute("message", IConstant.ENQUIRY_BY_ADMIN_SUCCESS);
 		} else {
@@ -85,25 +83,24 @@ public class ReportController {
 		}
 		map.put("Enquiry", new Enquiry());
 		return "addAdminEnquiry";
+	} else {
+		return "redirect:/adminEnquiry.do";
 	}
-
-	@SuppressWarnings({ "rawtypes", "unused" }) //please wrute this line should be on top
+	}
+	@SuppressWarnings({ "rawtypes", "unused" })
 	@RequestMapping(value = "/getEnquiryDetails", method = { RequestMethod.GET, RequestMethod.POST })
 	public String viewEnquiryReport(@ModelAttribute("Enquiry") Enquiry enquiry, ModelMap model,
-			 HttpServletRequest request, @RequestParam(required = false) Integer enquiryId)
-			throws ParseException {
+			HttpServletRequest request, @RequestParam(required = false) Integer enquiryId) throws ParseException {
 		String method = request.getMethod();
-		List<Year> yearList = null;//why use this line , remove this line 
-
+		List<Year> yearList = null;
 		yearList = courseService.getAllYearName();
-
-		if (!enquiry.getMonth().equals("0") && !enquiry.getYear().equals("0")) {//please use IConstant for 0
+		if (!enquiry.getMonth().equals("0") && !enquiry.getYear().equals("0"))  {
 			List enquirylist = enquiryService.getMonthAndYearWiseEnquiryDetails(enquiry.getMonth(), enquiry.getYear());
 			if (enquirylist != null) {
 				model.addAttribute("enquirylist", enquirylist);
 			}
 		} else {
-			if (enquiry.getMonth().equals("0")) {//please use IConstant for 0
+			if (enquiry.getMonth().equals("0")) {
 				List enquirylist = enquiryService.getYearWiseEnquiry(enquiry.getYear());
 				if (enquirylist != null) {
 					model.addAttribute("enquirylist", enquirylist);
@@ -116,25 +113,21 @@ public class ReportController {
 			}
 		}
 		model.addAttribute("year", yearList);
-		model.addAttribute("message", "Please select atleast one");//please use IConstant for message , don't write message here
-		return "viewEnquiryByMonth";//remove white spaces
+		model.addAttribute("message", "Please select atleast one");
+		return "viewEnquiryByMonth";
 	}
 
-	
-	@RequestMapping(value = "/updateEnquiry")
-	public String updateEnquiryInformation(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map,
-			 HttpServletRequest request, @RequestParam(required = false) Integer enquiryId)throws ParseException
-	{ //remove unsed parameter
-		enquiry =  enquiryService.updateEnquiryInformation(enquiryId);
+	@RequestMapping(value = "/editEnquiry")
+	public String editEnquiry(@ModelAttribute("Enquiry") Enquiry enquiry, Map<String, Object> map,
+			HttpServletRequest request, @RequestParam(required = false) Integer enquiryId) throws ParseException {
+		enquiry = enquiryService.editEnquiry(enquiryId);
 		map.put("Enquiry", enquiry);
-
 		return "addAdminEnquiry";
-
 	}
-	@RequestMapping(value = "/deleteEnquiryInformation", method = { RequestMethod.GET, RequestMethod.POST })//action should be deleteEnquiry
-	public String deleteEnquiryInformation(@RequestParam(required = false) Integer enquiryId) { //change method name
-		enquiryService.deleteEnquiryInformation(enquiryId);
-		
-		return "redirect:/viewEnquiryDetails.do";
+
+	@RequestMapping(value = "/deleteEnquiry", method = { RequestMethod.GET, RequestMethod.POST })
+	public String deleteEnquiry(@RequestParam(required = false) Integer enquiryId) {
+		enquiryService.deleteEnquiry(enquiryId);
+		return "redirect:/getEnquiry.do";
 	}
 }

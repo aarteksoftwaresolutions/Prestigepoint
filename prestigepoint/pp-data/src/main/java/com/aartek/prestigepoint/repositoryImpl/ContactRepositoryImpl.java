@@ -16,7 +16,7 @@ public class ContactRepositoryImpl implements ContactRepository {
   @Autowired
   private HibernateTemplate hibernateTemplate;
 
-  public boolean addContactMessage(Enquiry enquiry) {
+  public boolean saveContact(Enquiry enquiry) {
     if (enquiry != null) {
       hibernateTemplate.save(enquiry);
       return true;

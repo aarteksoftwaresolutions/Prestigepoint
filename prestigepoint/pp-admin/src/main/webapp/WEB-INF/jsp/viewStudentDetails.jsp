@@ -33,7 +33,8 @@
       	<table width="40%" align="right">
       	<tr>
       	<td colspan="2"><font face="verdana" size="2">
-      		Select Name : <small class="required"></small><input type="text" id="registration" name="registration" class="input_text" required="autofocus"/></font>  <input type="submit" value="Go"/></td>
+      		Select Name : <small class="required"></small><input type="text" id="registration" name="registration" class="input_text" required="autofocus"  maxlength="10"/></font>
+      		  <input type="submit" value="Go"/></td>
       	</tr>
       	</table>
       </form:form>
@@ -85,6 +86,7 @@
           </tr>
         </table>
       </form:form>
+      <c:if test="${studentDetails != null}">
       <c:set var="count" value="0" scope="page" />
       <display:table name="studentDetails" pagesize="8" class="basic-table" uid="cat" requestURI="getStudentDetails.do">
         <c:set var="count" value="${count+1}" scope="page" />
@@ -96,7 +98,6 @@
         <display:column property="emailId" title="EMAIL ID" />
         <display:column property="totalFee" title="Total Fee" />
         <display:column property="submittedFee" title="SUBMITTED FEE" />
-         
         <display:column title="Image">
           <img src="${imgPath}${cat.registrationId}.png"  onerror="this.src='${imgPath}image.jpg'"  style="width: 50px; height: 50px">
         </display:column>
@@ -105,7 +106,7 @@
         <c:choose>
           <c:when test="${cat.status!='free'}">
             <display:column>
-              <a href="viewDetails.do?registrationId=${cat.registrationId}">FEE DETAILS</a>
+              <a href="getEmiDetails.do?registrationId=${cat.registrationId}">FEE DETAILS</a>
             </display:column>
           </c:when>
           <c:otherwise>
@@ -127,6 +128,50 @@
         </display:column>
             </c:if>
       </display:table>
+      </c:if>
+          <c:if test="${stuDetails != null}">
+      <c:set var="count" value="0" scope="page" />
+      <display:table name="stuDetails" pagesize="8" class="basic-table" uid="cat" requestURI="getStudentDetailsByName.do">
+        <c:set var="count" value="${count+1}" scope="page" />
+        <display:column title="S.NO" class="showHeading" style="width:1%;">
+     ${count}
+    </display:column>
+    	<display:column title="NAME">${cat.firstName} ${cat.lastName}</display:column>
+        <display:column property="contact" title="CONTACT NO" />
+        <display:column property="emailId" title="EMAIL ID" />
+        <display:column property="totalFee" title="Total Fee" />
+        <display:column property="submittedFee" title="SUBMITTED FEE" />
+        <display:column title="Image">
+          <img src="${imgPath}${cat.registrationId}.png"  onerror="this.src='${imgPath}image.jpg'"  style="width: 50px; height: 50px">
+        </display:column>
+        
+        <display:column title="Current Status" >${cat.currentStatus.currentStatus}</display:column>
+        <c:choose>
+          <c:when test="${cat.status!='free'}">
+            <display:column>
+              <a href="getEmiDetails.do?registrationId=${cat.registrationId}">FEE DETAILS</a>
+            </display:column>
+          </c:when>
+          <c:otherwise>
+            <display:column>
+              <a href="setStudentDetails.do?registrationId=${cat.registrationId}">MAKE STUDENT</a>
+            </display:column>
+          </c:otherwise>
+        </c:choose>
+        <display:column>
+          <a href="getEmailId.do?emailId=${cat.emailId}">Send Mail</a>
+        </display:column>
+          <c:if test="${sessionScope.login.adminType!=4}">
+           <display:column title="Edit">
+          <a href="getStudentDetails.do?registrationId=${cat.registrationId}">Edit</a>
+        </display:column>
+        
+         <display:column title="Delete">
+          <a href="deleteStudentDetails.do?registrationId=${cat.registrationId}" onclick="return confirm('Please confirm if you want to delete this Details!');">Delete</a>
+        </display:column>
+            </c:if>
+      </display:table>
+      </c:if>
     </div>
   </div>
   <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>

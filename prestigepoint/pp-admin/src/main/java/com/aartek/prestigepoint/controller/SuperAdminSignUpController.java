@@ -18,9 +18,10 @@ import com.aartek.prestigepoint.util.IConstant;
 import com.aartek.prestigepoint.validator.SignUpValidator;
 
 @Controller
-public class SignUpController {
+public class SuperAdminSignUpController {
+
 	@SuppressWarnings("unused")
-	private static final Logger log = Logger.getLogger(SignUpController.class);
+	private static final Logger log = Logger.getLogger(SuperAdminSignUpController.class);
 	@Autowired
 	private LoginService loginService;
 	@Autowired
@@ -40,28 +41,34 @@ public class SignUpController {
 		model.addAttribute("message", message);
 		return "signup";
 	}
-/**
- * use for SingUp
- * @param login
- * @param result
- * @param model
- * @param map
- * @param request
- * @return
- */
-	@RequestMapping("adminsignup")
+
+	/**
+	 * use for SingUp
+	 * 
+	 * @param login
+	 * @param result
+	 * @param model
+	 * @param map
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/adminsignup")
 	public String adminSignUp(@ModelAttribute("AdminLogin") AdminLogin login, BindingResult result, ModelMap model) {
 		boolean status = false;
-		signUpValidator.validate(login, result);
-		if (result.hasErrors()) {
-			return "signup";
-		}
-		status = loginService.signUp(login);
-		if (status) {
-			model.addAttribute("message", IConstant.USER_SUCCESS_MESSAGE);
+		if (login != null && !login.equals("null")) {
+			signUpValidator.validate(login, result);
+			if (result.hasErrors()) {
+				return "signup";
+			}
+			status = loginService.signUp(login);
+			if (status) {
+				model.addAttribute("message", IConstant.USER_SUCCESS_MESSAGE);
+			} else {
+				model.addAttribute("message", IConstant.USER_FAILURE_MESSAGE);
+			}
+			return "redirect:/signup.do";
 		} else {
-			model.addAttribute("message", IConstant.USER_FAILURE_MESSAGE);
+			return "redirect:/signup.do";
 		}
-		return "redirect:/signup.do";
 	}
 }

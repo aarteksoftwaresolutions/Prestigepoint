@@ -64,7 +64,7 @@ public class ForgotPasswordController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/forgotPasswordAction", method = RequestMethod.POST)
+	@RequestMapping(value = "/userForgotPassword", method = { RequestMethod.GET, RequestMethod.POST })
 	public String verify(@ModelAttribute("Registration") Registration registration, BindingResult result,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request) {
 		boolean status = false;

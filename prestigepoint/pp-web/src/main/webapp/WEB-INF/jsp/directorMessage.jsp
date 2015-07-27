@@ -12,21 +12,28 @@
     text-align:center;
     padding:5px;
 } 
-#nav {
-    line-height:30px;
-    background-color:#eeeeee;
-    height:600px;
-    width:400px;
-    float:left;
-    padding:5px;	      
-}
+.full {width: 100%; }
 #section {
-    width:350px;
-    float:left;
-    padding:10px;	 	 
+    width:100%;
+    padding:10px 0;
+    margin-bottom: 10px;	 	 
 }
+#section .side_left {
+	line-height:30px;
+    background-color:#eeeeee;    
+    width: 25%;
+    float:left;
+    padding:10px;
+}
+#section .side_right {
+	width: 75%;
+	float: right;
+}
+#section1 {
+    float:right;
+   }
  #article {
-    width:350px;
+    width:650px;
     float:left;
     padding:10px;	
     
@@ -42,34 +49,75 @@ p.pos_right {
     position: relative;
     left: 500px;
 }
+.dir_msg {
+    width: 300px;
+    margin: 0 auto;
+}
+.dir_box { width: 98%; margin: 10px 1%; padding-top: 10px; }
+.dir_box h1 {
+	font-size: 1.2em;
+	font-weight: bold;
+	text-shadow: 0px 2px 5px #ccc;
+}
+.dir_box p {
+	text-align: justify;
+	line-height: 25px;
+	margin-bottom: 10px;
+  	text-indent: 50px;
+}
+.dir_box img.one { float: left; margin-right: 30px; }
+.dir_box img.two { float: right; margin-left: 30px; }
 </style>
 </head>
 <body>
-
-<div id="header">
-<h1><b>FROM THE DIRECTOR's DESK</b></h1>
-</div>
-
-<div id="nav">
-<img src="img/pp3.jpg" width="380px"/>
-</div>
-<div id="section">
-<h1><b>Prestigepoint</b></h1>
-<p>
-<img src="img/images.jpg" hight="200px" width="300px"/>
-<p>
-"We are committed towards our students growth and excellent training in order to cater the growing demands of the industry,
-At prestigepoint we enable students become the best developers,We have the best of the faculties and some of our faculties 
-are from IT Industry"
-</p>
-</p>
-<img src="img/sign121.jpg" hight="200px" width="300px"/>
-<div id="article"> 
-<p class="pos_right">
-Standing on the River Thames, London has been a major settlement for two millennia,
-its history going back to its founding by the Romans, who named it Londinium.
-</p>
-</div>
+<div class="container full">
+	<div id="header">
+		<h1><b>FROM THE DIRECTOR's DESK</b></h1>
+	</div>	
+	
+	<div id="section">
+		<div class="side_left">
+			<img src="img/nav2.jpg"/>
+			 <img src="img/CORPORATE TRAINING ADD. FOR PRESTIGE POINT.jpg" hight="200px" width="300px"/>
+		</div> <!-- /.side_left -->
+		<div class="side_right">
+			<div class="dir_msg">
+				<img src="img/director message.jpg" hight="200px" width="300px"/>
+			</div>
+			<div class="dir_box">				
+				<img src="img/IMG-20150615-WA0000.jpg" hight="100px" width="300px" class="one" />
+				<h1>Director Mrs. Babli Rathor</h1>
+				<p>Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.</p>
+				<p>Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.</p>				
+				<div style="clear:both"></div>
+			</div>
+			<div class="dir_box">
+				<img src="img/IMG-20150714-WA0003.jpg" hight="200px" width="300px" class="two" />
+				<h1>Director Mr.Neeraj Paliwal</h1>
+				<p>Our mission is to develop competent and committed students who will make a difference to the people among whom they study.
+				Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.</p>
+				<div style="clear:both"></div>
+				<p>Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.</p>				
+				<div style="clear:both"></div>
+				<p>Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.Prestigepoint Institute, with its vision of nurturing of talent to help students achieve their Institute goals focuses on three areas: 
+				Institute excellence,proper understanding of concepts and able guidance.</p>				
+				<div style="clear:both"></div>
+			</div>
+		</div> <!-- /.side_right -->
+		<div style="clear:both"></div>
+	</div> <!-- /.section -->
 </div>
 </body>
+
 </html>

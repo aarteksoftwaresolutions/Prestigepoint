@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aartek.prestigepoint.model.ForumAnswer;
 import com.aartek.prestigepoint.model.ForumQuestion;
+import com.aartek.prestigepoint.model.Subject;
 import com.aartek.prestigepoint.service.ForumAnswerService;
 import com.aartek.prestigepoint.service.ForumQuestionService;
+import com.aartek.prestigepoint.service.QuestionAnswerService;
 import com.aartek.prestigepoint.util.IConstant;
 
 /**
@@ -34,7 +36,7 @@ import com.aartek.prestigepoint.util.IConstant;
  */
 @Controller
 public class ForumController {
-	
+
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(ForumController.class);
 
@@ -46,6 +48,8 @@ public class ForumController {
 
 	static List<ForumQuestion> questionList = null;
 
+	@Autowired
+	private QuestionAnswerService questionAnswerService;
 	/**
 	 * This method is used for displaying forum page
 	 * 
@@ -54,33 +58,30 @@ public class ForumController {
 	 * @param message
 	 * @return
 	 */
-	@RequestMapping(value = "/forum", method = { RequestMethod.GET,
-			RequestMethod.POST })
-	public String forum(@ModelAttribute("ForumAnswer") ForumAnswer forumAnswer,Map<String, Object> map, ModelMap model,
-			@RequestParam(required = false) String message,Integer forumAnswerId,Integer forumQuestionId,
-			HttpServletRequest request, HttpServletResponse response) {
-		if(forumAnswerId !=null && forumQuestionId==null){
+	@RequestMapping(value = "/forum", method = { RequestMethod.GET, RequestMethod.POST })
+	public String forum(@ModelAttribute("ForumAnswer") ForumAnswer forumAnswer, Map<String, Object> map,
+			ModelMap model, @RequestParam(required = false) String message, Integer forumAnswerId,
+			Integer forumQuestionId, HttpServletRequest request, HttpServletResponse response) {
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
+		model.addAttribute("subjectList", subjects);
+		if (forumAnswerId != null && forumQuestionId == null) {
 			forumAnswer = forumAnswerService.updateAnswer(forumAnswerId);
 			model.put("ForumAnswer", forumAnswer);
 			model.addAttribute("questionList", questionList);
-		}else{
-		map.put("ForumAnswer", new ForumAnswer());
-		questionList = forumQuestionService.getAllQuestion();
-		model.addAttribute("questionList", questionList);
-		return "forum";
-	}
+		} else {
+			map.put("ForumAnswer", new ForumAnswer());
+			questionList = forumQuestionService.getAllQuestion();
+			model.addAttribute("questionList", questionList);
+			return "forum";
+		}
 		return "forum";
 	}
 
-	@RequestMapping(value = "/usersQueriesReviews", method = {
-			RequestMethod.GET, RequestMethod.POST })
-	public String userAnswersViews(
-			@ModelAttribute("ForumAnswer") ForumAnswer forumAnswer,
-			BindingResult result, ModelMap model, Map<String, Object> map,
-			@RequestParam(required = false) String message) {
+	@RequestMapping(value = "/usersQueriesReviews", method = { RequestMethod.GET, RequestMethod.POST })
+	public String userAnswersViews(@ModelAttribute("ForumAnswer") ForumAnswer forumAnswer, BindingResult result,
+			ModelMap model, Map<String, Object> map, @RequestParam(required = false) String message) {
 		if (forumAnswer.getForumQuestion().getForumQuestionId() == null) {
-			questionList = forumQuestionService.findQuestion(forumAnswer
-					.getForumQuestion());
+			questionList = forumQuestionService.findQuestion(forumAnswer.getForumQuestion());
 			model.addAttribute("questionList", questionList);
 		} else {
 			boolean status = false;
@@ -106,8 +107,7 @@ public class ForumController {
 	 * @return
 	 */
 	@RequestMapping(value = "/askQueries", method = RequestMethod.GET)
-	public String askQueries(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String message) {
+	public String askQueries(Map<String, Object> map, Model model, @RequestParam(required = false) String message) {
 		List<ForumQuestion> forumList = null;
 		map.put("ForumQuestion", new ForumQuestion());
 		forumList = forumQuestionService.getAllSubjects();
@@ -117,10 +117,8 @@ public class ForumController {
 	}
 
 	@RequestMapping(value = "/askQuestions", method = RequestMethod.POST)
-	public String askQuestions(
-			@ModelAttribute("ForumQuestion") ForumQuestion forumQuestion,
-			BindingResult result, ModelMap model, Map<String, Object> map,
-			HttpServletRequest request, HttpServletResponse response) {
+	public String askQuestions(@ModelAttribute("ForumQuestion") ForumQuestion forumQuestion, BindingResult result,
+			ModelMap model, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) {
 		map.put("ForumAnswer", new ForumAnswer());
 		boolean status = false;
 		status = forumQuestionService.addQuestion(forumQuestion);
@@ -133,7 +131,7 @@ public class ForumController {
 		model.put("ForumQuestion", new ForumQuestion());
 		return "redirect:/forum.do";
 	}
-	
+
 	@RequestMapping(value = "/searchQuestion", method = RequestMethod.GET)
 	@ResponseBody
 	public List<ForumQuestion> searchQuestion(@RequestParam String searchValue) {

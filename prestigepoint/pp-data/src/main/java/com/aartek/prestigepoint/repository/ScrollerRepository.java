@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.repository;
 import java.util.List;
 
 import com.aartek.prestigepoint.model.Scroller;
+import com.aartek.prestigepoint.model.UploadImages;
 
 public interface ScrollerRepository {
 
@@ -16,10 +17,12 @@ public interface ScrollerRepository {
   
   public List<Object> editSingleStudentDetail(Integer studentId);
 
-  public  boolean addScrollerPhoto(Scroller scroller);
+  public  boolean saveScrollerPhoto(Scroller scroller);
 
   public void deleteScrollerImage(Integer imageId);
 
 public List<Scroller> getAllScrollImages();
+
+public List<UploadImages> viewUploadImages();
 
 }

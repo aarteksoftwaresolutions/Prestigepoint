@@ -10,7 +10,7 @@ public interface EmiService {
 
 	List<Emi> getFeesDetails(Integer emiId);
 
-	public boolean addEmiInfo(Emi emi) throws ParseException;
+	public boolean saveEmi(Emi emi) throws ParseException;
 
 	List<Registration> getRegistrationDetails(Integer emiId);
 
@@ -22,7 +22,7 @@ public interface EmiService {
 
 	public Emi editEmi(Integer emiId);
 
-	public Emi editEimForSingleRecord(Integer emiId);
+	public Emi editEmiDetails(Integer emiId);
 
 	boolean editEmiInfo(Emi emi) throws ParseException;
 

@@ -6,7 +6,15 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+
 public class SendMail {
+
+	@Autowired
+	private static JavaMailSenderImpl javaMailSender;
 
 	public static String sendEmail(String toEmail, String userPassword, String firstName) {
 		try {
@@ -37,6 +45,7 @@ public class SendMail {
 	public static String confirmationMail(String toEmail, String userPassword, String firstName, int regId) {
 		try {
 			Message message = new MimeMessage(SendMailProperty.mailProperty());
+			
 			message.setFrom(new InternetAddress(IConstant.FROM_EMAIL_ID));
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
 			message.setSubject("Regards:registration confirmation");
@@ -47,10 +56,8 @@ public class SendMail {
 			msg += " <br>";
 			msg += "<b>Password:</b>" + userPassword;
 			msg += " <br>";
-			msg += "http://localhost:9090/pp-web/verify.do?registrationId=" + regId; // used
-																						// on
-																						// local
-//		 msg += "http://prestigepoint.in/verify.do?registrationId=" + regId; //used on the server
+		/*	msg += "http://localhost:9090/pp-web/verify.do?registrationId=" + regId;*/ // used
+        	msg += "http://prestigepoint.in/verify.do?registrationId=" + regId; //used on the server
 			msg += " <br>";
 			msg += "Regards,<br>";
 			msg += "Prestige Point";
@@ -171,13 +178,12 @@ public class SendMail {
 		return null;
 	}
 
-	public static String sendMail(String emailTo, String subject, String message) {
+	/*public static String sendMail(String emailTo, String subject, String message) {
 		try {
 			Message message1 = new MimeMessage(SendMailProperty.mailProperty());
 			message1.setFrom(new InternetAddress(IConstant.FROM_EMAIL_ID));
 			message1.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailTo));
 			message1.setSubject("Regards:registration confirmation");
-
 			message1.setContent(message, "text/html");
 			Transport.send(message1);
 			System.out.println("Done");
@@ -185,5 +191,26 @@ public class SendMail {
 			throw new RuntimeException(e);
 		}
 		return null;
+	}*/
+
+	/*public static void sendMail(String emailId, String subject, String message, String originalFilename) {
+		
+		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+			helper.setFrom(IConstant.FROM_EMAIL_ID);
+			helper.setTo(emailId);
+			helper.setSubject(subject);
+			helper.setText(message);
+			FileSystemResource file = new FileSystemResource(originalFilename);
+			helper.addAttachment(file.getFilename(), file);
+			javaMailSender.send(mimeMessage);
+			System.out.println("Mail sent successfully.");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+			
+		}
+*/
+	
 	}
-}

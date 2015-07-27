@@ -39,7 +39,7 @@ public class FooterPhotoRepositoryImpl implements FooterPhotoRepository {
 	/**
 	 * Method use for save batch details into database.
 	 */
-	public boolean addFooterPhoto(PhotoInFooter photoInFooter) {
+	public boolean saveFooterPhoto(PhotoInFooter photoInFooter) {
 		if (photoInFooter != null) {
 			hibernateTemplate.saveOrUpdate(photoInFooter);
 			return true;

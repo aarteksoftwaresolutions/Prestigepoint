@@ -29,11 +29,11 @@ public class CourseServiceImpl implements CourseService {
 	 * 
 	 * @param course
 	 */
-	public boolean addCourse(Course course) {
+	public boolean saveCourse(Course course) {
 		boolean status = false;
 		if (course != null) {
 			course.setIsDeleted(IConstant.IS_DELETED);
-			status = courseRepository.addCourse(course);
+			status = courseRepository.saveCourse(course);
 			return status;
 		} else {
 			return status;
@@ -43,9 +43,9 @@ public class CourseServiceImpl implements CourseService {
 	/**
 	 * Method use for get all course name that are register.
 	 */
-	public List<Course> getAllCourseName() {
+	public List<Course> getCourses() {
 		List<Course> list = new ArrayList<Course>();
-		list = courseRepository.getAllCourseName();
+		list = courseRepository.getCourses();
 		return list;
 	}
 

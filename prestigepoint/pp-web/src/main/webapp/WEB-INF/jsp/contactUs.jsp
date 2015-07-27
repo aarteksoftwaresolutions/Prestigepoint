@@ -34,7 +34,7 @@
     <div class="conact-form">
       <h2>Get in Touch</h2>
       <h3 style="color: #863d7f;">${message}</h3>
-      <form:form modelAttribute="Enquiry" action="contactAction.do" method="post" id="contact-form" autocomplete="off">
+      <form:form modelAttribute="Enquiry" action="saveContact.do" method="post" id="contact-form" autocomplete="off">
         <table width="100%" border="0">
           <tr>
             <td><div class="form-control">

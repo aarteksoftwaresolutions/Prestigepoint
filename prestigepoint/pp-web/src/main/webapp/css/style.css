@@ -56,8 +56,8 @@ nav > ul > li > a:hover, nav > ul > li > a:focus, nav > ul > li.active > a, .lin
 .jumbotron .lead-txt { text-align: center; font-family: 'Lato-Light'; }
 .jumbotron .lead-txt h1 { font-size: 40px; margin: 20px 0 10px; }
 .jumbotron .lead-txt h2 { color: #863D7F; font-size: 18px; margin: 0 0 30px; }
-.banner-slide { width: 100%; height: 400px; background-size: cover; }
-.banner-slide.one { background: url(../img/banner-1.jpg) no-repeat center center transparent; }
+.banner-slide { width: 100%; height: 400px;}
+.banner-slide.one {no-repeat center center transparent; }
 .banner-slide .lead-txt { padding-top: 180px; color: #000000; font-size: 30px; text-align: left; text-shadow: 0 1px #b8b8b8; }
 .featurette-heading { color: #863D7F; font-size: 28px; font-family: 'Lato-Light'; }
 .offered-courses { background: #eee; padding: 30px 0 30px; }
@@ -101,6 +101,7 @@ footer { background: #465568; padding: 30px 0; color: #F2F0F0; font-size: 14px; 
 .form-control { margin-top: 15px; }
 .form-control:first-child { margin-top: 0; }
 .inputControl { border: 1px solid #B1BDCB; resize: none; color: #4C596C; padding: 8px; width: 100%; }
+.inptlogin{width:53%;}
 .enquiry-open { background: url(../img/icon-stripe.png) no-repeat -173px -2px; height: 115px; width: 25px; display: inline-block; position: absolute; left: -24px; }
 .enquiry-close { background: url(../img/icon-stripe.png) no-repeat -173px -123px; height: 26px; width: 25px; display: inline-block; right: 3px; top: 3px; position: absolute; }
 .bx-wrapper .bx-pager { text-align: center; margin-top: 10px; }
@@ -172,8 +173,6 @@ address { font-style: normal; line-height: 22px; }
 .col-point li li a:hover, .col-point li li a:focus { text-decoration: underline; }
 .open{background:#4E5D76;}
 li.open > a{color:#e7e810;}
-.two{background:url(../img/banner-2.jpg) no-repeat left top;background-size:cover;}
-.three{background:url(../img/banner-3.jpg) no-repeat center center;background-size:cover;}
 /*drop down navigation starts here*/
 
 nav ul li{
@@ -509,4 +508,9 @@ nav ul li ul ul{
   padding: 0;
   width:100%;
   height: 400px;
+}
+#slider ul li img {
+	width:100%;
+	height:100%;
+	
 }

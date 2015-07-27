@@ -20,16 +20,16 @@ public class ChallengeServiceImp implements ChallengeService {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(ChallengeServiceImp.class);
 
-	public boolean addChallengeInformation(AddChallenge addChallenge) {
+	public boolean saveChallenge(AddChallenge addChallenge) {
 		addChallenge.setIsDeleted(IConstant.IS_DELETED);
 		addChallenge.setIsActive(IConstant.IS_DELETED_DEACTIVE);
-		addChallengeRepository.addChallengeInformation(addChallenge);
+		addChallengeRepository.saveChallenge(addChallenge);
 		return true;
 	}
 
-	public List<AddChallenge> allAddChallengeList() {
+	public List<AddChallenge> getAllchallenge() {
 		List<AddChallenge> allAddChallengeList = new ArrayList<AddChallenge>();
-		allAddChallengeList = addChallengeRepository.allAddChallengeList();
+		allAddChallengeList = addChallengeRepository. getAllchallenge();
 		return allAddChallengeList;
 	}
 
@@ -39,35 +39,36 @@ public class ChallengeServiceImp implements ChallengeService {
 		return getChallengeDetails;
 	}
 
-	public AddChallenge updateChallengeInformation(Integer challengeId) {
+	public AddChallenge editChallengeDetails(Integer challengeId) {
 		List<Object> allAddChallengeList = new ArrayList<Object>();
 		AddChallenge addChallenge = null;
-		allAddChallengeList = addChallengeRepository.updateChallengeInformation(challengeId);
+		allAddChallengeList = addChallengeRepository.editChallengeDetails(challengeId);
 		for (Object object : allAddChallengeList) {
 			addChallenge = (AddChallenge) object;
 		}
 		return addChallenge;
 	}
 
-	public void ChallengeValue(String challengeIdValue, Integer challengeValue) {
+	public void changeChallengeStatus(String challengeIdValue, Integer challengeValue) {
 
 		if (challengeIdValue != null && challengeValue != null) {
-			AddChallenge addChallenge = (AddChallenge) addChallengeRepository.updateChallengeInformation(challengeValue).get(0);
+			AddChallenge addChallenge = (AddChallenge) addChallengeRepository.editChallengeDetails(challengeValue).get(0);
 			if (challengeIdValue.equals("true")) {
 
 				addChallenge.setIsActive(IConstant.IS_DELETED);
 
-				addChallengeRepository.addChallengeInformation(addChallenge);
+				addChallengeRepository.saveChallenge(addChallenge);
 			} else {
 				System.out.println("else=" + addChallenge);
 				addChallenge.setIsActive(IConstant.IS_DELETED_DEACTIVE);
-				addChallengeRepository.addChallengeInformation(addChallenge);
+				addChallengeRepository.saveChallenge(addChallenge);
 			}
 
 		}
 	}
 
-	public void deleteChallengeInformation(Integer challengeId) {
-		addChallengeRepository.deleteChallengeInformation(challengeId);
+	public void deleteChallenge(Integer challengeId) {
+		addChallengeRepository.deleteChallenge(challengeId);
 	}
+
 }

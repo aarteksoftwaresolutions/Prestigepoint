@@ -3,11 +3,11 @@
  */
 function enableChallengeStatus(challengeDetails) {
 	var challengeId = challengeDetails.id;
-	var challengeValue = challengeDetails.value;
-	var challengeIdValue = document.getElementById(challengeId).checked;
+	var challengeValue = challengeDetails.value;//value is getting the id
+	var challengeIdValue = document.getElementById(challengeId).checked;//it is getting the value
 	
 	$.ajax({
-		url : "changeActiveStatusAction.do?challengeValue=" + challengeValue
+		url : "activeChallengeStatus.do?challengeValue=" + challengeValue
 				+ "&challengeIdValue=" + challengeIdValue,
 		type : "GET",
 		contentType : "application/json; charset=utf-8",

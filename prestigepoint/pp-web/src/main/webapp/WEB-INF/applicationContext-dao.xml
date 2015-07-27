@@ -89,6 +89,7 @@
     </property>
   </bean>
 
+
   <bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
     <property name="properties">
       <props>

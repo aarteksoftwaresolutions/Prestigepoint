@@ -74,15 +74,15 @@ public class ContactController {
 	 * @param map
 	 * @return
 	 */
-	@RequestMapping(value = "/contactAction", method = RequestMethod.POST)
-	public String addContactInfo(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, ModelMap model,
+	@RequestMapping(value = "/saveContact", method = RequestMethod.POST)
+	public String saveContact(@ModelAttribute("Enquiry") Enquiry enquiry, BindingResult result, ModelMap model,
 			Map<String, Object> map) {
 		boolean status = false;
 		enquiryValidator.validate(enquiry, result);
 		if (result.hasErrors()) {
 			return "contactUs";
 		}
-		status = contactService.addContactMessage(enquiry);
+		status = contactService.saveContact(enquiry);
 		if (status) {
 			model.addAttribute("message", IConstant.CONTACTUS_SUCCESS_MESSAGE);
 		} else {

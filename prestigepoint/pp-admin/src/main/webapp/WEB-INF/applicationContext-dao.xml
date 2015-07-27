@@ -121,9 +121,14 @@
 				<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
 				<prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop>
 				
+				<prop key="mail.smtp.ssl.trust">${mail.smtp.ssl.trust}</prop>
+
+
+
+				
 			</props>
 		</property> 
-	</bean> 
+	</bean>  
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- max upload size in bytes -->

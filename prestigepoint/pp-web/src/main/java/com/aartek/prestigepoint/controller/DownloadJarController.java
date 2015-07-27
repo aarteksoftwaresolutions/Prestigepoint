@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.aartek.prestigepoint.model.Subject;
 import com.aartek.prestigepoint.model.Upload;
+import com.aartek.prestigepoint.service.QuestionAnswerService;
 import com.aartek.prestigepoint.service.UploadService;
 
 /**
@@ -33,6 +35,9 @@ public class DownloadJarController {
 	private static final Logger logger = Logger.getLogger(DownloadJarController.class);
 	@Autowired
 	private UploadService uploadService;
+	
+	@Autowired
+	private QuestionAnswerService questionAnswerService;
 
 	@Value("${pp.uploadJar}")
 	private String uploadJarPath;
@@ -56,6 +61,8 @@ public class DownloadJarController {
 	 */
 	@RequestMapping(value = "/downloadJars", method = RequestMethod.GET)
 	public String downloadJars(ModelMap model, Model m) {
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
+		model.addAttribute("subjectList", subjects);
 		List<Upload> l = uploadService.downloadJar();
 		model.addAttribute("jarlist", l);
 		return "downloadJars";

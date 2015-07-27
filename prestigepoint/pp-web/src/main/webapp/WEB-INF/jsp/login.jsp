@@ -18,9 +18,7 @@
 .lg-btn {
   width: 20%;
 }
-.inputControl{
-width: 50%;
-}
+
 </style>
 </head>
 <body>
@@ -46,7 +44,7 @@ response.setDateHeader("Expire",0); //prevents caching at the proxy server
                 <label>
                   <p>
                     User Name<small class="required"></small>
-                  </p> <form:input path="emailId" class="inputControl" placeholder="Please enter your email"
+                  </p> <form:input path="emailId" class="inputControl inptlogin" placeholder="Please enter your email"
                     required="autofocus" maxlength="50" id="emailId" /> </label>
               </div></td>
           </tr>
@@ -56,7 +54,7 @@ response.setDateHeader("Expire",0); //prevents caching at the proxy server
                 <label>
                   <p>
                     Password<small class="required"></small>
-                  </p> <form:password path="password" class="inputControl" placeholder="Password" required="autofocus"
+                  </p> <form:password path="password" class="inputControl inptlogin" placeholder="Password" required="autofocus"
                     maxlength="15" id="password" /> </label>
               </div></td>
           </tr>

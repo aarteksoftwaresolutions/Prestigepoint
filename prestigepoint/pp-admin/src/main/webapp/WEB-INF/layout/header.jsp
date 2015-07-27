@@ -51,9 +51,9 @@
       <li><c:if test="${sessionScope.login.adminType==1||sessionScope.login.adminType==2}">
 			Add Master
 				<ul>
-            <li><a href="addCourse.do">Add Courses</a>
+            <li><a href="course.do">Add Courses</a>
             </li>
-            <li><a href="addBatch.do">Add Batch</a>
+            <li><a href="batch.do">Add Batch</a>
             </li>
 
             <c:if test="${sessionScope.login.adminType==1}">
@@ -61,17 +61,22 @@
               </li>
             </c:if>
 
-            <li><a href="addFooterPhoto.do">Footer View</a>
+            <li><a href="getFooterPhotoPage.do">Footer View</a>
             </li>
             <li><a href="scrollerView.do">Banner Image</a>
             </li>
             <li><a href="currentBatch.do">Current Batch</a>
             </li>
-            <li><a href="addAdminEnquiry.do">Admin Enquiry</a>
+            <li><a href="adminEnquiry.do">Admin Enquiry</a>
            <!--  </li>
             <li><a href="addPlacedStudent.do">AddPlacedStudent</a>
             </li> -->
-            <li><a href="addChallenge.do">AddChallenge</a>
+            <li><a href="challenge.do">AddChallenge</a>
+            </li>
+             <li><a href="marquee.do">AddMarquee</a>
+            </li>
+            </li>
+             <li><a href="uploadImagesView.do">UploadImages</a>
             </li>
 
           </ul>
@@ -81,20 +86,20 @@
       <li>View Master
         <ul>
           <li><a href="viewStudentDetails.do">View Student Details</a></li>
-          <li><a href="viewEnquiryDetails.do">View Enquiry</a></li>
+          <li><a href="getEnquiry.do">View Enquiry</a></li>
           <li><a href="viewPlacedStudent.do">ViewPlacedStudent</a>
           </li>
 
         </ul>
       </li>
-      <li><a href="sendMail.do">Send Mail</a>
+      <li><a href="sendMailPage.do">Send Mail</a>
       </li>
       
       <li><a href="javascript:;">Reports</a>
         <ul>
           <li><a href="javascript:;">Enquiry Report</a>
             <ul>
-              <li><a href="viewEnquiryByMonth.do">By Month</a></li>
+              <li><a href="getEnquiryByMonth.do">By Month</a></li>
             </ul>
           </li>
            
@@ -108,7 +113,7 @@
           <li><a href="javascript:;">Question & Answer</a>
             <ul>
               <li><a href="questionAndAnswer.do">Simple Question</a></li>
-              <li><a href="differenceQuestion.do">Difference Question</a>
+              <li><a href="differenceQuestionAndAnswer.do">Difference Question</a>
               </li>
             </ul>
           </li>

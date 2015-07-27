@@ -46,7 +46,7 @@
 
             <p>&nbsp;</p>
             <h3 style="color: red;">${message}</h3>
-            <form:form method="POST" action="addPlacedStudentAction.do" modelAttribute="AddPlacedStudent"
+            <form:form method="POST" action="savePlacedStudent.do" modelAttribute="AddPlacedStudent"
                 autocomplete="off">
 
                 <table width="100%" border="0">
@@ -82,7 +82,7 @@
 
                                 <label>
                                     <p>Package</p> <form:input path="studentPackage" class="inputControl"
-                                        placeholder="Package" required="autofocus" maxlength="4"  onkeypress="return onlyNos(event,this);" />
+                                        placeholder="Package" required="autofocus" maxlength="4"/>
                                 </label>
                             </div></td>
                     </tr>

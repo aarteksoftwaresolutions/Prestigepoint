@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.aartek.prestigepoint.model.AddChallenge;
 import com.aartek.prestigepoint.model.Enquiry;
 import com.aartek.prestigepoint.repository.EnquiryRepository;
 import com.aartek.prestigepoint.service.EnquiryService;
@@ -31,7 +30,7 @@ public class EnquiryServiceImpl implements EnquiryService {
 	@Autowired
 	private EnquiryRepository addEnquiryRepository;
 
-	public void addEnquiryMessage(Enquiry enquiry) throws ParseException {
+	public void saveEnquiryMessage(Enquiry enquiry) throws ParseException {
 		java.text.DateFormat dateFormat1 = new SimpleDateFormat("dd-MM-yyyy");
 		Date date = new Date();
 		enquiry.setIsDeleted(IConstant.IS_DELETED);
@@ -46,11 +45,11 @@ public class EnquiryServiceImpl implements EnquiryService {
 		enquiry.setCollage("N/A");
 		enquiry.setStatus(0);
 		enquiry.setName(CamelCase.produceCamelCase(enquiry.getName()));
-		enquiryRepository.addEnquiryMessage(enquiry);
+		enquiryRepository.saveEnquiryMessage(enquiry);
 	}
 
-	public boolean addAdminEnquiry(Enquiry enquiry) throws ParseException {
-		/*enquiry.setDate(DateFormat.getYYYYMMDDDate((enquiry.getDate())));*/
+	public boolean saveAdminEnquiry(Enquiry enquiry) throws ParseException {
+		enquiry.setDate(DateFormat.getYYYYMMDDDate((enquiry.getDate())));
 		enquiry.setName(CamelCase.produceCamelCase(enquiry.getName()));
 		enquiry.setLastName(CamelCase.produceCamelCase(enquiry.getLastName()));
 		enquiry.setHandledBy(CamelCase.produceCamelCase(enquiry.getHandledBy()));
@@ -60,7 +59,7 @@ public class EnquiryServiceImpl implements EnquiryService {
 		boolean status = false;
 		if (enquiry != null) {
 			enquiry.setIsDeleted(IConstant.IS_DELETED);
-			status = enquiryRepository.addAdminEnquiry(enquiry);
+			status = enquiryRepository.saveAdminEnquiry(enquiry);
 
 		}
 
@@ -89,17 +88,17 @@ public class EnquiryServiceImpl implements EnquiryService {
 		return enquirylist;
 	}
 	
-	public Enquiry updateEnquiryInformation(Integer enquiryId) {
+	public Enquiry editEnquiry(Integer enquiryId) {
 		List<Object> enquiryList = new ArrayList<Object>();
 		Enquiry enquiry = null;
-		enquiryList = addEnquiryRepository.updateEnquiryInformation(enquiryId);
+		enquiryList = addEnquiryRepository.editEnquiry(enquiryId);
 		for (Object object : enquiryList) {
 			enquiry = (Enquiry) object;
 		}
 		return enquiry;
 	}
 	
-	public void deleteEnquiryInformation(Integer enquiryId) {
-		enquiryRepository. deleteEnquiryInformation(enquiryId);
+	public void deleteEnquiry(Integer enquiryId) {
+		enquiryRepository. deleteEnquiry(enquiryId);
 	}
 }

@@ -20,18 +20,18 @@ public class PlacedStudentRepositoryImp implements PlacedStudentRepository {
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
-    public List<AddPlacedStudent> viewAllPlacedStudent() {
+    public List<AddPlacedStudent> getPlacedStudent() {
         List<AddPlacedStudent> list = hibernateTemplate.find("from AddPlacedStudent aps where aps.isDeleted="
                         + IConstant.IS_DELETED);
         return list;
     }
 
-    public List<Object> updatePlacedStudentInformation(Integer studentId) {
+    public List<Object> editPlacedStudent(Integer studentId) {
         List<Object> list = hibernateTemplate.find("from AddPlacedStudent a where a.studentId=" + studentId);
         return list;
     }
 
-    public void deletePlacedStudentInformation(Integer studentId) {
+    public void deletePlacedStudent(Integer studentId) {
         AddPlacedStudent addPlacedStudent = (AddPlacedStudent) hibernateTemplate.get(AddPlacedStudent.class, studentId);
         addPlacedStudent.setIsDeleted(IConstant.IS_DELETED_DEACTIVE);
         if (null != addPlacedStudent) {
@@ -47,7 +47,7 @@ public class PlacedStudentRepositoryImp implements PlacedStudentRepository {
 
     }
 
-    public void addStudentInformation(AddPlacedStudent addPlacedStudent) {
+    public void savePlacedStudent(AddPlacedStudent addPlacedStudent) {
         hibernateTemplate.saveOrUpdate(addPlacedStudent);
     }
 

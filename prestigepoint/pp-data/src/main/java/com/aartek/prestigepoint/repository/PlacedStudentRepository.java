@@ -6,14 +6,14 @@ import com.aartek.prestigepoint.model.AddPlacedStudent;
 
 public interface PlacedStudentRepository {
 
-    public List<AddPlacedStudent> viewAllPlacedStudent();
+    public List<AddPlacedStudent> getPlacedStudent();
 
-    public List<Object> updatePlacedStudentInformation(Integer studentId);
+    public List<Object> editPlacedStudent(Integer studentId);
 
-    public void deletePlacedStudentInformation(Integer studentId);
+    public void deletePlacedStudent(Integer studentId);
 
     public List<AddPlacedStudent> generatePlacedStudentReportMonthlyWise(String fromDate, String toDate);
 
-    public void addStudentInformation(AddPlacedStudent addPlacedStudent);
+    public void savePlacedStudent(AddPlacedStudent addPlacedStudent);
 
 }

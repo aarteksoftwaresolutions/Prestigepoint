@@ -70,17 +70,6 @@
               </div>
             </td>
           </tr>
-          <%-- <tr>
-            <td><div class="form-control">
-                <form:errors path="UserName"  class="label error-label"></form:errors>
-                <label>
-                  <p>
-                    User Name<small class="required"></small>
-                  </p> <form:input path="userName" class="inputControl1" placeholder="Please enter your User Name"
-                    required="autofocus" maxlength="50" id="userName" /> </label>
-              </div>
-            </td>
-          </tr> --%>
           <tr>
             <td><div class="form-control">
                 <form:errors path="password"  class="label error-label"></form:errors>

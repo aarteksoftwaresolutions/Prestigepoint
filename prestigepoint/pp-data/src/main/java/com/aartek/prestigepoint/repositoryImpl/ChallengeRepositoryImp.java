@@ -21,14 +21,14 @@ public class ChallengeRepositoryImp implements ChallengeRepository {
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
 
-	public void addChallengeInformation(AddChallenge addChallenge) {
+	public void saveChallenge(AddChallenge addChallenge) {
 		hibernateTemplate.saveOrUpdate(addChallenge);
 	}
 
-	public List<AddChallenge> allAddChallengeList() {
-		List<AddChallenge> allAddChallengeList = hibernateTemplate.find("from AddChallenge ac where ac.isDeleted="
+	public List<AddChallenge>  getAllchallenge() {
+		List<AddChallenge>  getAllchallenge = hibernateTemplate.find("from AddChallenge ac where ac.isDeleted="
 				+ IConstant.IS_DELETED);
-		return allAddChallengeList;
+		return  getAllchallenge;
 	}
 
 	public List<AddChallenge> viewChallengeDetails() {
@@ -37,12 +37,12 @@ public class ChallengeRepositoryImp implements ChallengeRepository {
 		return getChallengeDetails;
 	}
 
-	public List<Object> updateChallengeInformation(Integer challengeId) {
+	public List<Object> editChallengeDetails(Integer challengeId) {
 		List<Object> challengeList = hibernateTemplate.find("from AddChallenge a where a.challengeId=" + challengeId);
 		return challengeList;
 	}
 
-	public void deleteChallengeInformation(Integer challengeId) {
+	public void deleteChallenge(Integer challengeId) {
 		AddChallenge addChallenge = hibernateTemplate.get(AddChallenge.class, challengeId);
 		addChallenge.setIsDeleted(IConstant.IS_DELETED_DEACTIVE);
 		if (null != addChallenge) {

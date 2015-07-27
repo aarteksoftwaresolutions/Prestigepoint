@@ -15,7 +15,7 @@
   <div class="container clearfix">
     <div class="conact-form">
       <h3 style="color: red;">${message}</h3>
-      <form:form method="POST" action="addCourseAction.do" modelAttribute="Course" autocomplete="off">
+      <form:form method="POST" action="saveCourse.do" modelAttribute="Course" autocomplete="off">
         <table width="100%" border="0">
           <tr>
             <td><div class="form-control">
@@ -29,7 +29,7 @@
                   <p>
                     Course Name ${adminLogin.ADMIN_LOGIN_ID}<small class="required"></small>
                   </p> <form:input path="courseName" class="inputControl1" placeholder="Course Name" required="autofocus"
-                    maxlength="50" onkeypress="return Alphabets(event)" /> 
+                    maxlength="25" /> 
                     <form:hidden path="courseId" />
                      </label>
               </div>
@@ -53,7 +53,7 @@
         </table>
       </form:form>
       <c:set var="count" value="0" scope="page" />
-      <display:table name="courseList" pagesize="8" class="basic-table" uid="cat" requestURI="addCourse.do">
+      <display:table name="courseList" pagesize="8" class="basic-table" uid="cat" requestURI="course.do">
         <c:set var="count" value="${count+1}" scope="page" />
         <display:column title="S.NO" class="showHeading" style="width:1%;">
      ${count}
@@ -61,7 +61,7 @@
         <display:column property="courseName" title="COURSE NAME" />
         <display:column property="courseFee" title="COURSE Fee" />
         <display:column title="Edit">
-          <a href="addCourseAction.do?courseId=${cat.courseId}">Edit</a>
+          <a href="saveCourse.do?courseId=${cat.courseId}">Edit</a>
         </display:column>
         <display:column title="Delete">
           <a href="deleteCourse.do?courseId=${cat.courseId}"

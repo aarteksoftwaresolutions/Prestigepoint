@@ -20,7 +20,7 @@ import com.aartek.prestigepoint.service.LoginService;
 
 /**
  * 
- * @author Dell
+ * @author Aartek
  *
  */
 @Controller
@@ -40,7 +40,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/login")
-	public String showLogin(Map<String, Object> map, Model model, @RequestParam(required = false) String invalid, //method name should be getLoginPage
+	public String showLogin(Map<String, Object> map, Model model, @RequestParam(required = false) String invalid,
 			@RequestParam(required = false) String forgotMessage) {
 		map.put("AdminLogin", new AdminLogin());
 		model.addAttribute("forgotMessage", forgotMessage);
@@ -61,8 +61,8 @@ public class LoginController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value = "/userSignIn", method = RequestMethod.POST) 
-	public String signInAction(@ModelAttribute("AdminLogin") AdminLogin login, ModelMap model,//change method name
+	@RequestMapping(value = "/userSignIn", method = RequestMethod.POST)
+	public String signInAction(@ModelAttribute("AdminLogin") AdminLogin login, ModelMap model,
 			HttpServletRequest request) {
 		login = loginService.userSignIn(login);
 		if (login == null) {
@@ -83,7 +83,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/welcome")
-	public String showWelcomePage(Map<String, Object> map, Model model) { //change method name
+	public String showWelcomePage(Map<String, Object> map, Model model) {
 		return "welcome";
 	}
 
@@ -96,7 +96,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/logout")
-	public String showLogout(HttpServletRequest request) {//change method name
+	public String showLogout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		return "redirect:/login.do";

@@ -18,14 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.aartek.prestigepoint.model.AddMarquee;
 import com.aartek.prestigepoint.model.PhotoInFooter;
 import com.aartek.prestigepoint.model.Registration;
 import com.aartek.prestigepoint.model.Scroller;
 import com.aartek.prestigepoint.model.Subject;
+import com.aartek.prestigepoint.model.UploadImages;
 import com.aartek.prestigepoint.service.FooterPhotoService;
 import com.aartek.prestigepoint.service.QuestionAnswerService;
 import com.aartek.prestigepoint.service.ScrollerService;
 import com.aartek.prestigepoint.service.StudentRegistrationService;
+import com.aartek.prestigepoint.service.UserMarqueeService;
 
 @Controller
 public class UserLoginController {
@@ -41,19 +44,24 @@ public class UserLoginController {
 
 	@Autowired
 	private QuestionAnswerService questionAnswerService;
+	
+	@Autowired
+	private UserMarqueeService marqueeService;
+	
 	@Autowired
 	private ScrollerService scrollerService;
 
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String welcome(Map<String, Object> map, Model model) {
-
+		List<UploadImages> getUploadImages = scrollerService.viewUploadImages();
+		model.addAttribute("UploadImagesList", getUploadImages);
 		List<Subject> subjects = questionAnswerService.getAllSubjectName();
+		List<AddMarquee> marqueeList = marqueeService.fatchMarqueeDescription();
+		model.addAttribute("marqueeList", marqueeList);
 		List<PhotoInFooter> listOfSelectedStudent = footerPhotoService.listOfSelectedStudent();
 		model.addAttribute("allStudentDetail", listOfSelectedStudent);
 		model.addAttribute("subjectList", subjects);
-
-		List<Scroller> scrollers = null;
-		scrollers = scrollerService.getAllScrollImages();
+		List<Scroller> scrollers = scrollerService.getAllScrollImages();
 		model.addAttribute("allImages", scrollers);
 
 		return "welcome";
@@ -73,6 +81,27 @@ public class UserLoginController {
 	public String directorMessage(Map<String, Object> map, Model model) {
 
 		return "directorMessage";
+
+	}
+
+	@RequestMapping(value = "/keyPeople", method = RequestMethod.GET)
+	public String keyPeople(Map<String, Object> map, Model model) {
+
+		return "keyPeople";
+
+	}
+	
+	@RequestMapping(value = "/coursesDeclear", method = RequestMethod.GET)
+	public String coursesdeclear(Map<String, Object> map, Model model) {
+
+		return "coursesDeclear";
+
+	}
+	
+	@RequestMapping(value = "/photoGallery", method = RequestMethod.GET)
+	public String Photogallery(Map<String, Object> map, Model model) {
+
+		return "photoGallery";
 
 	}
 
@@ -110,6 +139,27 @@ public class UserLoginController {
 		model.addAttribute("allStudentDetail", listOfSelectedStudent);
 		model.addAttribute("subjectList", subjects);
 		return "course";
+	}
+	
+	@RequestMapping(value = "/java", method = RequestMethod.GET)
+	public String java(Map<String, Object> map, Model model) {
+
+		return "java";
+
+	}
+	
+	@RequestMapping(value = "/industrialTraining", method = RequestMethod.GET)
+	public String industrialTraining(Map<String, Object> map, Model model) {
+
+		return "industrialTraining";
+
+	}
+	
+	@RequestMapping(value = "/corporateTraining", method = RequestMethod.GET)
+	public String corporateTraining(Map<String, Object> map, Model model) {
+
+		return "corporateTraining";
+
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

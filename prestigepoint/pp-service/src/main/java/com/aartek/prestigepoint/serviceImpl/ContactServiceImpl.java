@@ -21,14 +21,14 @@ public class ContactServiceImpl implements ContactService {
 	@Autowired
 	private ContactRepository contactRepository;
 
-	public boolean addContactMessage(Enquiry enquiry) {
+	public boolean saveContact(Enquiry enquiry) {
 		boolean status = false;
 		if (enquiry != null) {
 			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 			Date date = new Date();
 			enquiry.setIsDeleted(IConstant.IS_DELETED);
 			enquiry.setDate(dateFormat.format(date));
-			status = contactRepository.addContactMessage(enquiry);
+			status = contactRepository.saveContact(enquiry);
 			return status;
 		} else {
 			return status;

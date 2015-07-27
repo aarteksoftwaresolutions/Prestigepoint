@@ -6,7 +6,7 @@ import com.aartek.prestigepoint.model.Registration;
 
 public interface RegistrationRepository {
 
-  public Registration addStudentInfo(Registration registration);
+  public Registration saveStudentDeatils(Registration registration);
 
   public List<Registration> getAllStudentDetails();
 

@@ -46,16 +46,16 @@ public class BatchController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/addBatch")   //change addBatch to batch
-	public String addBatch(Map<String, Object> map, Model model, @RequestParam(required = false) String message) { //change method name addBatch to getBtachPage
+	@RequestMapping("/batch")
+	public String getBtachPage(Map<String, Object> map, Model model, @RequestParam(required = false) String message) {
+		logger.info("start the getBtachPage method !");
 		List<Batch> batchList = batchService.getAllBatchName();
-		logger.info("This is Info controller!");  //Change statement.
 		if (batchList != null) {
 			model.addAttribute("batchList", batchList);
 		}
 		map.put("Batch", new Batch());
 		model.addAttribute("message", message);
-		return "addBatch";
+		return "batch";
 	}
 
 	/**
@@ -69,8 +69,8 @@ public class BatchController {
 	 * @param batchId
 	 * @return
 	 */
-	@RequestMapping(value = "/addBatchAction", method = { RequestMethod.GET, RequestMethod.POST }) //change action name addBatchAction to saveBatch
-	public String addBatchInfo(@ModelAttribute("Batch") Batch batch, BindingResult result, ModelMap model, //change addBatchInfo method name
+	@RequestMapping(value = "/saveBatch", method = { RequestMethod.GET, RequestMethod.POST })
+	public String saveBatchDetails(@ModelAttribute("Batch") Batch batch, BindingResult result, ModelMap model,
 			Map<String, Object> map, HttpServletRequest request, @RequestParam(required = false) Integer batchId) {
 		boolean status = false;
 		List<Batch> batchList = batchService.getAllBatchName();
@@ -78,12 +78,16 @@ public class BatchController {
 		if (("GET").equals(method)) {
 			batch = batchService.editBatch(batchId);
 			model.addAttribute("batchList", batchList);
-			map.put("Batch", batch);
-			return "addBatch";
+			if(batch !=null){
+				map.put("Batch", batch);
+			}else{
+				map.put("Batch", new Batch());
+			}
+			return "batch";
 		} else {
 			model.addAttribute("batchList", batchList);
 			if (batch.getBatchId() != null) {
-				status = batchService.addBatch(batch);
+				status = batchService.saveBatch(batch);
 				if (status) {
 					model.addAttribute("message", IConstant.BATCH_EDIT_SUCCESS_MESSAGE);
 				} else {
@@ -92,9 +96,9 @@ public class BatchController {
 			} else {
 				batchValidator.validate(batch, result);
 				if (result.hasErrors()) {
-					return "addBatch";
+					return "batch";
 				}
-				status = batchService.addBatch(batch);
+				status = batchService.saveBatch(batch);
 				if (status) {
 					model.addAttribute("message", IConstant.BATCH_SUCCESS_MESSAGE);
 				} else {
@@ -103,7 +107,7 @@ public class BatchController {
 			}
 			model.put("Batch", new Batch());
 		}
-		return "redirect:/addBatch.do";
+		return "redirect:/batch.do";
 	}
 
 	/**
@@ -117,10 +121,10 @@ public class BatchController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteBatch", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCatageory(ModelMap model,@RequestParam(required = false) Integer batchId) {
+	public String deleteCatageory(ModelMap model, @RequestParam(required = false) Integer batchId) {
 		batchService.deleteBatch(batchId);
 		model.addAttribute("message", IConstant.BATCH_DELETE_MESSAGE);
-		return "redirect:/addBatch.do";
+		return "redirect:/batch.do";
 	}
 
 }

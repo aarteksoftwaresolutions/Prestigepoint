@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.util;
 public class IConstant {
   public static final int IS_STATUS_ACTIVE = 0;
   public static final int IS_DELETED = 1;
+  public static final int IS_Active= 1;
   public static final int IS_DELETED_DEACTIVE = 0;
   public static final String USER_SUCCESS_MESSAGE = "Your User Added successfully";
   public static final String USER_FAILURE_MESSAGE = "Please Try Again";
@@ -59,5 +60,25 @@ public static final String PLACED_SUCCESS_MESSAGE = "Your data successfully inse
 public static final String PLASED_FAILURE_MESSAGE = "Your data not successfully inserted";
 public static final String CHALLENGE_SUCCESS_MESSAGE = "Your challenge successfully added";
 public static final String CHALLENGE_UPDATE_MESSAGE = "Your data successfully updated";
+public static final String REGISTRATION_MESSAGE = "Please select atleast one";
 public static final String VARIFY_SUCCESS_MESSAGE = "Your emailId alreay existed!";
+public static final String MARQUEE_SUCCESS_MESSAGE = "Your marquee description successfully added";
+public static final String MARQUEE_DELETED_MESSAGE = "Your marquee description deleted successfully";
+public static final String MARQUEE_FAILURE_MESSAGE = "Your marquee description not successfully added";
+public static final String UPLOAD_IMAGE_SUCCESS_MESSAGE = "Your image added successfully";
+public static final String UPLOAD_IMAGE_FAILURE_MESSAGE = "Your image not added";
+public static final String UPLOAD_IMAGE_DELETE_MESSAGE = "Upload image deleted successfully!";
+public static final String FILE_PATH = "D:/images/";
+public static final String CHALLENGE_DELETE_MESSAGE = "Your challenge deleted successfully";
+public static final String EMI_MESSAGE = "Emi Save successfully";
+
+public static final String RESPONSE = "response";
+public static final String DATA = "DATA";
+public static final String MESSAGE  = "MESSAGE";
+public static final String ALL_SUBJECT_LIST = "All subject list";
+public static final String RESPONSE_SUCCESS_MESSAGE = "200";
+public static final String RESPONSE_NO_DATA_MESSAGE = "400";
+public static final String NO_SUBJECT_FOUND = "No subject found";
+public static final String NO_QUESTION_ANSWER_FOUND = "No question answer form";
+public static final String ALL_QUESTION_ANSWER_LIST = "All question answer list";
 }

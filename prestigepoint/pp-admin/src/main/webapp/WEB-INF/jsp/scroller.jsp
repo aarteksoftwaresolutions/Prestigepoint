@@ -20,7 +20,7 @@
   <div class="container clearfix">
     <div class="conact-form">
       <h3 style="color: red;">${message}</h3>
-      <form:form method="POST" action="scrollerAction.do" modelAttribute="Scroller" autocomplete="off">
+      <form:form method="POST" action="saveScoller.do" modelAttribute="Scroller" autocomplete="off">
        <h3 style="color: #873d80;">Add images For Dynamic Scroller  </h3>
       
      			
@@ -64,7 +64,7 @@
         </table>
     	<form:hidden path="imgPath" id="imagePath" />
       <c:set var="count" value="0" scope="page" />
-      <display:table name="scrollerPhotoList" pagesize="8" class="basic-table" uid="cat" requestURI="addFooterPhotoAction.do">
+      <display:table name="scrollerPhotoList" pagesize="8" class="basic-table" uid="cat" requestURI="scrollerView.do">
         <c:set var="count" value="${count+1}" scope="page" />
         <display:column title="S.NO" class="showHeading" style="width:1%;" >
      ${count}

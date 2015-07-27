@@ -20,7 +20,7 @@
     <div class="conact-form">
       <c:set var="count" value="0" scope="page" />
       <p>&nbsp;</p>
-      <display:table name="enquiryList" pagesize="80" class="basic-table" uid="enquiryList">
+      <display:table name="enquiryList" pagesize="8" class="basic-table" uid="enquiryList" requestURI="getEnquiry.do">
         <c:set var="count" value="${count+1}" scope="page" />
         <display:column title="S.NO" class="showHeading" style=" width:1%;">
      ${count}
@@ -29,10 +29,14 @@
         <display:column property="emailId" title="EMAIL_ID" />
         <display:column property="mobileNo" title="MOBILE No." />
         <display:column property="comment" title="COMMENT" />
-        <display:column property="date" title="DATE" />
-        <display:column title="Edit"> <a href="updateEnquiry.do?enquiryId=${enquiryList.enquiryId}"> Edit</a>
+        <display:column title="DATE">
+      <fmt:parseDate var="parsedDate" value="${enquiryList.date}" pattern="yyyy-MM-dd"/>
+      <fmt:formatDate var="FormattedDateChange" value="${parsedDate}" pattern="dd-MM-yyyy"/>
+      <c:out value="${FormattedDateChange}"></c:out>
+      </display:column>
+        <display:column title="Edit"> <a href="editEnquiry.do?enquiryId=${enquiryList.enquiryId}"> Edit</a>
         </display:column>
-         <display:column title="Delete"><a href="deleteEnquiryInformation.do?enquiryId=${enquiryList.enquiryId}"
+         <display:column title="Delete"><a href="deleteEnquiry.do?enquiryId=${enquiryList.enquiryId}"
                             onclick="return confirm('Please confirm if you want to delete this enquiry!');">Delete</a>
                     </display:column>
       </display:table>

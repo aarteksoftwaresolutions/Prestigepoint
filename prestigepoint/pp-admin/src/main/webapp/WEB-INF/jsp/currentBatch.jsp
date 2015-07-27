@@ -20,8 +20,7 @@
 	<div class="container clearfix">
 		<div class="conact-form">
 			<h3 style="color: red;">${message}</h3>
-			<form:form method="POST" action="addCurrentBatch.do"
-				modelAttribute="CurrentBatch" autocomplete="off">
+			<form:form method="POST" action="saveCurrentBatch.do" modelAttribute="CurrentBatch" autocomplete="off">
 				<table width="100%" border="0">
 					<tr>
 						<td><div class="form-control">
@@ -35,7 +34,7 @@
 									<p>
 										Batch<small class="required">*</small>
 									</p> <form:input path="batchName" class="inputControl1"
-										placeholder="Current Topic" required="autofocus"
+										placeholder="Current batch" required="autofocus"
 										maxlength="40"/>
 								</label>
 								<form:hidden path="currentBatchId" />
@@ -97,7 +96,7 @@
 				<display:column property="currentTopic" title="CURRENT TOPIC" />
 				<display:column property="onOfStudent" title="NO OF STUDENT" />
 				<display:column title="Edit">
-					<a href="addCurrentBatch.do?currentBatchId=${cbl.currentBatchId}">Edit</a>
+					<a href="saveCurrentBatch.do?currentBatchId=${cbl.currentBatchId}">Edit</a>
 				</display:column>
 				<display:column title="Delete">
 					<a

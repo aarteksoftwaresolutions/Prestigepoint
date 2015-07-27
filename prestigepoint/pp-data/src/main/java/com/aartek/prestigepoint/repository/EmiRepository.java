@@ -17,7 +17,7 @@ public interface EmiRepository {
 
 	List<Emi> getAllEmiId();
 
-	boolean addEmiInfo(Emi emi);
+	boolean saveEmi(Emi emi);
 
 	Emi editEimForSingleRecord(Integer emiId);
 

@@ -6,7 +6,7 @@ import com.aartek.prestigepoint.model.Registration;
 
 public interface RegistrationService {
 
-  public boolean addStudentInfo(Registration registration);
+  public boolean saveStudentDeatils(Registration registration);
 
   public List<Registration> getAllStudentDetails();
 

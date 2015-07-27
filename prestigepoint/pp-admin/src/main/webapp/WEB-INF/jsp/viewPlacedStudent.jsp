@@ -42,7 +42,7 @@ function callAllPlacedStudent() {
 </script>
 </head>
 <body>
-  <form:form method="POST" action="viewPlacedStudentAction.do" modelAttribute="AddPlacedStudent" autocomplete="off">
+  <form:form method="POST" action="viewPlacedStudentDetails.do" modelAttribute="AddPlacedStudent" autocomplete="off">
     <table width="30%" border="0">
       <tr>
         <td><div class="form-control">
@@ -97,11 +97,11 @@ function callAllPlacedStudent() {
       <display:column property="year" title="Year" />
       <c:if test="${sessionScope.login.adminType!=4}">
       <display:column title="Edit">
-        <a href="updatePlacedStudentInformation.do?studentId=${studentList.studentId}">
+        <a href="editPlacedStudent.do?studentId=${studentList.studentId}">
         Edit</a>
       </display:column>
       <display:column title="Delete">
-        <a href="deletePlacedStudentInformation.do?studentId=${studentList.studentId}"
+        <a href="deletePlacedStudent.do?studentId=${studentList.studentId}"
           onclick="return confirm('Please confirm if you want to delete this batch!');">Delete</a>
       </display:column>
       </c:if>

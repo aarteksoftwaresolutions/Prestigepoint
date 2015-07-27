@@ -8,9 +8,9 @@ import com.aartek.prestigepoint.model.Enquiry;
 @SuppressWarnings("rawtypes")
 public interface EnquiryService {
 
-	public void addEnquiryMessage(Enquiry enquiry) throws ParseException;
+	public void saveEnquiryMessage(Enquiry enquiry) throws ParseException;
 
-	public boolean addAdminEnquiry(Enquiry enquiry) throws ParseException;
+	public boolean saveAdminEnquiry(Enquiry enquiry) throws ParseException;
 
 	public List getMonthAndYearWiseEnquiryDetails(String month, String year);
 
@@ -18,8 +18,8 @@ public interface EnquiryService {
 
 	public List getMonthWiseEnquiry(String month);
 
-	public Enquiry updateEnquiryInformation(Integer enquiryId);
+	public Enquiry editEnquiry(Integer enquiryId);
 
-	public void deleteEnquiryInformation(Integer enquiryId);
+	public void deleteEnquiry(Integer enquiryId);
 
 }

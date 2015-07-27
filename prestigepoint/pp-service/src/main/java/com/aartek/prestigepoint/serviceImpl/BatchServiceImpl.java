@@ -50,11 +50,11 @@ public class BatchServiceImpl implements BatchService {
 	 * 
 	 * @param batch
 	 */
-	public boolean addBatch(Batch batch) {
+	public boolean saveBatch(Batch batch) {
 		boolean status = false;
 		if (batch != null) {
 			batch.setIsDeleted(IConstant.IS_DELETED);
-			status = batchRepository.addBatch(batch);
+			status = batchRepository.saveBatch(batch);
 			return status;
 		} else {
 			return status;

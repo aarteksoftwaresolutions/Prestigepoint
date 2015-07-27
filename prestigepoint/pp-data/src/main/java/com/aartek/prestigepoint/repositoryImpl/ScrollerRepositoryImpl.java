@@ -8,6 +8,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.aartek.prestigepoint.model.Scroller;
+import com.aartek.prestigepoint.model.UploadImages;
 import com.aartek.prestigepoint.repository.ScrollerRepository;
 import com.aartek.prestigepoint.util.IConstant;
 
@@ -31,7 +32,7 @@ public class ScrollerRepositoryImpl implements ScrollerRepository {
 	/**
 	 * Method use for save batch details into database.
 	 */
-	public boolean addScrollerPhoto(Scroller scroller) {
+	public boolean saveScrollerPhoto(Scroller scroller) {
 		if (scroller != null) {
 			hibernateTemplate.saveOrUpdate(scroller);
 			return true;
@@ -42,9 +43,8 @@ public class ScrollerRepositoryImpl implements ScrollerRepository {
 	}
 
 	public void deleteScrollerImage(Integer imageId) {
-		Scroller scroller = (Scroller) hibernateTemplate.get(Scroller.class, imageId);
+		Scroller scroller = hibernateTemplate.get(Scroller.class, imageId);
 		scroller.setIsDeleted(IConstant.IS_DELETED_DEACTIVE);
-		scroller.setIsStatusActive(IConstant.IS_DELETED_DEACTIVE);
 		if (null != scroller) {
 			hibernateTemplate.update(scroller);
 		}
@@ -80,8 +80,15 @@ public class ScrollerRepositoryImpl implements ScrollerRepository {
 
 	public List<Scroller> getAllScrollImages() {
 		List<Scroller> scrollers = null;
-		scrollers = hibernateTemplate.find("from Scroller s where s.isDeleted=" + IConstant.IS_DELETED);
+		scrollers = hibernateTemplate.find("from Scroller s where s.isDeleted=" + IConstant.IS_DELETED + "and s.isStatusActive=" + IConstant.IS_Active);
 		return scrollers;
 	}
+
+	public List<UploadImages> viewUploadImages() {
+			List<UploadImages> getUploadImages = hibernateTemplate.find("from UploadImages ac where ac.isDeleted="
+					+ IConstant.IS_DELETED + "and ac.isActive=" + IConstant.IS_DELETED);
+			return getUploadImages;
+		}
+		
 
 }

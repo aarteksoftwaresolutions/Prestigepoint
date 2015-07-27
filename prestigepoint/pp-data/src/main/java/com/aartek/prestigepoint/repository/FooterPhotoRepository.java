@@ -18,7 +18,7 @@ public interface FooterPhotoRepository {
 
 	public List<Object> editSingleStudentDetail(Integer studentId);
 
-	public boolean addFooterPhoto(PhotoInFooter photoInFooter);
+	public boolean saveFooterPhoto(PhotoInFooter photoInFooter);
 
 	public void deleteStudentData(Integer studentId);
 

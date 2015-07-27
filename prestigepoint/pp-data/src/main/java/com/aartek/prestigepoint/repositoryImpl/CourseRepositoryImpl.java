@@ -28,7 +28,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 	/**
 	 * Save course details into data base.
 	 */
-	public boolean addCourse(Course course) {
+	public boolean saveCourse(Course course) {
 		if (course != null) {
 			hibernateTemplate.saveOrUpdate(course);
 			return true;
@@ -40,7 +40,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 	/**
 	 * get all course name from data base.
 	 */
-	public List<Course> getAllCourseName() {
+	public List<Course> getCourses() {
 		List<Course> courseList = hibernateTemplate.find("from Course where IS_DELETED=" + IConstant.IS_DELETED);
 		return courseList;
 	}

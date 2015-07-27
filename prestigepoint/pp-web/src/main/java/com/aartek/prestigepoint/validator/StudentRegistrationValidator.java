@@ -23,8 +23,6 @@ public class StudentRegistrationValidator implements Validator {
 		Registration registration = (Registration) target;
 		ValidationUtils.rejectIfEmpty(errors, "firstName", "error.name.empty");
 		ValidationUtils.rejectIfEmpty(errors, "contact", "error.contact.empty");
-		ValidationUtils.rejectIfEmpty(errors, "emailId", "error.email.empty");
-		ValidationUtils.rejectIfEmpty(errors, "lastName", "error.lastName.empty");
 		ValidationUtils.rejectIfEmpty(errors, "qualification", "error.qualification.empty");
 		ValidationUtils.rejectIfEmpty(errors, "dateOfBirth", "error.dateOfBirth.empty");
 		ValidationUtils.rejectIfEmpty(errors, "city", "error.city.empty");
@@ -41,11 +39,15 @@ public class StudentRegistrationValidator implements Validator {
 				errors.rejectValue("emailId", "error.email.required");
 			}
 		}
+		if(registration.getCourse()!=null){
 		if (registration.getCourse().getCourseId() == 0) {
 			errors.rejectValue("course.courseId", "error.course.rule");
 		}
+		}
+		if(registration.getYear()!=null){
 		if (registration.getYear().getYearId() == 0) {
 			errors.rejectValue("year.yearId", "error.year.rule");
+		}
 		}
 		if (registration.getContact() != null && registration.getContact() != "") {
 			if (registration.getContact().length() < 10) {

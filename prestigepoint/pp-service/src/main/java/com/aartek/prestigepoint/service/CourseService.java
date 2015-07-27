@@ -9,9 +9,9 @@ import com.aartek.prestigepoint.model.Year;
 
 public interface CourseService {
 
-	public boolean addCourse(Course course);
+	public boolean saveCourse(Course course);
 
-	public List<Course> getAllCourseName();
+	public List<Course> getCourses();
 
 	public Course editCourse(Integer courseId);
 

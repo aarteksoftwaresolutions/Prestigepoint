@@ -20,7 +20,7 @@ public class RegistrationRepositoryImpl implements RegistrationRepository {
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
 
-	public Registration addStudentInfo(Registration registration) {
+	public Registration saveStudentDeatils(Registration registration) {
 		if (registration != null) {
 			hibernateTemplate.saveOrUpdate(registration);
 			return registration;

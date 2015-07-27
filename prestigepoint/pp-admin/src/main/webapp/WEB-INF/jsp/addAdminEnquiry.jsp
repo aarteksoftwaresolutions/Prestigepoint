@@ -24,7 +24,7 @@
 	<div class="container clearfix">
 		<div class="conact-form">
 			<h3 style="color: red;">${message}</h3>
-			<form:form method="POST" action="addAdminEnquiryAction.do"
+			<form:form method="POST" action="saveAdminEnquiry.do"
 				modelAttribute="Enquiry" autocomplete="off">
 				<table width="100%" border="0">
 					<tr>

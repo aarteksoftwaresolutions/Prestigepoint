@@ -34,9 +34,9 @@
 		<put-attribute name="title" type="string" value="EnquiryByMonth Page" />
 	</definition>
 
-	<definition name="addCourse" id="addCourse" extends="baseTemplate">
+	<definition name="course" id="course" extends="baseTemplate">
 		<put-attribute name="body" value="/WEB-INF/jsp/addCourse.jsp" />
-		<put-attribute name="title" type="string" value="addCourse Page" />
+		<put-attribute name="title" type="string" value="course Page" />
 	</definition>
 
 	<definition name="currentBatch" id="currentBatch" extends="baseTemplate">
@@ -44,9 +44,9 @@
 		<put-attribute name="title" type="string" value="currentBatch Page" />
 	</definition>
 
-	<definition name="addBatch" id="addBatch" extends="baseTemplate">
+	<definition name="batch" id="batch" extends="baseTemplate">
 		<put-attribute name="body" value="/WEB-INF/jsp/addBatch.jsp" />
-		<put-attribute name="title" type="string" value="addBatch Page" />
+		<put-attribute name="title" type="string" value="batch Page" />
 	</definition>
 	<!-- rahul work -->
 	<definition name="addAdminEnquiry" id="addAdminEnquiry" extends="baseTemplate">
@@ -54,11 +54,12 @@
 		<put-attribute name="title" type="string" value="add Enquiry Page" />
 	</definition>
 
-	<definition name="addPhotoInFooter" id="addPhotoInFooter"
+	<definition name="getFooterPhotoPage" id="getFooterPhotoPage"
 		extends="baseTemplate">
 		<put-attribute name="body" value="/WEB-INF/jsp/addPhotoInFooter.jsp" />
-		<put-attribute name="title" type="string" value="addPhotoInFooter Page" />
+		<put-attribute name="title" type="string" value="getFooterPhotoPage Page" />
 	</definition>
+	
 
 	<definition name="scroller" id="scroller" extends="baseTemplate">
 		<put-attribute name="body" value="/WEB-INF/jsp/scroller.jsp" />
@@ -78,12 +79,12 @@
 			value="viewStudentDetails Page" />
 	</definition>
 
-	<definition name="viewEnquiryDetails" id="viewEnquiryDetails"
+	<definition name="getEnquiry" id="getEnquiry"
 		extends="baseTemplate">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/viewEnquiryDetails.jsp" />
 		<put-attribute name="title" type="string"
-			value="viewEnquiryDetails Page" />
+			value="getEnquiry Page" />
 	</definition>
 
 	<definition name="emi" id="emi" extends="baseTemplate">
@@ -111,12 +112,6 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/upload.jsp" />
 		<put-attribute name="title" type="string" value="Upload Jar" />
 	</definition>
-	<!-- -->
-	<!-- <definition name="uploadBanner" id="uploadBanner" extends="baseTemplate"> 
-		<put-attribute name="body" value="/WEB-INF/jsp/uploadBanner.jsp" /> <put-attribute 
-		name="title" type="string" value="Upload Banner" /> </definition> -->
-	<!-- -->
-
 
 	<definition name="questionAndAnswer" id="questionAndAnswer"
 		extends="baseTemplate">
@@ -141,9 +136,9 @@
 		<put-attribute name="title" type="string"
 			value="viewPlacedStudent page" />
 	</definition>
-	<definition name="addChallenge" id="addChallenge" extends="baseTemplate">
+	<definition name="challenge" id="challenge" extends="baseTemplate">
 		<put-attribute name="body" value="/WEB-INF/jsp/addChallenge.jsp" />
-		<put-attribute name="title" type="string" value="addChallenge page" />
+		<put-attribute name="title" type="string" value="challenge page" />
 	</definition>
 	<definition name="viewChallenge" id="viewChallenge" extends="baseTemplate">
 		<put-attribute name="body" value="/WEB-INF/jsp/viewChallenge.jsp" />
@@ -155,6 +150,16 @@
 	</definition>
 	<definition name="error" id="error" extends="baseTemplate">
 		<put-attribute name="body" value="/WEB-INF/jsp/error.jsp" />
+	</definition>
+	
+	<definition name="addMarquee" id="addMarquee" extends="baseTemplate">
+		<put-attribute name="body" value="/WEB-INF/jsp/addMarquee.jsp" />
+		<put-attribute name="title" type="string" value="addMarquee Page" />
+	</definition>
+	
+	<definition name="uploadImages" id="uploadImages" extends="baseTemplate">
+		<put-attribute name="body" value="/WEB-INF/jsp/uploadImages.jsp" />
+		<put-attribute name="title" type="string" value="uploadImages Page" />
 	</definition>
 	
 </tiles-definitions>

@@ -22,9 +22,11 @@ public class EnquiryValidator {
 				errors.rejectValue("mobileNo", "error.mobileNoEnquiry.length");
 			}
 		}
-
+		if(enquiry.getTrainingType()!=null)
+		{
 		if (enquiry.getTrainingType() == 0) {
 			errors.rejectValue("trainingType", "error.trainingType.rule");
+		}
 		}
 		if (enquiry.getEmailId() != null && enquiry.getEmailId().trim().length() > 0) {
 			boolean b = ValidationUtil.validateEmail(enquiry.getEmailId());

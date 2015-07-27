@@ -36,7 +36,7 @@ $(document).ready(function() {
   <div class="container clearfix">
     <div class="conact-form">
       <p>&nbsp;</p>
-      <form:form method="POST" action="editProfileAction.do" modelAttribute="Registration" autocomplete="off">
+      <form:form method="POST" action="editProfileUser.do" modelAttribute="Registration" autocomplete="off">
         <h4>
           <b>Please browse student image</b>
         </h4>

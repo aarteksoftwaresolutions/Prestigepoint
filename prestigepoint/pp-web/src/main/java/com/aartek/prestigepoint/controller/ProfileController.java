@@ -99,7 +99,7 @@ public class ProfileController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/editProfileAction", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/editProfileUser", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addStudent(@ModelAttribute("Registration") Registration registration, BindingResult result,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request) {
 		profileValidator.validate(registration, result);

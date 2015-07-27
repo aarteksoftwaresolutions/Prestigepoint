@@ -79,8 +79,6 @@ public class Registration implements Serializable {
 	@JoinColumn(name = "COURSE_ID")
 	private Course course;
 
-	
-	
 	@ManyToOne
 	@JoinColumn(name = "YEAR_ID")
 	private Year year;
@@ -124,12 +122,22 @@ public class Registration implements Serializable {
 	@Transient
 	private String imgPath;
 
-	@Transient
-	private String mail;
+	/*@Transient
+	private String mail;*/
 
 	@Transient
 	private String attachFile;
 	
+	/*@Transient
+	private String mailPath;
+	
+	public String getMailPath() {
+		return mailPath;
+	}
+
+	public void setMailPath(String mailPath) {
+		this.mailPath = mailPath;
+	}*/
 	@Transient
 	private List<File> files;
 
@@ -456,14 +464,14 @@ public class Registration implements Serializable {
 		this.imagePath = imagePath;
 	}
 
-	public String getMail() {
+	/*public String getMail() {
 		return mail;
 	}
 
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-
+*/
 	public String getSubject() {
 		return subject;
 	}

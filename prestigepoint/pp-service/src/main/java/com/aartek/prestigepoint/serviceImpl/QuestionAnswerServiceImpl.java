@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.serviceImpl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +25,13 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerService {
 		return list;
 	}
 
-	public boolean addQuestionAndAnswer(QuestionAnswer questionAnswer) {
+	public boolean saveQuestionAndAnswer(QuestionAnswer questionAnswer) {
 		boolean status = false;
 		questionAnswer.setIsDeleted(IConstant.IS_DELETED);
-		status = questionAnswerRepository.addQuestionAndAnswer(questionAnswer);
+		status = questionAnswerRepository.saveQuestionAndAnswer(questionAnswer);
 		return status;
 	}
-
+	@JsonIgnore
 	public List<QuestionAnswer> getQuestionAndAnswer(Integer subjectId) {
 		List<QuestionAnswer> answerList = questionAnswerRepository.getQuestionAndAnswer(subjectId);
 		return answerList;

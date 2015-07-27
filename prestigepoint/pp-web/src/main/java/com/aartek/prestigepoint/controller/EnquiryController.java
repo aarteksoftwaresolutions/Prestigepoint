@@ -48,7 +48,7 @@ public class EnquiryController {
 		enquiry.setName(name);
 		enquiry.setComment(comment);
 		enquiry.setMobileNo(mobileNo);
-		enquiryService.addEnquiryMessage(enquiry);
+		enquiryService.saveEnquiryMessage(enquiry);
 		returnText = "Feedback has been added";
 		return returnText;
 	}

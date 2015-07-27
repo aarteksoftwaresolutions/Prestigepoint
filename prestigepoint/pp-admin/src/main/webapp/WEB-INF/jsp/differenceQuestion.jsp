@@ -15,7 +15,7 @@
 	<div class="container clearfix">
 		<div class="conact-form">
 			<h3 style="color: red;">${message}</h3>
-			<form:form method="POST" action="differenceQuestionAction.do"
+			<form:form method="POST" action="saveDifferenceQuestionAndAnswer.do"
 				modelAttribute="QuestionAnswer">
 				<table width="100%" border="0">
 					<tr>

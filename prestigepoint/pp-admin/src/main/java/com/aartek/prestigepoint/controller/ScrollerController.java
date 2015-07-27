@@ -17,10 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.aartek.prestigepoint.model.Scroller;
 import com.aartek.prestigepoint.service.ScrollerService;
 import com.aartek.prestigepoint.util.IConstant;
-
+@SuppressWarnings("unchecked")
 @Controller
 public class ScrollerController {
-
 	@SuppressWarnings("unused")
 	private static final Logger log = Logger.getLogger(ScrollerController.class);
 	@Autowired
@@ -34,13 +33,10 @@ public class ScrollerController {
 	 * @param model
 	 * @return
 	 */
-	@SuppressWarnings("unchecked") //please use this line on top
 	@RequestMapping("/scrollerView")
 	public String showScrollerPage(@SuppressWarnings("rawtypes") Map map,
 			@RequestParam(required = false) String message, Model model) {
-
-		List<Scroller> scrollerPhotoList = null; //remove this line because use this line like  List<Scroller> scrollerPhotoList= scrollerService.getAllImage();
-		scrollerPhotoList = scrollerService.getAllImage();
+		List<Scroller> scrollerPhotoList = scrollerService.getAllImage();
 		model.addAttribute("scrollerPhotoList", scrollerPhotoList);
 		map.put("Scroller", new Scroller());
 		model.addAttribute("message", message);
@@ -56,25 +52,30 @@ public class ScrollerController {
 	 * @param model
 	 * @return
 	 */
-	@SuppressWarnings("unused")//please use this line on top
-	@RequestMapping("/scrollerAction") //saveScoller
-	public String addimageForScroller(@ModelAttribute("Scroller") Scroller scroller) {
-
+	@RequestMapping("/saveScoller")
+	public String addimageForScroller(@ModelAttribute("Scroller") Scroller scroller,ModelMap model) {
 		boolean status = false;
-		status = scrollerService.addScrollerPhoto(scroller);// method should be saveScrollerPhoto
+		status = scrollerService.saveScrollerPhoto(scroller);
+		if (status) {
+			model.addAttribute("message", IConstant.UPLOAD_IMAGE_SUCCESS_MESSAGE);
+		} else {
+			model.addAttribute("message", IConstant.UPLOAD_IMAGE_FAILURE_MESSAGE);
+		}
 		return "redirect:/scrollerView.do";
 	}
 
 	@RequestMapping(value = "/changeScrollerStatus", method = { RequestMethod.GET, RequestMethod.POST })
 	public String changeScrollerStatus(@ModelAttribute("Scroller") Scroller scroller,
 			@RequestParam(required = false) String imageId, @RequestParam(required = false) String checkedValue) {
-
 		List<Scroller> scrollers = scrollerService.getSingleScrollDetail(imageId);
-		scroller = scrollers.get(0);//USe condition before use getr(0);
+		scroller = scrollers.get(0);
 		if (checkedValue.equals("checked")) {
 			scrollerService.changeStatusByImageId(scroller);
 		} else {
 			scrollerService.uncheckStatusByImageId(scroller);
+			
+			
+			
 		}
 		return "redirect:/addFooterPhoto";
 	}
@@ -88,12 +89,9 @@ public class ScrollerController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteScroller", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteSingleScrollerImage(@ModelAttribute("Scroller") Scroller scroller, ModelMap model,
-			@RequestParam(required = false) Integer imageId) {//remove unsed parameter
+	public String deleteScrollerImage(ModelMap model,@RequestParam(required = false) Integer imageId) {
 		scrollerService.deleteScrollerImage(imageId);
 		model.addAttribute("message", IConstant.SCROLLER_IMAGE_DELETE_MESSAGE);
-		
-		return "redirect:/scrollerView";//remove white spaces
-		
+		return "redirect:/scrollerView.do";
 	}
 }

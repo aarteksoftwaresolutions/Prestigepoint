@@ -18,19 +18,19 @@
 <script src="js/jquery.easing.1.3.js"></script>
 <!-- Google Analytics code start  -->
 <script>
-  (function(i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] || function() {
-      (i[r].q = i[r].q || []).push(arguments)
-    }, i[r].l = 1 * new Date();
-    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', '//www.google-analytics.com/analytics.js',
-      'ga');
-  ga('create', 'UA-54942023-3', 'auto');
-  ga('send', 'pageview');
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
+			'ga');
+	ga('create', 'UA-54942023-3', 'auto');
+	ga('send', 'pageview');
 </script>
 <!-- Google Analytics code end  -->
 </head>
@@ -65,13 +65,27 @@
 			<li><a href="#">Prestigepoint</a>
 				<ul>
 					<li><a href="aboutUs.do">About Us</a></li>
-					<li><a href="directorMessage.do">Director Message</a></li>
-					<li><a href="directorMessage.do">Key People</a></li>
+			<!-- 	<li><a href="directorMessage.do">Director Message</a></li> -->
+				<!-- 	<li><a href="keyPeople.do">Key People</a></li> -->
 				</ul></li>
-			<li><a href="course.do">Courses</a></li>
+			   <li><a href="#">Courses</a>
+				<ul>
+					<li><a href="coursesDeclear.do">C,C++</a></li>
+					<li><a href="java.do">Java</a></li>
+					<li><a href="industrialTraining.do">Industrial Training</a></li>
+					<li><a href="corporateTraining.do">Corporate Training</a></li>
+				</ul>
+			</li>
 			<li><a href="viewCurrentBatch.do">Current Batch</a></li>
 			<li><a href="placementCell.do">Placement Cell</a></li>
-			<li><a href="features.do">Features</a></li>
+			<!-- <li><a href="#">Events</a>
+			<ul>
+					<li><a href="photoGallery.do">Photo Gallery</a></li>
+					<li><a href="#">Up Coming Event</a></li>
+					<li><a href="#">Roll bar</a></li>
+				</ul>
+				</li> -->
+			<!-- <li><a href="features.do">Features</a></li> -->
 			<li><a href="contactUs.do">Contact</a></li>
 			<c:choose>
 				<c:when test="${sessionScope.registration!=null}">
@@ -86,10 +100,10 @@
 									</c:forEach>
 								</ul></li>
 							<li><a href="downloadJars.do">Download jar</a></li>
-							<li><a href="forum.do">Forum</a></li>
+						    <li><a href="forum.do">Forum</a></li>
 							<li><a href="viewProfile.do">Profile</a></li>
 							<li><a href="viewChallengeDetails.do">Challenge Title</a></li>
-							<li><a href="editor.do">Java Editor</a></li>
+							<!-- <li><a href="editor.do">Java Editor</a></li> -->
 						</ul></li>
 					<!--  <li><a href="viewProfile.do">Profile</a></li> -->
 					<li class="link-login"><a href="logout.do">Logout</a></li>

@@ -43,6 +43,11 @@
     <put-attribute name="body" value="/WEB-INF/jsp/directorMessage.jsp" />
     <put-attribute name="title" type="string" value="directorMessage Page" />
   </definition>
+  
+   <definition name="keyPeople" id="keyPeople" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/keyPeople.jsp" />
+    <put-attribute name="title" type="string" value="keyPeople Page" />
+  </definition>
 
   <definition name="termAndCondition" id="termAndCondition" extends="baseTemplate">
     <put-attribute name="body" value="/WEB-INF/jsp/termAndCondition.jsp" />
@@ -53,6 +58,27 @@
     <put-attribute name="body" value="/WEB-INF/jsp/course.jsp" />
     <put-attribute name="title" type="string" value="Courses" />
   </definition>
+  
+   <definition name="java" id="java" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/java.jsp" />
+    <put-attribute name="title" type="string" value="java" />
+  </definition>
+  
+  <definition name="industrialTraining" id="industrialTraining" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/industrialTraining.jsp" />
+    <put-attribute name="title" type="string" value="industrialTraining" />
+  </definition>
+  
+  <definition name="corporateTraining" id="corporateTraining" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/corporateTraining.jsp" />
+    <put-attribute name="title" type="string" value="corporateTraining" />
+  </definition>
+  
+   <definition name="coursesDeclear" id="coursesDeclear" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/coursesDeclear.jsp" />
+    <put-attribute name="title" type="string" value="coursesDeclear" />
+  </definition>
+  
 
   <definition name="interviewQuestion" id="interviewQuestion" extends="baseTemplate">
     <put-attribute name="body" value="/WEB-INF/jsp/interviewQuestion.jsp" />
@@ -165,6 +191,10 @@
   <definition name="editor" id="editor" extends="baseTemplate">
     <put-attribute name="body" value="/WEB-INF/jsp/editor.jsp" />
     <put-attribute name="title" type="string" value="editor" />
+  </definition>
+   <definition name="photoGallery" id="photoGallery" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/photoGallery.jsp" />
+    <put-attribute name="title" type="string" value="photoGallery" />
   </definition>
   
   

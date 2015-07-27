@@ -27,7 +27,7 @@ public class StudentRegistrationRepositoryImpl implements StudentRegistrationRep
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
 
-	public Registration addStudentInfo(Registration registration) {
+	public Registration saveStudent(Registration registration) {
 		if (registration != null) {
 			hibernateTemplate.saveOrUpdate(registration);
 			return registration;

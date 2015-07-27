@@ -24,7 +24,6 @@ public class RegistrationValidator {
 		ValidationUtils.rejectIfEmpty(errors, "firstName", "error.name.empty");
 		ValidationUtils.rejectIfEmpty(errors, "contact", "error.contact.empty");
 		ValidationUtils.rejectIfEmpty(errors, "emailId", "error.email.empty");
-		ValidationUtils.rejectIfEmpty(errors, "lastName", "error.lastName.empty");
 		ValidationUtils.rejectIfEmpty(errors, "qualification", "error.qualification.empty");
 		ValidationUtils.rejectIfEmpty(errors, "dateOfBirth", "error.dateOfBirth.empty");
 		ValidationUtils.rejectIfEmpty(errors, "city", "error.city.empty");
@@ -44,18 +43,29 @@ public class RegistrationValidator {
 				errors.rejectValue("emailId", "error.email.required");
 			}
 		}
-
+		if(registration.getCourse()!=null)
+		{
 		if (registration.getCourse().getCourseId() == 0) {
 			errors.rejectValue("course.courseId", "error.course.rule");
 		}
+		}
+		if(registration.getYear()!=null)
+		{
 		if (registration.getYear().getYearId() == 0) {
 			errors.rejectValue("year.yearId", "error.year.rule");
 		}
+		}
+		if(registration.getCurrentStatus()!=null)
+		{
 		if (registration.getCurrentStatus().getCurrent_status_Id() == 0) {
 			errors.rejectValue("currentStatus.current_status_Id", "error.status.rule");
 		}
+		}
+		if(registration.getBatch()!=null)
+		{
 		if (registration.getBatch().getBatchId() == 0) {
 			errors.rejectValue("batch.batchId", "error.batch.rule");
+		}
 		}
 		if (registration.getContact() != null && registration.getContact() != "") {
 			if (registration.getContact().length() < 10) {

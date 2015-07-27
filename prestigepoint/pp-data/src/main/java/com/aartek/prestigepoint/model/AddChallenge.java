@@ -98,6 +98,7 @@ public class AddChallenge implements Serializable {
 		this.isDeleted = isDeleted;
 	}
 
+
 	public Integer getPrice() {
 		return price;
 	}

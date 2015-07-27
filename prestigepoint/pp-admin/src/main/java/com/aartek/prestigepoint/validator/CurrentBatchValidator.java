@@ -15,8 +15,11 @@ public class CurrentBatchValidator {
 
 	public void validate(Object target, Errors errors) {
 		CurrentBatch currentBatch = (CurrentBatch) target;
+		if(currentBatch.getStatus()!=null){
 		if (currentBatch.getStatus().equals("None")) {
 			errors.rejectValue("status", "error.status.rule");
 		}
 	}
+	
+}
 }

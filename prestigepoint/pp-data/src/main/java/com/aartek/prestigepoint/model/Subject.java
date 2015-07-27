@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -98,7 +99,7 @@ public class Subject implements Serializable {
 	/**
 	 * @return the forumQuestionList
 	 */
-	
+	@JsonIgnore
 	public List<ForumQuestion> getForumQuestionList() {
 		return forumQuestionList;
 	}
@@ -107,6 +108,7 @@ public class Subject implements Serializable {
 	 * @param forumQuestionList
 	 *            the forumQuestionList to set
 	 */
+	@JsonIgnore
 	public void setForumQuestionList(List<ForumQuestion> forumQuestionList) {
 		this.forumQuestionList = forumQuestionList;
 	}

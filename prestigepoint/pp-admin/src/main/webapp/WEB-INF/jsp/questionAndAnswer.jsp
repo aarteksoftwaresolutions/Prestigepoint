@@ -30,8 +30,7 @@ return false;
 	<div class="container clearfix">
 		<div class="conact-form">
 		 <h3 style="color: red;">${message}</h3>
-			<form:form method="POST" action="questionAction.do"
-				modelAttribute="QuestionAnswer" onsubmit="return validateForm()">
+			<form:form method="POST" action="saveQuestionAnwser.do" modelAttribute="QuestionAnswer" onsubmit="return validateForm()">
 				<table width="100%" border="0">
 					<tr>
 						<td><div class="form-control">

@@ -42,14 +42,14 @@ public class CurrentBatchServiceImpl implements CurrentBatchService {
    * 
    * @param currentBatch
    */
-  public boolean addCurrentBatchInformation(CurrentBatch currentBatch) {
+  public boolean saveCurrentBatch(CurrentBatch currentBatch) {
     boolean status = false;
     if (currentBatch != null) {
       currentBatch.setIsDeleted(IConstant.IS_DELETED);
       String name= CamelCase.produceCamelCase(currentBatch.getBatchName());
       currentBatch.setBatchName(name);
     
-      status = currentBatchRepository.addCurrentBatchInformation(currentBatch);
+      status = currentBatchRepository.saveCurrentBatch(currentBatch);
       return status;
     }
     return status;
@@ -76,7 +76,7 @@ public class CurrentBatchServiceImpl implements CurrentBatchService {
    */
   public CurrentBatch updateCurrentBatch(Integer currentBatchId) {
     List<CurrentBatch> currentBatchs = currentBatchRepository.updateCurrentBatch(currentBatchId);
-    if (currentBatchs != null) {
+    if (currentBatchs != null && !currentBatchs.isEmpty()){
       CurrentBatch batch = currentBatchs.get(0);
       return batch;
     }

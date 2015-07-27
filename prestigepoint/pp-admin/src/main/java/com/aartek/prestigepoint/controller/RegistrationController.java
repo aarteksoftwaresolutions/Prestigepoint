@@ -34,7 +34,7 @@ public class RegistrationController {
 	private static final Logger log = Logger.getLogger(RegistrationController.class);
 	@Autowired
 	private CourseService courseService;
-
+ 
 	@Autowired
 	private BatchService batchService;
 
@@ -53,12 +53,12 @@ public class RegistrationController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/registration") //code should be formatted
+	@RequestMapping("/registration")
 	public String showregistrationPage(Map<String, Object> map, Model model,
 			@RequestParam(required = false) String message) {
 		map.put("Registration", new Registration());
-		List<CurrentStatus> currentStatusList = null; //remove this line 
-		List<Course> courseList = courseService.getAllCourseName();
+		List<CurrentStatus> currentStatusList = null;
+		List<Course> courseList = courseService.getCourses();
 		if (courseList != null) {
 			model.addAttribute("course", courseList);
 		}
@@ -76,7 +76,7 @@ public class RegistrationController {
 		}
 		model.addAttribute("message", message);
 		return "registration";
-	}//remove white spaces
+	}
 
 	/**
 	 * Use for register student.
@@ -88,15 +88,15 @@ public class RegistrationController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/registerStudent", method = { RequestMethod.GET, RequestMethod.POST }) //action should be saveStudentDeatils
-	public String addStudent(@ModelAttribute("Registration") Registration registration, BindingResult result,
-			ModelMap model) {//change method name
-		int currentId = registration.getCurrentStatus().getCurrent_status_Id();
+	@RequestMapping(value = "/saveStudentDeatils", method = { RequestMethod.GET, RequestMethod.POST })
+	public String saveStudentDeatils(@ModelAttribute("Registration") Registration registration, BindingResult result,
+			ModelMap model) {
 		boolean status = false;
-		List<CurrentStatus> currentStatusList = null;//remove this line 
+		List<CurrentStatus> currentStatusList = null;
+		if (registration != null && !registration.equals("null")) {
 		registrationValidator.validate(registration, result);
 		if (result.hasErrors()) {
-			List<Course> courseList = courseService.getAllCourseName();
+			List<Course> courseList = courseService.getCourses();
 			if (courseList != null) {
 				model.addAttribute("course", courseList);
 			}
@@ -114,13 +114,14 @@ public class RegistrationController {
 			}
 			return "registration";
 		}
+		int currentId = registration.getCurrentStatus().getCurrent_status_Id();
 		if (registration.getRegistrationId() != null) {
 			status = registrationService.updateStudentAsPaid(registration);
 			if (currentId == 8) {
 				model.addAttribute("firstName", registration.getFirstName());
 				model.addAttribute("lastName", registration.getLastName());
 				model.addAttribute("registrationId", registration.getRegistrationId());
-				return "redirect:/addPlacedStudent.do";
+				return "redirect:/placedStudent.do";
 			}
 			if (status) {
 				model.addAttribute("message", IConstant.PROFILE_UPDATE_SUCCESS_MESSAGE);
@@ -128,7 +129,7 @@ public class RegistrationController {
 				model.addAttribute("message", IConstant.PROFILE_UPDATE_FAILURE_MESSAGE);
 			}
 		} else {
-			status = registrationService.addStudentInfo(registration);
+			status = registrationService.saveStudentDeatils(registration);
 			if (status) {
 				model.addAttribute("message", IConstant.REGISTRATION_SUCCESS_MESSAGE);
 			} else {
@@ -137,6 +138,9 @@ public class RegistrationController {
 			return "redirect:/getStudentDetails.do";
 		}
 		return "redirect:/getStudentDetails.do";
+	}else{
+			return "redirect:/registration.do";
+	}
 	}
 
 	@RequestMapping(value = "/amountByCourseTypeId", method = RequestMethod.GET)
@@ -157,11 +161,11 @@ public class RegistrationController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/viewStudentDetails") //action should be getStudentDetails
-	public String showviewStudentDetailsPage(Map<String, Object> map, Model model) { //change method name
+	@RequestMapping("/viewStudentDetails")
+	public String viewStudentDetailsPage(Map<String, Object> map, Model model) {
 		map.put("Registration", new Registration());
-		List<CurrentStatus> currentStatusList = null;//remove this line 
-		List<Course> courseList = courseService.getAllCourseName();
+		List<CurrentStatus> currentStatusList = null;
+		List<Course> courseList = courseService.getCourses();
 		if (courseList != null) {
 			model.addAttribute("course", courseList);
 		}
@@ -194,10 +198,10 @@ public class RegistrationController {
 	public String viewDetails(@ModelAttribute("Registration") Registration registration,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request,
 			@RequestParam(required = false) Integer registrationId) {
-		List<Registration> studentDetails = null;//remove this line 
+		List<Registration> studentDetails = null;
 		String method = request.getMethod();
 		if (("GET").equals(method) && registrationId != null) {
-			List<Course> courseList = courseService.getAllCourseName();
+			List<Course> courseList = courseService.getCourses();
 			if (courseList != null) {
 				model.addAttribute("course", courseList);
 			}
@@ -223,7 +227,7 @@ public class RegistrationController {
 			return "registration";
 
 		} else {
-			List<Course> courseList = courseService.getAllCourseName();
+			List<Course> courseList = courseService.getCourses();
 			if (courseList != null) {
 				model.addAttribute("course", courseList);
 			}
@@ -239,7 +243,7 @@ public class RegistrationController {
 					}
 				}
 				if (registration.getCourse() != null) {
-					if (!(registration.getCourse().getCourseId() == 0) //why use hardcode value here
+					if (!(registration.getCourse().getCourseId() == 0)
 							&& (registration.getCourse().getCourseId() != null)) {
 						studentDetails = registrationService.getCourseWiseStudentDetails(registration.getCourse()
 								.getCourseId());
@@ -247,14 +251,14 @@ public class RegistrationController {
 					}
 				}
 				if (registration.getBatch() != null) {
-					if (!(registration.getBatch().getBatchId() == 0) && (registration.getBatch().getBatchId() != null)) { // 0 should be come from IConstant
+					if (!(registration.getBatch().getBatchId() == 0) && (registration.getBatch().getBatchId() != null)) {
 						studentDetails = registrationService.getBatchWiseStudentDetails(registration.getBatch()
 								.getBatchId());
 						model.addAttribute("studentDetails", studentDetails);
 					}
 				}
 			} else {
-				model.addAttribute("message", "Please select atleast one");//please message should be come from IConstant
+				model.addAttribute("message", IConstant.REGISTRATION_MESSAGE);
 			}
 		}
 		return "viewStudentDetails";
@@ -264,10 +268,10 @@ public class RegistrationController {
 	public String viewDetailsByName(@ModelAttribute("Registration") Registration registration,
 			ModelMap model,HttpServletRequest request,
 			@RequestParam(required = false) Integer registrationId) {
-		String firstName = request.getParameter("registration");  //why use this line
+		String firstName = request.getParameter("registration");
 		model.addAttribute("firstName", firstName);
-		List<Registration> studentDetails = registrationService.getStudentDetailsByName(firstName);
-		model.addAttribute("studentDetails", studentDetails);
+		List<Registration> stuDetails = registrationService.getStudentDetailsByName(firstName);
+		model.addAttribute("stuDetails", stuDetails);
 	    log.info("firstName is=" + firstName);
 		return "viewStudentDetails";
 	}
@@ -282,11 +286,11 @@ public class RegistrationController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/getStudentList", method = { RequestMethod.GET, RequestMethod.POST })//action should be getStudentDetails
-	public String viewList(@ModelAttribute("Registration") Registration registration, BindingResult result,//change method name
+	@RequestMapping(value = "/getStudentList", method = { RequestMethod.GET, RequestMethod.POST })
+	public String viewList(@ModelAttribute("Registration") Registration registration, BindingResult result,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request) {
 
-		List<Course> courseList = courseService.getAllCourseName();
+		List<Course> courseList = courseService.getCourses();
 		if (courseList != null) {
 			model.addAttribute("course", courseList);
 		}
@@ -302,23 +306,23 @@ public class RegistrationController {
 				}
 			}
 			if (registration.getCourse() != null) {
-				if (!(registration.getCourse().getCourseId() == 0) && (registration.getCourse().getCourseId() != null)) {//why use hardcode value 0 , please use iconstant
+				if (!(registration.getCourse().getCourseId() == 0) && (registration.getCourse().getCourseId() != null)) {
 					List<Registration> studentDetails = registrationService.getCourseWiseStudentDetails(registration
 							.getCourse().getCourseId());
 					model.addAttribute("studentDetails", studentDetails);
 				}
 			}
 			if (registration.getBatch() != null) {
-				if (!(registration.getBatch().getBatchId() == 0) && (registration.getBatch().getBatchId() != null)) { //use inconstant
+				if (!(registration.getBatch().getBatchId() == 0) && (registration.getBatch().getBatchId() != null)) {
 					List<Registration> studentDetails = registrationService.getBatchWiseStudentDetails(registration
 							.getBatch().getBatchId());
 					model.addAttribute("studentDetails", studentDetails);
 				}
 			}
 		} else {
-			model.addAttribute("message", "Please select atleast one"); //message come from iconstant
+			model.addAttribute("message", IConstant.REGISTRATION_MESSAGE);
 		}
-		return "sendMail"; //remove unsed code.
+		return "sendMail";
 	}
 
 	/**
@@ -340,7 +344,7 @@ public class RegistrationController {
 		if (("GET").equals(method)) {
 			registration = registrationService.makeAsPaidUser(registrationId);
 			map.put("Registration", new Registration());
-			List<Course> courseList = courseService.getAllCourseName();
+			List<Course> courseList = courseService.getCourses();
 
 			if (courseList != null) {
 				model.addAttribute("course", courseList);
@@ -367,19 +371,15 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(value = "/deleteStudentDetails", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCatageory(@ModelAttribute("Registration") Registration registration, ModelMap model,
-			@RequestParam(required = false) Integer registrationId) {//Remove unsed parameter
+	public String deleteCatageory(ModelMap model,@RequestParam(required = false) Integer registrationId) {
 		registrationService.deleteStudentDetails(registrationId);
 		model.addAttribute("message", IConstant.STUDENT_DELETE_MESSAGE);
-		
-		return "redirect:/registration.do"; //remove space
-		
+		return "redirect:/registration.do";
 	}
 	
-	@RequestMapping(value = "/emailIdAction", method = { RequestMethod.GET })//change action name should be meaningfull
+	@RequestMapping(value = "/verifyUserEmailId", method = { RequestMethod.GET })
 	@ResponseBody
 	public boolean verifyUserEmailId(@RequestParam(required = false) String emailId) {
-		System.out.println("saf"+emailId);//why use SOP 
 		boolean status = false;
 		status = registrationService.verifyUserEmailId(emailId);
 		return status;

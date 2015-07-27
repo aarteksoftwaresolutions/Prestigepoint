@@ -24,10 +24,10 @@ import com.aartek.prestigepoint.validator.CurrentBatchValidator;
 
 /**
  * 
- * @author Dell
+ * @author 
  *
  */
-@Controller //Please write author name 
+@Controller
 public class CurrentBatchController {
 
 	@Autowired
@@ -75,8 +75,8 @@ public class CurrentBatchController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/addCurrentBatch", method = { RequestMethod.GET, RequestMethod.POST })//change action name addCurrentBatch to saveCurrentBatch
-	public String addCurrrentBatchInfo(@ModelAttribute("CurrentBatch") CurrentBatch currentBatch, BindingResult result, //change method name
+	@RequestMapping(value = "/saveCurrentBatch", method = { RequestMethod.GET, RequestMethod.POST })
+	public String saveCurrentBatch(@ModelAttribute("CurrentBatch") CurrentBatch currentBatch, BindingResult result,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request,
 			@RequestParam(required = false) Integer currentBatchId) {
 		List<Batch> batchList = batchService.getAllBatchName();
@@ -87,28 +87,32 @@ public class CurrentBatchController {
 		if (currentBatchList != null) {
 			model.addAttribute("currentBatchList", currentBatchList);
 		}
+		if(currentBatch!=null){
+		currentBatchValidator.validate(currentBatch, result);
+		if (result.hasErrors()) {
+			return "currentBatch";
+		}
+		}
 		String method = request.getMethod();
-
 		if (("GET").equals(method)) {
 			currentBatch = currentBatchService.updateCurrentBatch(currentBatchId);
 			model.addAttribute("currentBatchList", currentBatchList);
-			map.put("CurrentBatch", currentBatch);
+			if(currentBatch != null){
+				map.put("CurrentBatch", currentBatch);
+				}else{
+					map.put("CurrentBatch", new CurrentBatch());
+				}
 			return "currentBatch";
 		} else {
 			if (currentBatch.getCurrentBatchId() != null) {
-				boolean status = currentBatchService.addCurrentBatchInformation(currentBatch); //Change method name addCurrentBatchInformation to saveCurrentBatch 
+				boolean status = currentBatchService.saveCurrentBatch(currentBatch);
 				if (status) {
 					model.addAttribute("message", IConstant.UPDATE_CURRENT_BATCH_SUCCESS_MESSAGE);
 				} else {
 					model.addAttribute("message", IConstant.CURRENT_BATCH_FAILURE_MESSAGE);
 				}
 			} else {
-				currentBatchValidator.validate(currentBatch, result);
-				if (result.hasErrors()) { //remove spaces
-
-					return "currentBatch";
-				}
-				boolean status = currentBatchService.addCurrentBatchInformation(currentBatch);
+				boolean status = currentBatchService.saveCurrentBatch(currentBatch);
 				if (status) {
 					model.addAttribute("message", IConstant.CURRENT_BATCH_SUCCESS_MESSAGE);
 				} else {
@@ -130,8 +134,7 @@ public class CurrentBatchController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteCurrentBatch", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCurrentBatch(@ModelAttribute("CurrentBatch") CurrentBatch currentBatch, ModelMap model, //please remove unused variable name like @ModelAttribute("CurrentBatch") CurrentBatch currentBatch
-			@RequestParam(required = false) Integer currentBatchId) {
+	public String deleteCurrentBatch(ModelMap model,@RequestParam(required = false) Integer currentBatchId) {
 		currentBatchService.deleteCurrentBatch(currentBatchId);
 		model.addAttribute("message", IConstant.CURRENT_BATCH_DELETE_MESSAGE);
 		return "redirect:/currentBatch.do";

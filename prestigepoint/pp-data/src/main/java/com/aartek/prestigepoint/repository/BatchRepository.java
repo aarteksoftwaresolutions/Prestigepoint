@@ -10,7 +10,7 @@ public interface BatchRepository {
 
 	public List<Object> editBatch(Integer batchId);
 
-	public boolean addBatch(Batch batch);
+	public boolean saveBatch(Batch batch);
 
 	public void deleteBatch(Integer batchId);
 

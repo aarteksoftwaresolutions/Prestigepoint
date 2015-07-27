@@ -29,7 +29,7 @@ public class ForumAnswerServiceImpl implements ForumAnswerService {
 	public boolean addAnswer(ForumAnswer forumAnswer) {
 		boolean status = false;
 		if (forumAnswer != null) {
-			forumAnswer.toString().trim();
+	        forumAnswer.toString().trim();
 			forumAnswer.setIsDeleted(IConstant.IS_DELETED);
 			status = forumAnswerRepository.addAnswer(forumAnswer);
 			return status;

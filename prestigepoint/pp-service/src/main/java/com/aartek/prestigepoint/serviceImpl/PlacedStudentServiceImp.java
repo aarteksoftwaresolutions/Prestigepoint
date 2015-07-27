@@ -20,16 +20,16 @@ public class PlacedStudentServiceImp implements PlacedStudentService {
 	@Autowired
 	private PlacedStudentRepository placedStudentRepository;
 
-	public java.util.List<AddPlacedStudent> viewAllPlacedStudent() {
+	public java.util.List<AddPlacedStudent> getPlacedStudent() {
 		List<AddPlacedStudent> list = new ArrayList<AddPlacedStudent>();
-		list = placedStudentRepository.viewAllPlacedStudent();
+		list = placedStudentRepository.getPlacedStudent();
 		return list;
 	}
 
-	public AddPlacedStudent updatePlacedStudentInformation(Integer studentId) {
+	public AddPlacedStudent editPlacedStudent(Integer studentId) {
 		List<Object> list = new ArrayList<Object>();
 		AddPlacedStudent addPlacedStudent = null;
-		list = placedStudentRepository.updatePlacedStudentInformation(studentId);
+		list = placedStudentRepository.editPlacedStudent(studentId);
 		for (Object object : list) {
 			addPlacedStudent = (AddPlacedStudent) object;
 		}
@@ -48,17 +48,17 @@ public class PlacedStudentServiceImp implements PlacedStudentService {
 
 	}
 
-	public boolean addStudentInformation(AddPlacedStudent addPlacedStudent) {
+	public boolean savePlacedStudent(AddPlacedStudent addPlacedStudent) {
 		addPlacedStudent.setIsDeleted(IConstant.IS_DELETED);
 		addPlacedStudent.setReleaseDateFromAartek(DateFormat.getMMDDYYYYDateFormat(addPlacedStudent
 				.getReleaseDateFromAartek()));
-		placedStudentRepository.addStudentInformation(addPlacedStudent);
+		placedStudentRepository.savePlacedStudent(addPlacedStudent);
 		return true;
 
 	}
 
-	public void deletePlacedStudentInformation(Integer studentId) {
-		placedStudentRepository.deletePlacedStudentInformation(studentId);
+	public void deletePlacedStudent(Integer studentId) {
+		placedStudentRepository.deletePlacedStudent(studentId);
 	}
 
 }

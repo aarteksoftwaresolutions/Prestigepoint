@@ -42,7 +42,6 @@ function validateForm()
 <body>
   <div class="container clearfix">
     <div class="conact-form">
-      <h3 style="color: red;">${message}</h3>
       <p>&nbsp;</p>
       <h2>Fee Details</h2>
       <c:forEach items="${registrationList}" var="reg">
@@ -52,7 +51,7 @@ function validateForm()
         <p>&nbsp;</p>
       </c:forEach>
       <c:set var="count" value="0" scope="page" />
-      <display:table name="feesDetails" pagesize="8" class="basic-table" uid="cat" requestURI="viewDetails.do">
+      <display:table name="feesDetails" pagesize="8" class="basic-table" uid="cat" requestURI="emi.do">
         <c:set var="count" value="${count+1}" scope="page" />
         <display:column title="S.NO">
      ${count}
@@ -63,7 +62,7 @@ function validateForm()
         <display:column title="DATE">${startDate}</display:column>
          <c:if test="${sessionScope.login.adminType!=4}">
            <display:column title="Edit">
-         <a href="editEmiAction.do?emiId=${cat.emiId}">Edit</a>
+         <a href="editEmi.do?emiId=${cat.emiId}">Edit</a>
         </display:column>
         <display:column title="Delete">
           <a href="deleteEmiDetails.do?emiId=${cat.emiId}"
@@ -71,7 +70,8 @@ function validateForm()
         </display:column>
         </c:if>
       </display:table>
-      <form:form name="testForm" method="POST" action="addEmi.do" modelAttribute="Emi" autocomplete="off" onsubmit="return validateForm()">
+       <h3 style="color: red;">${message}</h3>
+      <form:form name="testForm" method="POST" action="saveEmi.do" modelAttribute="Emi" autocomplete="off" onsubmit="return validateForm()">
       <form:form  method="POST" action="getStudentDetails.do" modelAttribute="Emi" autocomplete="off" >
         <table width="100%" border="0" ><form:hidden path="emiId" />
           <tr>

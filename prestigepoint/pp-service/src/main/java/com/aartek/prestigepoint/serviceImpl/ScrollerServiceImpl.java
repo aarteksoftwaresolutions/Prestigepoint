@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.aartek.prestigepoint.model.AddChallenge;
 import com.aartek.prestigepoint.model.Scroller;
+import com.aartek.prestigepoint.model.UploadImages;
 import com.aartek.prestigepoint.repository.ScrollerRepository;
 import com.aartek.prestigepoint.service.ScrollerService;
 import com.aartek.prestigepoint.util.IConstant;
@@ -22,7 +24,6 @@ import com.aartek.prestigepoint.util.ImageFormat;
 @Service
 public class ScrollerServiceImpl implements ScrollerService {
 
-	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(ScrollerServiceImpl.class);
 	@Autowired
 	private ScrollerRepository scrollerRepository;
@@ -51,12 +52,12 @@ public class ScrollerServiceImpl implements ScrollerService {
 	 * 
 	 * @param batch
 	 */
-	public boolean addScrollerPhoto(Scroller scroller) {
+	public boolean saveScrollerPhoto(Scroller scroller) {
 		boolean status = false;
 		if (scroller != null) {
 			scroller.setIsDeleted(IConstant.IS_DELETED);
 			scroller.setIsStatusActive(IConstant.IS_STATUS_ACTIVE);
-			status = scrollerRepository.addScrollerPhoto(scroller);
+			status = scrollerRepository.saveScrollerPhoto(scroller);
 			BufferedImage newImg;
 			String imageData = scroller.getImgPath().replaceFirst("^data:image/[^;]*;base64,?", "");
 			newImg = ImageFormat.decodeToImage(imageData);
@@ -120,5 +121,12 @@ public class ScrollerServiceImpl implements ScrollerService {
 		return scrollers;
 
 	}
+
+	public List<UploadImages> viewUploadImages() {
+			List<UploadImages> getUploadImages = new ArrayList<UploadImages>();
+			getUploadImages = scrollerRepository.viewUploadImages();
+			return getUploadImages;
+		}
+		
 
 }
