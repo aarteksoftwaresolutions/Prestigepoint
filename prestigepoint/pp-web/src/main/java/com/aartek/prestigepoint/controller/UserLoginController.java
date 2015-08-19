@@ -179,7 +179,6 @@ public class UserLoginController {
 	public String signInAction(@ModelAttribute("Regestration") Registration registration, BindingResult result,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request, HttpServletResponse response) {
 		registration = stuRegService.stuSignIn(registration);
-
 		if (registration == null) {
 			model.addAttribute("invalid", "Invalid user name and password");
 			return "redirect:/login.do";

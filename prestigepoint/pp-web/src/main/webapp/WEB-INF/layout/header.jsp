@@ -100,9 +100,10 @@
 									</c:forEach>
 								</ul></li>
 							<li><a href="downloadJars.do">Download jar</a></li>
-						    <li><a href="forum.do">Forum</a></li>
+						<!--     <li><a href="forum.do">Forum</a></li> -->
 							<li><a href="viewProfile.do">Profile</a></li>
 							<li><a href="viewChallengeDetails.do">Challenge Title</a></li>
+							<li><a href="viewAssignment.do">Assignment</a></li>
 							<!-- <li><a href="editor.do">Java Editor</a></li> -->
 						</ul></li>
 					<!--  <li><a href="viewProfile.do">Profile</a></li> -->

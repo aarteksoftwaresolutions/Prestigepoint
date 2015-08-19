@@ -196,6 +196,18 @@
     <put-attribute name="body" value="/WEB-INF/jsp/photoGallery.jsp" />
     <put-attribute name="title" type="string" value="photoGallery" />
   </definition>
+  <definition name="viewAssignment" id="viewAssignment" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/viewAssignment.jsp" />
+    <put-attribute name="title" type="string" value="viewAssignment" />
+  </definition>
+  <definition name="displyTopicDetails" id="displyTopicDetails" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/viewAssignmentTopic.jsp" />
+    <put-attribute name="title" type="string" value="displyTopicDetails" />
+  </definition>
   
+  <definition name="displyAllDetailsBatchWise" id="displyAllDetailsBatchWise" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/displyAllDetailsBatchWise.jsp" />
+    <put-attribute name="title" type="string" value="displyAllDetailsBatchWise" />
+  </definition>
   
 </tiles-definitions>

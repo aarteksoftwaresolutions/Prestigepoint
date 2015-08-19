@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -39,10 +40,22 @@ public class Batch implements Serializable {
 	@JoinColumn(name = "BATCH_ID", updatable = false)
 	private List<Registration> registrationList;
 
+	/*@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "BATCH_ID")
+	private List<AddAssignment> addAssignments;*/
+	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "BATCH_ID")
 	private List<CurrentBatch> currentBatchList;
+	
+	
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "BATCH_ASSIGNMENT_ID",updatable=false)
+	private List<BatchAssignment> batchAssignmentList;
 
 	/**
 	 * @return the batchId
@@ -126,5 +139,13 @@ public class Batch implements Serializable {
 	public void setCurrentBatchList(List<CurrentBatch> currentBatchList) {
 		this.currentBatchList = currentBatchList;
 	}
+
+	/*public List<AddAssignment> getAddAssignments() {
+		return addAssignments;
+	}
+
+	public void setAddAssignments(List<AddAssignment> addAssignments) {
+		this.addAssignments = addAssignments;
+	}*/
 
 }

@@ -45,9 +45,9 @@ public class MailController {
 
 	@Autowired
 	private RegistrationService registrationService;
-	
-	 @Autowired
-	  private JavaMailSender mailSender;
+
+	@Autowired
+	private JavaMailSender mailSender;
 
 	private static Logger log = LoggerFactory.getLogger(MailController.class);
 
@@ -61,9 +61,9 @@ public class MailController {
 	 * @return
 	 */
 	@RequestMapping("/sendMailPage")
-	public String showSendMailPage(Map<String, Object> map, Model model,
-			@RequestParam(required = false) String emailId) {
-		log.info("this is mailer");//please chnage comment and comment should meaningful
+	public String showSendMailPage(Map<String, Object> map, Model model, @RequestParam(required = false) String emailId) {
+		log.info("this is mailer");// please chnage comment and comment should
+									// meaningful
 		map.put("Registration", new Registration());
 		model.addAttribute("emailId", emailId);
 		return "sendMail";
@@ -79,17 +79,18 @@ public class MailController {
 	 * @param request
 	 * @param attachFile
 	 * @return
-	 * @throws AddressException 
+	 * @throws AddressException
 	 * @throws MessagingException
 	 */
-	@RequestMapping(value = "/sendMail", method = RequestMethod.POST) 
-	public String sendEmail(@ModelAttribute("Mail") Mail mail,final @RequestParam CommonsMultipartFile attachFile) throws MessagingException{
+	@RequestMapping(value = "/sendMail", method = RequestMethod.POST)
+	public String sendEmail(@ModelAttribute("Mail") Mail mail, final @RequestParam CommonsMultipartFile attachFile)
+			throws MessagingException {
 		List<String> emailList = new ArrayList<String>();
 		final String emailTo = mail.getEmailId();
-		final String subject1 =mail.getSubject();
+		final String subject1 = mail.getSubject();
 		final String message1 = mail.getMessage();
-		if (emailTo.isEmpty() || emailTo == null ) {
-			if (mail.getAllStudent()!= null) {
+		if (emailTo.isEmpty() || emailTo == null) {
+			if (mail.getAllStudent() != null) {
 				if (mail.getAllStudent().equals("allstudent")) {
 					emailList = registrationService.getallStudentEmailId();
 					final String[] email = emailList.toArray(new String[emailList.size()]);
@@ -104,8 +105,6 @@ public class MailController {
 							messageHelper.setSubject(subject1);
 							messageHelper.setText(message1);
 							messageHelper.setFrom("hrd@prestigepoint.in");
-							// determines if there is an upload file, attach it to the
-							// e-mail
 							String attachName = attachFile.getOriginalFilename();
 							if (!attachFile.equals("")) {
 
@@ -120,41 +119,39 @@ public class MailController {
 						}
 
 					});
-				}
 				}
 			}
-			if (mail.getAllEnquiry() != null) {
-				if (mail.getAllEnquiry().equals("allenquiry")) {
-					emailList = registrationService.getallEnquiryEmailId();
-					final String[] email = emailList.toArray(new String[emailList.size()]);
-					InternetAddress[] addressTo = new InternetAddress[email.length];
-					for (int i = 0; i < email.length; i++) {
-						addressTo[i] = new InternetAddress(email[i]);
-					}
-					mailSender.send(new MimeMessagePreparator() {
-						public void prepare(MimeMessage mimeMessage) throws Exception {
-							MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-							messageHelper.setTo(email);
-							messageHelper.setSubject(subject1);
-							messageHelper.setText(message1);
-							messageHelper.setFrom("hrd@prestigepoint.in");
-							// determines if there is an upload file, attach it to the
-							// e-mail
-							String attachName = attachFile.getOriginalFilename();
-							if (!attachFile.equals("")) {
+		}
+		if (mail.getAllEnquiry() != null) {
+			if (mail.getAllEnquiry().equals("allenquiry")) {
+				emailList = registrationService.getallEnquiryEmailId();
+				final String[] email = emailList.toArray(new String[emailList.size()]);
+				InternetAddress[] addressTo = new InternetAddress[email.length];
+				for (int i = 0; i < email.length; i++) {
+					addressTo[i] = new InternetAddress(email[i]);
+				}
+				mailSender.send(new MimeMessagePreparator() {
+					public void prepare(MimeMessage mimeMessage) throws Exception {
+						MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+						messageHelper.setTo(email);
+						messageHelper.setSubject(subject1);
+						messageHelper.setText(message1);
+						messageHelper.setFrom("hrd@prestigepoint.in");
+						String attachName = attachFile.getOriginalFilename();
+						if (!attachFile.equals("")) {
 
-								messageHelper.addAttachment(attachName, new InputStreamSource() {
+							messageHelper.addAttachment(attachName, new InputStreamSource() {
 
-									public InputStream getInputStream() throws IOException {
-										return attachFile.getInputStream();
-									}
-								});
-							}
-
+								public InputStream getInputStream() throws IOException {
+									return attachFile.getInputStream();
+								}
+							});
 						}
 
-					});
-				}
+					}
+
+				});
+			}
 		}
 
 		if (!emailTo.isEmpty() && emailTo != null) {
@@ -166,8 +163,6 @@ public class MailController {
 					messageHelper.setSubject(subject1);
 					messageHelper.setText(message1);
 					messageHelper.setFrom("hrd@prestigepoint.in");
-					// determines if there is an upload file, attach it to the
-					// e-mail
 					String attachName = attachFile.getOriginalFilename();
 					if (!attachFile.equals("")) {
 						messageHelper.addAttachment(attachName, new InputStreamSource() {
@@ -194,8 +189,9 @@ public class MailController {
 	 * @return
 	 */
 	@RequestMapping("/mailSuccess")
-	public String showSuccessPage(Map<String, Object> map, Model model,
-			HttpServletRequest request) {//change method name
+	public String showSuccessPage(Map<String, Object> map, Model model, HttpServletRequest request) {// change
+																										// method
+																										// name
 		HttpSession session = request.getSession();
 		AdminLogin loginMember = (AdminLogin) session.getAttribute("login");
 		if (loginMember != null) {
@@ -214,10 +210,8 @@ public class MailController {
 	 * @param emailId
 	 * @return
 	 */
-	@RequestMapping(value = "/getEmailId", method = { RequestMethod.GET,
-			RequestMethod.POST })
-	public String sendSingleMail(ModelMap model, Map<String, Object> map,
-			HttpServletRequest request,
+	@RequestMapping(value = "/getEmailId", method = { RequestMethod.GET, RequestMethod.POST })
+	public String sendSingleMail(ModelMap model, Map<String, Object> map, HttpServletRequest request,
 			@RequestParam(required = false) String emailId) {
 		model.addAttribute("emailId", emailId);
 		return "redirect:/sendMailPage.do";

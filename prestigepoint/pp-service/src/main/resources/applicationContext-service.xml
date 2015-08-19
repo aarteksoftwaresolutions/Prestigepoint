@@ -21,8 +21,36 @@
     http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-1.5.xsd
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
   <task:annotation-driven />
-  <!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> <property 
-    name="locations"> <list> <value>classpath:path.properties</value> </list> </property> </bean> -->
+<!-- 	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:path.properties</value>
+			</list>
+		</property>
+	</bean> -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value>mail.prestigepoint.in</value>
+		</property>
+		<property name="port">
+			<value>25</value>
+		</property>
+		<property name="username">
+			<value>hrd@prestigepoint.in</value>
+		</property>
+		<property name="password">
+			<value>prestigepoint@123</value>
+		</property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.ssl.trust">mail.prestigepoint.in</prop>
+			</props>
+		</property>
+	</bean>
   <util:properties id="propertyConfigurer" location="classpath:path.properties" />
   <context:property-placeholder properties-ref="propertyConfigurer" />
 </beans>

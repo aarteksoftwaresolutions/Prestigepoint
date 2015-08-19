@@ -89,10 +89,7 @@
       <c:if test="${studentDetails != null}">
       <c:set var="count" value="0" scope="page" />
       <display:table name="studentDetails" pagesize="8" class="basic-table" uid="cat" requestURI="getStudentDetails.do">
-        <c:set var="count" value="${count+1}" scope="page" />
-        <display:column title="S.NO" class="showHeading" style="width:1%;">
-     ${count}
-    </display:column>
+         <display:column property="enrollmentNo" title="Enrollment No" style="width:1%;"></display:column>
     	<display:column title="NAME">${cat.firstName} ${cat.lastName}</display:column>
         <display:column property="contact" title="CONTACT NO" />
         <display:column property="emailId" title="EMAIL ID" />
@@ -133,9 +130,7 @@
       <c:set var="count" value="0" scope="page" />
       <display:table name="stuDetails" pagesize="8" class="basic-table" uid="cat" requestURI="getStudentDetailsByName.do">
         <c:set var="count" value="${count+1}" scope="page" />
-        <display:column title="S.NO" class="showHeading" style="width:1%;">
-     ${count}
-    </display:column>
+        <display:column property="enrollmentNo" title="Enrollment No" style="width:1%;"></display:column>
     	<display:column title="NAME">${cat.firstName} ${cat.lastName}</display:column>
         <display:column property="contact" title="CONTACT NO" />
         <display:column property="emailId" title="EMAIL ID" />

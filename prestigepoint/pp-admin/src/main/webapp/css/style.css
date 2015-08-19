@@ -555,3 +555,67 @@ nav ul li ul ul{
 	background-image:none;
 }
 /*drop down navigation ends here*/
+
+/* it is used for checkbox disply on dropdown list */
+
+.dropdown dd, .dropdown dt {
+    margin:0px;
+    padding:0px;
+}
+.dropdown ul {
+    margin: -1px 0 0 0;
+}
+.dropdown dd {
+    position:relative;
+}
+.dropdown a, 
+.dropdown a:visited {
+    color:#fff;
+    text-decoration:none;
+    outline:none;
+    font-size: 12px;
+}
+.dropdown dt a {
+    display:block;
+    padding: 8px 10px;
+    min-height: 25px;
+    overflow: hidden;
+    border:0;
+    width:272px;
+    border:1px solid #B1BDCB;
+    color:#000;
+}
+.dropdown dt a p{
+	margin:0px;
+}
+.dropdown dt a span, .multiSel span {
+    cursor:pointer;
+    display:inline-block;
+    padding: 0 3px 2px 0;
+}
+.dropdown dd ul {
+    background-color: #B1BDCB;
+    border:0;
+    color:#fff;
+    display:none;
+    left:0px;
+    padding: 3px 20px 1px 15px;;
+    position:absolute;
+    top:2px;
+    width:280px;
+    list-style:none;
+    height: 100px;
+    overflow: auto;
+    border: 1px solid #000;
+    color: #000;
+}
+.dropdown span.value {
+    display:none;
+}
+.dropdown dd ul li a {
+    padding:5px;
+    display:block;
+}
+.dropdown dd ul li a:hover {
+    background-color:#fff;
+}

@@ -75,7 +75,17 @@ public class Registration implements Serializable {
 	@Column(name = "IS_DELETED")
 	private Integer isDeleted;
 
-	@ManyToOne
+	@Column(name = "ENROLLMENT_NO")
+	private String enrollmentNo;
+	
+	public String getEnrollmentNo() {
+		return enrollmentNo;
+	}
+
+	public void setEnrollmentNo(String enrollmentNo) {
+		this.enrollmentNo = enrollmentNo;
+	}
+	@ManyToOne 
 	@JoinColumn(name = "COURSE_ID")
 	private Course course;
 

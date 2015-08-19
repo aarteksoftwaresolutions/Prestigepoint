@@ -20,7 +20,8 @@ import com.aartek.prestigepoint.util.ImageFormat;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
-	private static final Logger logger = Logger.getLogger(ProfileServiceImpl.class);
+	private static final Logger logger = Logger
+			.getLogger(ProfileServiceImpl.class);
 
 	@Autowired
 	private ProfileRepository profileRepository;
@@ -29,7 +30,8 @@ public class ProfileServiceImpl implements ProfileService {
 	private String imagePath;
 
 	public List<Registration> getStudentDetails(int registrationId) {
-		List<Registration> studentDetailsList = profileRepository.getStudentDetails(registrationId);
+		List<Registration> studentDetailsList = profileRepository
+				.getStudentDetails(registrationId);
 		return studentDetailsList;
 	}
 
@@ -37,15 +39,17 @@ public class ProfileServiceImpl implements ProfileService {
 		boolean status = false;
 		if (registration != null) {
 			BufferedImage newImg;
-			String imageData = registration.getImgPath().replaceFirst("^data:image/[^;]*;base64,?", "");
+			String imageData = registration.getImgPath().replaceFirst(
+					"^data:image/[^;]*;base64,?", "");
 			newImg = ImageFormat.decodeToImage(imageData);
 			if (newImg != null) {
 				try {
 					File f = new File(imagePath);
 					f.mkdirs();
-					ImageIO.write(newImg, "png", new File(imagePath + "/" + registration.getRegistrationId() + ".png"));
+					ImageIO.write(newImg, "png", new File(imagePath + "/"
+							+ registration.getRegistrationId() + ".png"));
 				} catch (IOException e) {
-					logger.error("IOException" , e);
+					logger.error("IOException", e);
 				}
 			}
 			registration.setIsDeleted(IConstant.IS_DELETED);

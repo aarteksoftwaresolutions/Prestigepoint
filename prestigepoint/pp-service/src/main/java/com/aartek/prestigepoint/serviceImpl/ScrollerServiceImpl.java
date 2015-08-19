@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.aartek.prestigepoint.model.AddChallenge;
 import com.aartek.prestigepoint.model.Scroller;
 import com.aartek.prestigepoint.model.UploadImages;
 import com.aartek.prestigepoint.repository.ScrollerRepository;

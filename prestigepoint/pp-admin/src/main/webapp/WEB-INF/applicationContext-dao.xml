@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
      http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
-	<context:annotation-config />
+	<context:annotation-config/>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="packagesToScan">
@@ -23,7 +23,7 @@
 	</bean>
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-	
+
 		<property name="driverClass">
 			<value>${connection.driver_class}</value>
 		</property>
@@ -36,30 +36,30 @@
 		<property name="password">
 			<value>${connection.password}</value>
 		</property>
-  <!-- Connection pool code start -->
-    <property name="testConnectionOnCheckin" value="true" />
-    <property name="checkoutTimeout">
-      <value>600000</value>
-    </property>
-    <property name="maxIdleTime">
-      <value>30</value>
-    </property>
-    <property name="maxPoolSize">
-      <value>50</value>
-    </property>
-    <property name="minPoolSize">
-      <value>5</value>
-    </property>
-    <property name="initialPoolSize">
-      <value>5</value>
-    </property>
-    <property name="unreturnedConnectionTimeout">
-      <value>50</value>
-    </property>
-    <property name="maxStatements" value="2000" />
-    <property name="idleConnectionTestPeriod" value="30" />
-    <property name="automaticTestTable" value="c3p0_con_test" />
-    <!-- Connection pool code end -->
+		<!-- Connection pool code start -->
+		<property name="testConnectionOnCheckin" value="true" />
+		<property name="checkoutTimeout">
+			<value>600000</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>30</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>50</value>
+		</property>
+		<property name="minPoolSize">
+			<value>5</value>
+		</property>
+		<property name="initialPoolSize">
+			<value>5</value>
+		</property>
+		<property name="unreturnedConnectionTimeout">
+			<value>50</value>
+		</property>
+		<property name="maxStatements" value="2000" />
+		<property name="idleConnectionTestPeriod" value="30" />
+		<property name="automaticTestTable" value="c3p0_con_test" />
+		<!-- Connection pool code end -->
 	</bean>
 
 	<bean id="propertyConfigurer"
@@ -89,6 +89,7 @@
 			<props>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+			<!-- 	 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop> -->
 			</props>
 		</property>
 	</bean>
@@ -101,7 +102,7 @@
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host">
 			<value>${host.smtp}</value>
 		</property>
@@ -114,21 +115,15 @@
 		<property name="password">
 			<value>${password}</value>
 		</property>
-
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.transport.protocol">${mail.transport.protocol}</prop>
 				<prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
 				<prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop>
-				
 				<prop key="mail.smtp.ssl.trust">${mail.smtp.ssl.trust}</prop>
-
-
-
-				
 			</props>
-		</property> 
-	</bean>  
+		</property>
+	</bean>
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- max upload size in bytes -->

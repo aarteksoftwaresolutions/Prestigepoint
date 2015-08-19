@@ -50,11 +50,16 @@ public class Subject implements Serializable {
 
 	@Column(name = "IS_DELETED")
 	private Integer isDeleted;
-	
+
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "SUBJECT_ID")
 	private List<ForumQuestion> forumQuestionList;
+
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "SUBJECT_ID")
+	private List<AddAssignment> addAssignments;
 
 	public Integer getSubjectId() {
 		return subjectId;
@@ -111,6 +116,14 @@ public class Subject implements Serializable {
 	@JsonIgnore
 	public void setForumQuestionList(List<ForumQuestion> forumQuestionList) {
 		this.forumQuestionList = forumQuestionList;
+	}
+
+	public List<AddAssignment> getAddAssignments() {
+		return addAssignments;
+	}
+
+	public void setAddAssignments(List<AddAssignment> addAssignments) {
+		this.addAssignments = addAssignments;
 	}
 
 }

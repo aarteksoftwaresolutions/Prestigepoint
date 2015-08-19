@@ -26,13 +26,14 @@ import com.aartek.prestigepoint.util.ImageFormat;
 public class FooterPhotoServiceImpl implements FooterPhotoService {
 
 	private static final Logger logger = Logger.getLogger(FooterPhotoServiceImpl.class);
+	
 	@Autowired
 	private FooterPhotoRepository footerPhotoRepository;
-
+	
 	@Value("${pp.imagePath}")
 	private String imagePath;
 
-	/**
+	/*
 	 * Method get all batch name form data base and display in grid
 	 */
 	public List<PhotoInFooter> getAllStudentName() {
@@ -41,8 +42,7 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 
 		return list;
 	}
-
-	/**
+    /**
 	 * Get batch information for edit batch details.
 	 * 
 	 * @param batchId
@@ -55,7 +55,7 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 		PhotoInFooter photoInFooter2 = (PhotoInFooter) list.get(0);
 		BufferedImage img = null;
 		try {
-			img = ImageIO.read(new File(imagePath + "/" + photoInFooter2.getStudentId() + ".png"));
+			img = ImageIO.read(new File("imagePath" + "/" + photoInFooter2.getStudentId() + ".png"));
 		} catch (IOException e) {
 			logger.error("IOException",e);
 		}
@@ -101,9 +101,9 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 			newImg = ImageFormat.decodeToImage(imageData);
 			if (newImg != null) {
 				try {
-					File f = new File(imagePath);
+					File f = new File("imagePath");
 					f.mkdirs();
-					ImageIO.write(newImg, "png", new File(imagePath + "/" + photoInFooter.getStudentId() + ".png"));
+					ImageIO.write(newImg, "png", new File("imagePath" + "/" + photoInFooter.getStudentId() + ".png"));
 				} catch (IOException e) {
 					logger.error("IOException",e);
 				}
@@ -147,8 +147,7 @@ public class FooterPhotoServiceImpl implements FooterPhotoService {
 		List<PhotoInFooter> photoInFooters = footerPhotoRepository.listOfSelectedStudent();
 		return photoInFooters;
 	}
-
-	/**
+   /**
 	 * Delete batch information.
 	 * 
 	 * @param batchId

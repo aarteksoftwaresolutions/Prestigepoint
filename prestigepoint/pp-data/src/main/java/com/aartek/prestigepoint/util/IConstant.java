@@ -69,6 +69,7 @@ public static final String UPLOAD_IMAGE_SUCCESS_MESSAGE = "Your image added succ
 public static final String UPLOAD_IMAGE_FAILURE_MESSAGE = "Your image not added";
 public static final String UPLOAD_IMAGE_DELETE_MESSAGE = "Upload image deleted successfully!";
 public static final String FILE_PATH = "D:/images/";
+public static final String ASSIGNMENT_PATH = "E:/29-Work space/apache-tomcat-7.0.59/webapps/assignment1/";
 public static final String CHALLENGE_DELETE_MESSAGE = "Your challenge deleted successfully";
 public static final String EMI_MESSAGE = "Emi Save successfully";
 
@@ -81,4 +82,5 @@ public static final String RESPONSE_NO_DATA_MESSAGE = "400";
 public static final String NO_SUBJECT_FOUND = "No subject found";
 public static final String NO_QUESTION_ANSWER_FOUND = "No question answer form";
 public static final String ALL_QUESTION_ANSWER_LIST = "All question answer list";
+public static final String ASSIGNMENT_SUCCESS_MESSAGE = "Your data successfully inserted";
 }

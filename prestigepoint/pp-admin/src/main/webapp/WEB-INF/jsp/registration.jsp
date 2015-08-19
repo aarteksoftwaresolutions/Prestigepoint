@@ -94,6 +94,17 @@
 				</div>
 				<form:hidden path="imgPath" id="imagePath" />
 				<table width="100%" border="0">
+				<tr>
+						<td><div class="form-control">
+							<%-- 	<form:errors path="firstName" class="label error-label"></form:errors> --%>
+								<label>
+									<p>
+										Enrollment No<small class="required">*</small>
+									</p> <form:input path="enrollmentNo" class="inputControl"
+										placeholder="Enrollment No" required="autofocus" maxlength="30"/>
+								</label>
+							</div></td>
+							</tr>
 					<tr>
 						<td><div class="form-control">
 								<form:errors path="firstName" class="label error-label"></form:errors>

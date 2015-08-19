@@ -14,12 +14,11 @@
 <!--javascript libraries begins here -->
 <script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
-<!--javascript libraries ends here -->
-<!-- <script type="text/javascript">
-    function preventBack(){window.history.forward();}
-     setTimeout("preventBack()", 0);
-     window.onunload=function(){null};
-</script> -->
+<script type="text/javascript" src="js/jquery-ui-1.9.1.custom.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/page-js/commonDate.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.1.custom.min.css" />
 </head>
 <body>
   <!--header starts here-->
@@ -78,7 +77,8 @@
             </li>
              <li><a href="uploadImagesView.do">UploadImages</a>
             </li>
-
+             <li><a href="assignmentView.do">AddAssignment</a>
+            </li>
           </ul>
         </c:if>
       </li>
@@ -131,6 +131,3 @@
   </div>
   </section> </header>
   <!--header ends here-->
-
-</body>
-</html>

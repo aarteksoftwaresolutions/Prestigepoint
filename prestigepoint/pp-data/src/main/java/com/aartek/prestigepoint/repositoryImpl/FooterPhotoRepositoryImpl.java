@@ -76,8 +76,7 @@ public class FooterPhotoRepositoryImpl implements FooterPhotoRepository {
 		List<PhotoInFooter> photoInFooters = hibernateTemplate.find("from PhotoInFooter where IS_STATUS_ACTIVE=1");
 		return photoInFooters;
 	}
-
-	/**
+    /**
 	 * Method for delete batch information.
 	 */
 	public void deleteStudentData(Integer studentId) {

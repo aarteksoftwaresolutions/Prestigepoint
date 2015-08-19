@@ -7,9 +7,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 
 public class SendMail {
 
@@ -56,8 +54,9 @@ public class SendMail {
 			msg += " <br>";
 			msg += "<b>Password:</b>" + userPassword;
 			msg += " <br>";
-		/*	msg += "http://localhost:9090/pp-web/verify.do?registrationId=" + regId;*/ // used
-        	msg += "http://prestigepoint.in/verify.do?registrationId=" + regId; //used on the server
+//		    msg += "http://localhost:8080/pp-web/verify.do?registrationId=" + regId;// used
+      	    msg += "http://prestigepoint.in/verify.do?registrationId=" + regId; //used on the server
+//         	msg += "http://prestigepoint.in.mocha6006.mochahost.com/verify.do?registrationId=" + regId;
 			msg += " <br>";
 			msg += "Regards,<br>";
 			msg += "Prestige Point";
@@ -66,6 +65,9 @@ public class SendMail {
 			System.out.println("Done");
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
+			
+			
+			
 		}
 		return null;
 	}

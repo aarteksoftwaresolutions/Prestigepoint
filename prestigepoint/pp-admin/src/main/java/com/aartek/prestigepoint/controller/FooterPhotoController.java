@@ -53,7 +53,7 @@ public class FooterPhotoController {
 		return "getFooterPhotoPage";
 	}
 
-	/**
+	/*
 	 * use for add and edit the footerPhoto.
 	 * 
 	 * @param photoInFooter

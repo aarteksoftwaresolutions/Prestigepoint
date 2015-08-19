@@ -14,19 +14,9 @@
 	<properties>
 		<spring.version>3.2.0.RELEASE</spring.version>
 		<log4j.version>1.2.17</log4j.version>
-		<junit.version>4.11</junit.version>
 		<jdk.version>1.7.0</jdk.version>
 	</properties>
-
 	<dependencies>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- Spring 3 dependencies -->
 
 		<dependency>
@@ -200,20 +190,13 @@
 			<artifactId>jackson-mapper-lgpl</artifactId>
 			<version>1.8.3</version>
 		</dependency>
-		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
-			<version>5.0.8</version> </dependency> -->
 
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.9</version>
 		</dependency>
-
-
-
-
 		<!-- Display TAG Libeary -->
-
 		<dependency>
 			<groupId>displaytag</groupId>
 			<artifactId>displaytag</artifactId>
@@ -226,9 +209,7 @@
 			<version>1.1.1</version>
 		</dependency>
 		<!-- End -->
-
 		<!-- reCaptcha Libeary -->
-
 		<dependency>
 			<groupId>net.tanesha.recaptcha4j</groupId>
 			<artifactId>recaptcha4j</artifactId>
@@ -237,7 +218,6 @@
 		<!-- End -->
 
 		<!-- Mail Libeary -->
-
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
