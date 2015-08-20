@@ -10,14 +10,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add Assignment</title>
 <script type="text/javascript" src="js/page-js/dropdown.js" charset="utf-8"></script>
-<link href="css/dropdown.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
-<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.1.custom.min.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/dropdown.css">
+
 </head>
 <body>
 <div class="container clearfix">
 	<div class="conact-form">
-
 		<p>&nbsp;</p>
 		<h3 style="color: red;">${message}</h3>
 		<form:form method="POST" action="saveAssignment.do"
@@ -55,8 +54,7 @@
 							<label>
 								<p>Description</p> <form:textarea
 									path="addAssignment.description" id="description"
-									class="inputControl" placeholder="Description"
-									required="autofocus" maxlength="2000" />
+									class="inputControl" placeholder="Description" maxlength="2000" />
 							</label>
 						</div></td>
 				</tr>

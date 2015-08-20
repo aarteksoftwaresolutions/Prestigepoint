@@ -10,17 +10,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Assignment List</title>
 <style>
-
  th, td {
-	padding: 10px;
+	padding: 5px;
 	text-align: left;
 }
 .wider td {
 	width: 10%;
 } 
+ th1, td1 {
+	padding: 10px;
+	text-align: left;
+}
+
  </style>
 </head>
 <body>
+ <section class="inner-banner">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="welcome.do">Home</a>
+      </li>
+       <li>&frasl;</li>
+      <li>Assignment</li>
+    </ul>
+  </div>
+  </section>
    <form:form>
 		<table style="width: 60%;margin: 0px auto;" align="center">
 		
@@ -28,17 +42,22 @@
 				<td><b>Title:-${AddAssignment.subject.subjectName}</td>
 			
 		</tr>
+		</br>
 		<tr>
 				<td><b>Topic:-</b> ${AddAssignment.topic}</td>
 			
 		</tr>
+		</br>
 		<tr>
 			<td><b>Description:-</b>${AddAssignment.description}</td>
 		</tr>
-		 </table>
+		</table>
+		 </br>
+		 </br>
+		 </br>
 		 <div align="center">
 		   <c:set var="count" value="0" scope="page" />
-		   <display:table name="docAssignmentName" class="basic-table" uid="doc" requestURI="assignmentView.do">
+		   <display:table name="docAssignmentName" class="basic-table" uid="doc" requestURI="viewAssignment.do">
 				<c:set var="count" value="${count+1}" scope="page"/>
 				<display:column title="S.NO" style="width:1%;">
      ${count}

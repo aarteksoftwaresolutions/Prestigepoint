@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -40,17 +39,10 @@ public class Batch implements Serializable {
 	@JoinColumn(name = "BATCH_ID", updatable = false)
 	private List<Registration> registrationList;
 
-	/*@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "BATCH_ID")
-	private List<AddAssignment> addAssignments;*/
-	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "BATCH_ID")
 	private List<CurrentBatch> currentBatchList;
-	
-	
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = CascadeType.ALL)

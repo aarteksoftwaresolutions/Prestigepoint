@@ -111,7 +111,7 @@ public class AssignmentServiceImpl implements AssignmentService {
 				public void prepare(MimeMessage mimeMessage) throws Exception {
 					MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 					for (final String doc1 : doc) {
-					FileSystemResource file = new FileSystemResource(uploadAssignmentDoc+assignmentId+"_"+doc1);
+					FileSystemResource file = new FileSystemResource("E:/29-Work space/apache-tomcat-7.0.59/webapps/assignment1/"+assignmentId+"_"+doc1);
 					messageHelper.addAttachment(file.getFilename(), file);
 					}
 					messageHelper.setTo(email);

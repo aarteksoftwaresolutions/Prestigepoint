@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -39,6 +40,7 @@ public class AddAssignment implements Serializable  {
 	@Column(name = "IS_DELETED")
 	private Integer isDeleted;
 
+	@Transient
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "BATCH_ID")
 	private Batch batch;

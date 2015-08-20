@@ -11,7 +11,7 @@
 						}
 						.dropdown_${count+1} a, 
 						.dropdown_${count+1} a:visited {
-						    color:#fff;
+						    /* color:#fff; */
 						    text-decoration:none;
 						    outline:none;
 						    font-size: 12px;
@@ -60,4 +60,4 @@
 						}
 						.dropdown_${count+1} dd ul li a:hover {
 						    background-color:#fff;
-						}
+						} 

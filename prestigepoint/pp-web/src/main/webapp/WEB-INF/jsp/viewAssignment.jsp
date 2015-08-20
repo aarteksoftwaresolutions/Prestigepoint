@@ -10,11 +10,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+ <section class="inner-banner">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li><a href="welcome.do">Home</a>
+      </li>
+      <li>&frasl;</li>
+      <li>Assignment</li>
+    </ul>
+  </div>
+  </section>
+  </br>
+  </br>
+  </br>
+  <div align="right">
     <div class="container clearfix">
         <div class="conact-form">
 
-			<display:table name="getAssignmentList" pagesize="8" class="basic-table"  uid="getAssignmentList" requestURI="assignmentView.do">
+			<display:table name="getAssignmentList" pagesize="10" class="basic-table"  uid="getAssignmentList" requestURI="viewAssignment.do">
 				<!-- uid is user define -->
 				<c:set var="count" value="${count+1}" scope="page"/>
 				<display:column title="S.NO" style="width:1%;">
@@ -25,6 +38,7 @@
 				</display:column>
 			</display:table> 
         </div>
+    </div>
     </div>
 </body>
 </html>

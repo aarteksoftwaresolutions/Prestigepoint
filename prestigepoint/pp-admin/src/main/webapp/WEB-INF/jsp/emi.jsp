@@ -16,12 +16,9 @@
 <script>
 function validateForm()
 {
-      // Assign variables for the required fields
       var x=document.forms["testForm"]["date"].value;
-      //Check that the variables are not empty
       if (x==null || x=="")
       {
-    	/*   document.getElementById("datepick").innerHTML = "Paragraph changed!"; */
             alert("Please select the date!");   
            
             return false;
