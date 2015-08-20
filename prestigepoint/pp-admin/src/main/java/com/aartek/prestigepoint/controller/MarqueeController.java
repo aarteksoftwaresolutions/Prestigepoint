@@ -32,6 +32,7 @@ public class MarqueeController {
 		return "addMarquee";
 	}
 
+//why use .do 
 	@RequestMapping(value = "/saveMarquee.do", method = {RequestMethod.GET, RequestMethod.POST })
 	private String saveMarquee(@ModelAttribute("AddMarquee") AddMarquee addMarquee,
 			ModelMap model) {
@@ -65,7 +66,7 @@ public class MarqueeController {
 	@RequestMapping(value = "changeMarqueeStatusAction", method = RequestMethod.GET)
 	@ResponseBody
 	public void changeMarqueeStatus(@RequestParam(required = false) String marqueeIdValue, Integer  marqueeValue) {
-		addMarqueeService.changeMarqueeStatus(marqueeIdValue,  marqueeValue);
+		addMarqueeService.changeMarqueeStatus(marqueeIdValue,  marqueeValue);//please change variable name marqueeIdValue to marqueeId
 
 	}
 }
