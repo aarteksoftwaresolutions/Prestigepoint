@@ -68,6 +68,11 @@ public class PlacedStudentController {
 	private String viewAllPlacedStudent(@ModelAttribute("AddPlacedStudent") AddPlacedStudent addPlacedStudent,
 			Map<String, Object> map) {
 		map.put("AddPlacedStudent", new AddPlacedStudent());
+		//MEenal what is differnece between below two
+		//@ModelAttribute("AddPlacedStudent") AddPlacedStudent addPlacedStudent
+		//and
+		//map.put("AddPlacedStudent", new AddPlacedStudent());
+		//both are same things or different.
 		return "viewPlacedStudent";
 	}
 
@@ -125,6 +130,7 @@ public class PlacedStudentController {
 	 * @param studentId
 	 * @return
 	 */
+	 //why use get nd post both.
 	@RequestMapping(value = "/deletePlacedStudent", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deletePlacedStudent(@RequestParam(required = false) Integer studentId) {
 		placedStudentservice.deletePlacedStudent(studentId);
