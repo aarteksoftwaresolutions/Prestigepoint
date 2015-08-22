@@ -19,9 +19,7 @@
 	<div class="conact-form">
 		<p>&nbsp;</p>
 		<h3 style="color: red;">${message}</h3>
-		<form:form method="POST" action="saveAssignment.do"
-			modelAttribute="AssignmentDoc" autocomplete="off"
-			enctype="multipart/form-data">
+		<form:form method="POST" action="saveAssignment.do" modelAttribute="AssignmentDoc" autocomplete="off" enctype="multipart/form-data">
 			<table width="100%" border="0">
 				<tr>
 					<td><div class="form-control">
@@ -44,7 +42,7 @@
 							<label>
 								<p>Topic</p> <form:input path="addAssignment.topic"
 									class="inputControl" placeholder="Topic" required="autofocus"
-									maxlength="30" />
+									maxlength="200" />
 							</label>
 						</div></td>
 				</tr>

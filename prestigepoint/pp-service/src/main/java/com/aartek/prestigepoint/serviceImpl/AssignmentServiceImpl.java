@@ -19,6 +19,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -44,7 +45,7 @@ public class AssignmentServiceImpl implements AssignmentService {
 
 	@SuppressWarnings("resource")
 	public boolean saveAssignment(String assignmentDocName, MultipartFile filePart, CommonsMultipartFile[] fileUpload,
-			AssignmentDoc assignmentDoc, Integer assignmentId) {
+			AssignmentDoc assignmentDoc, Integer assignmentId)throws MultipartException {
 		OutputStream outputStream = null;
 		InputStream inputStream = null;
 		if (assignmentDoc != null) {
@@ -111,7 +112,7 @@ public class AssignmentServiceImpl implements AssignmentService {
 				public void prepare(MimeMessage mimeMessage) throws Exception {
 					MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
 					for (final String doc1 : doc) {
-					FileSystemResource file = new FileSystemResource("E:/29-Work space/apache-tomcat-7.0.59/webapps/assignment1/"+assignmentId+"_"+doc1);
+					FileSystemResource file = new FileSystemResource(uploadAssignmentDoc+assignmentId+"_"+doc1);
 					messageHelper.addAttachment(file.getFilename(), file);
 					}
 					messageHelper.setTo(email);

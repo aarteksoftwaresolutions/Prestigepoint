@@ -27,9 +27,6 @@ public class AssignmentDoc implements Serializable {
 	@Column(name = "IS_DELETED")
 	private Integer isDeleted;
 
-	@Column(name = "IS_ACTIVE")
-	private Integer isActive;
-
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ASSIGNMENT_ID")
 	private AddAssignment addAssignment;
@@ -40,14 +37,6 @@ public class AssignmentDoc implements Serializable {
 
 	public void setIsDeleted(Integer isDeleted) {
 		this.isDeleted = isDeleted;
-	}
-
-	public Integer getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(Integer isActive) {
-		this.isActive = isActive;
 	}
 
 	public Integer getAssignmentDocId() {

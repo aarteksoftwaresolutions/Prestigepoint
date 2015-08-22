@@ -33,48 +33,52 @@ public class AssignmentController {
 
 	@Autowired
 	private CourseService courseService;
-	
+
 	@Autowired
 	private BatchService batchService;
-	
+
 	@Autowired
 	private QuestionAnswerService questionAnswerService;
-	
+
 	@Autowired
 	private AssignmentService assignmentService;
-	
+
 	@Autowired
 	private AssignmentValidator assignmentValidator;
-	
-	  
+
 	@RequestMapping("/assignmentView")
-	private String showAssignmentPage(Map<String, Object> map, ModelMap model,@RequestParam(required = false) String message) {
+	private String showAssignmentPage(Map<String, Object> map, ModelMap model,
+			@RequestParam(required = false) String message) {
 		map.put("AssignmentDoc", new AssignmentDoc());
 		model.addAttribute("message", message);
-		List<Subject> subjects = questionAnswerService.getAllSubjectName();
-		model.addAttribute("subjectList", subjects);
 		List<AddAssignment> assignment = assignmentService.getAllAssignment();
 		model.addAttribute("assignmentList", assignment);
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
+		model.addAttribute("subjectList", subjects);
 		List<Batch> batchList = batchService.getAllBatchName();
 		model.addAttribute("batchList", batchList);
-		return "addAssignment";
+		return "assignmentView";
 	}
 
-	 @RequestMapping(value = "/saveAssignment.do", method = { RequestMethod.GET, RequestMethod.POST })
-	private String saveAssignment(@ModelAttribute("AssignmentDoc") AssignmentDoc assignmentDoc,@RequestParam("fileUpload") MultipartFile file, ModelMap model,
-			@RequestParam CommonsMultipartFile[] fileUpload,String assignmentDocName,BindingResult result, @RequestParam(required = false) Integer assignmentId) {
+	@RequestMapping(value = "/saveAssignment.do", method = { RequestMethod.GET, RequestMethod.POST })
+	private String saveAssignment(@ModelAttribute("AssignmentDoc") AssignmentDoc assignmentDoc,
+			@RequestParam("fileUpload") MultipartFile file, ModelMap model,
+			@RequestParam CommonsMultipartFile[] fileUpload, String assignmentDocName, BindingResult result,
+			@RequestParam(required = false) Integer assignmentId) {
 		final MultipartFile filePart = file;
 		boolean status = false;
 		file.getOriginalFilename();
-	     assignmentValidator.validate(assignmentDoc, result);
+		List<AddAssignment> assignment = assignmentService.getAllAssignment();
+		assignmentValidator.validate(assignmentDoc, result);
 		if (result.hasErrors()) {
+			model.addAttribute("assignmentList", assignment);
 			List<Subject> subjects = questionAnswerService.getAllSubjectName();
 			if (subjects != null) {
 				model.addAttribute("subjectList", subjects);
-				return "addAssignment";
 			}
+			return "assignmentView";
 		}
-		status =  assignmentService.saveAssignment(assignmentDocName , filePart, fileUpload, assignmentDoc,assignmentId);
+		status = assignmentService.saveAssignment(assignmentDocName, filePart, fileUpload, assignmentDoc, assignmentId);
 		if (status) {
 			model.addAttribute("message", IConstant.ASSIGNMENT_SUCCESS_MESSAGE);
 		} else {
@@ -82,13 +86,14 @@ public class AssignmentController {
 		}
 		return "redirect:/assignmentView.do";
 	}
-	
-	 
-		@RequestMapping(value ="/getAssignmentEmailId.do", method = RequestMethod.GET)
-		@ResponseBody
-		private boolean getAssignmentEmailId(@ModelAttribute("AssignmentDoc") AssignmentDoc assignmentDoc,Map<String, Object> map, ModelMap model,@RequestParam(required = false) String batchId,String subject,String description,Integer assignmentId) throws MessagingException{
-			boolean status = false;
-		    status = assignmentService.getAllEmailId(batchId,subject,description,assignmentId);
-			return status;
-		}
+
+	@RequestMapping(value = "/getAssignmentEmailId.do", method = RequestMethod.GET)
+	@ResponseBody
+	private boolean getAssignmentEmailId(@ModelAttribute("AssignmentDoc") AssignmentDoc assignmentDoc,
+			Map<String, Object> map, ModelMap model, @RequestParam(required = false) String batchId, String subject,
+			String description, Integer assignmentId) throws MessagingException {
+		boolean status = false;
+		status = assignmentService.getAllEmailId(batchId, subject, description, assignmentId);
+		return status;
+	}
 }

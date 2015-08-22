@@ -68,7 +68,7 @@ public class ViewAssignmentController {
 					String filename = doc;
 					response.setContentType("APPLICATION/OCTET-STREAM");
 					response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
-					FileInputStream fileInputStream = new FileInputStream("E:/29-Work space/apache-tomcat-7.0.59/webapps/assignment1/"+assignmentId+"_"+filename);
+					FileInputStream fileInputStream = new FileInputStream(DownloadAssignmentDoc+assignmentId+"_"+filename);
 					int i;
 					while ((i = fileInputStream.read()) != -1) {
 						out.write(i);

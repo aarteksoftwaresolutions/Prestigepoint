@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Email Send</title>
-<!-- <script type="text/javascript" src="js/page-js/emailSend.js"></script> -->
+<script type="text/javascript" src="js/page-js/emailSend.js"></script>
 </head>
 <body>
   <div class="container clearfix">
@@ -47,7 +47,7 @@
                 <label>
                   <p>
                     Message<small class="required"></small>
-                  </p> <form:textarea path="message" cols="50" rows="10" /> </label>
+                  </p> <form:textarea path="message" cols="50" rows="10"  required="autofocus"/> </label>
               </div></td>
           </tr>
           <tr>

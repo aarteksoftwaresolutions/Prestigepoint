@@ -55,11 +55,11 @@ public class SuperAdminSignUpController {
 	@RequestMapping(value = "/adminsignup")
 	public String adminSignUp(@ModelAttribute("AdminLogin") AdminLogin login, BindingResult result, ModelMap model) {
 		boolean status = false;
-		if (login != null && !login.equals("null")) {
 			signUpValidator.validate(login, result);
 			if (result.hasErrors()) {
 				return "signup";
 			}
+			if (login != null && !login.equals("null")) {
 			status = loginService.signUp(login);
 			if (status) {
 				model.addAttribute("message", IConstant.USER_SUCCESS_MESSAGE);

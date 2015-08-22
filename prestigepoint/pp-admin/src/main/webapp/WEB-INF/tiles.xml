@@ -162,9 +162,9 @@
 		<put-attribute name="title" type="string" value="uploadImages Page" />
 	</definition>
 	
-	<definition name="addAssignment" id="addAssignment" extends="baseTemplate">
+	<definition name="assignmentView" id="assignmentView" extends="baseTemplate">
 		<put-attribute name="body" value="/WEB-INF/jsp/addAssignment.jsp" />
-		<put-attribute name="title" type="string" value="addAssignment Page" />
+		<put-attribute name="title" type="string" value="assignmentView Page" />
 	</definition>
 	
 </tiles-definitions>

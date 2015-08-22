@@ -21,13 +21,10 @@ public class RegistrationValidator {
 
 	public void validate(Object target, Errors errors) {
 		Registration registration = (Registration) target;
-		ValidationUtils.rejectIfEmpty(errors, "firstName", "error.name.empty");
 		ValidationUtils.rejectIfEmpty(errors, "contact", "error.contact.empty");
 		ValidationUtils.rejectIfEmpty(errors, "emailId", "error.email.empty");
 		ValidationUtils.rejectIfEmpty(errors, "qualification", "error.qualification.empty");
 		ValidationUtils.rejectIfEmpty(errors, "dateOfBirth", "error.dateOfBirth.empty");
-		ValidationUtils.rejectIfEmpty(errors, "city", "error.city.empty");
-		ValidationUtils.rejectIfEmpty(errors, "state", "error.state.empty");
 		ValidationUtils.rejectIfEmpty(errors, "totalFee", "error.totalFee.empty");
 		ValidationUtils.rejectIfEmpty(errors, "submittedFee", "error.submittedFee.empty");
 		ValidationUtils.rejectIfEmpty(errors, "parentContact", "error.parentContact.empty");

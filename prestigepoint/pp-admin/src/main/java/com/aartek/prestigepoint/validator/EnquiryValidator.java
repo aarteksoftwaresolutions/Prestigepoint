@@ -17,6 +17,9 @@ public class EnquiryValidator {
 		Enquiry enquiry = (Enquiry) target;
 		ValidationUtils.rejectIfEmpty(errors, "date", "error.enquiry.empty");
 		ValidationUtils.rejectIfEmpty(errors, "emailId", "error.email.empty");
+		ValidationUtils.rejectIfEmpty(errors, "mobileNo", "error.mobileNo.empty");
+		ValidationUtils.rejectIfEmpty(errors, "referenceName", "error.referenceMobileNo.empty");
+		
 		if (enquiry.getMobileNo() != null && enquiry.getMobileNo() != "") {
 			if (enquiry.getMobileNo().length() < 10) {
 				errors.rejectValue("mobileNo", "error.mobileNoEnquiry.length");
