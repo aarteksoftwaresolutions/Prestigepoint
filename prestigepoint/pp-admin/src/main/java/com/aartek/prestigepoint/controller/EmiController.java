@@ -109,7 +109,7 @@ public class EmiController {
 			status = emiService.editEmiInfo(emi);
 			if (status) {
 				model.addAttribute("registrationId", emi.getRegistration().getRegistrationId());
-				model.addAttribute("message", "Emi Edit successfully");
+				model.addAttribute("message",  IConstant.EMI_EDIT_MESSAGE);
 			} else {
 				model.addAttribute("message", "Error");
 			}

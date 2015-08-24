@@ -1,12 +1,11 @@
 function disablefields() {
 	if (document.getElementById('student').checked == 1 || document.getElementById('allEnquiry').checked == 1)
 	{ 
-		document.getElementById('emailId').disabled='true';
-		document.getElementById('emailId').value='disabled'; 
+		document.getElementById("emailId").disabled=true;
+		document.getElementById("emailId").value=" "; 
    }else
    { 
-	   document.getElementById('emailId').disabled='false'; 
-	   document.getElementById('emailId').value=''; 
+	   document.getElementById("emailId").disabled = false;
 	 } 
 	
 	} 

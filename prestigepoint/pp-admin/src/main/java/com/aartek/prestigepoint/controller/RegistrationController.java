@@ -115,16 +115,16 @@ public class RegistrationController {
 			return "registration";
 		}
 		int currentId = registration.getCurrentStatus().getCurrent_status_Id();
-		if (registration.getRegistrationId() != null) {
+		if (registration.getRegistrationId() != null && currentId ==8) {
 			status = registrationService.updateStudentAsPaid(registration);
-			if (currentId == 8) {
-				model.addAttribute("firstName", registration.getFirstName());
-				model.addAttribute("lastName", registration.getLastName());
-				model.addAttribute("registrationId", registration.getRegistrationId());
-				return "redirect:/placedStudent.do";
-			}
 			if (status) {
-				model.addAttribute("message", IConstant.PROFILE_UPDATE_SUCCESS_MESSAGE);
+				if (currentId == 8) {
+					model.addAttribute("firstName", registration.getFirstName());
+					model.addAttribute("lastName", registration.getLastName());
+					model.addAttribute("registrationId", registration.getRegistrationId());
+					model.addAttribute("message", IConstant.PROFILE_UPDATE_SUCCESS_MESSAGE);
+					return "redirect:/placedStudent.do";
+				}
 			} else {
 				model.addAttribute("message", IConstant.PROFILE_UPDATE_FAILURE_MESSAGE);
 			}
@@ -197,7 +197,8 @@ public class RegistrationController {
 	@RequestMapping(value = "/getStudentDetails", method = { RequestMethod.GET, RequestMethod.POST })
 	public String viewDetails(@ModelAttribute("Registration") Registration registration,
 			ModelMap model, Map<String, Object> map, HttpServletRequest request,
-			@RequestParam(required = false) Integer registrationId) {
+			@RequestParam(required = false) Integer registrationId,@RequestParam(required = false) String message) {
+		model.addAttribute("message", message);
 		List<Registration> studentDetails = null;
 		String method = request.getMethod();
 		if (("GET").equals(method) && registrationId != null) {
@@ -272,6 +273,14 @@ public class RegistrationController {
 		model.addAttribute("firstName", firstName);
 		List<Registration> stuDetails = registrationService.getStudentDetailsByName(firstName);
 		model.addAttribute("stuDetails", stuDetails);
+		List<Course> courseList = courseService.getCourses();
+		if (courseList != null) {
+			model.addAttribute("course", courseList);
+		}
+		List<Batch> batchList = batchService.getAllBatchName();
+		if (batchList != null) {
+			model.addAttribute("batch", batchList);
+		}
 	    log.info("firstName is=" + firstName);
 		return "viewStudentDetails";
 	}

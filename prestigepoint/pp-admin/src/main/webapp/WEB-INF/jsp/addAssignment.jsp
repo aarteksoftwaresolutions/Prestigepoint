@@ -52,7 +52,7 @@
 							<label>
 								<p>Description</p> <form:textarea
 									path="addAssignment.description" id="description"
-									class="inputControl" placeholder="Description" maxlength="2000" />
+									class="inputControl" placeholder="Description"/>
 							</label>
 						</div></td>
 				</tr>

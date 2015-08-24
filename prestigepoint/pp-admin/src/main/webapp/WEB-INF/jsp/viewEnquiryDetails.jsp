@@ -34,12 +34,15 @@
       <fmt:formatDate var="FormattedDateChange" value="${parsedDate}" pattern="dd-MM-yyyy"/>
       <c:out value="${FormattedDateChange}"></c:out>
       </display:column>
+       <c:if test="${sessionScope.login.adminType!=4}">
         <display:column title="Edit"> <a href="editEnquiry.do?enquiryId=${enquiryList.enquiryId}"> Edit</a>
         </display:column>
          <display:column title="Delete"><a href="deleteEnquiry.do?enquiryId=${enquiryList.enquiryId}"
                             onclick="return confirm('Please confirm if you want to delete this enquiry!');">Delete</a>
                     </display:column>
+      </c:if>
       </display:table>
+   
     </div>
   </div>
 </body>

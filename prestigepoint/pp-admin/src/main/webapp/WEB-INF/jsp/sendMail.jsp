@@ -6,6 +6,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Email Send</title>
 <script type="text/javascript" src="js/page-js/emailSend.js"></script>
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						if (emailId != null && emailId != '') {
+							document.getElementById("emailId").value = "${emailId}";
+						}
+					});
+</script>
 </head>
 <body>
   <div class="container clearfix">

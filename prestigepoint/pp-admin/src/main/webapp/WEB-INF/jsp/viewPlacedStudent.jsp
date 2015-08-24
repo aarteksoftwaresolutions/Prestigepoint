@@ -27,7 +27,7 @@ function callAllPlacedStudent() {
 	  else
 	    {
 	    document.getElementById("datepick").disabled = false;
-	    document.getElementById("datepick").disabled = false;
+	    document.getElementById("picker").disabled = false;
 	    
 	    }
 	}

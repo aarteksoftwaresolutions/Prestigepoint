@@ -344,7 +344,7 @@
 										Parent Contact<small class="required"></small>
 									</p> <form:input path="parentContact" class="inputControl"
 										placeholder="Contact Number" required="autofocus"
-										maxlength="11" onkeypress="return onlyNos(event,this);" />
+										maxlength="10" onkeypress="return onlyNos(event,this);" />
 								</label>
 							</div></td>
 							

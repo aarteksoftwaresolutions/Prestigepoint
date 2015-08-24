@@ -71,7 +71,8 @@ public static final String UPLOAD_IMAGE_DELETE_MESSAGE = "Upload image deleted s
 public static final String FILE_PATH = "D:/images/";
 public static final String ASSIGNMENT_PATH = "E:/29-Work space/apache-tomcat-7.0.59/webapps/assignment1/";
 public static final String CHALLENGE_DELETE_MESSAGE = "Your challenge deleted successfully";
-public static final String EMI_MESSAGE = "Emi Save successfully";
+public static final String EMI_MESSAGE = "Emi Save and send on emailId successfully";
+public static final String EMI_EDIT_MESSAGE = "Emi edit successfully";
 
 public static final String RESPONSE = "response";
 public static final String DATA = "DATA";

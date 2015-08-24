@@ -29,6 +29,7 @@
 <body>
   <div class="container clearfix">
     <div class="conact-form">
+     <h3 style="color: red;">${message}</h3>
  <form:form method="POST" action="getStudentDetailsByName.do" modelAttribute="Registration" autocomplete="off">
       	<table width="40%" align="right">
       	<tr>
@@ -38,7 +39,6 @@
       	</tr>
       	</table>
       </form:form>
-      
       <form:form method="POST" action="getStudentDetails.do" modelAttribute="Registration" autocomplete="off">
         <table width="100%" border="0">
           <tr>
