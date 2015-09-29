@@ -91,9 +91,32 @@ public class AssignmentController {
 	@ResponseBody
 	private boolean getAssignmentEmailId(@ModelAttribute("AssignmentDoc") AssignmentDoc assignmentDoc,
 			Map<String, Object> map, ModelMap model, @RequestParam(required = false) String batchId, String subject,
-			String description, Integer assignmentId) throws MessagingException {
+			String description, Integer assignmentId,String topic) throws MessagingException {
 		boolean status = false;
 		status = assignmentService.getAllEmailId(batchId, subject, description, assignmentId);
-		return status;
+		if(status==true){
+			return true;
+		}else{
+		return false;
+		}
+	}
+	
+	@RequestMapping(value = "/editAssignment")
+	public String editAssignmentDetails(@ModelAttribute("AssignmentDoc") AssignmentDoc assignmentDoc,
+			Map<String, Object> map, @RequestParam(required = false) Integer assignmentId,ModelMap model) {
+		assignmentDoc = assignmentService.editAssignmentDetails(assignmentId);
+		List<Subject> subjects = questionAnswerService.getAllSubjectName();
+		if(assignmentDoc!=null){
+		map.put("AssignmentDoc", assignmentDoc);
+		}
+		model.addAttribute("subjectList", subjects);
+		return "assignmentView";
+	}
+	
+	@RequestMapping(value = "/deleteAssignment", method = { RequestMethod.GET, RequestMethod.POST })
+	public String deleteAssignment(@RequestParam(required = false) Integer assignmentId,ModelMap model) {
+		assignmentService.deleteAssignment(assignmentId);
+		model.addAttribute("message", IConstant.ASSIGNMENT_DELETE_MESSAGE);
+		return "redirect:/assignmentView.do";
 	}
 }

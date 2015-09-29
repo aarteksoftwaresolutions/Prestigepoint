@@ -57,4 +57,15 @@ public class StudentRegistrationRepositoryImpl implements StudentRegistrationRep
 }
 		return false;
 }
+
+	public Registration getStudentLogin(String emailId, String password) {
+		List<Registration> stuLogin = hibernateTemplate.find(
+						"from Registration r where r.emailId = ? and r.password = ? and r.isDeleted=?", emailId,
+						password, IConstant.IS_DELETED);
+		if (stuLogin != null) {
+			return stuLogin.get(0);
+		} else {
+			return null;
+		}
+}
 }

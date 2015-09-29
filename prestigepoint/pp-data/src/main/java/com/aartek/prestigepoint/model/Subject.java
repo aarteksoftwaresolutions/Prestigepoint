@@ -117,11 +117,11 @@ public class Subject implements Serializable {
 	public void setForumQuestionList(List<ForumQuestion> forumQuestionList) {
 		this.forumQuestionList = forumQuestionList;
 	}
-
+	@JsonIgnore
 	public List<AddAssignment> getAddAssignments() {
 		return addAssignments;
 	}
-
+	@JsonIgnore
 	public void setAddAssignments(List<AddAssignment> addAssignments) {
 		this.addAssignments = addAssignments;
 	}

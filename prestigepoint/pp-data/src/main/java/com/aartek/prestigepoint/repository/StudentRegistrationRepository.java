@@ -21,4 +21,6 @@ public interface StudentRegistrationRepository {
 
 	public boolean verifyUserEmailId(String emailId);
 
+	public Registration getStudentLogin(String emailId, String password);
+
 }

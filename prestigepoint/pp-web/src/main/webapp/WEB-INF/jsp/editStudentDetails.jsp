@@ -129,7 +129,7 @@ $(document).ready(function() {
                   <p>
                     Contact<small class="required">*</small>
                   </p> <form:input path="contact" class="inputControl" placeholder="Mobile Number" required="autofocus"
-                    maxlength="11" onkeypress="return onlyNos(event,this);" /> </label>
+                    maxlength="10" onkeypress="return onlyNos(event,this);" /> </label>
               </div>
             </td>
             <td><div class="form-control">

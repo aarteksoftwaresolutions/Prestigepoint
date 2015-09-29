@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+
 import com.aartek.prestigepoint.model.Registration;
 
 @Component
@@ -15,12 +16,8 @@ public class ProfileValidator implements Validator {
 
 	public void validate(Object target, Errors errors) {
 		Registration registration = (Registration) target;
-		ValidationUtils.rejectIfEmpty(errors, "firstName", "error.name.empty");
 		ValidationUtils.rejectIfEmpty(errors, "contact", "error.contact.empty");
-		ValidationUtils.rejectIfEmpty(errors, "emailId", "error.email.empty");
-		ValidationUtils.rejectIfEmpty(errors, "lastName", "error.lastName.empty");
-		ValidationUtils.rejectIfEmpty(errors, "qualification", "error.qualification.empty");
-		ValidationUtils.rejectIfEmpty(errors, "dateOfBirth", "error.dateOfBirth.empty");
+		ValidationUtils.rejectIfEmpty(errors, "emailId", "error.emailId.empty");
 		if (registration.getEmailId() != null && registration.getEmailId().trim().length() > 0) {
 			boolean b = ValidationUtil.validateEmail(registration.getEmailId());
 			if (registration.getEmailId().contains("@") != true && !b) {
@@ -32,6 +29,12 @@ public class ProfileValidator implements Validator {
 				errors.rejectValue("emailId", "error.email.required");
 			}
 		}
+		if (registration.getContact() != null && registration.getContact() != "") {
+			if (registration.getContact().length() < 10) {
+				errors.rejectValue("contact", "error.contactNo.length");
+			}
+		}
 	}
 
 }
+

@@ -24,9 +24,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.aartek.prestigepoint.model.AddAssignment;
+import com.aartek.prestigepoint.model.AddChallenge;
 import com.aartek.prestigepoint.model.AssignmentDoc;
 import com.aartek.prestigepoint.model.Batch;
 import com.aartek.prestigepoint.model.BatchAssignment;
+import com.aartek.prestigepoint.model.CurrentBatch;
 import com.aartek.prestigepoint.repository.AssignmentRepository;
 import com.aartek.prestigepoint.service.AssignmentService;
 import com.aartek.prestigepoint.util.IConstant;
@@ -51,16 +53,19 @@ public class AssignmentServiceImpl implements AssignmentService {
 		if (assignmentDoc != null) {
 			if (fileUpload != null && fileUpload.length > 0) {
 				for (CommonsMultipartFile multipartFile : fileUpload) {
+					
 					assignmentDocName = multipartFile.getOriginalFilename();
 					try {
-						inputStream = filePart.getInputStream();
+						inputStream = multipartFile.getInputStream();
 						File newFile = new File(uploadAssignmentDoc);
 						assignmentDoc.setAssignmentDocName(assignmentDocName);
 						assignmentDoc.setIsDeleted(IConstant.IS_DELETED);
 						assignmentDoc.getAddAssignment().setIsDeleted(IConstant.IS_DELETED);
 						AssignmentDoc assignmentDoc2 = addAssignmentRepository.saveAssignment(assignmentDoc);
+						if(assignmentDoc2.getAssignmentDocName()!=null && assignmentDoc2.getAssignmentDocName()!= ""){
 						File filePath = new File(newFile + File.separator
 								+ assignmentDoc2.getAddAssignment().getAssignmentId() + "_" + assignmentDocName);
+						
 						if (!newFile.exists()) {
 							newFile.mkdir();
 							filePath.createNewFile();
@@ -72,7 +77,10 @@ public class AssignmentServiceImpl implements AssignmentService {
 						while ((read = inputStream.read(bytes)) != -1) {
 							outputStream.write(bytes, 0, read);
 						}
-					} catch (IOException e) {
+						}
+					}
+					
+					catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
@@ -111,9 +119,11 @@ public class AssignmentServiceImpl implements AssignmentService {
 			mailSender.send(new MimeMessagePreparator() {
 				public void prepare(MimeMessage mimeMessage) throws Exception {
 					MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+					if(!doc.get(0).equals("")){
 					for (final String doc1 : doc) {
 					FileSystemResource file = new FileSystemResource(uploadAssignmentDoc+assignmentId+"_"+doc1);
 					messageHelper.addAttachment(file.getFilename(), file);
+					}
 					}
 					messageHelper.setTo(email);
 					messageHelper.setSubject(subject);
@@ -152,6 +162,24 @@ public class AssignmentServiceImpl implements AssignmentService {
 	public List<String> getAllDocName(Integer assignmentId) {
 	 List<String> docName = addAssignmentRepository.getAllDocName(assignmentId);
 		return docName;
+	}
+
+	public AssignmentDoc editAssignmentDetails(Integer assignmentId) {
+		List<AssignmentDoc> assignmentDocList = new ArrayList<AssignmentDoc>();
+		AssignmentDoc assignmentDoc = null;
+		assignmentDocList = addAssignmentRepository.updateAssignmentDetails(assignmentId);
+	    if (assignmentDocList != null && !assignmentDocList.isEmpty()){
+	    	for (AssignmentDoc assignment : assignmentDocList) {
+	    		assignmentDoc = (AssignmentDoc) assignment;
+	    	}
+	    	return assignmentDoc;
+	    }
+	    return null;
+	}
+
+	public void deleteAssignment(Integer assignmentId) {
+		addAssignmentRepository.deleteAssignment(assignmentId);
+		
 	}
 	
 	

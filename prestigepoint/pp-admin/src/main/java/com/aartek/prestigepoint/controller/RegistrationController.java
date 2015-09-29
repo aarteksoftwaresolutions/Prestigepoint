@@ -131,7 +131,7 @@ public class RegistrationController {
 		} else {
 			status = registrationService.saveStudentDeatils(registration);
 			if (status) {
-				model.addAttribute("message", IConstant.REGISTRATION_SUCCESS_MESSAGE);
+				model.addAttribute("message", IConstant.REGISTRATION_SAVE_MESSAGE);
 			} else {
 				model.addAttribute("message", IConstant.REGISTRATION_FAILURE_MESSAGE);
 			}
@@ -380,10 +380,13 @@ public class RegistrationController {
 	}
 
 	@RequestMapping(value = "/deleteStudentDetails", method = { RequestMethod.GET, RequestMethod.POST })
-	public String deleteCatageory(ModelMap model,@RequestParam(required = false) Integer registrationId) {
+	public String deleteCatageory(ModelMap model,@RequestParam(required = false) Integer registrationId,Map<String, Object> map) {
 		registrationService.deleteStudentDetails(registrationId);
+		map.put("Registration", new Registration());
+		List<Registration> studentDetails = registrationService.getAllStudentDetails();
+		model.addAttribute("studentDetails", studentDetails);
 		model.addAttribute("message", IConstant.STUDENT_DELETE_MESSAGE);
-		return "redirect:/registration.do";
+		return "viewStudentDetails";
 	}
 	
 	@RequestMapping(value = "/verifyUserEmailId", method = { RequestMethod.GET })

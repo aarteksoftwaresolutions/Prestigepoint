@@ -42,7 +42,8 @@
 							<label>
 								<p>Topic</p> <form:input path="addAssignment.topic"
 									class="inputControl" placeholder="Topic" required="autofocus"
-									maxlength="200" />
+									maxlength="200" id="topic"/>
+									<form:hidden path="addAssignment.assignmentId"/>
 							</label>
 						</div></td>
 				</tr>
@@ -143,8 +144,15 @@
 				        });
 				    </script>
 				</display:column>
+				 <display:column title="Edit">
+                        <a href="editAssignment.do?assignmentId=${assignmentList.assignmentId}">Edit</a>
+                    </display:column>
+                     <display:column title="Delete">
+                        <a href="deleteAssignment.do?assignmentId=${assignmentList.assignmentId}"
+                            onclick="return confirm('Please confirm if you want to delete this assignment!');">Delete</a>
+                    </display:column>
 				  <display:column>
-                 <a href="javascript:void(0);" onclick="sendEmail(${count},'${assignmentList.description}','${assignmentList.assignmentId}');">Send Mail</a>
+                 <a href="javascript:void(0);" onclick="sendEmail(${count},'${assignmentList.description}','${assignmentList.assignmentId}','${assignmentList.topic}');">Send Mail</a>
                 </display:column>
 			</display:table> 
 		</form:form>

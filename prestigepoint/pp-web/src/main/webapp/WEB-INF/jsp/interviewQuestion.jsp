@@ -31,7 +31,7 @@
 				</h5>
 				<div>
 					<p>
-						<b>Ans: </b> <table class="basic-table1">
+						<b>Ans: </b> <table class="basic-table1" >
 						<c:set var="arrayofmsg" value="${fn:split(queAns.answer,'#')}"/>
 						<c:set var="arrayofmsg1" value="${fn:split(queAns.answer1,'#')}"/>
 						<c:forEach var="i" begin="0" end="${fn:length(arrayofmsg)}">

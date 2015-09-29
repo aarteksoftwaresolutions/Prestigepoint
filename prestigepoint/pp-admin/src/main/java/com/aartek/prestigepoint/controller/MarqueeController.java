@@ -50,7 +50,6 @@ public class MarqueeController {
 			Map<String, Object> map, @RequestParam(required = false) Integer marqueeId) {
 		addMarquee = addMarqueeService.editMarqueeDescription(marqueeId);
 		map.put("AddMarquee", addMarquee);
-		
 		return "addMarquee";
 
 	}

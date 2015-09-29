@@ -58,6 +58,8 @@
 			<mvc:exclude-mapping path="/photoGallery.do*" />  
 			<mvc:exclude-mapping path="/getAllSubject.do*" />
 			<mvc:exclude-mapping path="/getQuestionAndAnswerWS.do*" />
+			<mvc:exclude-mapping path="/getStudentLoginDetail.do*" />
+			<mvc:exclude-mapping path="/getStudentLogin.do*" />
 			<bean class="com.aartek.prestigepoint.controller.LoggingWebInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

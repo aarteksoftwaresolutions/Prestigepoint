@@ -106,13 +106,17 @@ public class ProfileController {
 		if (result.hasErrors()) {
 			return "editStudentDetails";
 		}
-		boolean status = false;
-		status = profileService.updateProfile(registration);
-		if (status) {
-			model.addAttribute("message", IConstant.PROFILE_UPDATE_SUCCESS_MESSAGE);
-		} else {
-			model.addAttribute("message", IConstant.PROFILE_UPDATE_FAILURE_MESSAGE);
+		if (registration!= null) {
+			boolean status = false;
+			status = profileService.updateProfile(registration);
+			if (status) {
+				model.addAttribute("message", IConstant.PROFILE_UPDATE_SUCCESS_MESSAGE);
+			} else {
+				model.addAttribute("message", IConstant.PROFILE_UPDATE_FAILURE_MESSAGE);
+			}
 		}
 		return "redirect:/viewProfile.do";
+
 	}
+
 }

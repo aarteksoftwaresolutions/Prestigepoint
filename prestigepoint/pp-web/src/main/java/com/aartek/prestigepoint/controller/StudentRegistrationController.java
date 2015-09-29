@@ -109,7 +109,6 @@ public class StudentRegistrationController {
 	@RequestMapping(value = "/verifyUserEmailId", method = { RequestMethod.GET })
 	@ResponseBody
 	public boolean verifyUserEmailId(@RequestParam(required = false) String emailId) {
-		System.out.println("saf" + emailId);
 		boolean status = false;
 		status = stuRegService.verifyUserEmailId(emailId);
 		return status;

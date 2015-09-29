@@ -30,4 +30,8 @@ public interface AssignmentRepository {
 
 	public List<Object> displyAllDetailsBatchWise(Integer assignmentId);
 
+	public List<AssignmentDoc> updateAssignmentDetails(Integer assignmentId);
+
+	public void deleteAssignment(Integer assignmentId);
+
 }

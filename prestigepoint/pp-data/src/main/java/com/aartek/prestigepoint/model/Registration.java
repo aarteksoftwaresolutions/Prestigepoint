@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -93,13 +94,15 @@ public class Registration implements Serializable {
 	@JoinColumn(name = "YEAR_ID")
 	private Year year;
 	
+	@JsonIgnore
 	public Batch getBatch() {
         return batch;
     }
-
+	@JsonIgnore
     public void setBatch(Batch batch) {
         this.batch = batch;
     }
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="BATCH_ID")
     private Batch batch;
@@ -113,15 +116,18 @@ public class Registration implements Serializable {
 	@JoinColumn(name = "REGISTRATION_ID")
 	private List<Emi> emiList;
 	
+	@JsonIgnore
 	 @LazyCollection(LazyCollectionOption.FALSE)
 	  @OneToMany(cascade = CascadeType.ALL)
 	  @JoinColumn(name = "REGISTRATION_ID",updatable=false)
 	  private List<AddPlacedStudent> AddPlacedStudentList;
-
+	 
+	 @JsonIgnore
 	public List<AddPlacedStudent> getAddPlacedStudentList() {
     return AddPlacedStudentList;
   }
 
+ @JsonIgnore
   public void setAddPlacedStudentList(List<AddPlacedStudent> addPlacedStudentList) {
     AddPlacedStudentList = addPlacedStudentList;
   }
@@ -395,6 +401,7 @@ public class Registration implements Serializable {
 	/**
 	 * @return the course
 	 */
+	@JsonIgnore
 	public Course getCourse() {
 		return course;
 	}
@@ -403,6 +410,7 @@ public class Registration implements Serializable {
 	 * @param course
 	 *            the course to set
 	 */
+	@JsonIgnore
 	public void setCourse(Course course) {
 		this.course = course;
 	}
@@ -415,6 +423,7 @@ public class Registration implements Serializable {
 	/**
 	 * @return the year
 	 */
+	@JsonIgnore
 	public Year getYear() {
 		return year;
 	}
@@ -423,6 +432,7 @@ public class Registration implements Serializable {
 	 * @param year
 	 *            the year to set
 	 */
+	@JsonIgnore
 	public void setYear(Year year) {
 		this.year = year;
 	}
@@ -430,6 +440,7 @@ public class Registration implements Serializable {
 	/**
 	 * @return the emiList
 	 */
+	@JsonIgnore
 	public List<Emi> getEmiList() {
 		return emiList;
 	}
@@ -438,6 +449,7 @@ public class Registration implements Serializable {
 	 * @param emiList
 	 *            the emiList to set
 	 */
+	@JsonIgnore
 	public void setEmiList(List<Emi> emiList) {
 		this.emiList = emiList;
 	}
@@ -446,6 +458,7 @@ public class Registration implements Serializable {
 	/**
 	 * @return the searchType
 	 */
+	@JsonIgnore
 	public String getSearchType() {
 		return searchType;
 	}
@@ -454,22 +467,24 @@ public class Registration implements Serializable {
 	 * @param searchType
 	 *            the searchType to set
 	 */
+	@JsonIgnore
 	public void setSearchType(String searchType) {
 		this.searchType = searchType;
 	}
-
+	@JsonIgnore
 	public String getImgPath() {
 		return imgPath;
 	}
-
+	@JsonIgnore
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
 	}
-
+	@JsonIgnore
 	public String getImagePath() {
 		return imagePath;
 	}
 
+	@JsonIgnore
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
@@ -482,34 +497,38 @@ public class Registration implements Serializable {
 		this.mail = mail;
 	}
 */
+	@JsonIgnore
 	public String getSubject() {
 		return subject;
 	}
-
+	@JsonIgnore
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-
+	@JsonIgnore
 	public String getMessage() {
 		return message;
 	}
-
+	@JsonIgnore
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
+	@JsonIgnore
 	public String getAllStudent() {
 		return allStudent;
 	}
 
+	@JsonIgnore
 	public void setAllStudent(String allStudent) {
 		this.allStudent = allStudent;
 	}
 
+	@JsonIgnore
 	public String getAllEnquiry() {
 		return allEnquiry;
 	}
 
+	@JsonIgnore
 	public void setAllEnquiry(String allEnquiry) {
 		this.allEnquiry = allEnquiry;
 	}
@@ -528,11 +547,11 @@ public class Registration implements Serializable {
 
 	
 	
-
+	@JsonIgnore
 	public CurrentStatus getCurrentStatus() {
 		return currentStatus;
 	}
-
+	@JsonIgnore
 	public void setCurrentStatus(CurrentStatus currentStatus) {
 		this.currentStatus = currentStatus;
 	}
@@ -592,6 +611,7 @@ public class Registration implements Serializable {
   /**
    * @return the files
    */
+  @JsonIgnore
   public List<File> getFiles() {
     return files;
   }
@@ -599,6 +619,7 @@ public class Registration implements Serializable {
   /**
    * @param files the files to set
    */
+  @JsonIgnore
   public void setFiles(List<File> files) {
     this.files = files;
   }

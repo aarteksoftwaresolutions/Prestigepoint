@@ -89,4 +89,23 @@ public class AssignmentRepositoryImpl implements AssignmentRepository {
 		
 		return getAllDetailsBatchWise;
 	}
-}
+
+	public List<AssignmentDoc> updateAssignmentDetails(Integer assignmentId) {
+		List<AssignmentDoc> list = hibernateTemplate.find("from AssignmentDoc aId where aId.addAssignment.assignmentId=" + assignmentId);
+		if(list!=null){
+		return list;
+		}else{
+			return null;
+		}
+		
+	}
+
+	public void deleteAssignment(Integer assignmentId) {
+		AddAssignment addAssignment = (AddAssignment) hibernateTemplate.get(AddAssignment.class, assignmentId);
+		addAssignment.setIsDeleted(IConstant.IS_DELETED_DEACTIVE);
+		if (null != addAssignment) {
+			hibernateTemplate.update(addAssignment);
+		}
+	}
+		
+	}

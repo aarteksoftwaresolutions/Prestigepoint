@@ -38,8 +38,8 @@ public class RegistrationRepositoryImpl implements RegistrationRepository {
 
 	public List<Registration> getStudentDetailsByName(String firstName) {
 		
-		List<Registration> studentList = hibernateTemplate.find("from Registration r  where  r.firstName='" + firstName
-				+ "' or  r.firstName LIKE '%" + firstName + "%' and  r.isDeleted=" + IConstant.IS_DELETED
+		List<Registration> studentList = hibernateTemplate.find("from Registration r  where  (r.firstName='" + firstName
+				+ "' or  r.firstName LIKE '%" + firstName + "%') and  r.isDeleted=" + IConstant.IS_DELETED
 				+ " order by registrationId desc");
 		return studentList;
 	}

@@ -160,6 +160,7 @@
 										Email Id<small class="required">*</small>
 									</p> <form:input path="emailId" class="inputControl"
 										placeholder="Email Id" required="autofocus" maxlength="100" onblur="emailVarification(this);" />
+									<form:hidden path="password"/>
 								</label>
 							</div></td>
 						<td><div class="form-control">
@@ -223,6 +224,7 @@
 									</p> <form:input path="contact" class="inputControl"
 										placeholder="Contact" required="autofocus" maxlength="10" onkeypress="return onlyNos(event,this);" />
 								</label>
+								
 							</div></td>
 							
 							
@@ -294,8 +296,7 @@
 									<p>
 										Discount<small class="required"></small>
 									</p> <form:input path="discount" class="inputControl" id="discount"
-										placeholder="Discount" onblur="return discountAmount() "
-										onkeypress="return onlyNos(event,this);" maxlength="6" />
+										placeholder="Discount" onblur="return discountAmount() " maxlength="6" />
 								</label>
 							</div></td>
 					</tr>

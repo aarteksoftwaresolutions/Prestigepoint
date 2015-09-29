@@ -3,7 +3,6 @@ package com.aartek.prestigepoint.serviceImpl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +30,7 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerService {
 		status = questionAnswerRepository.saveQuestionAndAnswer(questionAnswer);
 		return status;
 	}
-	@JsonIgnore
+	
 	public List<QuestionAnswer> getQuestionAndAnswer(Integer subjectId) {
 		List<QuestionAnswer> answerList = questionAnswerRepository.getQuestionAndAnswer(subjectId);
 		return answerList;

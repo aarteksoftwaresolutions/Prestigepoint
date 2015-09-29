@@ -89,7 +89,6 @@ public class MailController {
 		final String emailTo = mail.getEmailId();
 		final String subject1 = mail.getSubject();
 		final String message1 = mail.getMessage();
-		if (emailTo.isEmpty() || emailTo == null) {
 			if (mail.getAllStudent() != null) {
 				if (mail.getAllStudent().equals("allstudent")) {
 					emailList = registrationService.getallStudentEmailId();
@@ -121,7 +120,7 @@ public class MailController {
 					});
 				}
 			}
-		}
+		
 		if (mail.getAllEnquiry() != null) {
 			if (mail.getAllEnquiry().equals("allenquiry")) {
 				emailList = registrationService.getallEnquiryEmailId();
@@ -153,7 +152,7 @@ public class MailController {
 				});
 			}
 		}
-
+if(mail.getAllStudent() == null && mail.getAllEnquiry() ==null){
 		if (!emailTo.isEmpty() && emailTo != null) {
 			final String[] email2 = emailTo.split(",");
 			mailSender.send(new MimeMessagePreparator() {
@@ -177,6 +176,7 @@ public class MailController {
 
 			});
 		}
+}
 		return "redirect:/mailSuccess.do";
 	}
 

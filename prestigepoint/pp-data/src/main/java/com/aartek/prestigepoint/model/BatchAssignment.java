@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "batch_Assignment")
+@Table(name = "batch_assignment")
 public class BatchAssignment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

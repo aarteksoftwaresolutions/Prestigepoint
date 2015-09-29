@@ -54,6 +54,7 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 			List<Emi> emis = new ArrayList<Emi>();
 			emis.add(emi);
 			registration.setEmiList(emis);
+			registration.setIsDeleted(IConstant.IS_DELETED);
 			Registration registration2 = stuRegRepository.saveStudent(registration);
 			if (registration2 != null) {
 				BufferedImage newImg;
@@ -108,4 +109,14 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 		return status;
 		
 }
+
+	public int getStudentLogin(Registration registration) {
+		registration = stuRegRepository.getStudentLogin(registration.getEmailId(), registration.getPassword());
+		if (registration!= null) {
+			return registration.getRegistrationId();
+		}else {
+			return 0;
+		}
+		
+	}
 }

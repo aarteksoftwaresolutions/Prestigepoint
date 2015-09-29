@@ -18,4 +18,6 @@ public interface StudentRegistrationService {
 	public Registration stuSignIn(Registration registration);
 
 	public boolean verifyUserEmailId(String emailId);
+
+	public int getStudentLogin(Registration registration);
 }

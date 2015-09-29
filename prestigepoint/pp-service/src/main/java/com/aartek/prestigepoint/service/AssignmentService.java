@@ -27,6 +27,10 @@ public AddAssignment displyAllDetailsBatchWise(Integer assignmentId);
 
 public List<String> getAllDocName(Integer assignmentId);
 
+public AssignmentDoc editAssignmentDetails(Integer assignmentId);
+
+public void deleteAssignment(Integer assignmentId);
+
 
 
 }

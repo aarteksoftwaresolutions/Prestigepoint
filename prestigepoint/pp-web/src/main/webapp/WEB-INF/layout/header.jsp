@@ -103,7 +103,12 @@
 						<!--     <li><a href="forum.do">Forum</a></li> -->
 							<li><a href="viewProfile.do">Profile</a></li>
 							<li><a href="viewChallengeDetails.do">Challenge Title</a></li>
+							<c:choose>
+				           <c:when test="${sessionScope.registration.batch.batchId!=null}">
 							<li><a href="viewAssignment.do">Assignment</a></li>
+							</c:when>
+						 </c:choose>
+						
 							<!-- <li><a href="editor.do">Java Editor</a></li> -->
 						</ul></li>
 					<!--  <li><a href="viewProfile.do">Profile</a></li> -->

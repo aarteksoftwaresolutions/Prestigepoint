@@ -22,6 +22,7 @@ public class IConstant {
   public static final String STUDENT_DELETE_MESSAGE = "StudentDetails deleted successfully!";
   public static final String REGISTRATION_SUCCESS_MESSAGE = "Your registration successfully , please check your email and verify your account";
   public static final String REGISTRATION_FAILURE_MESSAGE = "Please try again!";
+  public static final String REGISTRATION_SAVE_MESSAGE = "Your registration save successfully";
   public static final String JAR_FAILURE_MESSAGE = "Please browse jar for upload";
   public static final String PROFILE_UPDATE_SUCCESS_MESSAGE = "Your profile has been updated successfully";
   public static final String PROFILE_UPDATE_FAILURE_MESSAGE = "Please try again";
@@ -84,4 +85,7 @@ public static final String NO_SUBJECT_FOUND = "No subject found";
 public static final String NO_QUESTION_ANSWER_FOUND = "No question answer form";
 public static final String ALL_QUESTION_ANSWER_LIST = "All question answer list";
 public static final String ASSIGNMENT_SUCCESS_MESSAGE = "Your data successfully inserted";
+public static final String STUDENT_LOGIN_MESSAGE = "Student logged in";
+public static final String STUDENT_INVALID_LOGIN = "Student invalid Id or password";
+public static final String ASSIGNMENT_DELETE_MESSAGE = "Your assignment deleted successfully";
 }
