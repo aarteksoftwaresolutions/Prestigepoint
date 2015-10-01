@@ -88,4 +88,15 @@ public static final String ASSIGNMENT_SUCCESS_MESSAGE = "Your data successfully 
 public static final String STUDENT_LOGIN_MESSAGE = "Student logged in";
 public static final String STUDENT_INVALID_LOGIN = "Student invalid Id or password";
 public static final String ASSIGNMENT_DELETE_MESSAGE = "Your assignment deleted successfully";
+
+public static final String NO_DATA_MESSAGE = "400";
+public static final String INVALID_DETAILS = "data is not available";
+public static final String SUCCESS_MESSAGE = "success";
+public static final String STUDENT_DETAILS_MESSAGE = "success";
+
+public static final String ERROR_MESSAGE = "your emaiId is not valid";
+public static final String PASSWORD_MESSAGE = "success";
+public static final String PASSWORD = "PASSWORD";
+public static final String CHECK_PASSWORD = "your RegistrationId and password is not currect";
+public static final String CHANGE_PASSWORD_MESSAGE = "Your password has successfully change";
 }

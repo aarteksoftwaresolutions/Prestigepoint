@@ -105,4 +105,16 @@ public class RegistrationRepositoryImpl implements RegistrationRepository {
 }
 		return false;
 }
+
+	public List<Registration> getStudentDetails(String emailId) {
+		List<Registration> list = hibernateTemplate.find("from Registration e where e.emailId = ? and e.isDeleted=?", emailId, IConstant.IS_DELETED);
+		if(list!=null){
+			return list;
+			}else{
+				return null;
+			}
+		
+	}
+
+
 }

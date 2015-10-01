@@ -210,4 +210,9 @@
     <put-attribute name="title" type="string" value="displyAllDetailsBatchWise" />
   </definition>
   
+  <definition name="changePassword" id="changePassword" extends="baseTemplate">
+    <put-attribute name="body" value="/WEB-INF/jsp/changePassword.jsp" />
+    <put-attribute name="title" type="string" value="changePassword" />
+  </definition>
+  
 </tiles-definitions>

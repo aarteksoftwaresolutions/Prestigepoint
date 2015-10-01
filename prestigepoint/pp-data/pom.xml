@@ -252,11 +252,11 @@
 			<version>1.4</version>
 		</dependency>
 	<!-- Quartz framework -->
-	<dependency>
+	<!-- <dependency>
 		<groupId>org.quartz-scheduler</groupId>
 		<artifactId>quartz</artifactId>
 		<version>1.8.6</version>
-	</dependency>
+	</dependency> -->
 		<!-- End -->
 	</dependencies>
 	<build>

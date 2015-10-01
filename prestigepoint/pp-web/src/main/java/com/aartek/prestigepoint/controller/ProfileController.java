@@ -118,5 +118,25 @@ public class ProfileController {
 		return "redirect:/viewProfile.do";
 
 	}
+	
+	@RequestMapping(value = "/changePassword")
+	public String changePassword(Map<String, Object> map, Model model) {
+		map.put("Registration", new Registration());
+		return "changePassword";
+	}
+	
+	@RequestMapping(value = "/saveChangePassword", method = { RequestMethod.GET, RequestMethod.POST })
+	public String saveChangePassword(@ModelAttribute("Registration") Registration registration,@RequestParam(required = false) Integer registrationId,ModelMap model) {
+		if (registration!= null) {
+			boolean status = false;
+			status = profileService.saveChangePassword(registration);
+			if (status) {
+				model.addAttribute("message", IConstant.PROFILE_UPDATE_SUCCESS_MESSAGE);
+			} else {
+				model.addAttribute("message", IConstant.PROFILE_UPDATE_FAILURE_MESSAGE);
+			}
 
+	}
+		return "redirect:/viewProfile.do";
+}
 }

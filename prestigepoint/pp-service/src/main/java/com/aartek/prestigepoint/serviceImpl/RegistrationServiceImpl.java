@@ -182,4 +182,15 @@ public class RegistrationServiceImpl implements RegistrationService {
 		
 }
 
+	public Registration getStudentDetails(String emailId) {
+		List<Registration> list = new ArrayList<Registration>();
+		Registration registration = null;
+		list = registrationRepository.getStudentDetails(emailId);
+		for (Registration reg : list) {
+			registration = (Registration) reg;
+
+		}
+		return registration;
+	}
+
 }

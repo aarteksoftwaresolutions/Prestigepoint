@@ -79,6 +79,9 @@ public class Registration implements Serializable {
 	@Column(name = "ENROLLMENT_NO")
 	private String enrollmentNo;
 	
+	@Transient
+	private String newPassword;
+	
 	public String getEnrollmentNo() {
 		return enrollmentNo;
 	}
@@ -633,6 +636,18 @@ public Double getTotalFee() {
 
 public void setTotalFee(Double totalFee) {
 	this.totalFee = totalFee;
+}
+
+public String getNewPassword() {
+	return newPassword;
+}
+
+public void setNewPassword(String newPassword) {
+	this.newPassword = newPassword;
+}
+
+public static Integer getEmiid() {
+	return emiId;
 }
 
 }

@@ -84,7 +84,10 @@
                   <td><a href="editProfile.do?registrationId=${list.registrationId}"><font color="#73346d">For
                         edit profile <b>CLICK HERE</b> </font> </a></td>
                 </tr>
-              </c:forEach>
+              <tr>
+                  <td><a href="changePassword.do?registrationId=${list.registrationId}"><font color="#73346d"><u><b>Change password</b></u> </font> </a></td>
+                </tr>
+                </c:forEach>
             </table>
           </td>
           <td width="80%">

@@ -60,6 +60,9 @@
 			<mvc:exclude-mapping path="/getQuestionAndAnswerWS.do*" />
 			<mvc:exclude-mapping path="/getStudentLoginDetail.do*" />
 			<mvc:exclude-mapping path="/getStudentLogin.do*" />
+			<mvc:exclude-mapping path="/getStudentEmiDetails.do*" />
+			<mvc:exclude-mapping path="/changePassword.do*" />
+			<mvc:exclude-mapping path="/forgotPassword.do*" />
 			<bean class="com.aartek.prestigepoint.controller.LoggingWebInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

@@ -25,7 +25,9 @@ public class UploadImagesController {
 	@RequestMapping("/uploadImagesView")
 	private String uploadImages(Map<String, Object> map, ModelMap model, @RequestParam(required = false) String message) {
 		List<UploadImages> uploadImagesList = uploadImagesService.getAllUploadImages();
+		if(uploadImagesList!=null&& !uploadImagesList.isEmpty()){
 		model.addAttribute("uploadImagesList", uploadImagesList);
+		}
 		map.put("UploadImages", new UploadImages());
 		model.addAttribute("message", message);
 		return "uploadImages";

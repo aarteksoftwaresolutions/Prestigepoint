@@ -43,4 +43,32 @@ public class ProfileRepositoryImpl implements ProfileRepository {
 			return false;
 		}
 	}
+	
+	public List<Registration> verifyPassword(String password, Integer registrationId) {
+		List<Registration> list  =hibernateTemplate.find("from Registration p where p.registrationId=" + registrationId + " and p.password= " + password + " and p.isDeleted=" + IConstant.IS_DELETED);
+		if(list!=null){
+			return list;
+		}else{
+		return null;
+	}
+}
+	
+	public boolean saveChangePassword(Registration password) {
+		if(password!=null){
+		hibernateTemplate.saveOrUpdate(password);
+		return true;
+		}else{
+		return false;
+		}
+	}
+
+	public List<Registration> verifyRegistrationId(Integer registrationId) {
+		List<Registration> list  =hibernateTemplate.find("from Registration rg where rg.registrationId=" + registrationId
+				+ " and rg.isDeleted=" + IConstant.IS_DELETED);
+		if(list!=null){
+			return list;
+		}else{
+		return null;
+	}
+}
 }

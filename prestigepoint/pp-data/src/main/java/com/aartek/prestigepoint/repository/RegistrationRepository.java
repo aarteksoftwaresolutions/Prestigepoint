@@ -30,5 +30,9 @@ public interface RegistrationRepository {
 
   public boolean verifyUserEmailId(String emailId);
 
+public List<Registration> getStudentDetails(String emailId);
+
+
+
 
 }

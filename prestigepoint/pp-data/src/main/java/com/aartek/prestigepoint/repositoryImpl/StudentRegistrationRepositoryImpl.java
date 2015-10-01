@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.aartek.prestigepoint.repositoryImpl;
 
 import java.util.List;

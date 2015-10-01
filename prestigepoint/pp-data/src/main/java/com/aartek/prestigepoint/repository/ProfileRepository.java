@@ -10,4 +10,10 @@ public interface ProfileRepository {
 
 	public boolean updateProfile(Registration registration);
 
+	public boolean saveChangePassword(Registration verifyPassword);
+	
+	public List<Registration> verifyPassword(String password, Integer registrationId);
+
+	public List<Registration> verifyRegistrationId(Integer registrationId);
+
 }

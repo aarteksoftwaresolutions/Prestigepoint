@@ -10,4 +10,8 @@ public interface ProfileService {
 
 	public boolean updateProfile(Registration registration);
 
+	public boolean saveChangePassword(Registration registration);
+
+	public boolean studentChangePassword(Registration registration);
+
 }

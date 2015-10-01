@@ -24,11 +24,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.aartek.prestigepoint.model.AddAssignment;
-import com.aartek.prestigepoint.model.AddChallenge;
 import com.aartek.prestigepoint.model.AssignmentDoc;
 import com.aartek.prestigepoint.model.Batch;
 import com.aartek.prestigepoint.model.BatchAssignment;
-import com.aartek.prestigepoint.model.CurrentBatch;
 import com.aartek.prestigepoint.repository.AssignmentRepository;
 import com.aartek.prestigepoint.service.AssignmentService;
 import com.aartek.prestigepoint.util.IConstant;
@@ -119,8 +117,9 @@ public class AssignmentServiceImpl implements AssignmentService {
 			mailSender.send(new MimeMessagePreparator() {
 				public void prepare(MimeMessage mimeMessage) throws Exception {
 					MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-					if(!doc.get(0).equals("")){
+					
 					for (final String doc1 : doc) {
+					if(!doc1.isEmpty() && !doc1.equals("")){
 					FileSystemResource file = new FileSystemResource(uploadAssignmentDoc+assignmentId+"_"+doc1);
 					messageHelper.addAttachment(file.getFilename(), file);
 					}

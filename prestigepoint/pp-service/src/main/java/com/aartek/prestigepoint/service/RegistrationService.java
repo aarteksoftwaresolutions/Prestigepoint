@@ -30,6 +30,9 @@ public interface RegistrationService {
 
   public boolean verifyUserEmailId(String emailId);
 
+public Registration getStudentDetails(String emailId);
+
+
 
 
 }

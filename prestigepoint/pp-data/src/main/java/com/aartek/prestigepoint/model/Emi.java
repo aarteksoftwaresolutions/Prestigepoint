@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table(name = "emi")
 public class Emi implements Serializable {
@@ -24,13 +26,14 @@ private static final Registration emi = null;
 
   @Column(name = "AMOUNT")
   private Integer amount;
-
+  
   @Column(name = "DATE")
   private String date;
 
   @Column(name = "IS_DELETED")
   private Integer isDeleted;
 
+  
   @ManyToOne
   @JoinColumn(name = "REGISTRATION_ID")
   private Registration registration;
@@ -53,6 +56,7 @@ private static final Registration emi = null;
   /**
    * @return the date
    */
+  @JsonIgnore
   public String getDate() {
     return date;
   }
@@ -61,6 +65,7 @@ private static final Registration emi = null;
    * @param date
    *          the date to set
    */
+  @JsonIgnore
   public void setDate(String date) {
     this.date = date;
   }

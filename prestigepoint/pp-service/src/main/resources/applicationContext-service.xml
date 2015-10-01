@@ -52,7 +52,7 @@
 	<util:properties id="propertyConfigurer" location="classpath:path.properties" />
 	<context:property-placeholder
 		properties-ref="propertyConfigurer" />
-	 <bean id="mySQLDumper" class="com.aartek.prestigepoint.util.MySQLDumper" />
+	 <!-- <bean id="mySQLDumper" class="com.aartek.prestigepoint.util.MySQLDumper" />
 	<bean id="myJob"
 		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="mySQLDumper" />
@@ -74,6 +74,6 @@
 				<ref bean="cronTrigger" />
 			</list>
 		</property>
-	</bean>
+	</bean> -->
 	
 </beans>

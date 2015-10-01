@@ -3,6 +3,7 @@ package com.aartek.prestigepoint.serviceImpl;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.aartek.prestigepoint.model.AssignmentDoc;
 import com.aartek.prestigepoint.model.Registration;
 import com.aartek.prestigepoint.repository.ProfileRepository;
 import com.aartek.prestigepoint.service.ProfileService;
@@ -58,4 +60,34 @@ public class ProfileServiceImpl implements ProfileService {
 		}
 		return false;
 	}
+
+	public boolean saveChangePassword(Registration registration) {
+		List<Registration> list = new ArrayList<Registration>();
+		Registration verifyPassword = null;
+		list = profileRepository.verifyPassword(registration.getPassword(),registration.getRegistrationId());
+		if(list!=null && !list.isEmpty()){
+			for (Registration reg : list) {
+				verifyPassword = (Registration) reg;
+		        verifyPassword.setPassword(registration.getNewPassword());
+		profileRepository.saveChangePassword(verifyPassword);
+		return true;
+		}
+		}
+		return false;
+	}
+
+	public boolean studentChangePassword(Registration registration) {
+		List<Registration> list = new ArrayList<Registration>();
+		Registration newPassword = null;
+		list = profileRepository.verifyRegistrationId(registration.getRegistrationId());
+		if(list!=null && !list.isEmpty()){
+			for (Registration reg : list) {
+				newPassword = (Registration) reg;
+				newPassword.setPassword(registration.getPassword());
+		profileRepository.saveChangePassword(newPassword);
+		return true;
+		}
+		}
+		return false;
+}
 }
