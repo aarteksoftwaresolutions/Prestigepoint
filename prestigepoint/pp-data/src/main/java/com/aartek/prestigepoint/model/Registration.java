@@ -79,6 +79,9 @@ public class Registration implements Serializable {
 	@Column(name = "ENROLLMENT_NO")
 	private String enrollmentNo;
 	
+	@Column(name = "GCM_ID")
+	private String gcmId;
+	
 	@Transient
 	private String newPassword;
 	
@@ -105,6 +108,7 @@ public class Registration implements Serializable {
     public void setBatch(Batch batch) {
         this.batch = batch;
     }
+	
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name="BATCH_ID")
@@ -648,6 +652,14 @@ public void setNewPassword(String newPassword) {
 
 public static Integer getEmiid() {
 	return emiId;
+}
+
+public String getGcmId() {
+	return gcmId;
+}
+
+public void setGcmId(String gcmId) {
+	this.gcmId = gcmId;
 }
 
 }

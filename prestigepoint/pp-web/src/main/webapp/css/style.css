@@ -101,6 +101,8 @@ footer { background: #465568; padding: 30px 0; color: #F2F0F0; font-size: 14px; 
 .form-control { margin-top: 15px; }
 .form-control:first-child { margin-top: 0; }
 .inputControl { border: 1px solid #B1BDCB; resize: none; color: #4C596C; padding: 8px; width: 100%; }
+.inputControl2 { border: 1px solid #B1BDCB; resize: none; color: #4C596C; padding: 8px; width: 50%; }
+.lg-btn2 { width: 20%; }
 .inptlogin{width:53%;}
 .enquiry-open { background: url(../img/icon-stripe.png) no-repeat -173px -2px; height: 115px; width: 25px; display: inline-block; position: absolute; left: -24px; }
 .enquiry-close { background: url(../img/icon-stripe.png) no-repeat -173px -123px; height: 26px; width: 25px; display: inline-block; right: 3px; top: 3px; position: absolute; }

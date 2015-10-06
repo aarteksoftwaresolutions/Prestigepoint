@@ -119,4 +119,24 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 		}
 		
 	}
+
+	public Registration userLogin(Registration registration) {
+		Registration loginMember = (Registration) registration;
+		List<Object> memberList = null;
+		if (registration != null) {
+			if (loginMember.getEmailId() != null && loginMember.getPassword() != null) {
+				memberList = stuRegRepository.studentSignIn(loginMember.getEmailId(), loginMember.getPassword());
+			}
+		}
+		if (memberList.size() == 0) {
+			loginMember = null;
+			
+		} else {
+			loginMember = (Registration) memberList.get(0);
+			loginMember.setGcmId(registration.getGcmId());
+			stuRegRepository.saveStudent(loginMember);
+			
+		}
+		return loginMember;
+	}
 }

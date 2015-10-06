@@ -12,6 +12,7 @@ import com.aartek.prestigepoint.model.Registration;
 import com.aartek.prestigepoint.repository.EmiRepository;
 import com.aartek.prestigepoint.service.EmiService;
 import com.aartek.prestigepoint.util.DateFormat;
+import com.aartek.prestigepoint.util.Gcm;
 import com.aartek.prestigepoint.util.IConstant;
 import com.aartek.prestigepoint.util.SendMail;
 
@@ -45,7 +46,9 @@ public class EmiServiceImpl implements EmiService {
 			registration = studentDetails.get(0);
 			SendMail.emiMail(registration.getEmailId(), registration.getSubmittedFee(), registration.getFirstName(),
 					registration.getTotalFee(), emi.getAmount(), emi.getDate());
-
+          if(registration.getGcmId()!=null){
+        	  Gcm.getGcm(registration,emi.getAmount());
+            }
 			return status;
 		} else {
 			return status;
@@ -132,4 +135,17 @@ public class EmiServiceImpl implements EmiService {
 		return emi;
 	}
 
+	public Registration getUserFeesDetails(Integer registrationId) {
+		List<Registration> registrationList = new ArrayList<Registration>();
+		Registration userRegistration= null;
+		registrationList = emiRepository.getEmiDetails(registrationId);
+		if(registrationList!=null){
+		for (Registration registration : registrationList) {
+			userRegistration = (Registration) registration;
+		}
+		}else{
+			return null;
+		}
+		return userRegistration;
+	}
 }

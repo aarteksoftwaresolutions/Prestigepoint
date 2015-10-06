@@ -13,10 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
+//@Cache(usage=CacheConcurrencyStrategy.READ_WRITE,region="batch")
 @Table(name = "batch")
 public class Batch implements Serializable {
 	private static final long serialVersionUID = 1L;

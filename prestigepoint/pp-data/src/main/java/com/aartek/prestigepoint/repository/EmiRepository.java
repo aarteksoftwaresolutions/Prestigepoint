@@ -1,6 +1,7 @@
 package com.aartek.prestigepoint.repository;
 
 import java.util.List;
+
 import com.aartek.prestigepoint.model.Emi;
 import com.aartek.prestigepoint.model.Registration;
 
@@ -24,5 +25,7 @@ public interface EmiRepository {
 	boolean editEmiInfo(Emi emi);
 
 	List<Registration> getEmiDetails(Integer stuRegistrationId);
+
+	
 
 }

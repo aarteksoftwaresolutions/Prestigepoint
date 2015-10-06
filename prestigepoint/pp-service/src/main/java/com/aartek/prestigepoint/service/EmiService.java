@@ -26,4 +26,6 @@ public interface EmiService {
 
 	boolean editEmiInfo(Emi emi) throws ParseException;
 
+	Registration getUserFeesDetails(Integer registrationId);
+
 }

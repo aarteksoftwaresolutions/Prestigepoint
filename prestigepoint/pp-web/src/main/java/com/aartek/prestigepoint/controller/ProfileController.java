@@ -120,8 +120,7 @@ public class ProfileController {
 	}
 	
 	@RequestMapping(value = "/changePassword")
-	public String changePassword(Map<String, Object> map, Model model) {
-		map.put("Registration", new Registration());
+	public String changePassword(@ModelAttribute("Registration") Registration registration,Map<String, Object> map, Model model) {
 		return "changePassword";
 	}
 	
@@ -131,9 +130,9 @@ public class ProfileController {
 			boolean status = false;
 			status = profileService.saveChangePassword(registration);
 			if (status) {
-				model.addAttribute("message", IConstant.PROFILE_UPDATE_SUCCESS_MESSAGE);
+				model.addAttribute("message", IConstant.CHANGE_PASSWORD_SUCCESS_MESSAGE);
 			} else {
-				model.addAttribute("message", IConstant.PROFILE_UPDATE_FAILURE_MESSAGE);
+				model.addAttribute("message", IConstant.CHANGE_PASSWORD_FAILUR_MESSAGE);
 			}
 
 	}

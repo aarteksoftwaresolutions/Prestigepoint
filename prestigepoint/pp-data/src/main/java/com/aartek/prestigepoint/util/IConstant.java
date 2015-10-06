@@ -99,4 +99,9 @@ public static final String PASSWORD_MESSAGE = "success";
 public static final String PASSWORD = "PASSWORD";
 public static final String CHECK_PASSWORD = "your RegistrationId and password is not currect";
 public static final String CHANGE_PASSWORD_MESSAGE = "Your password has successfully change";
+public static final String FAILUR_GCM_MESSAGE = "your emailId and password are not currect";
+public static final String SUCCESS_GCM_MESSAGE = "your gcm has successfully inserted";
+public static final String CHANGE_PASSWORD_SUCCESS_MESSAGE = "Your password has been successfully";
+public static final String CHANGE_PASSWORD_FAILUR_MESSAGE = "Your password is not currect";
+
 }

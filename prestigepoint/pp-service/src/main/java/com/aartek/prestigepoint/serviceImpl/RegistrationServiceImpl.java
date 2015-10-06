@@ -188,7 +188,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		list = registrationRepository.getStudentDetails(emailId);
 		for (Registration reg : list) {
 			registration = (Registration) reg;
-
+			SendMail.forgotPassword(registration.getEmailId(), registration.getPassword(), registration.getFirstName());
 		}
 		return registration;
 	}
