@@ -3,6 +3,9 @@
  */
 package com.aartek.prestigepoint.service;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.aartek.prestigepoint.model.Registration;
 
 /**
@@ -22,4 +25,8 @@ public interface StudentRegistrationService {
 	public int getStudentLogin(Registration registration);
 
 	public Registration userLogin(Registration registration);
+
+	public boolean userIdVerify(Registration registration);
+
+	/*public List<Registration> getAllStudentImages() throws IOException;*/
 }

@@ -93,6 +93,7 @@
 					</div>
 				</div>
 				<form:hidden path="imgPath" id="imagePath" />
+				<form:hidden path="imagePath"/>
 				<table width="100%" border="0">
 				<tr>
 						<td><div class="form-control">

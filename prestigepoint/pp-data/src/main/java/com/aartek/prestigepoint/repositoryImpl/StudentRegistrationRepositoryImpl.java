@@ -46,23 +46,44 @@ public class StudentRegistrationRepositoryImpl implements StudentRegistrationRep
 				IConstant.IS_DELETED);
 		return stuLogin;
 	}
-	
-	public boolean verifyUserEmailId(String emailId){
-		List list = hibernateTemplate.find("from Registration re where re.emailId = ? and re.isDeleted=?", emailId, IConstant.IS_DELETED);
-		if(!list.isEmpty()){
-    	return true;
-}
+
+	public boolean verifyUserEmailId(String emailId) {
+		List list = hibernateTemplate.find("from Registration re where re.emailId = ? and re.isDeleted=?", emailId,
+				IConstant.IS_DELETED);
+		if (!list.isEmpty()) {
+			return true;
+		}
 		return false;
-}
+	}
 
 	public Registration getStudentLogin(String emailId, String password) {
 		List<Registration> stuLogin = hibernateTemplate.find(
-						"from Registration r where r.emailId = ? and r.password = ? and r.isDeleted=?", emailId,
-						password, IConstant.IS_DELETED);
+				"from Registration r where r.emailId = ? and r.password = ? and r.isDeleted=?", emailId, password,
+				IConstant.IS_DELETED);
 		if (stuLogin != null) {
 			return stuLogin.get(0);
 		} else {
 			return null;
 		}
-}
+	}
+
+	public Registration userIdVerify(Integer registrationId) {
+		List<Registration> userList = hibernateTemplate.find(
+				"from Registration id where id.registrationId = ? and id.isDeleted=?", registrationId,
+				IConstant.IS_DELETED);
+		if (!userList.isEmpty() && userList != null) {
+			return userList.get(0);
+		} else {
+			return null;
+		}
+	}
+
+	/*public List<Registration> getAllStudentImages() {
+		List<Registration> userList = hibernateTemplate.find("from Registration img where img.isDeleted=?",IConstant.IS_DELETED);
+		if(userList!=null){
+		return userList;
+		}else{
+		return null;
+		}
+	}*/
 }

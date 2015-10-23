@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.aartek.prestigepoint.model.Batch;
 import com.aartek.prestigepoint.model.QuestionAnswer;
 import com.aartek.prestigepoint.model.Subject;
 import com.aartek.prestigepoint.repository.QuestionAnswerRepository;
@@ -40,4 +41,22 @@ public class QuestionAnswerRepositoryImpl implements QuestionAnswerRepository {
 				+ IConstant.IS_DELETED + "and q.subject.subjectId=" + subjectId);
 		return list;
 	}
-}
+
+	public List<QuestionAnswer> getAllQuestionAswerList() {
+		List<QuestionAnswer> questionAnswerList = hibernateTemplate.find("from QuestionAnswer qa where qa.isDeleted="
+				+ IConstant.IS_DELETED);
+		return questionAnswerList;
+	}
+
+	public boolean deleteQuestion(Integer questionId) {
+		QuestionAnswer questionAnswer = (QuestionAnswer) hibernateTemplate.get(QuestionAnswer.class, questionId);
+		if(questionAnswer!=null){
+		questionAnswer.setIsDeleted(IConstant.IS_DELETED_DEACTIVE);
+	    hibernateTemplate.update(questionAnswer);
+	    return true;
+		}else{
+			return false;
+		}
+	}
+	}
+

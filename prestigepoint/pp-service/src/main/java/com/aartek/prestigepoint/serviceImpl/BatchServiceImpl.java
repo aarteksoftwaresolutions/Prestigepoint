@@ -42,7 +42,7 @@ public class BatchServiceImpl implements BatchService {
 		for (Object object : list) {
 			batch = (Batch) object;
 		}
-		return batch;
+		return batch; 
 	}
 
 	/**

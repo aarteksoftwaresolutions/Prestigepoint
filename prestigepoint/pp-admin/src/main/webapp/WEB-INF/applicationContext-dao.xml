@@ -6,7 +6,7 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
      http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
-	<context:annotation-config/>
+	<context:annotation-config />
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="packagesToScan">
@@ -89,8 +89,19 @@
 			<props>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-			<!-- 	 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop> -->
+				<!-- <property key="hibernate.cache.use_second_level_cache">true</property> 
+					<property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory 
+					</property> <property key="hibernate.cache.use_query_cache">true</property> 
+					<property name="net.sf.ehcache.configurationResourceName">/ehcache.xml</property> -->
+				<!-- <prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.max_fetch_depth">4</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop> -->
+
+				<!-- <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop> -->
 			</props>
+			<!-- <property name="packagesToScan" value="info.hevi.learn.spring3hibernate4ehcache"/> -->
 		</property>
 	</bean>
 

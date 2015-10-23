@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.aartek.prestigepoint.model.QuestionAnswer;
 import com.aartek.prestigepoint.model.Subject;
 import com.aartek.prestigepoint.service.QuestionAnswerService;
+import com.aartek.prestigepoint.util.IConstant;
 import com.aartek.prestigepoint.validator.QuestionAndAnswerValidator;
 
 @Controller
@@ -43,6 +44,8 @@ public class QuestionAnswerController {
 		model.addAttribute("subjectList", subjects);
 		map.put("QuestionAnswer", new QuestionAnswer());
 		model.addAttribute("message", message);
+		List<QuestionAnswer> questionAnswerList = questionAnswerService.getAllQuestionAswerList();
+		model.addAttribute("questionAnswerList", questionAnswerList);
 		return "questionAndAnswer";
 	}
 
@@ -96,5 +99,17 @@ public class QuestionAnswerController {
 			model.addAttribute("message", "Please try again");
 		}
 		return "redirect:/differenceQuestionAndAnswer.do";
+	}
+	
+	@RequestMapping(value = "/deleteQuestionAnswer", method = { RequestMethod.GET, RequestMethod.POST })
+	public String deleteQuestion(ModelMap model, @RequestParam(required = false) Integer questionId) {
+		boolean status=false;
+		status= questionAnswerService.deleteQuestion(questionId);
+		if(status){
+		model.addAttribute("message", IConstant.QUESTION_SUCCESS_DELETE_MESSAGE);
+		}else{
+		model.addAttribute("message", IConstant.QUESTION_FAILED_DELETE_MESSAGE);
+		}
+		return "redirect:/questionAndAnswer.do";
 	}
 }

@@ -13,4 +13,8 @@ public interface QuestionAnswerRepository {
 
 	public List<QuestionAnswer> getQuestionAndAnswer(Integer subjectId);
 
+	public List<QuestionAnswer> getAllQuestionAswerList();
+
+	public boolean deleteQuestion(Integer questionId);
+
 }

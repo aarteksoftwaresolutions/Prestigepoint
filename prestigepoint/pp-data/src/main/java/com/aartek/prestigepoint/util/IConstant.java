@@ -69,8 +69,10 @@ public static final String MARQUEE_FAILURE_MESSAGE = "Your marquee description n
 public static final String UPLOAD_IMAGE_SUCCESS_MESSAGE = "Your image added successfully";
 public static final String UPLOAD_IMAGE_FAILURE_MESSAGE = "Your image not added";
 public static final String UPLOAD_IMAGE_DELETE_MESSAGE = "Upload image deleted successfully!";
-public static final String FILE_PATH = "D:/images/";
-public static final String ASSIGNMENT_PATH = "E:/29-Work space/apache-tomcat-7.0.59/webapps/assignment1/";
+/*public static final String IMAGE_WS_PATH = "E:/29-Work space/apache-tomcat-7.0.59/webapps/studentImage";*/
+public static final String IMAGE_WS_PATH ="/home/aartek14/jvm/apache-tomcat-7.0.47/domains/prestigepoint.in/studentImage";
+/*public static final String PLACED_STUDENT_IMAGE ="/home/aartek14/jvm/apache-tomcat-7.0.47/domains/prestigepoint.in/placedStudentImage";*/
+public static final String PLACED_STUDENT_IMAGE ="E:/29-Work space/apache-tomcat-7.0.59/webapps/placedStudentImage";
 public static final String CHALLENGE_DELETE_MESSAGE = "Your challenge deleted successfully";
 public static final String EMI_MESSAGE = "Emi Save and send on emailId successfully";
 public static final String EMI_EDIT_MESSAGE = "Emi edit successfully";
@@ -97,11 +99,24 @@ public static final String STUDENT_DETAILS_MESSAGE = "success";
 public static final String ERROR_MESSAGE = "your emaiId is not valid";
 public static final String PASSWORD_MESSAGE = "success";
 public static final String PASSWORD = "PASSWORD";
-public static final String CHECK_PASSWORD = "your RegistrationId and password is not currect";
-public static final String CHANGE_PASSWORD_MESSAGE = "Your password has successfully change";
-public static final String FAILUR_GCM_MESSAGE = "your emailId and password are not currect";
-public static final String SUCCESS_GCM_MESSAGE = "your gcm has successfully inserted";
-public static final String CHANGE_PASSWORD_SUCCESS_MESSAGE = "Your password has been successfully";
-public static final String CHANGE_PASSWORD_FAILUR_MESSAGE = "Your password is not currect";
+public static final String CHECK_PASSWORD = "your RegistrationId and password is not correct";
+public static final String CHANGE_PASSWORD_MESSAGE = "Your password has successfully changed";
+public static final String FAILUR_GCM_MESSAGE = "your emailId and password are not correct";
+public static final String SUCCESS_GCM_MESSAGE = "Successfully Logged In";
+public static final String CHANGE_PASSWORD_SUCCESS_MESSAGE = "Your password has been successfully saved";
+public static final String CHANGE_PASSWORD_FAILUR_MESSAGE = "Your password is not correct";
+public static final String SUCCESS_LOGOUT_MESSAGE = "Success";
+public static final String FAILUR_LOGOUT_MESSAGE = "failed";
+
+/*question deleted message*/
+public static final String QUESTION_SUCCESS_DELETE_MESSAGE = "your question deleted successfully!";
+public static final String QUESTION_FAILED_DELETE_MESSAGE = "your question not deleted successfully!";
+
+/*comment save message*/
+public static final String COMMENT_SUCCESS_MESSAGE = "your comment has successfully saved";
+public static final String COMMENT_FAILUR_MESSAGE = "your comment is not save";
+/*get comment message*/
+public static final String ALL_COMMENT_LIST = "All comment list";
+public static final String NO_COMMENT_FOUND = "No comment found";
 
 }

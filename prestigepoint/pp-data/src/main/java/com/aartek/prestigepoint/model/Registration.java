@@ -486,12 +486,12 @@ public class Registration implements Serializable {
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
 	}
-	@JsonIgnore
+	
 	public String getImagePath() {
 		return imagePath;
 	}
 
-	@JsonIgnore
+
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}

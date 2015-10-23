@@ -30,10 +30,27 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerService {
 		status = questionAnswerRepository.saveQuestionAndAnswer(questionAnswer);
 		return status;
 	}
-	
+
 	public List<QuestionAnswer> getQuestionAndAnswer(Integer subjectId) {
 		List<QuestionAnswer> answerList = questionAnswerRepository.getQuestionAndAnswer(subjectId);
 		return answerList;
+	}
+
+	public List<QuestionAnswer> getAllQuestionAswerList() {
+		List<QuestionAnswer> questionAnswerList = questionAnswerRepository.getAllQuestionAswerList();
+		if (questionAnswerList != null)
+			return questionAnswerList;
+		else
+			return null;
+	}
+
+	public boolean deleteQuestion(Integer questionId) {
+		if(questionId!=null){
+		questionAnswerRepository.deleteQuestion(questionId);
+		return true;
+		}else{
+			return false;
+		}
 	}
 
 }

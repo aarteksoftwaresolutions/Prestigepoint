@@ -20,11 +20,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.aartek.prestigepoint.model.Emi;
+import com.aartek.prestigepoint.model.PhotoInFooter;
 import com.aartek.prestigepoint.model.Registration;
 import com.aartek.prestigepoint.repository.StudentRegistrationRepository;
 import com.aartek.prestigepoint.service.StudentRegistrationService;
 import com.aartek.prestigepoint.util.IConstant;
 import com.aartek.prestigepoint.util.ImageFormat;
+import com.aartek.prestigepoint.util.ImageFormatWS;
 import com.aartek.prestigepoint.util.SendMail;
 
 /**
@@ -55,6 +57,11 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 			emis.add(emi);
 			registration.setEmiList(emis);
 			registration.setIsDeleted(IConstant.IS_DELETED);
+			if (registration.getImgPath()!=null&&registration.getImgPath()!="") {
+				registration.setImagePath("true");
+			} else {
+				registration.setImagePath("false");
+			}
 			Registration registration2 = stuRegRepository.saveStudent(registration);
 			if (registration2 != null) {
 				BufferedImage newImg;
@@ -67,7 +74,7 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 						ImageIO.write(newImg, "png", new File(imagePath + "/" + registration.getRegistrationId()
 								+ ".png"));
 					} catch (IOException e) {
-						logger.error("IOException",e);
+						logger.error("IOException", e);
 					}
 				}
 				SendMail.confirmationMail(registration2.getEmailId(), registration2.getPassword(),
@@ -102,22 +109,22 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 		}
 		return loginMember;
 	}
-	
+
 	public boolean verifyUserEmailId(String emailId) {
 		boolean status = false;
-		status= stuRegRepository.verifyUserEmailId(emailId);
+		status = stuRegRepository.verifyUserEmailId(emailId);
 		return status;
-		
-}
+
+	}
 
 	public int getStudentLogin(Registration registration) {
 		registration = stuRegRepository.getStudentLogin(registration.getEmailId(), registration.getPassword());
-		if (registration!= null) {
+		if (registration != null) {
 			return registration.getRegistrationId();
-		}else {
+		} else {
 			return 0;
 		}
-		
+
 	}
 
 	public Registration userLogin(Registration registration) {
@@ -130,13 +137,42 @@ public class StudentRegistrationServiceImpl implements StudentRegistrationServic
 		}
 		if (memberList.size() == 0) {
 			loginMember = null;
-			
+
 		} else {
 			loginMember = (Registration) memberList.get(0);
 			loginMember.setGcmId(registration.getGcmId());
 			stuRegRepository.saveStudent(loginMember);
-			
+
 		}
 		return loginMember;
 	}
+
+	public boolean userIdVerify(Registration registration) {
+		Registration userRegistration = stuRegRepository.userIdVerify(registration.getRegistrationId());
+		if (userRegistration != null) {
+			userRegistration.setGcmId(registration.getGcmId());
+			stuRegRepository.saveStudent(userRegistration);
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	/*@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<Registration> getAllStudentImages() throws IOException {
+		List<Registration> studentImagesList = stuRegRepository.getAllStudentImages();
+		List studentList = new ArrayList();
+		Registration studentsImages = null;
+		if (studentImagesList != null) {
+			for (Registration images : studentImagesList) {
+				studentsImages = images;
+				String imagePath = ImageFormatWS.readStudentsImage(studentsImages);
+				studentList.add(imagePath);
+			}
+			return studentList;
+		} else {
+			return null;
+		}
+	}*/
 }

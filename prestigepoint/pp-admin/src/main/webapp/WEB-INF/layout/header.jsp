@@ -79,6 +79,9 @@
             </li>
              <li><a href="assignmentView.do">AddAssignment</a>
             </li>
+             </li>
+             <li><a href="uploadPlacedStudentImages.do">UploadPlacedStudentImages</a>
+            </li>
           </ul>
         </c:if>
       </li>

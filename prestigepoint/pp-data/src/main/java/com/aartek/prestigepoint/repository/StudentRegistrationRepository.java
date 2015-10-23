@@ -23,4 +23,8 @@ public interface StudentRegistrationRepository {
 
 	public Registration getStudentLogin(String emailId, String password);
 
+	public Registration userIdVerify(Integer registrationId);
+
+	/*public List<Registration> getAllStudentImages();*/
+
 }
